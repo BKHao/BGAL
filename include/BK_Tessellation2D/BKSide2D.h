@@ -2,7 +2,9 @@
 #include "../BK_BaseShape/BKPoint.h"
 
 #include <fenv.h>
+#if WIN32 || _WIN32
 #include <corecrt_math.h>
+#endif
 #include <CGAL/Simple_cartesian.h>
 #include <CGAL/Interval_nt.h>
 #include <CGAL/Uncertain.h>
