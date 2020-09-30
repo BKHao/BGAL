@@ -2239,20 +2239,21 @@ void timestamp(void)
 {
 # define TIME_SIZE 40
 
-	static char time_buffer[TIME_SIZE];
-	struct tm* tm;
-	size_t len;
-	time_t now;
+  static char time_buffer[TIME_SIZE];
+  struct tm *tm;
+  size_t len;
+  time_t now;
 
-	now = time(NULL);
-	localtime_s(tm, &now);
-	//tm = localtime(&now);
+  now = time(NULL);
+  localtime_r(&now, tm);
+//	localtime_s(tm, &now);
+  //tm = localtime(&now);
 
-	len = strftime(time_buffer, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm);
+  len = strftime(time_buffer, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm);
 
-	cout << time_buffer << "\n";
+  cout << time_buffer << "\n";
 
-	return;
+  return;
 # undef TIME_SIZE
 }
 
@@ -2278,20 +2279,20 @@ void timestamp(void)
 //	node_xyz2[11] = C3.z;
 //
 //
-//	double *w;//µãµÄÈ¨ÖØ
-//	double *xyz;//¼ÇÂ¼µ¥Î»ËÄÃæÌåµÄµãµÄ×ø±ê
-//	double *xyz2;//¼ÇÂ¼ÓÃ»§×Ô¼º¶¨ÒåµÄËÄÃæÌåµÄµãµÄ×ø±ê
+//	double *w;//ï¿½ï¿½ï¿½È¨ï¿½ï¿½
+//	double *xyz;//ï¿½ï¿½Â¼ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//	double *xyz2;//ï¿½ï¿½Â¼ï¿½Ã»ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //
-//	int order_num = keast_order_num(rule);//¸ù¾Ý¹æÔò¼ÆËã³ö»ý·ÖµãµÄÊýÄ¿
+//	int order_num = keast_order_num(rule);//ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ä¿
 //	xyz = new double[3 * order_num];
 //	xyz2 = new double[3 * order_num];
 //	w = new double[order_num];
 //
-//	keast_rule(rule, order_num, xyz, w);//¼ÆËã»ý·ÖµãµÄÈ¨ÖØ
+//	keast_rule(rule, order_num, xyz, w);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½È¨ï¿½ï¿½
 //
-//	tetrahedron_reference_to_physical(node_xyz2, order_num, xyz, xyz2);//½«µ¥Î»ËÄÃæÌåÖÐµãµÄÎ»ÖÃÓ³Éäµ½ÓÃ»§×Ô¼º¶¨ÒåµÄËÄÃæÌåÖÐ
+//	tetrahedron_reference_to_physical(node_xyz2, order_num, xyz, xyz2);//ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½Î»ï¿½ï¿½Ó³ï¿½äµ½ï¿½Ã»ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //
-//	double volume = tetrahedron_volume(node_xyz2);//¼ÆËãËÄÃæÌåµÄÌå»ý
+//	double volume = tetrahedron_volume(node_xyz2);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //
 //	for (int order = 0; order < order_num; order++)
 //	{
@@ -2308,7 +2309,7 @@ void timestamp(void)
 //{
 //	Geex::vec3  u = C3 - C1;
 //	Geex::vec3  v = C2 - C1;
-//	//ÒÔÏÂÊÇÔÚÃ¿Ò»¸öÈý½ÇÐÎÖÐµÃµ½Áù¸ö»ý·Öµã
+//	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÃµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½
 //	Geex::vec3 p1 = C1 + u / 2 + v / 2;
 //	Points.push_back(Geex::vec4(p1.x, p1.y, p1.z, 1.0 / 30));
 //	Geex::vec3 p2 = C1 + u / 2;

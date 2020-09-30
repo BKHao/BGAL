@@ -29,27 +29,38 @@ inline BKHao::_BOC::_Sign BKHao::_Side2D::base_side1_(const double& p1x, const d
 	_BOC::_Sign int_tmp_result;
 	if (fabs(t1 * t3 + t2 * t4 + w1 - w2) > (t1_bound * t3_bound + t2_bound * t4_bound + w1_bound + w2_bound) * 1.33226762955018784851e-15 && (fetestexcept(FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID) == 0))
 	{
-		int_tmp_result = (((t1 * t3 + t2 * t4 + w1 - w2) < 0.00000000000000000000e+00) ? _BOC::_Sign::NegativE : _BOC::_Sign::PositivE);
-	}
-	else
-	{
-		feclearexcept(FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID);
-		return _BOC::_Sign::FaileD;
-	}
-	return int_tmp_result;
-}
-template <class RT>
-static inline RT BKHao::_Side2D::side1_generic(const RT& p1x, const RT& p1y, const RT& w1,
-	const RT& p2x, const RT& p2y, const RT& w2,
-	const RT& qx, const RT& qy)
-{
-	static RT const two(2);
-	return RT((p1x - p2x) * (two * qx - p1x - p2x) + (p1y - p2y) * (two * qy - p1y - p2y) + w1 - w2);
+      int_tmp_result = (((t1 * t3 + t2 * t4 + w1 - w2) < 0.00000000000000000000e+00) ? _BOC::_Sign::NegativE
+                                                                                     : _BOC::_Sign::PositivE);
+    } else {
+      feclearexcept(FE_DIVBYZERO | FE_UNDERFLOW | FE_OVERFLOW | FE_INVALID);
+      return _BOC::_Sign::FaileD;
+    }
+  return int_tmp_result;
 }
 template<class RT>
-inline void BKHao::_Side2D::side2_generic(RT& denom, RT& numer, const RT& p1x, const RT& p1y, const RT& w1, const RT& p2x, const RT& p2y, const RT& w2, const RT& p3x, const RT& p3y, const RT& w3, const RT& q1x, const RT& q1y, const RT& q2x, const RT& q2y)
-{
-	RT two(2.00000000000000000000e+00);
+inline RT BKHao::_Side2D::side1_generic(const RT &p1x, const RT &p1y, const RT &w1,
+                                        const RT &p2x, const RT &p2y, const RT &w2,
+                                        const RT &qx, const RT &qy) {
+  static RT const two(2);
+  return RT((p1x - p2x) * (two * qx - p1x - p2x) + (p1y - p2y) * (two * qy - p1y - p2y) + w1 - w2);
+}
+template<class RT>
+inline void BKHao::_Side2D::side2_generic(RT &denom,
+                                          RT &numer,
+                                          const RT &p1x,
+                                          const RT &p1y,
+                                          const RT &w1,
+                                          const RT &p2x,
+                                          const RT &p2y,
+                                          const RT &w2,
+                                          const RT &p3x,
+                                          const RT &p3y,
+                                          const RT &w3,
+                                          const RT &q1x,
+                                          const RT &q1y,
+                                          const RT &q2x,
+                                          const RT &q2y) {
+  RT two(2.00000000000000000000e+00);
 	RT four(4.00000000000000000000e+00);
 	RT t1 = p1x - p2x;	
 	RT t2 = p1y - p2y;

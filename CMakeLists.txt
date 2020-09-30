@@ -1,18 +1,24 @@
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.17)
 project(BKHao_CODE_2)
 
-find_package(Eigen3 REQUIRED)
-if(Eigen3_FOUND)
-message(STATUS "${EIGEN3_VERSION_STRING}")
-include_directories(${EIGEN3_INCLUDE_DIR})
-endif()
+# CXX STANDARD
+set(CMAKE_CXX_STANDARD 14)
 
+# Get Eigen3
+find_package(Eigen3 REQUIRED)
+if (Eigen3_FOUND)
+    message(STATUS "${EIGEN3_VERSION_STRING}")
+    include_directories(${EIGEN3_INCLUDE_DIR})
+endif ()
+
+# Get Boost
 find_package(Boost REQUIRED)
-if(Boost_FOUND)
-message(STATUS "BOOST FOUNDED")
+if (Boost_FOUND)
+    message(STATUS "BOOST FOUNDED")
 include_directories(${Boost_INCLUDE_DIRS}) 
 endif()
 
+# Get CGAL
 find_package(CGAL REQUIRED)
 if(CGAL_FOUND)
     include(${CGAL_USE_FILE})
