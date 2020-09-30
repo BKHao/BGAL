@@ -1,14 +1,12 @@
-#include "BKTriangle.h"
+//#include "BKTriangle.h"
+#include "BK_BaseShape/BKTriangle.h"
 
-namespace BKHao
-{
-	_Triangle3::_Triangle3()
-	{
-		_area = 0;
-		_open_in = false;
-	}
-	_Triangle3::_Triangle3(const std::vector<_Point3>& in_points)
-	{
+namespace BKHao {
+_Triangle3::_Triangle3() {
+  _area = 0;
+  _open_in = false;
+}
+_Triangle3::_Triangle3(const std::vector<_Point3> &in_points) {
 		if (in_points.size() != 3)
 			throw std::runtime_error("The number of points isn't right!");
 		_points = in_points;

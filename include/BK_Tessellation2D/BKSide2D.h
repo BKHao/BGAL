@@ -1,5 +1,6 @@
 #pragma once
-#include "../BK_BaseShape/BKPoint.h"
+#include "BK_BaseShape/BKPoint.h"
+//#include "../BK_BaseShape/BKPoint.h"
 
 #include <fenv.h>
 #if WIN32 || _WIN32

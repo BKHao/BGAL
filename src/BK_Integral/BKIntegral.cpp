@@ -1,6 +1,6 @@
-#include "BKIntegral.h"
+//#include "BKIntegral.h"
+#include "BK_Integral/BKIntegral.h"
 
-namespace BKHao
-{
+namespace BKHao {
 
 }

@@ -1,12 +1,10 @@
-#include "BKAbstractMethod.h"
+//#include "BKAbstractMethod.h"
+#include "BK_Geodesic/BKAbstractMethod.h"
 
-namespace BKHao
-{
-	namespace Geodesic
-	{
-		_Abstract_Method::_Abstract_Method(const _ManifoldModel& in_model)
-			:_model(in_model), _method(0)
-		{
+namespace BKHao {
+namespace Geodesic {
+_Abstract_Method::_Abstract_Method(const _ManifoldModel &in_model)
+    : _model(in_model), _method(0) {
 
 		}
 		_Abstract_Method::_Abstract_Method(const _ManifoldModel& in_model, const std::map<int, double>& in_sources)

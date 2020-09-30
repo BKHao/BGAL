@@ -1,14 +1,15 @@
-#include "BKLinearSystem.h"
+//#include "BKLinearSystem.h"
+#include "BK_Optimization/LinearSystem/BKLinearSystem.h"
 
-namespace BKHao
-{
-	Eigen::VectorXd _LinearSystem::solve_ldlt(const Eigen::SparseMatrix<double>& CoeffMat, const Eigen::VectorXd& right)
-	{
-		Eigen::SimplicialLDLT<Eigen::SparseMatrix<double>> ldlt(CoeffMat);
-		Eigen::VectorXd res = ldlt.solve(right);
-		return res;
-	}
-	Eigen::VectorXd _LinearSystem::solve_ldlt(const Eigen::SparseMatrix<double>& CoeffMat, const Eigen::VectorXd& right, const double& pinvtoler)
+namespace BKHao {
+Eigen::VectorXd _LinearSystem::solve_ldlt(const Eigen::SparseMatrix<double> &CoeffMat, const Eigen::VectorXd &right) {
+  Eigen::SimplicialLDLT<Eigen::SparseMatrix<double>> ldlt(CoeffMat);
+  Eigen::VectorXd res = ldlt.solve(right);
+  return res;
+}
+Eigen::VectorXd _LinearSystem::solve_ldlt(const Eigen::SparseMatrix<double> &CoeffMat,
+                                          const Eigen::VectorXd &right,
+                                          const double &pinvtoler)
 	{
 		Eigen::SimplicialLDLT<Eigen::SparseMatrix<double>> ldlt(CoeffMat);
 		Eigen::VectorXd X_0 = ldlt.permutationP() * right;

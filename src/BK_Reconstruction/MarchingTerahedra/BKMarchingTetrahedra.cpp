@@ -1,14 +1,12 @@
-#include "BKMarchingTetrahedra.h"
+//#include "BKMarchingTetrahedra.h"
+#include "BK_Reconstruction/MarchingTetrahedra/BKMarchingTetrahedra.h"
 #include <fstream>
-namespace BKHao
-{
-	_Marching_Tetrahedra::_Marching_Tetrahedra()
-		:_depth(1), _method(0)
-	{
-	}
-	_Marching_Tetrahedra::_Marching_Tetrahedra(const std::pair<_Point3, _Point3>& in_boundingbox, const int& in_depth)
-		:_boundingbox(in_boundingbox), _depth(in_depth), _method(0)
-	{
+namespace BKHao {
+_Marching_Tetrahedra::_Marching_Tetrahedra()
+    : _depth(1), _method(0) {
+}
+_Marching_Tetrahedra::_Marching_Tetrahedra(const std::pair<_Point3, _Point3> &in_boundingbox, const int &in_depth)
+    : _boundingbox(in_boundingbox), _depth(in_depth), _method(0) {
 		tiling_();
 	}
 	void _Marching_Tetrahedra::tiling_()

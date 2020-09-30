@@ -5,6 +5,8 @@ project(BKHao_CODE_2)
 set(CMAKE_BUILD_TYPE RELEASE)
 # CXX STANDARD
 set(CMAKE_CXX_STANDARD 14)
+# include header from project_source_dir
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # Get Eigen3
 find_package(Eigen3 REQUIRED)
@@ -28,10 +30,14 @@ else ()
     message("ERROR: this program requires CGAL and will not be compiled.")
 endif ()
 
-
+# Set lib output directory
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${PROJECT_BINARY_DIR}/../lib/Debug)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_BINARY_DIR}/../lib/Release)
 
+
+#target_include_directories()
 add_subdirectory(include)
-#add_subdirectory(src)
+add_subdirectory(src)
+
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 

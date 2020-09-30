@@ -1,15 +1,12 @@
-#include "BKTessellation3D.h"
-#include "BKSide3D.h"
-namespace BKHao
-{
-	_Tessellation3D_Skeleton::_Tessellation3D_Skeleton()
-	{
-		_neights.resize(0);
-	}
-	_Tessellation3D_Skeleton::_Tessellation3D_Skeleton(Rt& rt, const int& num_vertices)
-	{
-		_neights.resize(num_vertices);
-		for (auto c_it = rt.finite_cells_begin(); c_it != rt.finite_cells_end(); c_it++)
+#include "BK_Tessellation3D/BKSide3D.h"
+#include "BK_Tessellation3D/BKTessellation3D.h"
+namespace BKHao {
+_Tessellation3D_Skeleton::_Tessellation3D_Skeleton() {
+  _neights.resize(0);
+}
+_Tessellation3D_Skeleton::_Tessellation3D_Skeleton(Rt &rt, const int &num_vertices) {
+  _neights.resize(num_vertices);
+  for (auto c_it = rt.finite_cells_begin(); c_it != rt.finite_cells_end(); c_it++)
 		{
 			int i0, i1, i2, i3;
 			i0 = c_it->vertex(0)->info();

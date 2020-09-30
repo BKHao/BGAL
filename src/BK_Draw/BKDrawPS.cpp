@@ -1,14 +1,12 @@
-#include "BKDrawPS.h"
+//#include "BKDrawPS.h"
+#include "BK_Draw/BKDrawPS.h"
 
-namespace BKHao
-{
-	_PS::_PS(std::ostream& in_os)
-		:os(in_os)
-	{
+namespace BKHao {
+_PS::_PS(std::ostream &in_os)
+    : os(in_os) {
 
-	}
-	void _PS::set_bbox_(const std::pair<_Point2, _Point2>& bbox)
-	{
+}
+void _PS::set_bbox_(const std::pair<_Point2, _Point2> &bbox) {
 		double minX = bbox.first.x();
 		double minY = bbox.first.y();
 		double maxX = bbox.second.x();

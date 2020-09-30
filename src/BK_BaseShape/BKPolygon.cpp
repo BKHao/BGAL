@@ -1,13 +1,12 @@
-#include "BKPolygon.h"
+//#include "BKPolygon.h"
+#include "BK_BaseShape/BKPolygon.h"
 
-namespace BKHao
-{
-	_Polygon::_Polygon(const std::vector<_Point2>& in_points)
-	{
-		_points = in_points;
-		if (_points.size() < 3)
-			throw std::runtime_error("The number of points is too small!");
-		double __maxx, __minx, __maxy, __miny;
+namespace BKHao {
+_Polygon::_Polygon(const std::vector<_Point2> &in_points) {
+  _points = in_points;
+  if (_points.size() < 3)
+    throw std::runtime_error("The number of points is too small!");
+  double __maxx, __minx, __maxy, __miny;
 		__maxx = __minx = _points[0][0];
 		__maxy = __miny = _points[0][1];
 		for (int i = 0; i < _points.size(); ++i)
@@ -178,7 +177,7 @@ namespace BKHao
 		{
 			bool p1_on = false;
 			bool p2_on = false;
-			//ÅÐ¶Ïp1,p2ÊÇ·ñÔÚ±ß½çÉÏ
+			//ï¿½Ð¶ï¿½p1,p2ï¿½Ç·ï¿½ï¿½Ú±ß½ï¿½ï¿½ï¿½
 			if (_BOC::sign_((_points[i] - p1).dot_(_points[(i + 1) % _points.size()] - p1)
 				+ ((_points[i] - p1).length_()) * ((_points[(i + 1) % _points.size()] - p1).length_())) == _BOC::_Sign::ZerO)
 			{
@@ -190,7 +189,7 @@ namespace BKHao
 				p2_on = true;
 			}
 
-			//Èç¹ûÖØºÏ
+			//ï¿½ï¿½ï¿½ï¿½Øºï¿½
 			if (p1_on && p2_on)
 			{
 				intersections.push_back(std::make_pair(i, p1));
@@ -229,7 +228,7 @@ namespace BKHao
 			}
 
 
-			//²»ÖØºÏµ«ÓÐµãÔÚ±ß½çÉÏ
+			//ï¿½ï¿½ï¿½ØºÏµï¿½ï¿½Ðµï¿½ï¿½Ú±ß½ï¿½ï¿½ï¿½
 			if (p1_on)
 			{
 				if (intersections.size() == 1)
@@ -265,7 +264,7 @@ namespace BKHao
 				continue;
 			}
 
-			//±ß½çµãÔÚÏß¶ÎÉÏ
+			//ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ß¶ï¿½ï¿½ï¿½
 			if (_BOC::sign_((p1 - _points[i]).dot_(p2 - _points[i])
 				+ ((p1 - _points[i]).length_()) * ((p2 - _points[i]).length_())) == _BOC::_Sign::ZerO)
 			{

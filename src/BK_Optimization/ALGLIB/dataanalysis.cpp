@@ -20,11 +20,13 @@ http://www.fsf.org/licensing/licenses
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #endif
-#include "stdafx.h"
-#include "dataanalysis.h"
+//#include "dataanalysis.h"
+//#include "BK_Optimization/BK_
+#include "BK_Optimization/ALGLIB/dataanalysis.h"
+
 
 // disable some irrelevant warnings
-#if (AE_COMPILER==AE_MSVC) && !defined(AE_ALL_WARNINGS)
+#if (AE_COMPILER == AE_MSVC) && !defined(AE_ALL_WARNINGS)
 #pragma warning(disable:4100)
 #pragma warning(disable:4127)
 #pragma warning(disable:4611)

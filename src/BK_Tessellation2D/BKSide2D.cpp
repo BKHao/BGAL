@@ -1,4 +1,5 @@
-#include "BKSide2D.h"
+//#include "BKSide2D.h"
+#include "BK_Tessellation2D/BKSide2D.h"
 
 typedef CGAL::Simple_cartesian<double> SIDEK;
 typedef CGAL::Simple_cartesian<CGAL::Interval_nt_advanced> FK;
@@ -7,7 +8,14 @@ typedef CGAL::Cartesian_converter<SIDEK, EK> C2E;
 typedef CGAL::Cartesian_converter<SIDEK, FK> C2F;
 typedef SIDEK::Comparison_result Comparison_result;
 
-inline BKHao::_BOC::_Sign BKHao::_Side2D::base_side1_(const double& p1x, const double& p1y, const double& w1, const double& p2x, const double& p2y, const double& w2, const double& qx, const double& qy)
+inline BKHao::_BOC::_Sign BKHao::_Side2D::base_side1_(const double &p1x,
+                                                      const double &p1y,
+                                                      const double &w1,
+                                                      const double &p2x,
+                                                      const double &p2y,
+                                                      const double &w2,
+                                                      const double &qx,
+                                                      const double &qy)
 {
 	double two = 2.00000000000000000000e+00;
 	double p1x_bound = fabs(p1x);

@@ -26,12 +26,13 @@ http://www.fsf.org/licensing/licenses
 // set _GNU_SOURCE flag BEFORE any #includes to get affinity
 // management functions
 //
-#if (AE_OS==AE_LINUX) && !defined(_GNU_SOURCE)
+#if (AE_OS == AE_LINUX) && !defined(_GNU_SOURCE)
 #define _GNU_SOURCE
 #endif
 
-#include "stdafx.h"
-#include "ap.h"
+#include "BK_Optimization/ALGLIB/ap.h"
+
+//#include "ap.h"
 #include <limits>
 #include <locale.h>
 #include <ctype.h>

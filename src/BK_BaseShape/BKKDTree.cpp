@@ -1,14 +1,13 @@
-#include "BKKDTree.h"
+//#include "BKKDTree.h"
+#include "BK_BaseShape/BKKDTree.h"
 #include <numeric>
 #include <algorithm>
 #include <stack>
 #include <queue>
 #include <tuple>
-namespace BKHao
-{
-	_KDTree::_KDTree() :_root(nullptr)
-	{
-		_points.clear();
+namespace BKHao {
+_KDTree::_KDTree() : _root(nullptr) {
+  _points.clear();
 	}
 	_KDTree::_KDTree(const std::vector<_Point3>& in_points) : _root(nullptr)
 	{

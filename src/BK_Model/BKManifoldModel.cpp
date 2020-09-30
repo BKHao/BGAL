@@ -1,16 +1,17 @@
 #pragma once
-#include "BKManifoldModel.h"
-#include "BKModel_Iterator.h"
+#include "BK_Model/BKManifoldModel.h"
+#include "BK_Model/BKModel_Iterator.h"
+//#include "BKManifoldModel.h"
+//#include "BKModel_Iterator.h"
 
-namespace BKHao
-{
+namespace BKHao {
 
-	_ManifoldModel::_MMEdge::_MMEdge()
-		: _Segment3(),
-		_id_left_vertex(-1),
-		_id_right_vertex(-1),
-		_id_opposite_vertex(-1),
-		_id_left_edge(-1),
+_ManifoldModel::_MMEdge::_MMEdge()
+    : _Segment3(),
+      _id_left_vertex(-1),
+      _id_right_vertex(-1),
+      _id_opposite_vertex(-1),
+      _id_left_edge(-1),
 		_id_right_edge(-1),
 		_id_reverse_edge(-1),
 		_id_face(-1)

@@ -1,14 +1,12 @@
-#include "BKDijkstra.h"
+//#include "BKDijkstra.h"
+#include "BK_Geodesic/Dijkstra/BKDijkstra.h"
 #include <queue>
-namespace BKHao
-{
-	namespace Geodesic
-	{
-		void _Dijkstra::initialize_()
-		{
-			_Abstract_Method::initialize_();
-		}
-		void _Dijkstra::implement_()
+namespace BKHao {
+namespace Geodesic {
+void _Dijkstra::initialize_() {
+  _Abstract_Method::initialize_();
+}
+void _Dijkstra::implement_()
 		{
 			struct _Event :std::tuple<double, int, int, int, int>
 			{

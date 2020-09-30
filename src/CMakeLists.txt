@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.17)
 
-set(BKHao_HEADERS
+set(BKHao_SRC
         # BK_Algorithm
-        BK_Algorithm/BOC/BOC.cpp
+        #        BK_Algorithm/BOC/BOC.cpp
         BK_Algorithm/GraphCuts/graph.cpp
         BK_Algorithm/GraphCuts/maxflow.cpp
         # BK_BaseShape
@@ -24,40 +24,32 @@ set(BKHao_HEADERS
         BK_Model/BKModel.cpp
         BK_Model/BKModel_Iterator.cpp
         # BK_Optimization
-        BK_Optimization/ALGLIB/alglibinternal.h
-        BK_Optimization/ALGLIB/alglibmisc.h
-        BK_Optimization/ALGLIB/ap.h
-        BK_Optimization/ALGLIB/dataanalysis.h
-        BK_Optimization/ALGLIB/diffequations.h
-        BK_Optimization/ALGLIB/fasttransforms.h
-        BK_Optimization/ALGLIB/integration.h
-        BK_Optimization/ALGLIB/interpolation.h
-        BK_Optimization/ALGLIB/linalg.h
-        BK_Optimization/ALGLIB/optimization.h
-        BK_Optimization/ALGLIB/solvers.h
-        BK_Optimization/ALGLIB/specialfunctions.h
-        BK_Optimization/ALGLIB/statistics.h
-        BK_Optimization/LBFGS/BKLBFGS.h
-        BK_Optimization/GradientDescent/BKGradientDescent.h
-        BK_Optimization/LinearSystem/BKLinearSystem.h
+        BK_Optimization/ALGLIB/alglibinternal.cpp
+        BK_Optimization/ALGLIB/alglibmisc.cpp
+        BK_Optimization/ALGLIB/ap.cpp
+        BK_Optimization/ALGLIB/dataanalysis.cpp
+        BK_Optimization/ALGLIB/diffequations.cpp
+        BK_Optimization/ALGLIB/fasttransforms.cpp
+        BK_Optimization/ALGLIB/integration.cpp
+        BK_Optimization/ALGLIB/interpolation.cpp
+        BK_Optimization/ALGLIB/linalg.cpp
+        BK_Optimization/ALGLIB/optimization.cpp
+        BK_Optimization/ALGLIB/solvers.cpp
+        BK_Optimization/ALGLIB/specialfunctions.cpp
+        BK_Optimization/ALGLIB/statistics.cpp
         BK_Optimization/LBFGS/BKLBFGS.cpp
-        BK_Optimization/GradientDescent/BK
+        BK_Optimization/GradientDescent/BKGradientDescent.cpp
+        BK_Optimization/LinearSystem/BKLinearSystem.cpp
+        BK_Optimization/LBFGS/BKLBFGS.cpp
         # BK_PointCloudProcessing
         BK_PointCloudProcessing/Registration/ICP/BKICP.cpp
         # BK_PQP
         BK_PQP/Build.cpp
         BK_PQP/BV.cpp
-        BK_PQP/BVTQ.cpp
-        BK_PQP/MatVec.cpp
-        BK_PQP/OBB_Disjoint.cpp
         BK_PQP/PQP.cpp
-        BK_PQP/PQP_Compile.cpp
-        BK_PQP/PQP_Internal.cpp
-        BK_PQP/RectDist.cpp
-        BK_PQP/Tri.cpp
         BK_PQP/TriDist.cpp
         # BK_Reconstruction
-        BK_Reconstruction/MarchingTetrahedra/BKMarchingTetrahedra.cpp
+        BK_Reconstruction/MarchingTerahedra/BKMarchingTetrahedra.cpp
         # BK_Tessellation2D
         BK_Tessellation2D/BKSide2D.cpp
         BK_Tessellation2D/BKTessellation2D.cpp
@@ -66,5 +58,5 @@ set(BKHao_HEADERS
         BK_Tessellation3D/BKTessellation3D.cpp
         )
 
-#add_library(BKHao_CODE ${cpp_files})
+add_library(${PROJECT_NAME} ${BKHao_SRC})
 #target_link_libraries(BKHao_CODE ${Boost_LIBRARIES})

@@ -1,4 +1,4 @@
-#include "BKSide3D.h"
+#include "BK_Tessellation3D/BKSide3D.h"
 
 BKHao::_Side3D::K::Comparison_result BKHao::_Side3D::mult(K::Comparison_result s1, K::Comparison_result s2)
 {

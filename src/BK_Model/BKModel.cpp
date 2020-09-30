@@ -1,16 +1,13 @@
 #pragma once
-#include "BKModel.h"
-#include "BKModel_Iterator.h"
-namespace BKHao
-{
-	_Model::_MFace::_MFace() : _Triangle3(), id(-1)
-	{
-		_vertices.resize(3, -1);
-	}
-	_Model::_MFace::_MFace(const int& id1, const int& id2, const int& id3) : _Triangle3(), id(-1)
-	{
-		_vertices.resize(3);
-		_vertices[0] = id1;
+#include "BK_Model/BKModel.h"
+#include "BK_Model/BKModel_Iterator.h"
+namespace BKHao {
+_Model::_MFace::_MFace() : _Triangle3(), id(-1) {
+  _vertices.resize(3, -1);
+}
+_Model::_MFace::_MFace(const int &id1, const int &id2, const int &id3) : _Triangle3(), id(-1) {
+  _vertices.resize(3);
+  _vertices[0] = id1;
 		_vertices[1] = id2;
 		_vertices[2] = id3;
 	}
