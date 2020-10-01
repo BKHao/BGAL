@@ -38,7 +38,7 @@ find_package_handle_standard_args(BKHao
         BKHao_INCLUDE_DIR)
 mark_as_advanced(BKHao_INCLUDE_DIR)
 
-include(BKHao)
+#include(BKHao)
 # Get Eigen3
 find_package(Eigen3 REQUIRED)
 if (Eigen3_FOUND)
