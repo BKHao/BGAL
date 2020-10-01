@@ -74,8 +74,8 @@ if (BUILD_STATIC_LIB)
 endif ()
 
 # Install shared lib
-install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION BKHao)
+install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION)
 # Install static lib
 if (BUILD_STATIC_LIB)
-    install(TARGETS ${PROJECT_NAME}_static LIBRARY BKHao)
+    install(TARGETS ${PROJECT_NAME}_static LIBRARY DESTINATION)
 endif ()
