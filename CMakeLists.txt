@@ -8,6 +8,13 @@ set(CMAKE_BUILD_TYPE RELEASE)
 set(CMAKE_CXX_STANDARD 17)
 # Set Version
 set(VERSION 1.0)
+# Set lib output directory
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/../lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/../lib)
+#set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+# Generator to static?
+option(BUILD_STATIC_LIB "build BKHao.a static lib" OFF)
+option(CMAKE_INSTALL_PREFIX "BKHao install PATH" /usr/local)
 # include header from project_source_dir
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
@@ -33,12 +40,7 @@ else ()
     message("ERROR: this program requires CGAL and will not be compiled.")
 endif ()
 
-# Set lib output directory
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
-
-# Generator to static?
-option(BUILD_STATIC_LIB "build BKHao.a static lib" OFF)
-
+# sub_directory
 add_subdirectory(include)
 add_subdirectory(src)
 

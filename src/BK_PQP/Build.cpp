@@ -197,18 +197,18 @@ compute_moments(moment *M, Tri *tris, int num_tris)
   for(i=0; i<num_tris; i++)
   {
     compute_moment(M[i], 
-           tris[i].p1,
-           tris[i].p2,
-           tris[i].p3);
+		   tris[i].p1,
+		   tris[i].p2, 
+		   tris[i].p3);  
     if (M[i].A == 0.0)
     {
-        zero = 1;
+	    zero = 1;
     }
     else
     {
-        nonzero = 1;
-        if (Amin == 0.0) Amin = M[i].A;
-        else if (M[i].A < Amin) Amin = M[i].A;
+	    nonzero = 1;
+	    if (Amin == 0.0) Amin = M[i].A;
+	    else if (M[i].A < Amin) Amin = M[i].A;
     }
   }
 

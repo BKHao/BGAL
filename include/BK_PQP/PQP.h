@@ -268,12 +268,11 @@ PQP_Distance(PQP_DistanceResult *result, PQP_Model *o, PQP_REAL p[3],
              PQP_REAL rel_err, PQP_REAL abs_err,
              int qsize = 2);
 
-int
-PQP_Distance(PQP_DistanceResult *result,
-             PQP_REAL R1[3][3], PQP_REAL T1[3], PQP_Model *o1,
-             PQP_REAL R2[3][3], PQP_REAL T2[3], PQP_Model *o2,
-             PQP_REAL rel_err, PQP_REAL abs_err,
-             int qsize = 2);
+int PQP_Distance(PQP_DistanceResult *result,
+                 PQP_REAL R1[3][3], PQP_REAL T1[3], PQP_Model *o1,
+                 PQP_REAL R2[3][3], PQP_REAL T2[3], PQP_Model *o2,
+                 PQP_REAL rel_err, PQP_REAL abs_err,
+                 int qsize = 2);
 
 //----------------------------------------------------------------------------
 //

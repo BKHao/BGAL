@@ -84,8 +84,7 @@ BV::GetSize() {
 #endif
 }
 
-int
-BV_Overlap(PQP_REAL R[3][3], PQP_REAL T[3], BV *b1, BV *b2);
+int BV_Overlap(PQP_REAL R[3][3], PQP_REAL T[3], BV *b1, BV *b2);
 
 #if PQP_BV_TYPE
 & RSS_TYPE
