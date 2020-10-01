@@ -63,4 +63,6 @@ set(BKHao_HEADERS
         BK_Tessellation3D/BKTessellation3D.h
         )
 
-install(FILES ${BKHao_HEADERS} DESTINATION include/BKHao)
+install(DIRECTORY include/ DESTINATION include/BKHao
+        FILES_MATCHING PATTERN "*.h")
+#install(DIRECTORY ${BKHao_HEADERS} DESTINATION include/BKHao)

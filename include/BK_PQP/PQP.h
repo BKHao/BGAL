@@ -209,8 +209,7 @@ PQP_Collide(PQP_CollideResult *result,
             PQP_REAL R2[3][3], PQP_REAL T2[3], PQP_Model *o2,
             int flag = PQP_ALL_CONTACTS);
 
-#if PQP_BV_TYPE
-& RSS_TYPE  // this is true by default,
+#if PQP_BV_TYPE & RSS_TYPE  // this is true by default,
 // and explained in PQP_Compile.h
 
 //----------------------------------------------------------------------------
@@ -269,10 +268,10 @@ PQP_Distance(PQP_DistanceResult *result, PQP_Model *o, PQP_REAL p[3],
              int qsize = 2);
 
 int PQP_Distance(PQP_DistanceResult *result,
-                 PQP_REAL R1[3][3], PQP_REAL T1[3], PQP_Model *o1,
-                 PQP_REAL R2[3][3], PQP_REAL T2[3], PQP_Model *o2,
-                 PQP_REAL rel_err, PQP_REAL abs_err,
-                 int qsize = 2);
+             PQP_REAL R1[3][3], PQP_REAL T1[3], PQP_Model *o1,
+             PQP_REAL R2[3][3], PQP_REAL T2[3], PQP_Model *o2,
+             PQP_REAL rel_err, PQP_REAL abs_err,
+             int qsize = 2);
 
 //----------------------------------------------------------------------------
 //

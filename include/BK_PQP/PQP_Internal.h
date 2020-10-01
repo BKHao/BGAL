@@ -130,8 +130,7 @@ struct PQP_CollideResult {
   int Id2(int k) { return pairs[k].id2; }
 };
 
-#if PQP_BV_TYPE
-& RSS_TYPE // distance/tolerance are only available with RSS
+#if PQP_BV_TYPE & RSS_TYPE // distance/tolerance are only available with RSS
 
 struct PQP_DistanceResult {
   int pos_flag;    // the closest point in which field of the closest triangle
