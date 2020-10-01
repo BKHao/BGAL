@@ -50,14 +50,14 @@ struct BV {
   PQP_REAL R[3][3];     // orientation of RSS & OBB
 
 #if PQP_BV_TYPE
-  & RSS_TYPE
+& RSS_TYPE
   PQP_REAL Tr[3];       // position of rectangle
   PQP_REAL l[2];        // side lengths of rectangle
   PQP_REAL r;           // radius of sphere summed with rectangle to form RSS
 #endif
 
 #if PQP_BV_TYPE
-  & OBB_TYPE
+& OBB_TYPE
   PQP_REAL To[3];       // position of obb
   PQP_REAL d[3];        // (half) dimensions of obb
 #endif
@@ -77,7 +77,7 @@ inline
 PQP_REAL
 BV::GetSize() {
 #if PQP_BV_TYPE
-  &RSS_TYPE
+& RSS_TYPE
   return (sqrt(l[0] * l[0] + l[1] * l[1]) + 2 * r);
 #else
   return (d[0]*d[0] + d[1]*d[1] + d[2]*d[2]);

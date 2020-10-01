@@ -60,8 +60,11 @@
 inline
 int
 obb_disjoint(PQP_REAL B[3][3], PQP_REAL T[3], PQP_REAL a[3], PQP_REAL b[3]) {
-  register PQP_REAL t, s;
-  register int r;
+//  register PQP_REAL t, s;
+//  register int r;
+  PQP_REAL t;
+  PQP_REAL s;
+  int r;
   PQP_REAL Bf[3][3];
   const PQP_REAL reps = (PQP_REAL) 1e-6;
 

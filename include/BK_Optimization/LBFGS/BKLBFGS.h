@@ -1,5 +1,5 @@
 #pragma once
-#include <Eigen/dense>
+#include <Eigen/Dense>
 #include <time.h>
 #include <vector>
 #include <iostream>

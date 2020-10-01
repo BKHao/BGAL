@@ -58,5 +58,18 @@ set(BKHao_SRC
         BK_Tessellation3D/BKTessellation3D.cpp
         )
 
-add_library(${PROJECT_NAME} ${BKHao_SRC})
-#target_link_libraries(BKHao_CODE ${Boost_LIBRARIES})
+# Get shared lib
+add_library(${PROJECT_NAME} SHARED ${BKHao_SRC})
+set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${VERSION})
+# Get static lib
+if (BUILD_STATIC_LIB)
+    # Get static lib
+    add_library(${PROJECT_NAME}_static STATIC ${BKHao_SRC})
+    # Modify static lib name
+    set_target_properties(${PROJECT_NAME}_static PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+    set_target_properties(${PROJECT_NAME}_static PROPERTIES VERSION ${VERSION})
+    # save shared lib and static lib
+    set_target_properties(${PROJECT_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+    set_target_properties(${PROJECT_NAME}_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+endif ()
+
