@@ -55,6 +55,5 @@ int s_len_trim(char *s);
 void tetrahedron_reference_to_physical(double t[], int n, double ref[],
                                        double phy[]);
 double tetrahedron_volume(double t[3 * 4]);
-void timestamp(void);
 
 

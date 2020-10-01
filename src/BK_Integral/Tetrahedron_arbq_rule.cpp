@@ -2057,54 +2057,6 @@ double tetrahedron_volume(double tetra[3 * 4])
 }
 //****************************************************************************80
 
-void timestamp(void)
-
-//****************************************************************************80
-//
-//  Purpose:
-//
-//    TIMESTAMP prints the current YMDHMS date as a time stamp.
-//
-//  Example:
-//
-//    31 May 2001 09:45:54 AM
-//
-//  Licensing:
-//
-//    This code is distributed under the GNU LGPL license.
-//
-//  Modified:
-//
-//    24 September 2003
-//
-//  Author:
-//
-//    John Burkardt
-//
-//  Parameters:
-//
-//    None
-//
-{
-# define TIME_SIZE 40
-
-  static char time_buffer[TIME_SIZE];
-  struct tm *tm;
-  size_t len;
-  time_t now;
-
-  now = time(NULL);
-  localtime_r(&now, tm);
-//	localtime_s(tm, &now);
-  //tm = localtime(&now);
-
-  len = strftime(time_buffer, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm);
-
-  cout << time_buffer << "\n";
-
-  return;
-# undef TIME_SIZE
-}
 
 //double Tetra_Integration_API(const Geex::vec3 &X0, const Geex::vec3 &C1, const Geex::vec3 &C2, const Geex::vec3 &C3, int rule, std::vector<Geex::vec4> & Points)
 //{

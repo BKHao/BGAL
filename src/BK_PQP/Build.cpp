@@ -727,12 +727,10 @@ build_recurse(PQP_Model *m, int bn, int first_tri, int num_tris) {
 void
 make_parent_relative(PQP_Model *m, int bn,
                      const PQP_REAL parentR[3][3]
-#if PQP_BV_TYPE
-& RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
     , const PQP_REAL parentTr[3]
 #endif
-#if PQP_BV_TYPE
-& OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
     , const PQP_REAL parentTo[3]
 #endif
 ) {
@@ -743,23 +741,19 @@ make_parent_relative(PQP_Model *m, int bn,
 
     make_parent_relative(m, m->child(bn)->first_child,
                          m->child(bn)->R
-#if PQP_BV_TYPE
-    & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         , m->child(bn)->Tr
 #endif
-#if PQP_BV_TYPE
-    & OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
         , m->child(bn)->To
 #endif
     );
     make_parent_relative(m, m->child(bn)->first_child + 1,
                          m->child(bn)->R
-#if PQP_BV_TYPE
-    & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         , m->child(bn)->Tr
 #endif
-#if PQP_BV_TYPE
-    & OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
         , m->child(bn)->To
 #endif
     );
@@ -769,13 +763,11 @@ make_parent_relative(PQP_Model *m, int bn,
 
   MTxM(Rpc, parentR, m->child(bn)->R);
   McM(m->child(bn)->R, Rpc);
-#if PQP_BV_TYPE
-& RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
   VmV(Tpc, m->child(bn)->Tr, parentTr);
   MTxV(m->child(bn)->Tr, parentR, Tpc);
 #endif
-#if PQP_BV_TYPE
-& OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
   VmV(Tpc, m->child(bn)->To, parentTo);
   MTxV(m->child(bn)->To, parentR, Tpc);
 #endif
@@ -799,12 +791,10 @@ build_model(PQP_Model *m) {
   Videntity(T);
 
   make_parent_relative(m, 0, R
-#if PQP_BV_TYPE
-  & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
       , T
 #endif
-#if PQP_BV_TYPE
-  & OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
       , T
 #endif
   );

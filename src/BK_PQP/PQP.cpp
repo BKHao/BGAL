@@ -782,8 +782,7 @@ CollideRecurse(PQP_CollideResult *res,
     int c2 = c1 + 1;
 
     MTxM(Rc, o1->child(c1)->R, R);
-#if PQP_BV_TYPE
-  & OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
     VmV(Ttemp, T, o1->child(c1)->To);
 #else
     VmV(Ttemp,T,o1->child(c1)->Tr);
@@ -794,8 +793,7 @@ CollideRecurse(PQP_CollideResult *res,
     if ((flag == PQP_FIRST_CONTACT) && (res->num_pairs > 0)) return;
 
     MTxM(Rc, o1->child(c2)->R, R);
-#if PQP_BV_TYPE
-  & OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
     VmV(Ttemp, T, o1->child(c2)->To);
 #else
     VmV(Ttemp,T,o1->child(c2)->Tr);
@@ -807,8 +805,7 @@ CollideRecurse(PQP_CollideResult *res,
     int c2 = c1 + 1;
 
     MxM(Rc, R, o2->child(c1)->R);
-#if PQP_BV_TYPE
-  & OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
     MxVpV(Tc, R, o2->child(c1)->To, T);
 #else
     MxVpV(Tc,R,o2->child(c1)->Tr,T);
@@ -818,8 +815,7 @@ CollideRecurse(PQP_CollideResult *res,
     if ((flag == PQP_FIRST_CONTACT) && (res->num_pairs > 0)) return;
 
     MxM(Rc, R, o2->child(c2)->R);
-#if PQP_BV_TYPE
-  & OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
     MxVpV(Tc, R, o2->child(c2)->To, T);
 #else
     MxVpV(Tc,R,o2->child(c2)->Tr,T);
@@ -867,8 +863,7 @@ PQP_Collide(PQP_CollideResult *res,
   MxM(Rtemp, res->R, o2->child(0)->R);
   MTxM(R, o1->child(0)->R, Rtemp);
 
-#if PQP_BV_TYPE
-& OBB_TYPE
+#if PQP_BV_TYPE & OBB_TYPE
   MxVpV(Ttemp, res->R, o2->child(0)->To, res->T);
   VmV(Ttemp, Ttemp, o1->child(0)->To);
 #else
@@ -888,8 +883,7 @@ PQP_Collide(PQP_CollideResult *res,
   return PQP_OK;
 }
 
-#if PQP_BV_TYPE
-& RSS_TYPE // distance/tolerance only available with RSS
+#if PQP_BV_TYPE & RSS_TYPE // distance/tolerance only available with RSS
 // unless an OBB distance test is supplied in
 // BV.cpp
 
@@ -939,8 +933,7 @@ void DistanceRecurse(PQP_DistanceResult *res, PQP_REAL R[3][3], PQP_REAL T[3], /
   a = o->child(b)->first_child;
   c = o->child(b)->first_child + 1;
   MTxM(R1, o->child(a)->R, R);
-#if PQP_BV_TYPE
-& RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
   VmV(Ttemp, T, o->child(a)->Tr);
 #else
   VmV(Ttemp,T,o->child(a)->To);
@@ -948,8 +941,7 @@ void DistanceRecurse(PQP_DistanceResult *res, PQP_REAL R[3][3], PQP_REAL T[3], /
   MTxV(T1, o->child(a)->R, Ttemp);
 
   MTxM(R2, o->child(c)->R, R);
-#if PQP_BV_TYPE
-& RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
   VmV(Ttemp, T, o->child(c)->Tr);
 #else
   VmV(Ttemp,T,o->child(c)->To);
@@ -1037,8 +1029,7 @@ DistanceRecurse(PQP_DistanceResult *res,
     c2 = b2;
 
     MTxM(R1, o1->child(a1)->R, R);
-#if PQP_BV_TYPE
-  & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
     VmV(Ttemp, T, o1->child(a1)->Tr);
 #else
     VmV(Ttemp,T,o1->child(a1)->To);
@@ -1046,8 +1037,7 @@ DistanceRecurse(PQP_DistanceResult *res,
     MTxV(T1, o1->child(a1)->R, Ttemp);
 
     MTxM(R2, o1->child(c1)->R, R);
-#if PQP_BV_TYPE
-  & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
     VmV(Ttemp, T, o1->child(c1)->Tr);
 #else
     VmV(Ttemp,T,o1->child(c1)->To);
@@ -1062,16 +1052,14 @@ DistanceRecurse(PQP_DistanceResult *res,
     c2 = o2->child(b2)->first_child + 1;
 
     MxM(R1, R, o2->child(a2)->R);
-#if PQP_BV_TYPE
-  & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
     MxVpV(T1, R, o2->child(a2)->Tr, T);
 #else
     MxVpV(T1,R,o2->child(a2)->To,T);
 #endif
 
     MxM(R2, R, o2->child(c2)->R);
-#if PQP_BV_TYPE
-  & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
     MxVpV(T2, R, o2->child(c2)->Tr, T);
 #else
     MxVpV(T2,R,o2->child(c2)->To,T);
@@ -1172,8 +1160,7 @@ DistanceQueueRecurse(PQP_DistanceResult *res,
         bvt1.b1 = c1;
         bvt1.b2 = min_test.b2;
         MTxM(bvt1.R, o1->child(c1)->R, min_test.R);
-#if PQP_BV_TYPE
-      & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         VmV(Ttemp, min_test.T, o1->child(c1)->Tr);
 #else
         VmV(Ttemp,min_test.T,o1->child(c1)->To);
@@ -1187,8 +1174,7 @@ DistanceQueueRecurse(PQP_DistanceResult *res,
         bvt2.b1 = c2;
         bvt2.b2 = min_test.b2;
         MTxM(bvt2.R, o1->child(c2)->R, min_test.R);
-#if PQP_BV_TYPE
-      & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         VmV(Ttemp, min_test.T, o1->child(c2)->Tr);
 #else
         VmV(Ttemp,min_test.T,o1->child(c2)->To);
@@ -1208,8 +1194,7 @@ DistanceQueueRecurse(PQP_DistanceResult *res,
         bvt1.b1 = min_test.b1;
         bvt1.b2 = c1;
         MxM(bvt1.R, min_test.R, o2->child(c1)->R);
-#if PQP_BV_TYPE
-      & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         MxVpV(bvt1.T, min_test.R, o2->child(c1)->Tr, min_test.T);
 #else
         MxVpV(bvt1.T,min_test.R,o2->child(c1)->To,min_test.T);
@@ -1222,8 +1207,7 @@ DistanceQueueRecurse(PQP_DistanceResult *res,
         bvt2.b1 = min_test.b1;
         bvt2.b2 = c2;
         MxM(bvt2.R, min_test.R, o2->child(c2)->R);
-#if PQP_BV_TYPE
-      & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         MxVpV(bvt2.T, min_test.R, o2->child(c2)->Tr, min_test.T);
 #else
         MxVpV(bvt2.T,min_test.R,o2->child(c2)->To,min_test.T);
@@ -1299,8 +1283,7 @@ int PQP_Distance(PQP_DistanceResult *res, PQP_Model *o, PQP_REAL p[3],
 
 //  MxVpV(Ttemp,res->R,Pt,res->T);
   VcV(Ttemp, Pt);
-#if PQP_BV_TYPE
-& RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
   VmV(Ttemp, Ttemp, o->child(0)->Tr);
 #else
   VmV(Ttemp,Ttemp,o->child(0)->To);
@@ -1376,8 +1359,7 @@ PQP_Distance(PQP_DistanceResult *res,
   MxM(Rtemp, res->R, o2->child(0)->R);
   MTxM(R, o1->child(0)->R, Rtemp);
 
-#if PQP_BV_TYPE
-& RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
   MxVpV(Ttemp, res->R, o2->child(0)->Tr, res->T);
   VmV(Ttemp, Ttemp, o1->child(0)->Tr);
 #else
@@ -1459,8 +1441,7 @@ ToleranceRecurse(PQP_ToleranceResult *res,
     c2 = b2;
 
     MTxM(R1, o1->child(a1)->R, R);
-#if PQP_BV_TYPE
-  & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
     VmV(Ttemp, T, o1->child(a1)->Tr);
 #else
     VmV(Ttemp,T,o1->child(a1)->To);
@@ -1468,8 +1449,7 @@ ToleranceRecurse(PQP_ToleranceResult *res,
     MTxV(T1, o1->child(a1)->R, Ttemp);
 
     MTxM(R2, o1->child(c1)->R, R);
-#if PQP_BV_TYPE
-  & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
     VmV(Ttemp, T, o1->child(c1)->Tr);
 #else
     VmV(Ttemp,T,o1->child(c1)->To);
@@ -1484,15 +1464,13 @@ ToleranceRecurse(PQP_ToleranceResult *res,
     c2 = o2->child(b2)->first_child + 1;
 
     MxM(R1, R, o2->child(a2)->R);
-#if PQP_BV_TYPE
-  & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
     MxVpV(T1, R, o2->child(a2)->Tr, T);
 #else
     MxVpV(T1,R,o2->child(a2)->To,T);
 #endif
     MxM(R2, R, o2->child(c2)->R);
-#if PQP_BV_TYPE
-  & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
     MxVpV(T2, R, o2->child(c2)->Tr, T);
 #else
     MxVpV(T2,R,o2->child(c2)->To,T);
@@ -1582,8 +1560,7 @@ ToleranceQueueRecurse(PQP_ToleranceResult *res,
         bvt1.b1 = c1;
         bvt1.b2 = min_test.b2;
         MTxM(bvt1.R, o1->child(c1)->R, min_test.R);
-#if PQP_BV_TYPE
-      & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         VmV(Ttemp, min_test.T, o1->child(c1)->Tr);
 #else
         VmV(Ttemp,min_test.T,o1->child(c1)->To);
@@ -1597,8 +1574,7 @@ ToleranceQueueRecurse(PQP_ToleranceResult *res,
         bvt2.b1 = c2;
         bvt2.b2 = min_test.b2;
         MTxM(bvt2.R, o1->child(c2)->R, min_test.R);
-#if PQP_BV_TYPE
-      & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         VmV(Ttemp, min_test.T, o1->child(c2)->Tr);
 #else
         VmV(Ttemp,min_test.T,o1->child(c2)->To);
@@ -1618,8 +1594,7 @@ ToleranceQueueRecurse(PQP_ToleranceResult *res,
         bvt1.b1 = min_test.b1;
         bvt1.b2 = c1;
         MxM(bvt1.R, min_test.R, o2->child(c1)->R);
-#if PQP_BV_TYPE
-      & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         MxVpV(bvt1.T, min_test.R, o2->child(c1)->Tr, min_test.T);
 #else
         MxVpV(bvt1.T,min_test.R,o2->child(c1)->To,min_test.T);
@@ -1632,8 +1607,7 @@ ToleranceQueueRecurse(PQP_ToleranceResult *res,
         bvt2.b1 = min_test.b1;
         bvt2.b2 = c2;
         MxM(bvt2.R, min_test.R, o2->child(c2)->R);
-#if PQP_BV_TYPE
-      & RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
         MxVpV(bvt2.T, min_test.R, o2->child(c2)->Tr, min_test.T);
 #else
         MxVpV(bvt2.T,min_test.R,o2->child(c2)->To,min_test.T);
@@ -1701,8 +1675,7 @@ PQP_Tolerance(PQP_ToleranceResult *res,
 
   MxM(Rtemp, res->R, o2->child(0)->R);
   MTxM(R, o1->child(0)->R, Rtemp);
-#if PQP_BV_TYPE
-& RSS_TYPE
+#if PQP_BV_TYPE & RSS_TYPE
   MxVpV(Ttemp, res->R, o2->child(0)->Tr, res->T);
   VmV(Ttemp, Ttemp, o1->child(0)->Tr);
 #else
