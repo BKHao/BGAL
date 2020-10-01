@@ -50,39 +50,39 @@
 //
 //----------------------------------------------------------------------------
 
-const int PQP_OK = 0; 
-  // Used by all API routines upon successful completion except
-  // constructors and destructors
+const int PQP_OK = 0;
+// Used by all API routines upon successful completion except
+// constructors and destructors
 
-const int PQP_ERR_MODEL_OUT_OF_MEMORY = -1; 
-  // Returned when an API function cannot obtain enough memory to
-  // store or process a PQP_Model object.
+const int PQP_ERR_MODEL_OUT_OF_MEMORY = -1;
+// Returned when an API function cannot obtain enough memory to
+// store or process a PQP_Model object.
 
 const int PQP_ERR_OUT_OF_MEMORY = -2;
-  // Returned when a PQP query cannot allocate enough storage to
-  // compute or hold query information.  In this case, the returned
-  // data should not be trusted.
+// Returned when a PQP query cannot allocate enough storage to
+// compute or hold query information.  In this case, the returned
+// data should not be trusted.
 
 const int PQP_ERR_UNPROCESSED_MODEL = -3;
-  // Returned when an unprocessed model is passed to a function which
-  // expects only processed models, such as PQP_Collide() or
-  // PQP_Distance().
+// Returned when an unprocessed model is passed to a function which
+// expects only processed models, such as PQP_Collide() or
+// PQP_Distance().
 
 const int PQP_ERR_BUILD_OUT_OF_SEQUENCE = -4;
-  // Returned when: 
-  //       1. AddTri() is called before BeginModel().  
-  //       2. BeginModel() is called immediately after AddTri().  
-  // This error code is something like a warning: the invoked
-  // operation takes place anyway, and PQP does what makes "most
-  // sense", but the returned error code may tip off the client that
-  // something out of the ordinary is happenning.
+// Returned when:
+//       1. AddTri() is called before BeginModel().
+//       2. BeginModel() is called immediately after AddTri().
+// This error code is something like a warning: the invoked
+// operation takes place anyway, and PQP does what makes "most
+// sense", but the returned error code may tip off the client that
+// something out of the ordinary is happenning.
 
-const int PQP_ERR_BUILD_EMPTY_MODEL = -5; 
-  // Returned when EndModel() is called on a model to which no
-  // triangles have been added.  This is similar in spirit to the
-  // OUT_OF_SEQUENCE return code, except that the requested operation
-  // has FAILED -- the model remains "unprocessed", and the client may
-  // NOT use it in queries.
+const int PQP_ERR_BUILD_EMPTY_MODEL = -5;
+// Returned when EndModel() is called on a model to which no
+// triangles have been added.  This is similar in spirit to the
+// OUT_OF_SEQUENCE return code, except that the requested operation
+// has FAILED -- the model remains "unprocessed", and the client may
+// NOT use it in queries.
 
 //----------------------------------------------------------------------------
 //
@@ -203,15 +203,15 @@ const int PQP_ERR_BUILD_EMPTY_MODEL = -5;
 const int PQP_ALL_CONTACTS = 1;  // find all pairwise intersecting triangles
 const int PQP_FIRST_CONTACT = 2; // report first intersecting tri pair found
 
-int 
+int
 PQP_Collide(PQP_CollideResult *result,
             PQP_REAL R1[3][3], PQP_REAL T1[3], PQP_Model *o1,
             PQP_REAL R2[3][3], PQP_REAL T2[3], PQP_Model *o2,
             int flag = PQP_ALL_CONTACTS);
 
-
-#if PQP_BV_TYPE & RSS_TYPE  // this is true by default,
-                            // and explained in PQP_Compile.h
+#if PQP_BV_TYPE
+& RSS_TYPE  // this is true by default,
+// and explained in PQP_Compile.h
 
 //----------------------------------------------------------------------------
 //
@@ -263,13 +263,13 @@ PQP_Collide(PQP_CollideResult *result,
 //  planning application with "non-coherent" placements of models.
 //
 //----------------------------------------------------------------------------
-int 
+int
 PQP_Distance(PQP_DistanceResult *result, PQP_Model *o, PQP_REAL p[3],
              PQP_REAL rel_err, PQP_REAL abs_err,
              int qsize = 2);
 
-int 
-PQP_Distance(PQP_DistanceResult *result, 
+int
+PQP_Distance(PQP_DistanceResult *result,
              PQP_REAL R1[3][3], PQP_REAL T1[3], PQP_Model *o1,
              PQP_REAL R2[3][3], PQP_REAL T2[3], PQP_Model *o2,
              PQP_REAL rel_err, PQP_REAL abs_err,
@@ -326,13 +326,13 @@ PQP_Distance(PQP_DistanceResult *result,
 //----------------------------------------------------------------------------
 
 int
-PQP_Tolerance(PQP_ToleranceResult *res, 
+PQP_Tolerance(PQP_ToleranceResult *res,
               PQP_REAL R1[3][3], PQP_REAL T1[3], PQP_Model *o1,
               PQP_REAL R2[3][3], PQP_REAL T2[3], PQP_Model *o2,
               PQP_REAL tolerance,
               int qsize = 2);
 
-#endif 
+#endif
 #endif
 
 

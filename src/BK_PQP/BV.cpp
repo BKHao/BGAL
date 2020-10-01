@@ -38,16 +38,12 @@
 
 \**************************************************************************/
 
-//#include <stdlib.h>
+#include <stdlib.h>
 #include <math.h>
 #include "BK_PQP/MatVec.h"
 #include "BK_PQP/BV.h"
 #include "BK_PQP/RectDist.h"
 #include "BK_PQP/OBB_Disjoint.h"
-//#include "BV.h"
-//#include "MatVec.h"
-//#include "RectDist.h"
-//#include "OBB_Disjoint.h"
 
 BV::BV() {
   first_child = 0;

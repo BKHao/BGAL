@@ -1,4 +1,3 @@
-//#include "BKGradientDescent.h"
 #include "BK_Optimization/GradientDescent/BKGradientDescent.h"
 
 namespace BKHao {

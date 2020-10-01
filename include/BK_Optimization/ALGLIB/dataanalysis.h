@@ -33,520 +33,483 @@ http://www.fsf.org/licensing/licenses
 // THIS SECTION CONTAINS COMPUTATIONAL CORE DECLARATIONS (DATATYPES)
 //
 /////////////////////////////////////////////////////////////////////////
-namespace alglib_impl
-{
+namespace alglib_impl {
 #if defined(AE_COMPILE_PCA) || !defined(AE_PARTIAL_BUILD)
 #endif
 #if defined(AE_COMPILE_BDSS) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    double relclserror;
-    double avgce;
-    double rmserror;
-    double avgerror;
-    double avgrelerror;
+typedef struct {
+  double relclserror;
+  double avgce;
+  double rmserror;
+  double avgerror;
+  double avgrelerror;
 } cvreport;
 #endif
 #if defined(AE_COMPILE_MLPBASE) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    double relclserror;
-    double avgce;
-    double rmserror;
-    double avgerror;
-    double avgrelerror;
+typedef struct {
+  double relclserror;
+  double avgce;
+  double rmserror;
+  double avgerror;
+  double avgrelerror;
 } modelerrors;
-typedef struct
-{
-    double f;
-    ae_vector g;
+typedef struct {
+  double f;
+  ae_vector g;
 } smlpgrad;
-typedef struct
-{
-    ae_int_t hlnetworktype;
-    ae_int_t hlnormtype;
-    ae_vector hllayersizes;
-    ae_vector hlconnections;
-    ae_vector hlneurons;
-    ae_vector structinfo;
-    ae_vector weights;
-    ae_vector columnmeans;
-    ae_vector columnsigmas;
-    ae_vector neurons;
-    ae_vector dfdnet;
-    ae_vector derror;
-    ae_vector x;
-    ae_vector y;
-    ae_matrix xy;
-    ae_vector xyrow;
-    ae_vector nwbuf;
-    ae_vector integerbuf;
-    modelerrors err;
-    ae_vector rndbuf;
-    ae_shared_pool buf;
-    ae_shared_pool gradbuf;
-    ae_matrix dummydxy;
-    sparsematrix dummysxy;
-    ae_vector dummyidx;
-    ae_shared_pool dummypool;
+typedef struct {
+  ae_int_t hlnetworktype;
+  ae_int_t hlnormtype;
+  ae_vector hllayersizes;
+  ae_vector hlconnections;
+  ae_vector hlneurons;
+  ae_vector structinfo;
+  ae_vector weights;
+  ae_vector columnmeans;
+  ae_vector columnsigmas;
+  ae_vector neurons;
+  ae_vector dfdnet;
+  ae_vector derror;
+  ae_vector x;
+  ae_vector y;
+  ae_matrix xy;
+  ae_vector xyrow;
+  ae_vector nwbuf;
+  ae_vector integerbuf;
+  modelerrors err;
+  ae_vector rndbuf;
+  ae_shared_pool buf;
+  ae_shared_pool gradbuf;
+  ae_matrix dummydxy;
+  sparsematrix dummysxy;
+  ae_vector dummyidx;
+  ae_shared_pool dummypool;
 } multilayerperceptron;
 #endif
 #if defined(AE_COMPILE_LDA) || !defined(AE_PARTIAL_BUILD)
 #endif
 #if defined(AE_COMPILE_SSA) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t nsequences;
-    ae_vector sequenceidx;
-    ae_vector sequencedata;
-    ae_int_t algotype;
-    ae_int_t windowwidth;
-    ae_int_t rtpowerup;
-    ae_int_t topk;
-    ae_int_t precomputedwidth;
-    ae_int_t precomputednbasis;
-    ae_matrix precomputedbasis;
-    ae_int_t defaultsubspaceits;
-    ae_int_t memorylimit;
-    ae_bool arebasisandsolvervalid;
-    ae_matrix basis;
-    ae_matrix basist;
-    ae_vector sv;
-    ae_vector forecasta;
-    ae_int_t nbasis;
-    eigsubspacestate solver;
-    ae_matrix xxt;
-    hqrndstate rs;
-    ae_int_t rngseed;
-    ae_vector rtqueue;
-    ae_int_t rtqueuecnt;
-    ae_int_t rtqueuechunk;
-    ae_int_t dbgcntevd;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    eigsubspacereport solverrep;
-    ae_vector alongtrend;
-    ae_vector alongnoise;
-    ae_matrix aseqtrajectory;
-    ae_matrix aseqtbproduct;
-    ae_vector aseqcounts;
-    ae_vector fctrend;
-    ae_vector fcnoise;
-    ae_matrix fctrendm;
-    ae_matrix uxbatch;
-    ae_int_t uxbatchwidth;
-    ae_int_t uxbatchsize;
-    ae_int_t uxbatchlimit;
+typedef struct {
+  ae_int_t nsequences;
+  ae_vector sequenceidx;
+  ae_vector sequencedata;
+  ae_int_t algotype;
+  ae_int_t windowwidth;
+  ae_int_t rtpowerup;
+  ae_int_t topk;
+  ae_int_t precomputedwidth;
+  ae_int_t precomputednbasis;
+  ae_matrix precomputedbasis;
+  ae_int_t defaultsubspaceits;
+  ae_int_t memorylimit;
+  ae_bool arebasisandsolvervalid;
+  ae_matrix basis;
+  ae_matrix basist;
+  ae_vector sv;
+  ae_vector forecasta;
+  ae_int_t nbasis;
+  eigsubspacestate solver;
+  ae_matrix xxt;
+  hqrndstate rs;
+  ae_int_t rngseed;
+  ae_vector rtqueue;
+  ae_int_t rtqueuecnt;
+  ae_int_t rtqueuechunk;
+  ae_int_t dbgcntevd;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  eigsubspacereport solverrep;
+  ae_vector alongtrend;
+  ae_vector alongnoise;
+  ae_matrix aseqtrajectory;
+  ae_matrix aseqtbproduct;
+  ae_vector aseqcounts;
+  ae_vector fctrend;
+  ae_vector fcnoise;
+  ae_matrix fctrendm;
+  ae_matrix uxbatch;
+  ae_int_t uxbatchwidth;
+  ae_int_t uxbatchsize;
+  ae_int_t uxbatchlimit;
 } ssamodel;
 #endif
 #if defined(AE_COMPILE_LINREG) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_vector w;
+typedef struct {
+  ae_vector w;
 } linearmodel;
-typedef struct
-{
-    ae_matrix c;
-    double rmserror;
-    double avgerror;
-    double avgrelerror;
-    double cvrmserror;
-    double cvavgerror;
-    double cvavgrelerror;
-    ae_int_t ncvdefects;
-    ae_vector cvdefects;
+typedef struct {
+  ae_matrix c;
+  double rmserror;
+  double avgerror;
+  double avgrelerror;
+  double cvrmserror;
+  double cvavgerror;
+  double cvavgrelerror;
+  ae_int_t ncvdefects;
+  ae_vector cvdefects;
 } lrreport;
 #endif
 #if defined(AE_COMPILE_FILTERS) || !defined(AE_PARTIAL_BUILD)
 #endif
 #if defined(AE_COMPILE_LOGIT) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_vector w;
+typedef struct {
+  ae_vector w;
 } logitmodel;
-typedef struct
-{
-    ae_bool brackt;
-    ae_bool stage1;
-    ae_int_t infoc;
-    double dg;
-    double dgm;
-    double dginit;
-    double dgtest;
-    double dgx;
-    double dgxm;
-    double dgy;
-    double dgym;
-    double finit;
-    double ftest1;
-    double fm;
-    double fx;
-    double fxm;
-    double fy;
-    double fym;
-    double stx;
-    double sty;
-    double stmin;
-    double stmax;
-    double width;
-    double width1;
-    double xtrapf;
+typedef struct {
+  ae_bool brackt;
+  ae_bool stage1;
+  ae_int_t infoc;
+  double dg;
+  double dgm;
+  double dginit;
+  double dgtest;
+  double dgx;
+  double dgxm;
+  double dgy;
+  double dgym;
+  double finit;
+  double ftest1;
+  double fm;
+  double fx;
+  double fxm;
+  double fy;
+  double fym;
+  double stx;
+  double sty;
+  double stmin;
+  double stmax;
+  double width;
+  double width1;
+  double xtrapf;
 } logitmcstate;
-typedef struct
-{
-    ae_int_t ngrad;
-    ae_int_t nhess;
+typedef struct {
+  ae_int_t ngrad;
+  ae_int_t nhess;
 } mnlreport;
 #endif
 #if defined(AE_COMPILE_MCPD) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    ae_vector states;
-    ae_int_t npairs;
-    ae_matrix data;
-    ae_matrix ec;
-    ae_matrix bndl;
-    ae_matrix bndu;
-    ae_matrix c;
-    ae_vector ct;
-    ae_int_t ccnt;
-    ae_vector pw;
-    ae_matrix priorp;
-    double regterm;
-    minbleicstate bs;
-    ae_int_t repinneriterationscount;
-    ae_int_t repouteriterationscount;
-    ae_int_t repnfev;
-    ae_int_t repterminationtype;
-    minbleicreport br;
-    ae_vector tmpp;
-    ae_vector effectivew;
-    ae_vector effectivebndl;
-    ae_vector effectivebndu;
-    ae_matrix effectivec;
-    ae_vector effectivect;
-    ae_vector h;
-    ae_matrix p;
+typedef struct {
+  ae_int_t n;
+  ae_vector states;
+  ae_int_t npairs;
+  ae_matrix data;
+  ae_matrix ec;
+  ae_matrix bndl;
+  ae_matrix bndu;
+  ae_matrix c;
+  ae_vector ct;
+  ae_int_t ccnt;
+  ae_vector pw;
+  ae_matrix priorp;
+  double regterm;
+  minbleicstate bs;
+  ae_int_t repinneriterationscount;
+  ae_int_t repouteriterationscount;
+  ae_int_t repnfev;
+  ae_int_t repterminationtype;
+  minbleicreport br;
+  ae_vector tmpp;
+  ae_vector effectivew;
+  ae_vector effectivebndl;
+  ae_vector effectivebndu;
+  ae_matrix effectivec;
+  ae_vector effectivect;
+  ae_vector h;
+  ae_matrix p;
 } mcpdstate;
-typedef struct
-{
-    ae_int_t inneriterationscount;
-    ae_int_t outeriterationscount;
-    ae_int_t nfev;
-    ae_int_t terminationtype;
+typedef struct {
+  ae_int_t inneriterationscount;
+  ae_int_t outeriterationscount;
+  ae_int_t nfev;
+  ae_int_t terminationtype;
 } mcpdreport;
 #endif
 #if defined(AE_COMPILE_MLPE) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t ensemblesize;
-    ae_vector weights;
-    ae_vector columnmeans;
-    ae_vector columnsigmas;
-    multilayerperceptron network;
-    ae_vector y;
+typedef struct {
+  ae_int_t ensemblesize;
+  ae_vector weights;
+  ae_vector columnmeans;
+  ae_vector columnsigmas;
+  multilayerperceptron network;
+  ae_vector y;
 } mlpensemble;
 #endif
 #if defined(AE_COMPILE_MLPTRAIN) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    double relclserror;
-    double avgce;
-    double rmserror;
-    double avgerror;
-    double avgrelerror;
-    ae_int_t ngrad;
-    ae_int_t nhess;
-    ae_int_t ncholesky;
+typedef struct {
+  double relclserror;
+  double avgce;
+  double rmserror;
+  double avgerror;
+  double avgrelerror;
+  ae_int_t ngrad;
+  ae_int_t nhess;
+  ae_int_t ncholesky;
 } mlpreport;
-typedef struct
-{
-    double relclserror;
-    double avgce;
-    double rmserror;
-    double avgerror;
-    double avgrelerror;
+typedef struct {
+  double relclserror;
+  double avgce;
+  double rmserror;
+  double avgerror;
+  double avgrelerror;
 } mlpcvreport;
-typedef struct
-{
-    ae_vector bestparameters;
-    double bestrmserror;
-    ae_bool randomizenetwork;
-    multilayerperceptron network;
-    minlbfgsstate optimizer;
-    minlbfgsreport optimizerrep;
-    ae_vector wbuf0;
-    ae_vector wbuf1;
-    ae_vector allminibatches;
-    ae_vector currentminibatch;
-    rcommstate rstate;
-    ae_int_t algoused;
-    ae_int_t minibatchsize;
-    hqrndstate generator;
+typedef struct {
+  ae_vector bestparameters;
+  double bestrmserror;
+  ae_bool randomizenetwork;
+  multilayerperceptron network;
+  minlbfgsstate optimizer;
+  minlbfgsreport optimizerrep;
+  ae_vector wbuf0;
+  ae_vector wbuf1;
+  ae_vector allminibatches;
+  ae_vector currentminibatch;
+  rcommstate rstate;
+  ae_int_t algoused;
+  ae_int_t minibatchsize;
+  hqrndstate generator;
 } smlptrnsession;
-typedef struct
-{
-    ae_vector trnsubset;
-    ae_vector valsubset;
-    ae_shared_pool mlpsessions;
-    mlpreport mlprep;
-    multilayerperceptron network;
+typedef struct {
+  ae_vector trnsubset;
+  ae_vector valsubset;
+  ae_shared_pool mlpsessions;
+  mlpreport mlprep;
+  multilayerperceptron network;
 } mlpetrnsession;
-typedef struct
-{
-    ae_int_t nin;
-    ae_int_t nout;
-    ae_bool rcpar;
-    ae_int_t lbfgsfactor;
-    double decay;
-    double wstep;
-    ae_int_t maxits;
-    ae_int_t datatype;
-    ae_int_t npoints;
-    ae_matrix densexy;
-    sparsematrix sparsexy;
-    smlptrnsession session;
-    ae_int_t ngradbatch;
-    ae_vector subset;
-    ae_int_t subsetsize;
-    ae_vector valsubset;
-    ae_int_t valsubsetsize;
-    ae_int_t algokind;
-    ae_int_t minibatchsize;
+typedef struct {
+  ae_int_t nin;
+  ae_int_t nout;
+  ae_bool rcpar;
+  ae_int_t lbfgsfactor;
+  double decay;
+  double wstep;
+  ae_int_t maxits;
+  ae_int_t datatype;
+  ae_int_t npoints;
+  ae_matrix densexy;
+  sparsematrix sparsexy;
+  smlptrnsession session;
+  ae_int_t ngradbatch;
+  ae_vector subset;
+  ae_int_t subsetsize;
+  ae_vector valsubset;
+  ae_int_t valsubsetsize;
+  ae_int_t algokind;
+  ae_int_t minibatchsize;
 } mlptrainer;
-typedef struct
-{
-    multilayerperceptron network;
-    mlpreport rep;
-    ae_vector subset;
-    ae_int_t subsetsize;
-    ae_vector xyrow;
-    ae_vector y;
-    ae_int_t ngrad;
-    ae_shared_pool trnpool;
+typedef struct {
+  multilayerperceptron network;
+  mlpreport rep;
+  ae_vector subset;
+  ae_int_t subsetsize;
+  ae_vector xyrow;
+  ae_vector y;
+  ae_int_t ngrad;
+  ae_shared_pool trnpool;
 } mlpparallelizationcv;
 #endif
 #if defined(AE_COMPILE_CLUSTERING) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_matrix ct;
-    ae_matrix ctbest;
-    ae_vector xycbest;
-    ae_vector xycprev;
-    ae_vector d2;
-    ae_vector csizes;
-    apbuffers initbuf;
-    ae_shared_pool updatepool;
+typedef struct {
+  ae_matrix ct;
+  ae_matrix ctbest;
+  ae_vector xycbest;
+  ae_vector xycprev;
+  ae_vector d2;
+  ae_vector csizes;
+  apbuffers initbuf;
+  ae_shared_pool updatepool;
 } kmeansbuffers;
-typedef struct
-{
-    ae_int_t npoints;
-    ae_int_t nfeatures;
-    ae_int_t disttype;
-    ae_matrix xy;
-    ae_matrix d;
-    ae_int_t ahcalgo;
-    ae_int_t kmeansrestarts;
-    ae_int_t kmeansmaxits;
-    ae_int_t kmeansinitalgo;
-    ae_bool kmeansdbgnoits;
-    ae_int_t seed;
-    ae_matrix tmpd;
-    apbuffers distbuf;
-    kmeansbuffers kmeanstmp;
+typedef struct {
+  ae_int_t npoints;
+  ae_int_t nfeatures;
+  ae_int_t disttype;
+  ae_matrix xy;
+  ae_matrix d;
+  ae_int_t ahcalgo;
+  ae_int_t kmeansrestarts;
+  ae_int_t kmeansmaxits;
+  ae_int_t kmeansinitalgo;
+  ae_bool kmeansdbgnoits;
+  ae_int_t seed;
+  ae_matrix tmpd;
+  apbuffers distbuf;
+  kmeansbuffers kmeanstmp;
 } clusterizerstate;
-typedef struct
-{
-    ae_int_t terminationtype;
-    ae_int_t npoints;
-    ae_vector p;
-    ae_matrix z;
-    ae_matrix pz;
-    ae_matrix pm;
-    ae_vector mergedist;
+typedef struct {
+  ae_int_t terminationtype;
+  ae_int_t npoints;
+  ae_vector p;
+  ae_matrix z;
+  ae_matrix pz;
+  ae_matrix pm;
+  ae_vector mergedist;
 } ahcreport;
-typedef struct
-{
-    ae_int_t npoints;
-    ae_int_t nfeatures;
-    ae_int_t terminationtype;
-    ae_int_t iterationscount;
-    double energy;
-    ae_int_t k;
-    ae_matrix c;
-    ae_vector cidx;
+typedef struct {
+  ae_int_t npoints;
+  ae_int_t nfeatures;
+  ae_int_t terminationtype;
+  ae_int_t iterationscount;
+  double energy;
+  ae_int_t k;
+  ae_matrix c;
+  ae_vector cidx;
 } kmeansreport;
 #endif
 #if defined(AE_COMPILE_DFOREST) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t dstype;
-    ae_int_t npoints;
-    ae_int_t nvars;
-    ae_int_t nclasses;
-    ae_vector dsdata;
-    ae_vector dsrval;
-    ae_vector dsival;
-    ae_int_t rdfalgo;
-    double rdfratio;
-    double rdfvars;
-    ae_int_t rdfglobalseed;
-    ae_int_t rdfsplitstrength;
-    ae_int_t rdfimportance;
-    ae_vector dsmin;
-    ae_vector dsmax;
-    ae_vector dsbinary;
-    double dsravg;
-    ae_vector dsctotals;
-    ae_int_t rdfprogress;
-    ae_int_t rdftotal;
-    ae_shared_pool workpool;
-    ae_shared_pool votepool;
-    ae_shared_pool treepool;
-    ae_shared_pool treefactory;
-    ae_bool neediobmatrix;
-    ae_matrix iobmatrix;
-    ae_vector varimpshuffle2;
+typedef struct {
+  ae_int_t dstype;
+  ae_int_t npoints;
+  ae_int_t nvars;
+  ae_int_t nclasses;
+  ae_vector dsdata;
+  ae_vector dsrval;
+  ae_vector dsival;
+  ae_int_t rdfalgo;
+  double rdfratio;
+  double rdfvars;
+  ae_int_t rdfglobalseed;
+  ae_int_t rdfsplitstrength;
+  ae_int_t rdfimportance;
+  ae_vector dsmin;
+  ae_vector dsmax;
+  ae_vector dsbinary;
+  double dsravg;
+  ae_vector dsctotals;
+  ae_int_t rdfprogress;
+  ae_int_t rdftotal;
+  ae_shared_pool workpool;
+  ae_shared_pool votepool;
+  ae_shared_pool treepool;
+  ae_shared_pool treefactory;
+  ae_bool neediobmatrix;
+  ae_matrix iobmatrix;
+  ae_vector varimpshuffle2;
 } decisionforestbuilder;
-typedef struct
-{
-    ae_vector classpriors;
-    ae_vector varpool;
-    ae_int_t varpoolsize;
-    ae_vector trnset;
-    ae_int_t trnsize;
-    ae_vector trnlabelsr;
-    ae_vector trnlabelsi;
-    ae_vector oobset;
-    ae_int_t oobsize;
-    ae_vector ooblabelsr;
-    ae_vector ooblabelsi;
-    ae_vector treebuf;
-    ae_vector curvals;
-    ae_vector bestvals;
-    ae_vector tmp0i;
-    ae_vector tmp1i;
-    ae_vector tmp0r;
-    ae_vector tmp1r;
-    ae_vector tmp2r;
-    ae_vector tmp3r;
-    ae_vector tmpnrms2;
-    ae_vector classtotals0;
-    ae_vector classtotals1;
-    ae_vector classtotals01;
+typedef struct {
+  ae_vector classpriors;
+  ae_vector varpool;
+  ae_int_t varpoolsize;
+  ae_vector trnset;
+  ae_int_t trnsize;
+  ae_vector trnlabelsr;
+  ae_vector trnlabelsi;
+  ae_vector oobset;
+  ae_int_t oobsize;
+  ae_vector ooblabelsr;
+  ae_vector ooblabelsi;
+  ae_vector treebuf;
+  ae_vector curvals;
+  ae_vector bestvals;
+  ae_vector tmp0i;
+  ae_vector tmp1i;
+  ae_vector tmp0r;
+  ae_vector tmp1r;
+  ae_vector tmp2r;
+  ae_vector tmp3r;
+  ae_vector tmpnrms2;
+  ae_vector classtotals0;
+  ae_vector classtotals1;
+  ae_vector classtotals01;
 } dfworkbuf;
-typedef struct
-{
-    ae_vector trntotals;
-    ae_vector oobtotals;
-    ae_vector trncounts;
-    ae_vector oobcounts;
-    ae_vector giniimportances;
+typedef struct {
+  ae_vector trntotals;
+  ae_vector oobtotals;
+  ae_vector trncounts;
+  ae_vector oobcounts;
+  ae_vector giniimportances;
 } dfvotebuf;
-typedef struct
-{
-    ae_vector losses;
-    ae_vector xraw;
-    ae_vector xdist;
-    ae_vector xcur;
-    ae_vector y;
-    ae_vector yv;
-    ae_vector targety;
-    ae_vector startnodes;
+typedef struct {
+  ae_vector losses;
+  ae_vector xraw;
+  ae_vector xdist;
+  ae_vector xcur;
+  ae_vector y;
+  ae_vector yv;
+  ae_vector targety;
+  ae_vector startnodes;
 } dfpermimpbuf;
-typedef struct
-{
-    ae_vector treebuf;
-    ae_int_t treeidx;
+typedef struct {
+  ae_vector treebuf;
+  ae_int_t treeidx;
 } dftreebuf;
-typedef struct
-{
-    ae_vector x;
-    ae_vector y;
+typedef struct {
+  ae_vector x;
+  ae_vector y;
 } decisionforestbuffer;
-typedef struct
-{
-    ae_int_t forestformat;
-    ae_bool usemantissa8;
-    ae_int_t nvars;
-    ae_int_t nclasses;
-    ae_int_t ntrees;
-    ae_int_t bufsize;
-    ae_vector trees;
-    decisionforestbuffer buffer;
-    ae_vector trees8;
+typedef struct {
+  ae_int_t forestformat;
+  ae_bool usemantissa8;
+  ae_int_t nvars;
+  ae_int_t nclasses;
+  ae_int_t ntrees;
+  ae_int_t bufsize;
+  ae_vector trees;
+  decisionforestbuffer buffer;
+  ae_vector trees8;
 } decisionforest;
-typedef struct
-{
-    double relclserror;
-    double avgce;
-    double rmserror;
-    double avgerror;
-    double avgrelerror;
-    double oobrelclserror;
-    double oobavgce;
-    double oobrmserror;
-    double oobavgerror;
-    double oobavgrelerror;
-    ae_vector topvars;
-    ae_vector varimportances;
+typedef struct {
+  double relclserror;
+  double avgce;
+  double rmserror;
+  double avgerror;
+  double avgrelerror;
+  double oobrelclserror;
+  double oobavgce;
+  double oobrmserror;
+  double oobavgerror;
+  double oobavgrelerror;
+  ae_vector topvars;
+  ae_vector varimportances;
 } dfreport;
-typedef struct
-{
-    ae_vector treebuf;
-    ae_vector idxbuf;
-    ae_vector tmpbufr;
-    ae_vector tmpbufr2;
-    ae_vector tmpbufi;
-    ae_vector classibuf;
-    ae_vector sortrbuf;
-    ae_vector sortrbuf2;
-    ae_vector sortibuf;
-    ae_vector varpool;
-    ae_vector evsbin;
-    ae_vector evssplits;
+typedef struct {
+  ae_vector treebuf;
+  ae_vector idxbuf;
+  ae_vector tmpbufr;
+  ae_vector tmpbufr2;
+  ae_vector tmpbufi;
+  ae_vector classibuf;
+  ae_vector sortrbuf;
+  ae_vector sortrbuf2;
+  ae_vector sortibuf;
+  ae_vector varpool;
+  ae_vector evsbin;
+  ae_vector evssplits;
 } dfinternalbuffers;
 #endif
 #if defined(AE_COMPILE_KNN) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    kdtreerequestbuffer treebuf;
-    ae_vector x;
-    ae_vector y;
-    ae_vector tags;
-    ae_matrix xy;
+typedef struct {
+  kdtreerequestbuffer treebuf;
+  ae_vector x;
+  ae_vector y;
+  ae_vector tags;
+  ae_matrix xy;
 } knnbuffer;
-typedef struct
-{
-    ae_int_t dstype;
-    ae_int_t npoints;
-    ae_int_t nvars;
-    ae_bool iscls;
-    ae_int_t nout;
-    ae_matrix dsdata;
-    ae_vector dsrval;
-    ae_vector dsival;
-    ae_int_t knnnrm;
+typedef struct {
+  ae_int_t dstype;
+  ae_int_t npoints;
+  ae_int_t nvars;
+  ae_bool iscls;
+  ae_int_t nout;
+  ae_matrix dsdata;
+  ae_vector dsrval;
+  ae_vector dsival;
+  ae_int_t knnnrm;
 } knnbuilder;
-typedef struct
-{
-    ae_int_t nvars;
-    ae_int_t nout;
-    ae_int_t k;
-    double eps;
-    ae_bool iscls;
-    ae_bool isdummy;
-    kdtree tree;
-    knnbuffer buffer;
+typedef struct {
+  ae_int_t nvars;
+  ae_int_t nout;
+  ae_int_t k;
+  double eps;
+  ae_bool iscls;
+  ae_bool isdummy;
+  kdtree tree;
+  knnbuffer buffer;
 } knnmodel;
-typedef struct
-{
-    double relclserror;
-    double avgce;
-    double rmserror;
-    double avgerror;
-    double avgrelerror;
+typedef struct {
+  double relclserror;
+  double avgce;
+  double rmserror;
+  double avgerror;
+  double avgrelerror;
 } knnreport;
 #endif
 #if defined(AE_COMPILE_DATACOMP) || !defined(AE_PARTIAL_BUILD)
@@ -559,8 +522,7 @@ typedef struct
 // THIS SECTION CONTAINS C++ INTERFACE
 //
 /////////////////////////////////////////////////////////////////////////
-namespace alglib
-{
+namespace alglib {
 
 #if defined(AE_COMPILE_PCA) || !defined(AE_PARTIAL_BUILD)
 
@@ -584,56 +546,51 @@ NOTE 1: RelCLSError/AvgCE are zero on regression problems.
 NOTE 2: on classification problems  RMSError/AvgError/AvgRelError  contain
         errors in prediction of posterior probabilities
 *************************************************************************/
-class _modelerrors_owner
-{
-public:
-    _modelerrors_owner();
-    _modelerrors_owner(const _modelerrors_owner &rhs);
-    _modelerrors_owner& operator=(const _modelerrors_owner &rhs);
-    virtual ~_modelerrors_owner();
-    alglib_impl::modelerrors* c_ptr();
-    alglib_impl::modelerrors* c_ptr() const;
-protected:
-    alglib_impl::modelerrors *p_struct;
+class _modelerrors_owner {
+ public:
+  _modelerrors_owner();
+  _modelerrors_owner(const _modelerrors_owner &rhs);
+  _modelerrors_owner &operator=(const _modelerrors_owner &rhs);
+  virtual ~_modelerrors_owner();
+  alglib_impl::modelerrors *c_ptr();
+  alglib_impl::modelerrors *c_ptr() const;
+ protected:
+  alglib_impl::modelerrors *p_struct;
 };
-class modelerrors : public _modelerrors_owner
-{
-public:
-    modelerrors();
-    modelerrors(const modelerrors &rhs);
-    modelerrors& operator=(const modelerrors &rhs);
-    virtual ~modelerrors();
-    double &relclserror;
-    double &avgce;
-    double &rmserror;
-    double &avgerror;
-    double &avgrelerror;
+class modelerrors : public _modelerrors_owner {
+ public:
+  modelerrors();
+  modelerrors(const modelerrors &rhs);
+  modelerrors &operator=(const modelerrors &rhs);
+  virtual ~modelerrors();
+  double &relclserror;
+  double &avgce;
+  double &rmserror;
+  double &avgerror;
+  double &avgrelerror;
 
 };
-
 
 /*************************************************************************
 
 *************************************************************************/
-class _multilayerperceptron_owner
-{
-public:
-    _multilayerperceptron_owner();
-    _multilayerperceptron_owner(const _multilayerperceptron_owner &rhs);
-    _multilayerperceptron_owner& operator=(const _multilayerperceptron_owner &rhs);
-    virtual ~_multilayerperceptron_owner();
-    alglib_impl::multilayerperceptron* c_ptr();
-    alglib_impl::multilayerperceptron* c_ptr() const;
-protected:
-    alglib_impl::multilayerperceptron *p_struct;
+class _multilayerperceptron_owner {
+ public:
+  _multilayerperceptron_owner();
+  _multilayerperceptron_owner(const _multilayerperceptron_owner &rhs);
+  _multilayerperceptron_owner &operator=(const _multilayerperceptron_owner &rhs);
+  virtual ~_multilayerperceptron_owner();
+  alglib_impl::multilayerperceptron *c_ptr();
+  alglib_impl::multilayerperceptron *c_ptr() const;
+ protected:
+  alglib_impl::multilayerperceptron *p_struct;
 };
-class multilayerperceptron : public _multilayerperceptron_owner
-{
-public:
-    multilayerperceptron();
-    multilayerperceptron(const multilayerperceptron &rhs);
-    multilayerperceptron& operator=(const multilayerperceptron &rhs);
-    virtual ~multilayerperceptron();
+class multilayerperceptron : public _multilayerperceptron_owner {
+ public:
+  multilayerperceptron();
+  multilayerperceptron(const multilayerperceptron &rhs);
+  multilayerperceptron &operator=(const multilayerperceptron &rhs);
+  virtual ~multilayerperceptron();
 
 };
 #endif
@@ -648,25 +605,23 @@ This object stores state of the SSA model.
 
 You should use ALGLIB functions to work with this object.
 *************************************************************************/
-class _ssamodel_owner
-{
-public:
-    _ssamodel_owner();
-    _ssamodel_owner(const _ssamodel_owner &rhs);
-    _ssamodel_owner& operator=(const _ssamodel_owner &rhs);
-    virtual ~_ssamodel_owner();
-    alglib_impl::ssamodel* c_ptr();
-    alglib_impl::ssamodel* c_ptr() const;
-protected:
-    alglib_impl::ssamodel *p_struct;
+class _ssamodel_owner {
+ public:
+  _ssamodel_owner();
+  _ssamodel_owner(const _ssamodel_owner &rhs);
+  _ssamodel_owner &operator=(const _ssamodel_owner &rhs);
+  virtual ~_ssamodel_owner();
+  alglib_impl::ssamodel *c_ptr();
+  alglib_impl::ssamodel *c_ptr() const;
+ protected:
+  alglib_impl::ssamodel *p_struct;
 };
-class ssamodel : public _ssamodel_owner
-{
-public:
-    ssamodel();
-    ssamodel(const ssamodel &rhs);
-    ssamodel& operator=(const ssamodel &rhs);
-    virtual ~ssamodel();
+class ssamodel : public _ssamodel_owner {
+ public:
+  ssamodel();
+  ssamodel(const ssamodel &rhs);
+  ssamodel &operator=(const ssamodel &rhs);
+  virtual ~ssamodel();
 
 };
 #endif
@@ -675,28 +630,25 @@ public:
 /*************************************************************************
 
 *************************************************************************/
-class _linearmodel_owner
-{
-public:
-    _linearmodel_owner();
-    _linearmodel_owner(const _linearmodel_owner &rhs);
-    _linearmodel_owner& operator=(const _linearmodel_owner &rhs);
-    virtual ~_linearmodel_owner();
-    alglib_impl::linearmodel* c_ptr();
-    alglib_impl::linearmodel* c_ptr() const;
-protected:
-    alglib_impl::linearmodel *p_struct;
+class _linearmodel_owner {
+ public:
+  _linearmodel_owner();
+  _linearmodel_owner(const _linearmodel_owner &rhs);
+  _linearmodel_owner &operator=(const _linearmodel_owner &rhs);
+  virtual ~_linearmodel_owner();
+  alglib_impl::linearmodel *c_ptr();
+  alglib_impl::linearmodel *c_ptr() const;
+ protected:
+  alglib_impl::linearmodel *p_struct;
 };
-class linearmodel : public _linearmodel_owner
-{
-public:
-    linearmodel();
-    linearmodel(const linearmodel &rhs);
-    linearmodel& operator=(const linearmodel &rhs);
-    virtual ~linearmodel();
+class linearmodel : public _linearmodel_owner {
+ public:
+  linearmodel();
+  linearmodel(const linearmodel &rhs);
+  linearmodel &operator=(const linearmodel &rhs);
+  virtual ~linearmodel();
 
 };
-
 
 /*************************************************************************
 LRReport structure contains additional information about linear model:
@@ -715,34 +667,32 @@ LRReport structure contains additional information about linear model:
 All other fields of the structure are intended for internal use and should
 not be used outside ALGLIB.
 *************************************************************************/
-class _lrreport_owner
-{
-public:
-    _lrreport_owner();
-    _lrreport_owner(const _lrreport_owner &rhs);
-    _lrreport_owner& operator=(const _lrreport_owner &rhs);
-    virtual ~_lrreport_owner();
-    alglib_impl::lrreport* c_ptr();
-    alglib_impl::lrreport* c_ptr() const;
-protected:
-    alglib_impl::lrreport *p_struct;
+class _lrreport_owner {
+ public:
+  _lrreport_owner();
+  _lrreport_owner(const _lrreport_owner &rhs);
+  _lrreport_owner &operator=(const _lrreport_owner &rhs);
+  virtual ~_lrreport_owner();
+  alglib_impl::lrreport *c_ptr();
+  alglib_impl::lrreport *c_ptr() const;
+ protected:
+  alglib_impl::lrreport *p_struct;
 };
-class lrreport : public _lrreport_owner
-{
-public:
-    lrreport();
-    lrreport(const lrreport &rhs);
-    lrreport& operator=(const lrreport &rhs);
-    virtual ~lrreport();
-    real_2d_array c;
-    double &rmserror;
-    double &avgerror;
-    double &avgrelerror;
-    double &cvrmserror;
-    double &cvavgerror;
-    double &cvavgrelerror;
-    ae_int_t &ncvdefects;
-    integer_1d_array cvdefects;
+class lrreport : public _lrreport_owner {
+ public:
+  lrreport();
+  lrreport(const lrreport &rhs);
+  lrreport &operator=(const lrreport &rhs);
+  virtual ~lrreport();
+  real_2d_array c;
+  double &rmserror;
+  double &avgerror;
+  double &avgrelerror;
+  double &cvrmserror;
+  double &cvavgerror;
+  double &cvavgrelerror;
+  ae_int_t &ncvdefects;
+  integer_1d_array cvdefects;
 
 };
 #endif
@@ -755,55 +705,50 @@ public:
 /*************************************************************************
 
 *************************************************************************/
-class _logitmodel_owner
-{
-public:
-    _logitmodel_owner();
-    _logitmodel_owner(const _logitmodel_owner &rhs);
-    _logitmodel_owner& operator=(const _logitmodel_owner &rhs);
-    virtual ~_logitmodel_owner();
-    alglib_impl::logitmodel* c_ptr();
-    alglib_impl::logitmodel* c_ptr() const;
-protected:
-    alglib_impl::logitmodel *p_struct;
+class _logitmodel_owner {
+ public:
+  _logitmodel_owner();
+  _logitmodel_owner(const _logitmodel_owner &rhs);
+  _logitmodel_owner &operator=(const _logitmodel_owner &rhs);
+  virtual ~_logitmodel_owner();
+  alglib_impl::logitmodel *c_ptr();
+  alglib_impl::logitmodel *c_ptr() const;
+ protected:
+  alglib_impl::logitmodel *p_struct;
 };
-class logitmodel : public _logitmodel_owner
-{
-public:
-    logitmodel();
-    logitmodel(const logitmodel &rhs);
-    logitmodel& operator=(const logitmodel &rhs);
-    virtual ~logitmodel();
+class logitmodel : public _logitmodel_owner {
+ public:
+  logitmodel();
+  logitmodel(const logitmodel &rhs);
+  logitmodel &operator=(const logitmodel &rhs);
+  virtual ~logitmodel();
 
 };
-
 
 /*************************************************************************
 MNLReport structure contains information about training process:
 * NGrad     -   number of gradient calculations
 * NHess     -   number of Hessian calculations
 *************************************************************************/
-class _mnlreport_owner
-{
-public:
-    _mnlreport_owner();
-    _mnlreport_owner(const _mnlreport_owner &rhs);
-    _mnlreport_owner& operator=(const _mnlreport_owner &rhs);
-    virtual ~_mnlreport_owner();
-    alglib_impl::mnlreport* c_ptr();
-    alglib_impl::mnlreport* c_ptr() const;
-protected:
-    alglib_impl::mnlreport *p_struct;
+class _mnlreport_owner {
+ public:
+  _mnlreport_owner();
+  _mnlreport_owner(const _mnlreport_owner &rhs);
+  _mnlreport_owner &operator=(const _mnlreport_owner &rhs);
+  virtual ~_mnlreport_owner();
+  alglib_impl::mnlreport *c_ptr();
+  alglib_impl::mnlreport *c_ptr() const;
+ protected:
+  alglib_impl::mnlreport *p_struct;
 };
-class mnlreport : public _mnlreport_owner
-{
-public:
-    mnlreport();
-    mnlreport(const mnlreport &rhs);
-    mnlreport& operator=(const mnlreport &rhs);
-    virtual ~mnlreport();
-    ae_int_t &ngrad;
-    ae_int_t &nhess;
+class mnlreport : public _mnlreport_owner {
+ public:
+  mnlreport();
+  mnlreport(const mnlreport &rhs);
+  mnlreport &operator=(const mnlreport &rhs);
+  virtual ~mnlreport();
+  ae_int_t &ngrad;
+  ae_int_t &nhess;
 
 };
 #endif
@@ -817,28 +762,25 @@ You should use ALGLIB functions in order to work with this object.
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-class _mcpdstate_owner
-{
-public:
-    _mcpdstate_owner();
-    _mcpdstate_owner(const _mcpdstate_owner &rhs);
-    _mcpdstate_owner& operator=(const _mcpdstate_owner &rhs);
-    virtual ~_mcpdstate_owner();
-    alglib_impl::mcpdstate* c_ptr();
-    alglib_impl::mcpdstate* c_ptr() const;
-protected:
-    alglib_impl::mcpdstate *p_struct;
+class _mcpdstate_owner {
+ public:
+  _mcpdstate_owner();
+  _mcpdstate_owner(const _mcpdstate_owner &rhs);
+  _mcpdstate_owner &operator=(const _mcpdstate_owner &rhs);
+  virtual ~_mcpdstate_owner();
+  alglib_impl::mcpdstate *c_ptr();
+  alglib_impl::mcpdstate *c_ptr() const;
+ protected:
+  alglib_impl::mcpdstate *p_struct;
 };
-class mcpdstate : public _mcpdstate_owner
-{
-public:
-    mcpdstate();
-    mcpdstate(const mcpdstate &rhs);
-    mcpdstate& operator=(const mcpdstate &rhs);
-    virtual ~mcpdstate();
+class mcpdstate : public _mcpdstate_owner {
+ public:
+  mcpdstate();
+  mcpdstate(const mcpdstate &rhs);
+  mcpdstate &operator=(const mcpdstate &rhs);
+  virtual ~mcpdstate();
 
 };
-
 
 /*************************************************************************
 This structure is a MCPD training report:
@@ -855,29 +797,27 @@ This structure is a MCPD training report:
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-class _mcpdreport_owner
-{
-public:
-    _mcpdreport_owner();
-    _mcpdreport_owner(const _mcpdreport_owner &rhs);
-    _mcpdreport_owner& operator=(const _mcpdreport_owner &rhs);
-    virtual ~_mcpdreport_owner();
-    alglib_impl::mcpdreport* c_ptr();
-    alglib_impl::mcpdreport* c_ptr() const;
-protected:
-    alglib_impl::mcpdreport *p_struct;
+class _mcpdreport_owner {
+ public:
+  _mcpdreport_owner();
+  _mcpdreport_owner(const _mcpdreport_owner &rhs);
+  _mcpdreport_owner &operator=(const _mcpdreport_owner &rhs);
+  virtual ~_mcpdreport_owner();
+  alglib_impl::mcpdreport *c_ptr();
+  alglib_impl::mcpdreport *c_ptr() const;
+ protected:
+  alglib_impl::mcpdreport *p_struct;
 };
-class mcpdreport : public _mcpdreport_owner
-{
-public:
-    mcpdreport();
-    mcpdreport(const mcpdreport &rhs);
-    mcpdreport& operator=(const mcpdreport &rhs);
-    virtual ~mcpdreport();
-    ae_int_t &inneriterationscount;
-    ae_int_t &outeriterationscount;
-    ae_int_t &nfev;
-    ae_int_t &terminationtype;
+class mcpdreport : public _mcpdreport_owner {
+ public:
+  mcpdreport();
+  mcpdreport(const mcpdreport &rhs);
+  mcpdreport &operator=(const mcpdreport &rhs);
+  virtual ~mcpdreport();
+  ae_int_t &inneriterationscount;
+  ae_int_t &outeriterationscount;
+  ae_int_t &nfev;
+  ae_int_t &terminationtype;
 
 };
 #endif
@@ -886,25 +826,23 @@ public:
 /*************************************************************************
 Neural networks ensemble
 *************************************************************************/
-class _mlpensemble_owner
-{
-public:
-    _mlpensemble_owner();
-    _mlpensemble_owner(const _mlpensemble_owner &rhs);
-    _mlpensemble_owner& operator=(const _mlpensemble_owner &rhs);
-    virtual ~_mlpensemble_owner();
-    alglib_impl::mlpensemble* c_ptr();
-    alglib_impl::mlpensemble* c_ptr() const;
-protected:
-    alglib_impl::mlpensemble *p_struct;
+class _mlpensemble_owner {
+ public:
+  _mlpensemble_owner();
+  _mlpensemble_owner(const _mlpensemble_owner &rhs);
+  _mlpensemble_owner &operator=(const _mlpensemble_owner &rhs);
+  virtual ~_mlpensemble_owner();
+  alglib_impl::mlpensemble *c_ptr();
+  alglib_impl::mlpensemble *c_ptr() const;
+ protected:
+  alglib_impl::mlpensemble *p_struct;
 };
-class mlpensemble : public _mlpensemble_owner
-{
-public:
-    mlpensemble();
-    mlpensemble(const mlpensemble &rhs);
-    mlpensemble& operator=(const mlpensemble &rhs);
-    virtual ~mlpensemble();
+class mlpensemble : public _mlpensemble_owner {
+ public:
+  mlpensemble();
+  mlpensemble(const mlpensemble &rhs);
+  mlpensemble &operator=(const mlpensemble &rhs);
+  virtual ~mlpensemble();
 
 };
 #endif
@@ -926,67 +864,61 @@ NOTE 1: RelCLSError/AvgCE are zero on regression problems.
 NOTE 2: on classification problems  RMSError/AvgError/AvgRelError  contain
         errors in prediction of posterior probabilities
 *************************************************************************/
-class _mlpreport_owner
-{
-public:
-    _mlpreport_owner();
-    _mlpreport_owner(const _mlpreport_owner &rhs);
-    _mlpreport_owner& operator=(const _mlpreport_owner &rhs);
-    virtual ~_mlpreport_owner();
-    alglib_impl::mlpreport* c_ptr();
-    alglib_impl::mlpreport* c_ptr() const;
-protected:
-    alglib_impl::mlpreport *p_struct;
+class _mlpreport_owner {
+ public:
+  _mlpreport_owner();
+  _mlpreport_owner(const _mlpreport_owner &rhs);
+  _mlpreport_owner &operator=(const _mlpreport_owner &rhs);
+  virtual ~_mlpreport_owner();
+  alglib_impl::mlpreport *c_ptr();
+  alglib_impl::mlpreport *c_ptr() const;
+ protected:
+  alglib_impl::mlpreport *p_struct;
 };
-class mlpreport : public _mlpreport_owner
-{
-public:
-    mlpreport();
-    mlpreport(const mlpreport &rhs);
-    mlpreport& operator=(const mlpreport &rhs);
-    virtual ~mlpreport();
-    double &relclserror;
-    double &avgce;
-    double &rmserror;
-    double &avgerror;
-    double &avgrelerror;
-    ae_int_t &ngrad;
-    ae_int_t &nhess;
-    ae_int_t &ncholesky;
+class mlpreport : public _mlpreport_owner {
+ public:
+  mlpreport();
+  mlpreport(const mlpreport &rhs);
+  mlpreport &operator=(const mlpreport &rhs);
+  virtual ~mlpreport();
+  double &relclserror;
+  double &avgce;
+  double &rmserror;
+  double &avgerror;
+  double &avgrelerror;
+  ae_int_t &ngrad;
+  ae_int_t &nhess;
+  ae_int_t &ncholesky;
 
 };
-
 
 /*************************************************************************
 Cross-validation estimates of generalization error
 *************************************************************************/
-class _mlpcvreport_owner
-{
-public:
-    _mlpcvreport_owner();
-    _mlpcvreport_owner(const _mlpcvreport_owner &rhs);
-    _mlpcvreport_owner& operator=(const _mlpcvreport_owner &rhs);
-    virtual ~_mlpcvreport_owner();
-    alglib_impl::mlpcvreport* c_ptr();
-    alglib_impl::mlpcvreport* c_ptr() const;
-protected:
-    alglib_impl::mlpcvreport *p_struct;
+class _mlpcvreport_owner {
+ public:
+  _mlpcvreport_owner();
+  _mlpcvreport_owner(const _mlpcvreport_owner &rhs);
+  _mlpcvreport_owner &operator=(const _mlpcvreport_owner &rhs);
+  virtual ~_mlpcvreport_owner();
+  alglib_impl::mlpcvreport *c_ptr();
+  alglib_impl::mlpcvreport *c_ptr() const;
+ protected:
+  alglib_impl::mlpcvreport *p_struct;
 };
-class mlpcvreport : public _mlpcvreport_owner
-{
-public:
-    mlpcvreport();
-    mlpcvreport(const mlpcvreport &rhs);
-    mlpcvreport& operator=(const mlpcvreport &rhs);
-    virtual ~mlpcvreport();
-    double &relclserror;
-    double &avgce;
-    double &rmserror;
-    double &avgerror;
-    double &avgrelerror;
+class mlpcvreport : public _mlpcvreport_owner {
+ public:
+  mlpcvreport();
+  mlpcvreport(const mlpcvreport &rhs);
+  mlpcvreport &operator=(const mlpcvreport &rhs);
+  virtual ~mlpcvreport();
+  double &relclserror;
+  double &avgce;
+  double &rmserror;
+  double &avgerror;
+  double &avgrelerror;
 
 };
-
 
 /*************************************************************************
 Trainer object for neural network.
@@ -994,25 +926,23 @@ Trainer object for neural network.
 You should not try to access fields of this object directly -  use  ALGLIB
 functions to work with this object.
 *************************************************************************/
-class _mlptrainer_owner
-{
-public:
-    _mlptrainer_owner();
-    _mlptrainer_owner(const _mlptrainer_owner &rhs);
-    _mlptrainer_owner& operator=(const _mlptrainer_owner &rhs);
-    virtual ~_mlptrainer_owner();
-    alglib_impl::mlptrainer* c_ptr();
-    alglib_impl::mlptrainer* c_ptr() const;
-protected:
-    alglib_impl::mlptrainer *p_struct;
+class _mlptrainer_owner {
+ public:
+  _mlptrainer_owner();
+  _mlptrainer_owner(const _mlptrainer_owner &rhs);
+  _mlptrainer_owner &operator=(const _mlptrainer_owner &rhs);
+  virtual ~_mlptrainer_owner();
+  alglib_impl::mlptrainer *c_ptr();
+  alglib_impl::mlptrainer *c_ptr() const;
+ protected:
+  alglib_impl::mlptrainer *p_struct;
 };
-class mlptrainer : public _mlptrainer_owner
-{
-public:
-    mlptrainer();
-    mlptrainer(const mlptrainer &rhs);
-    mlptrainer& operator=(const mlptrainer &rhs);
-    virtual ~mlptrainer();
+class mlptrainer : public _mlptrainer_owner {
+ public:
+  mlptrainer();
+  mlptrainer(const mlptrainer &rhs);
+  mlptrainer &operator=(const mlptrainer &rhs);
+  virtual ~mlptrainer();
 
 };
 #endif
@@ -1027,28 +957,25 @@ Use ALGLIB functions in order to work with this object.
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-class _clusterizerstate_owner
-{
-public:
-    _clusterizerstate_owner();
-    _clusterizerstate_owner(const _clusterizerstate_owner &rhs);
-    _clusterizerstate_owner& operator=(const _clusterizerstate_owner &rhs);
-    virtual ~_clusterizerstate_owner();
-    alglib_impl::clusterizerstate* c_ptr();
-    alglib_impl::clusterizerstate* c_ptr() const;
-protected:
-    alglib_impl::clusterizerstate *p_struct;
+class _clusterizerstate_owner {
+ public:
+  _clusterizerstate_owner();
+  _clusterizerstate_owner(const _clusterizerstate_owner &rhs);
+  _clusterizerstate_owner &operator=(const _clusterizerstate_owner &rhs);
+  virtual ~_clusterizerstate_owner();
+  alglib_impl::clusterizerstate *c_ptr();
+  alglib_impl::clusterizerstate *c_ptr() const;
+ protected:
+  alglib_impl::clusterizerstate *p_struct;
 };
-class clusterizerstate : public _clusterizerstate_owner
-{
-public:
-    clusterizerstate();
-    clusterizerstate(const clusterizerstate &rhs);
-    clusterizerstate& operator=(const clusterizerstate &rhs);
-    virtual ~clusterizerstate();
+class clusterizerstate : public _clusterizerstate_owner {
+ public:
+  clusterizerstate();
+  clusterizerstate(const clusterizerstate &rhs);
+  clusterizerstate &operator=(const clusterizerstate &rhs);
+  virtual ~clusterizerstate();
 
 };
-
 
 /*************************************************************************
 This structure  is used to store results of the agglomerative hierarchical
@@ -1152,35 +1079,32 @@ NOTE: there is one-to-one correspondence between merges described by Z and
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-class _ahcreport_owner
-{
-public:
-    _ahcreport_owner();
-    _ahcreport_owner(const _ahcreport_owner &rhs);
-    _ahcreport_owner& operator=(const _ahcreport_owner &rhs);
-    virtual ~_ahcreport_owner();
-    alglib_impl::ahcreport* c_ptr();
-    alglib_impl::ahcreport* c_ptr() const;
-protected:
-    alglib_impl::ahcreport *p_struct;
+class _ahcreport_owner {
+ public:
+  _ahcreport_owner();
+  _ahcreport_owner(const _ahcreport_owner &rhs);
+  _ahcreport_owner &operator=(const _ahcreport_owner &rhs);
+  virtual ~_ahcreport_owner();
+  alglib_impl::ahcreport *c_ptr();
+  alglib_impl::ahcreport *c_ptr() const;
+ protected:
+  alglib_impl::ahcreport *p_struct;
 };
-class ahcreport : public _ahcreport_owner
-{
-public:
-    ahcreport();
-    ahcreport(const ahcreport &rhs);
-    ahcreport& operator=(const ahcreport &rhs);
-    virtual ~ahcreport();
-    ae_int_t &terminationtype;
-    ae_int_t &npoints;
-    integer_1d_array p;
-    integer_2d_array z;
-    integer_2d_array pz;
-    integer_2d_array pm;
-    real_1d_array mergedist;
+class ahcreport : public _ahcreport_owner {
+ public:
+  ahcreport();
+  ahcreport(const ahcreport &rhs);
+  ahcreport &operator=(const ahcreport &rhs);
+  virtual ~ahcreport();
+  ae_int_t &terminationtype;
+  ae_int_t &npoints;
+  integer_1d_array p;
+  integer_2d_array z;
+  integer_2d_array pz;
+  integer_2d_array pm;
+  real_1d_array mergedist;
 
 };
-
 
 /*************************************************************************
 This  structure   is  used  to  store  results of the  k-means  clustering
@@ -1218,33 +1142,31 @@ FORMAL DESCRIPTION OF FIELDS:
   -- ALGLIB --
      Copyright 27.11.2012 by Bochkanov Sergey
 *************************************************************************/
-class _kmeansreport_owner
-{
-public:
-    _kmeansreport_owner();
-    _kmeansreport_owner(const _kmeansreport_owner &rhs);
-    _kmeansreport_owner& operator=(const _kmeansreport_owner &rhs);
-    virtual ~_kmeansreport_owner();
-    alglib_impl::kmeansreport* c_ptr();
-    alglib_impl::kmeansreport* c_ptr() const;
-protected:
-    alglib_impl::kmeansreport *p_struct;
+class _kmeansreport_owner {
+ public:
+  _kmeansreport_owner();
+  _kmeansreport_owner(const _kmeansreport_owner &rhs);
+  _kmeansreport_owner &operator=(const _kmeansreport_owner &rhs);
+  virtual ~_kmeansreport_owner();
+  alglib_impl::kmeansreport *c_ptr();
+  alglib_impl::kmeansreport *c_ptr() const;
+ protected:
+  alglib_impl::kmeansreport *p_struct;
 };
-class kmeansreport : public _kmeansreport_owner
-{
-public:
-    kmeansreport();
-    kmeansreport(const kmeansreport &rhs);
-    kmeansreport& operator=(const kmeansreport &rhs);
-    virtual ~kmeansreport();
-    ae_int_t &npoints;
-    ae_int_t &nfeatures;
-    ae_int_t &terminationtype;
-    ae_int_t &iterationscount;
-    double &energy;
-    ae_int_t &k;
-    real_2d_array c;
-    integer_1d_array cidx;
+class kmeansreport : public _kmeansreport_owner {
+ public:
+  kmeansreport();
+  kmeansreport(const kmeansreport &rhs);
+  kmeansreport &operator=(const kmeansreport &rhs);
+  virtual ~kmeansreport();
+  ae_int_t &npoints;
+  ae_int_t &nfeatures;
+  ae_int_t &terminationtype;
+  ae_int_t &iterationscount;
+  double &energy;
+  ae_int_t &k;
+  real_2d_array c;
+  integer_1d_array cidx;
 
 };
 #endif
@@ -1255,28 +1177,25 @@ A random forest (decision forest) builder object.
 
 Used to store dataset and specify decision forest training algorithm settings.
 *************************************************************************/
-class _decisionforestbuilder_owner
-{
-public:
-    _decisionforestbuilder_owner();
-    _decisionforestbuilder_owner(const _decisionforestbuilder_owner &rhs);
-    _decisionforestbuilder_owner& operator=(const _decisionforestbuilder_owner &rhs);
-    virtual ~_decisionforestbuilder_owner();
-    alglib_impl::decisionforestbuilder* c_ptr();
-    alglib_impl::decisionforestbuilder* c_ptr() const;
-protected:
-    alglib_impl::decisionforestbuilder *p_struct;
+class _decisionforestbuilder_owner {
+ public:
+  _decisionforestbuilder_owner();
+  _decisionforestbuilder_owner(const _decisionforestbuilder_owner &rhs);
+  _decisionforestbuilder_owner &operator=(const _decisionforestbuilder_owner &rhs);
+  virtual ~_decisionforestbuilder_owner();
+  alglib_impl::decisionforestbuilder *c_ptr();
+  alglib_impl::decisionforestbuilder *c_ptr() const;
+ protected:
+  alglib_impl::decisionforestbuilder *p_struct;
 };
-class decisionforestbuilder : public _decisionforestbuilder_owner
-{
-public:
-    decisionforestbuilder();
-    decisionforestbuilder(const decisionforestbuilder &rhs);
-    decisionforestbuilder& operator=(const decisionforestbuilder &rhs);
-    virtual ~decisionforestbuilder();
+class decisionforestbuilder : public _decisionforestbuilder_owner {
+ public:
+  decisionforestbuilder();
+  decisionforestbuilder(const decisionforestbuilder &rhs);
+  decisionforestbuilder &operator=(const decisionforestbuilder &rhs);
+  virtual ~decisionforestbuilder();
 
 };
-
 
 /*************************************************************************
 Buffer object which is used to perform  various  requests  (usually  model
@@ -1285,54 +1204,48 @@ DF object).
 
 This object should be created with DFCreateBuffer().
 *************************************************************************/
-class _decisionforestbuffer_owner
-{
-public:
-    _decisionforestbuffer_owner();
-    _decisionforestbuffer_owner(const _decisionforestbuffer_owner &rhs);
-    _decisionforestbuffer_owner& operator=(const _decisionforestbuffer_owner &rhs);
-    virtual ~_decisionforestbuffer_owner();
-    alglib_impl::decisionforestbuffer* c_ptr();
-    alglib_impl::decisionforestbuffer* c_ptr() const;
-protected:
-    alglib_impl::decisionforestbuffer *p_struct;
+class _decisionforestbuffer_owner {
+ public:
+  _decisionforestbuffer_owner();
+  _decisionforestbuffer_owner(const _decisionforestbuffer_owner &rhs);
+  _decisionforestbuffer_owner &operator=(const _decisionforestbuffer_owner &rhs);
+  virtual ~_decisionforestbuffer_owner();
+  alglib_impl::decisionforestbuffer *c_ptr();
+  alglib_impl::decisionforestbuffer *c_ptr() const;
+ protected:
+  alglib_impl::decisionforestbuffer *p_struct;
 };
-class decisionforestbuffer : public _decisionforestbuffer_owner
-{
-public:
-    decisionforestbuffer();
-    decisionforestbuffer(const decisionforestbuffer &rhs);
-    decisionforestbuffer& operator=(const decisionforestbuffer &rhs);
-    virtual ~decisionforestbuffer();
+class decisionforestbuffer : public _decisionforestbuffer_owner {
+ public:
+  decisionforestbuffer();
+  decisionforestbuffer(const decisionforestbuffer &rhs);
+  decisionforestbuffer &operator=(const decisionforestbuffer &rhs);
+  virtual ~decisionforestbuffer();
 
 };
-
 
 /*************************************************************************
 Decision forest (random forest) model.
 *************************************************************************/
-class _decisionforest_owner
-{
-public:
-    _decisionforest_owner();
-    _decisionforest_owner(const _decisionforest_owner &rhs);
-    _decisionforest_owner& operator=(const _decisionforest_owner &rhs);
-    virtual ~_decisionforest_owner();
-    alglib_impl::decisionforest* c_ptr();
-    alglib_impl::decisionforest* c_ptr() const;
-protected:
-    alglib_impl::decisionforest *p_struct;
+class _decisionforest_owner {
+ public:
+  _decisionforest_owner();
+  _decisionforest_owner(const _decisionforest_owner &rhs);
+  _decisionforest_owner &operator=(const _decisionforest_owner &rhs);
+  virtual ~_decisionforest_owner();
+  alglib_impl::decisionforest *c_ptr();
+  alglib_impl::decisionforest *c_ptr() const;
+ protected:
+  alglib_impl::decisionforest *p_struct;
 };
-class decisionforest : public _decisionforest_owner
-{
-public:
-    decisionforest();
-    decisionforest(const decisionforest &rhs);
-    decisionforest& operator=(const decisionforest &rhs);
-    virtual ~decisionforest();
+class decisionforest : public _decisionforest_owner {
+ public:
+  decisionforest();
+  decisionforest(const decisionforest &rhs);
+  decisionforest &operator=(const decisionforest &rhs);
+  virtual ~decisionforest();
 
 };
-
 
 /*************************************************************************
 Decision forest training report.
@@ -1408,37 +1321,35 @@ More information on variable importance ratings can be found  in  comments
 on the dfbuildersetimportancegini() and dfbuildersetimportancepermutation()
 functions.
 *************************************************************************/
-class _dfreport_owner
-{
-public:
-    _dfreport_owner();
-    _dfreport_owner(const _dfreport_owner &rhs);
-    _dfreport_owner& operator=(const _dfreport_owner &rhs);
-    virtual ~_dfreport_owner();
-    alglib_impl::dfreport* c_ptr();
-    alglib_impl::dfreport* c_ptr() const;
-protected:
-    alglib_impl::dfreport *p_struct;
+class _dfreport_owner {
+ public:
+  _dfreport_owner();
+  _dfreport_owner(const _dfreport_owner &rhs);
+  _dfreport_owner &operator=(const _dfreport_owner &rhs);
+  virtual ~_dfreport_owner();
+  alglib_impl::dfreport *c_ptr();
+  alglib_impl::dfreport *c_ptr() const;
+ protected:
+  alglib_impl::dfreport *p_struct;
 };
-class dfreport : public _dfreport_owner
-{
-public:
-    dfreport();
-    dfreport(const dfreport &rhs);
-    dfreport& operator=(const dfreport &rhs);
-    virtual ~dfreport();
-    double &relclserror;
-    double &avgce;
-    double &rmserror;
-    double &avgerror;
-    double &avgrelerror;
-    double &oobrelclserror;
-    double &oobavgce;
-    double &oobrmserror;
-    double &oobavgerror;
-    double &oobavgrelerror;
-    integer_1d_array topvars;
-    real_1d_array varimportances;
+class dfreport : public _dfreport_owner {
+ public:
+  dfreport();
+  dfreport(const dfreport &rhs);
+  dfreport &operator=(const dfreport &rhs);
+  virtual ~dfreport();
+  double &relclserror;
+  double &avgce;
+  double &rmserror;
+  double &avgerror;
+  double &avgrelerror;
+  double &oobrelclserror;
+  double &oobavgce;
+  double &oobrmserror;
+  double &oobavgerror;
+  double &oobavgrelerror;
+  integer_1d_array topvars;
+  real_1d_array varimportances;
 
 };
 #endif
@@ -1451,81 +1362,72 @@ KNN object).
 
 This object should be created with KNNCreateBuffer().
 *************************************************************************/
-class _knnbuffer_owner
-{
-public:
-    _knnbuffer_owner();
-    _knnbuffer_owner(const _knnbuffer_owner &rhs);
-    _knnbuffer_owner& operator=(const _knnbuffer_owner &rhs);
-    virtual ~_knnbuffer_owner();
-    alglib_impl::knnbuffer* c_ptr();
-    alglib_impl::knnbuffer* c_ptr() const;
-protected:
-    alglib_impl::knnbuffer *p_struct;
+class _knnbuffer_owner {
+ public:
+  _knnbuffer_owner();
+  _knnbuffer_owner(const _knnbuffer_owner &rhs);
+  _knnbuffer_owner &operator=(const _knnbuffer_owner &rhs);
+  virtual ~_knnbuffer_owner();
+  alglib_impl::knnbuffer *c_ptr();
+  alglib_impl::knnbuffer *c_ptr() const;
+ protected:
+  alglib_impl::knnbuffer *p_struct;
 };
-class knnbuffer : public _knnbuffer_owner
-{
-public:
-    knnbuffer();
-    knnbuffer(const knnbuffer &rhs);
-    knnbuffer& operator=(const knnbuffer &rhs);
-    virtual ~knnbuffer();
+class knnbuffer : public _knnbuffer_owner {
+ public:
+  knnbuffer();
+  knnbuffer(const knnbuffer &rhs);
+  knnbuffer &operator=(const knnbuffer &rhs);
+  virtual ~knnbuffer();
 
 };
-
 
 /*************************************************************************
 A KNN builder object; this object encapsulates  dataset  and  all  related
 settings, it is used to create an actual instance of KNN model.
 *************************************************************************/
-class _knnbuilder_owner
-{
-public:
-    _knnbuilder_owner();
-    _knnbuilder_owner(const _knnbuilder_owner &rhs);
-    _knnbuilder_owner& operator=(const _knnbuilder_owner &rhs);
-    virtual ~_knnbuilder_owner();
-    alglib_impl::knnbuilder* c_ptr();
-    alglib_impl::knnbuilder* c_ptr() const;
-protected:
-    alglib_impl::knnbuilder *p_struct;
+class _knnbuilder_owner {
+ public:
+  _knnbuilder_owner();
+  _knnbuilder_owner(const _knnbuilder_owner &rhs);
+  _knnbuilder_owner &operator=(const _knnbuilder_owner &rhs);
+  virtual ~_knnbuilder_owner();
+  alglib_impl::knnbuilder *c_ptr();
+  alglib_impl::knnbuilder *c_ptr() const;
+ protected:
+  alglib_impl::knnbuilder *p_struct;
 };
-class knnbuilder : public _knnbuilder_owner
-{
-public:
-    knnbuilder();
-    knnbuilder(const knnbuilder &rhs);
-    knnbuilder& operator=(const knnbuilder &rhs);
-    virtual ~knnbuilder();
+class knnbuilder : public _knnbuilder_owner {
+ public:
+  knnbuilder();
+  knnbuilder(const knnbuilder &rhs);
+  knnbuilder &operator=(const knnbuilder &rhs);
+  virtual ~knnbuilder();
 
 };
-
 
 /*************************************************************************
 KNN model, can be used for classification or regression
 *************************************************************************/
-class _knnmodel_owner
-{
-public:
-    _knnmodel_owner();
-    _knnmodel_owner(const _knnmodel_owner &rhs);
-    _knnmodel_owner& operator=(const _knnmodel_owner &rhs);
-    virtual ~_knnmodel_owner();
-    alglib_impl::knnmodel* c_ptr();
-    alglib_impl::knnmodel* c_ptr() const;
-protected:
-    alglib_impl::knnmodel *p_struct;
+class _knnmodel_owner {
+ public:
+  _knnmodel_owner();
+  _knnmodel_owner(const _knnmodel_owner &rhs);
+  _knnmodel_owner &operator=(const _knnmodel_owner &rhs);
+  virtual ~_knnmodel_owner();
+  alglib_impl::knnmodel *c_ptr();
+  alglib_impl::knnmodel *c_ptr() const;
+ protected:
+  alglib_impl::knnmodel *p_struct;
 };
-class knnmodel : public _knnmodel_owner
-{
-public:
-    knnmodel();
-    knnmodel(const knnmodel &rhs);
-    knnmodel& operator=(const knnmodel &rhs);
-    virtual ~knnmodel();
+class knnmodel : public _knnmodel_owner {
+ public:
+  knnmodel();
+  knnmodel(const knnmodel &rhs);
+  knnmodel &operator=(const knnmodel &rhs);
+  virtual ~knnmodel();
 
 };
-
 
 /*************************************************************************
 KNN training report.
@@ -1543,30 +1445,28 @@ For classification problems:
 For regression problems:
 * RELCLS and AVGCE errors are zero
 *************************************************************************/
-class _knnreport_owner
-{
-public:
-    _knnreport_owner();
-    _knnreport_owner(const _knnreport_owner &rhs);
-    _knnreport_owner& operator=(const _knnreport_owner &rhs);
-    virtual ~_knnreport_owner();
-    alglib_impl::knnreport* c_ptr();
-    alglib_impl::knnreport* c_ptr() const;
-protected:
-    alglib_impl::knnreport *p_struct;
+class _knnreport_owner {
+ public:
+  _knnreport_owner();
+  _knnreport_owner(const _knnreport_owner &rhs);
+  _knnreport_owner &operator=(const _knnreport_owner &rhs);
+  virtual ~_knnreport_owner();
+  alglib_impl::knnreport *c_ptr();
+  alglib_impl::knnreport *c_ptr() const;
+ protected:
+  alglib_impl::knnreport *p_struct;
 };
-class knnreport : public _knnreport_owner
-{
-public:
-    knnreport();
-    knnreport(const knnreport &rhs);
-    knnreport& operator=(const knnreport &rhs);
-    virtual ~knnreport();
-    double &relclserror;
-    double &avgce;
-    double &rmserror;
-    double &avgerror;
-    double &avgrelerror;
+class knnreport : public _knnreport_owner {
+ public:
+  knnreport();
+  knnreport(const knnreport &rhs);
+  knnreport &operator=(const knnreport &rhs);
+  virtual ~knnreport();
+  double &relclserror;
+  double &avgce;
+  double &rmserror;
+  double &avgerror;
+  double &avgrelerror;
 
 };
 #endif
@@ -1624,8 +1524,13 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 25.08.2008 by Bochkanov Sergey
 *************************************************************************/
-void pcabuildbasis(const real_2d_array &x, const ae_int_t npoints, const ae_int_t nvars, ae_int_t &info, real_1d_array &s2, real_2d_array &v, const xparams _xparams = alglib::xdefault);
-
+void pcabuildbasis(const real_2d_array &x,
+                   const ae_int_t npoints,
+                   const ae_int_t nvars,
+                   ae_int_t &info,
+                   real_1d_array &s2,
+                   real_2d_array &v,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Principal components analysis
@@ -1685,8 +1590,15 @@ stopping condition. Exact value of automatically selected eps is  version-
   -- ALGLIB --
      Copyright 10.01.2017 by Bochkanov Sergey
 *************************************************************************/
-void pcatruncatedsubspace(const real_2d_array &x, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nneeded, const double eps, const ae_int_t maxits, real_1d_array &s2, real_2d_array &v, const xparams _xparams = alglib::xdefault);
-
+void pcatruncatedsubspace(const real_2d_array &x,
+                          const ae_int_t npoints,
+                          const ae_int_t nvars,
+                          const ae_int_t nneeded,
+                          const double eps,
+                          const ae_int_t maxits,
+                          real_1d_array &s2,
+                          real_2d_array &v,
+                          const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Sparse truncated principal components analysis
@@ -1753,7 +1665,15 @@ NOTE: zero  MaxIts  is  silently  replaced  by some reasonable value which
   -- ALGLIB --
      Copyright 10.01.2017 by Bochkanov Sergey
 *************************************************************************/
-void pcatruncatedsubspacesparse(const sparsematrix &x, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nneeded, const double eps, const ae_int_t maxits, real_1d_array &s2, real_2d_array &v, const xparams _xparams = alglib::xdefault);
+void pcatruncatedsubspacesparse(const sparsematrix &x,
+                                const ae_int_t npoints,
+                                const ae_int_t nvars,
+                                const ae_int_t nneeded,
+                                const double eps,
+                                const ae_int_t maxits,
+                                real_1d_array &s2,
+                                real_2d_array &v,
+                                const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_BDSS) || !defined(AE_PARTIAL_BUILD)
@@ -1784,8 +1704,17 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 22.05.2008 by Bochkanov Sergey
 *************************************************************************/
-void dsoptimalsplit2(const real_1d_array &a, const integer_1d_array &c, const ae_int_t n, ae_int_t &info, double &threshold, double &pal, double &pbl, double &par, double &pbr, double &cve, const xparams _xparams = alglib::xdefault);
-
+void dsoptimalsplit2(const real_1d_array &a,
+                     const integer_1d_array &c,
+                     const ae_int_t n,
+                     ae_int_t &info,
+                     double &threshold,
+                     double &pal,
+                     double &pbl,
+                     double &par,
+                     double &pbr,
+                     double &cve,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Optimal partition, internal subroutine. Fast version.
@@ -1811,7 +1740,20 @@ Note:
   -- ALGLIB --
      Copyright 11.12.2008 by Bochkanov Sergey
 *************************************************************************/
-void dsoptimalsplit2fast(real_1d_array &a, integer_1d_array &c, integer_1d_array &tiesbuf, integer_1d_array &cntbuf, real_1d_array &bufr, integer_1d_array &bufi, const ae_int_t n, const ae_int_t nc, const double alpha, ae_int_t &info, double &threshold, double &rms, double &cvrms, const xparams _xparams = alglib::xdefault);
+void dsoptimalsplit2fast(real_1d_array &a,
+                         integer_1d_array &c,
+                         integer_1d_array &tiesbuf,
+                         integer_1d_array &cntbuf,
+                         real_1d_array &bufr,
+                         integer_1d_array &bufi,
+                         const ae_int_t n,
+                         const ae_int_t nc,
+                         const double alpha,
+                         ae_int_t &info,
+                         double &threshold,
+                         double &rms,
+                         double &cvrms,
+                         const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_MLPBASE) || !defined(AE_PARTIAL_BUILD)
@@ -1822,29 +1764,25 @@ Important properties of s_out:
 * it contains alphanumeric characters, dots, underscores, minus signs
 * these symbols are grouped into words, which are separated by spaces
   and Windows-style (CR+LF) newlines
-* although  serializer  uses  spaces and CR+LF as separators, you can 
+* although  serializer  uses  spaces and CR+LF as separators, you can
   replace any separator character by arbitrary combination of spaces,
   tabs, Windows or Unix newlines. It allows flexible reformatting  of
-  the  string  in  case you want to include it into text or XML file. 
+  the  string  in  case you want to include it into text or XML file.
   But you should not insert separators into the middle of the "words"
   nor you should change case of letters.
 * s_out can be freely moved between 32-bit and 64-bit systems, little
   and big endian machines, and so on. You can serialize structure  on
   32-bit machine and unserialize it on 64-bit one (or vice versa), or
-  serialize  it  on  SPARC  and  unserialize  on  x86.  You  can also 
-  serialize  it  in  C++ version of ALGLIB and unserialize in C# one, 
+  serialize  it  on  SPARC  and  unserialize  on  x86.  You  can also
+  serialize  it  in  C++ version of ALGLIB and unserialize in C# one,
   and vice versa.
 *************************************************************************/
 void mlpserialize(multilayerperceptron &obj, std::string &s_out);
-
 
 /*************************************************************************
 This function unserializes data structure from string.
 *************************************************************************/
 void mlpunserialize(const std::string &s_in, multilayerperceptron &obj);
-
-
-
 
 /*************************************************************************
 This function serializes data structure to C++ stream.
@@ -1859,12 +1797,10 @@ out more about serialization of AlGLIB objects.
 *************************************************************************/
 void mlpserialize(multilayerperceptron &obj, std::ostream &s_out);
 
-
 /*************************************************************************
 This function unserializes data structure from stream.
 *************************************************************************/
 void mlpunserialize(const std::istream &s_in, multilayerperceptron &obj);
-
 
 /*************************************************************************
 Creates  neural  network  with  NIn  inputs,  NOut outputs, without hidden
@@ -1874,8 +1810,10 @@ random values.
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreate0(const ae_int_t nin, const ae_int_t nout, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreate0(const ae_int_t nin,
+                const ae_int_t nout,
+                multilayerperceptron &network,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Same  as  MLPCreate0,  but  with  one  hidden  layer  (NHid  neurons) with
@@ -1884,8 +1822,11 @@ non-linear activation function. Output layer is linear.
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreate1(const ae_int_t nin, const ae_int_t nhid, const ae_int_t nout, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreate1(const ae_int_t nin,
+                const ae_int_t nhid,
+                const ae_int_t nout,
+                multilayerperceptron &network,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Same as MLPCreate0, but with two hidden layers (NHid1 and  NHid2  neurons)
@@ -1895,8 +1836,12 @@ with non-linear activation function. Output layer is linear.
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreate2(const ae_int_t nin, const ae_int_t nhid1, const ae_int_t nhid2, const ae_int_t nout, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreate2(const ae_int_t nin,
+                const ae_int_t nhid1,
+                const ae_int_t nhid2,
+                const ae_int_t nout,
+                multilayerperceptron &network,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Creates  neural  network  with  NIn  inputs,  NOut outputs, without hidden
@@ -1915,8 +1860,12 @@ or
   -- ALGLIB --
      Copyright 30.03.2008 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreateb0(const ae_int_t nin, const ae_int_t nout, const double b, const double d, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreateb0(const ae_int_t nin,
+                 const ae_int_t nout,
+                 const double b,
+                 const double d,
+                 multilayerperceptron &network,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Same as MLPCreateB0 but with non-linear hidden layer.
@@ -1924,8 +1873,13 @@ Same as MLPCreateB0 but with non-linear hidden layer.
   -- ALGLIB --
      Copyright 30.03.2008 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreateb1(const ae_int_t nin, const ae_int_t nhid, const ae_int_t nout, const double b, const double d, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreateb1(const ae_int_t nin,
+                 const ae_int_t nhid,
+                 const ae_int_t nout,
+                 const double b,
+                 const double d,
+                 multilayerperceptron &network,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Same as MLPCreateB0 but with two non-linear hidden layers.
@@ -1933,8 +1887,14 @@ Same as MLPCreateB0 but with two non-linear hidden layers.
   -- ALGLIB --
      Copyright 30.03.2008 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreateb2(const ae_int_t nin, const ae_int_t nhid1, const ae_int_t nhid2, const ae_int_t nout, const double b, const double d, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreateb2(const ae_int_t nin,
+                 const ae_int_t nhid1,
+                 const ae_int_t nhid2,
+                 const ae_int_t nout,
+                 const double b,
+                 const double d,
+                 multilayerperceptron &network,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Creates  neural  network  with  NIn  inputs,  NOut outputs, without hidden
@@ -1944,8 +1904,12 @@ random values. Activation function of the output layer takes values [A,B].
   -- ALGLIB --
      Copyright 30.03.2008 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreater0(const ae_int_t nin, const ae_int_t nout, const double a, const double b, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreater0(const ae_int_t nin,
+                 const ae_int_t nout,
+                 const double a,
+                 const double b,
+                 multilayerperceptron &network,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Same as MLPCreateR0, but with non-linear hidden layer.
@@ -1953,8 +1917,13 @@ Same as MLPCreateR0, but with non-linear hidden layer.
   -- ALGLIB --
      Copyright 30.03.2008 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreater1(const ae_int_t nin, const ae_int_t nhid, const ae_int_t nout, const double a, const double b, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreater1(const ae_int_t nin,
+                 const ae_int_t nhid,
+                 const ae_int_t nout,
+                 const double a,
+                 const double b,
+                 multilayerperceptron &network,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Same as MLPCreateR0, but with two non-linear hidden layers.
@@ -1962,8 +1931,14 @@ Same as MLPCreateR0, but with two non-linear hidden layers.
   -- ALGLIB --
      Copyright 30.03.2008 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreater2(const ae_int_t nin, const ae_int_t nhid1, const ae_int_t nhid2, const ae_int_t nout, const double a, const double b, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreater2(const ae_int_t nin,
+                 const ae_int_t nhid1,
+                 const ae_int_t nhid2,
+                 const ae_int_t nout,
+                 const double a,
+                 const double b,
+                 multilayerperceptron &network,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Creates classifier network with NIn  inputs  and  NOut  possible  classes.
@@ -1974,8 +1949,10 @@ probabilities).
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreatec0(const ae_int_t nin, const ae_int_t nout, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreatec0(const ae_int_t nin,
+                 const ae_int_t nout,
+                 multilayerperceptron &network,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Same as MLPCreateC0, but with one non-linear hidden layer.
@@ -1983,8 +1960,11 @@ Same as MLPCreateC0, but with one non-linear hidden layer.
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreatec1(const ae_int_t nin, const ae_int_t nhid, const ae_int_t nout, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreatec1(const ae_int_t nin,
+                 const ae_int_t nhid,
+                 const ae_int_t nout,
+                 multilayerperceptron &network,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Same as MLPCreateC0, but with two non-linear hidden layers.
@@ -1992,8 +1972,12 @@ Same as MLPCreateC0, but with two non-linear hidden layers.
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreatec2(const ae_int_t nin, const ae_int_t nhid1, const ae_int_t nhid2, const ae_int_t nout, multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+void mlpcreatec2(const ae_int_t nin,
+                 const ae_int_t nhid1,
+                 const ae_int_t nhid2,
+                 const ae_int_t nout,
+                 multilayerperceptron &network,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Copying of neural network
@@ -2007,8 +1991,9 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpcopy(const multilayerperceptron &network1, multilayerperceptron &network2, const xparams _xparams = alglib::xdefault);
-
+void mlpcopy(const multilayerperceptron &network1,
+             multilayerperceptron &network2,
+             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function copies tunable  parameters (weights/means/sigmas)  from  one
@@ -2028,8 +2013,9 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 20.06.2013 by Bochkanov Sergey
 *************************************************************************/
-void mlpcopytunableparameters(const multilayerperceptron &network1, const multilayerperceptron &network2, const xparams _xparams = alglib::xdefault);
-
+void mlpcopytunableparameters(const multilayerperceptron &network1,
+                              const multilayerperceptron &network2,
+                              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Randomization of neural network weights
@@ -2039,7 +2025,6 @@ Randomization of neural network weights
 *************************************************************************/
 void mlprandomize(const multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Randomization of neural network weights and standartisator
 
@@ -2048,15 +2033,16 @@ Randomization of neural network weights and standartisator
 *************************************************************************/
 void mlprandomizefull(const multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Internal subroutine.
 
   -- ALGLIB --
      Copyright 30.03.2008 by Bochkanov Sergey
 *************************************************************************/
-void mlpinitpreprocessor(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t ssize, const xparams _xparams = alglib::xdefault);
-
+void mlpinitpreprocessor(const multilayerperceptron &network,
+                         const real_2d_array &xy,
+                         const ae_int_t ssize,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Returns information about initialized network: number of inputs, outputs,
@@ -2065,8 +2051,11 @@ weights.
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpproperties(const multilayerperceptron &network, ae_int_t &nin, ae_int_t &nout, ae_int_t &wcount, const xparams _xparams = alglib::xdefault);
-
+void mlpproperties(const multilayerperceptron &network,
+                   ae_int_t &nin,
+                   ae_int_t &nout,
+                   ae_int_t &wcount,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Returns number of inputs.
@@ -2076,7 +2065,6 @@ Returns number of inputs.
 *************************************************************************/
 ae_int_t mlpgetinputscount(const multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Returns number of outputs.
 
@@ -2084,7 +2072,6 @@ Returns number of outputs.
      Copyright 19.10.2011 by Bochkanov Sergey
 *************************************************************************/
 ae_int_t mlpgetoutputscount(const multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Returns number of weights.
@@ -2094,7 +2081,6 @@ Returns number of weights.
 *************************************************************************/
 ae_int_t mlpgetweightscount(const multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Tells whether network is SOFTMAX-normalized (i.e. classifier) or not.
 
@@ -2102,7 +2088,6 @@ Tells whether network is SOFTMAX-normalized (i.e. classifier) or not.
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
 bool mlpissoftmax(const multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function returns total number of layers (including input, hidden and
@@ -2112,7 +2097,6 @@ output layers).
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
 ae_int_t mlpgetlayerscount(const multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function returns size of K-th layer.
@@ -2126,8 +2110,9 @@ connections - it is just zero.
   -- ALGLIB --
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
-ae_int_t mlpgetlayersize(const multilayerperceptron &network, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-
+ae_int_t mlpgetlayersize(const multilayerperceptron &network,
+                         const ae_int_t k,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function returns offset/scaling coefficients for I-th input of the
@@ -2148,8 +2133,11 @@ before feeding to the network
   -- ALGLIB --
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
-void mlpgetinputscaling(const multilayerperceptron &network, const ae_int_t i, double &mean, double &sigma, const xparams _xparams = alglib::xdefault);
-
+void mlpgetinputscaling(const multilayerperceptron &network,
+                        const ae_int_t i,
+                        double &mean,
+                        double &sigma,
+                        const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function returns offset/scaling coefficients for I-th output of the
@@ -2171,8 +2159,11 @@ we return (Mean,Sigma)=(0.0,1.0).
   -- ALGLIB --
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
-void mlpgetoutputscaling(const multilayerperceptron &network, const ae_int_t i, double &mean, double &sigma, const xparams _xparams = alglib::xdefault);
-
+void mlpgetoutputscaling(const multilayerperceptron &network,
+                         const ae_int_t i,
+                         double &mean,
+                         double &sigma,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function returns information about Ith neuron of Kth layer
@@ -2194,8 +2185,12 @@ do not exists.
   -- ALGLIB --
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
-void mlpgetneuroninfo(const multilayerperceptron &network, const ae_int_t k, const ae_int_t i, ae_int_t &fkind, double &threshold, const xparams _xparams = alglib::xdefault);
-
+void mlpgetneuroninfo(const multilayerperceptron &network,
+                      const ae_int_t k,
+                      const ae_int_t i,
+                      ae_int_t &fkind,
+                      double &threshold,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function returns information about connection from I0-th neuron of
@@ -2218,8 +2213,12 @@ This function:
   -- ALGLIB --
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
-double mlpgetweight(const multilayerperceptron &network, const ae_int_t k0, const ae_int_t i0, const ae_int_t k1, const ae_int_t i1, const xparams _xparams = alglib::xdefault);
-
+double mlpgetweight(const multilayerperceptron &network,
+                    const ae_int_t k0,
+                    const ae_int_t i0,
+                    const ae_int_t k1,
+                    const ae_int_t i1,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets offset/scaling coefficients for I-th input of the
@@ -2238,8 +2237,11 @@ before feeding to the network. This function sets Mean and Sigma.
   -- ALGLIB --
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
-void mlpsetinputscaling(const multilayerperceptron &network, const ae_int_t i, const double mean, const double sigma, const xparams _xparams = alglib::xdefault);
-
+void mlpsetinputscaling(const multilayerperceptron &network,
+                        const ae_int_t i,
+                        const double mean,
+                        const double sigma,
+                        const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets offset/scaling coefficients for I-th output of the
@@ -2262,8 +2264,11 @@ other than(0.0,1.0) - this function will throw exception.
   -- ALGLIB --
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
-void mlpsetoutputscaling(const multilayerperceptron &network, const ae_int_t i, const double mean, const double sigma, const xparams _xparams = alglib::xdefault);
-
+void mlpsetoutputscaling(const multilayerperceptron &network,
+                         const ae_int_t i,
+                         const double mean,
+                         const double sigma,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function modifies information about Ith neuron of Kth layer
@@ -2291,8 +2296,12 @@ NOTES:
   -- ALGLIB --
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
-void mlpsetneuroninfo(const multilayerperceptron &network, const ae_int_t k, const ae_int_t i, const ae_int_t fkind, const double threshold, const xparams _xparams = alglib::xdefault);
-
+void mlpsetneuroninfo(const multilayerperceptron &network,
+                      const ae_int_t k,
+                      const ae_int_t i,
+                      const ae_int_t fkind,
+                      const double threshold,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function modifies information about connection from I0-th neuron of
@@ -2315,8 +2324,13 @@ This function:
   -- ALGLIB --
      Copyright 25.03.2011 by Bochkanov Sergey
 *************************************************************************/
-void mlpsetweight(const multilayerperceptron &network, const ae_int_t k0, const ae_int_t i0, const ae_int_t k1, const ae_int_t i1, const double w, const xparams _xparams = alglib::xdefault);
-
+void mlpsetweight(const multilayerperceptron &network,
+                  const ae_int_t k0,
+                  const ae_int_t i0,
+                  const ae_int_t k1,
+                  const ae_int_t i1,
+                  const double w,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Neural network activation function
@@ -2333,8 +2347,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpactivationfunction(const double net, const ae_int_t k, double &f, double &df, double &d2f, const xparams _xparams = alglib::xdefault);
-
+void mlpactivationfunction(const double net,
+                           const ae_int_t k,
+                           double &f,
+                           double &df,
+                           double &d2f,
+                           const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Procesing
@@ -2352,8 +2370,10 @@ See also MLPProcessI
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpprocess(const multilayerperceptron &network, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void mlpprocess(const multilayerperceptron &network,
+                const real_1d_array &x,
+                real_1d_array &y,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 'interactive'  variant  of  MLPProcess  for  languages  like  Python which
@@ -2367,8 +2387,10 @@ when you call it from command line.
   -- ALGLIB --
      Copyright 21.09.2010 by Bochkanov Sergey
 *************************************************************************/
-void mlpprocessi(const multilayerperceptron &network, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void mlpprocessi(const multilayerperceptron &network,
+                 const real_1d_array &x,
+                 real_1d_array &y,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Error of the neural network on dataset.
@@ -2414,8 +2436,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-double mlperror(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlperror(const multilayerperceptron &network,
+                const real_2d_array &xy,
+                const ae_int_t npoints,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Error of the neural network on dataset given by sparse matrix.
@@ -2465,8 +2489,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-double mlperrorsparse(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlperrorsparse(const multilayerperceptron &network,
+                      const sparsematrix &xy,
+                      const ae_int_t npoints,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Natural error function for neural network, internal subroutine.
@@ -2477,8 +2503,10 @@ receives no speed-up from being executed in SMP mode.
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-double mlperrorn(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t ssize, const xparams _xparams = alglib::xdefault);
-
+double mlperrorn(const multilayerperceptron &network,
+                 const real_2d_array &xy,
+                 const ae_int_t ssize,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Classification error of the neural network on dataset.
@@ -2524,8 +2552,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-ae_int_t mlpclserror(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+ae_int_t mlpclserror(const multilayerperceptron &network,
+                     const real_2d_array &xy,
+                     const ae_int_t npoints,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Relative classification error on the test set.
@@ -2572,8 +2602,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 25.12.2008 by Bochkanov Sergey
 *************************************************************************/
-double mlprelclserror(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlprelclserror(const multilayerperceptron &network,
+                      const real_2d_array &xy,
+                      const ae_int_t npoints,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Relative classification error on the test set given by sparse matrix.
@@ -2621,8 +2653,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 09.08.2012 by Bochkanov Sergey
 *************************************************************************/
-double mlprelclserrorsparse(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlprelclserrorsparse(const multilayerperceptron &network,
+                            const sparsematrix &xy,
+                            const ae_int_t npoints,
+                            const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average cross-entropy  (in bits  per element) on the test set.
@@ -2669,8 +2703,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 08.01.2009 by Bochkanov Sergey
 *************************************************************************/
-double mlpavgce(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlpavgce(const multilayerperceptron &network,
+                const real_2d_array &xy,
+                const ae_int_t npoints,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average  cross-entropy  (in bits  per element)  on the  test set  given by
@@ -2722,8 +2758,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 9.08.2012 by Bochkanov Sergey
 *************************************************************************/
-double mlpavgcesparse(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlpavgcesparse(const multilayerperceptron &network,
+                      const sparsematrix &xy,
+                      const ae_int_t npoints,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 RMS error on the test set given.
@@ -2771,8 +2809,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-double mlprmserror(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlprmserror(const multilayerperceptron &network,
+                   const real_2d_array &xy,
+                   const ae_int_t npoints,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 RMS error on the test set given by sparse matrix.
@@ -2824,8 +2864,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 09.08.2012 by Bochkanov Sergey
 *************************************************************************/
-double mlprmserrorsparse(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlprmserrorsparse(const multilayerperceptron &network,
+                         const sparsematrix &xy,
+                         const ae_int_t npoints,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average absolute error on the test set.
@@ -2872,8 +2914,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 11.03.2008 by Bochkanov Sergey
 *************************************************************************/
-double mlpavgerror(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlpavgerror(const multilayerperceptron &network,
+                   const real_2d_array &xy,
+                   const ae_int_t npoints,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average absolute error on the test set given by sparse matrix.
@@ -2924,8 +2968,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 09.08.2012 by Bochkanov Sergey
 *************************************************************************/
-double mlpavgerrorsparse(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlpavgerrorsparse(const multilayerperceptron &network,
+                         const sparsematrix &xy,
+                         const ae_int_t npoints,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average relative error on the test set.
@@ -2973,8 +3019,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 11.03.2008 by Bochkanov Sergey
 *************************************************************************/
-double mlpavgrelerror(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlpavgrelerror(const multilayerperceptron &network,
+                      const real_2d_array &xy,
+                      const ae_int_t npoints,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average relative error on the test set given by sparse matrix.
@@ -3026,8 +3074,10 @@ dataset format is used:
   -- ALGLIB --
      Copyright 09.08.2012 by Bochkanov Sergey
 *************************************************************************/
-double mlpavgrelerrorsparse(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlpavgrelerrorsparse(const multilayerperceptron &network,
+                            const sparsematrix &xy,
+                            const ae_int_t npoints,
+                            const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Gradient calculation
@@ -3048,8 +3098,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpgrad(const multilayerperceptron &network, const real_1d_array &x, const real_1d_array &desiredy, double &e, real_1d_array &grad, const xparams _xparams = alglib::xdefault);
-
+void mlpgrad(const multilayerperceptron &network,
+             const real_1d_array &x,
+             const real_1d_array &desiredy,
+             double &e,
+             real_1d_array &grad,
+             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Gradient calculation (natural error function is used)
@@ -3071,8 +3125,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpgradn(const multilayerperceptron &network, const real_1d_array &x, const real_1d_array &desiredy, double &e, real_1d_array &grad, const xparams _xparams = alglib::xdefault);
-
+void mlpgradn(const multilayerperceptron &network,
+              const real_1d_array &x,
+              const real_1d_array &desiredy,
+              double &e,
+              real_1d_array &grad,
+              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Batch gradient calculation for a set of inputs/outputs
@@ -3109,8 +3167,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpgradbatch(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t ssize, double &e, real_1d_array &grad, const xparams _xparams = alglib::xdefault);
-
+void mlpgradbatch(const multilayerperceptron &network,
+                  const real_2d_array &xy,
+                  const ae_int_t ssize,
+                  double &e,
+                  real_1d_array &grad,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Batch gradient calculation for a set  of inputs/outputs  given  by  sparse
@@ -3149,8 +3211,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 26.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpgradbatchsparse(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t ssize, double &e, real_1d_array &grad, const xparams _xparams = alglib::xdefault);
-
+void mlpgradbatchsparse(const multilayerperceptron &network,
+                        const sparsematrix &xy,
+                        const ae_int_t ssize,
+                        double &e,
+                        real_1d_array &grad,
+                        const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Batch gradient calculation for a subset of dataset
@@ -3201,8 +3267,14 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 26.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpgradbatchsubset(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t setsize, const integer_1d_array &idx, const ae_int_t subsetsize, double &e, real_1d_array &grad, const xparams _xparams = alglib::xdefault);
-
+void mlpgradbatchsubset(const multilayerperceptron &network,
+                        const real_2d_array &xy,
+                        const ae_int_t setsize,
+                        const integer_1d_array &idx,
+                        const ae_int_t subsetsize,
+                        double &e,
+                        real_1d_array &grad,
+                        const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Batch gradient calculation for a set of inputs/outputs  for  a  subset  of
@@ -3258,8 +3330,14 @@ NOTE: when  SubsetSize<0 is used full dataset by call MLPGradBatchSparse
   -- ALGLIB --
      Copyright 26.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpgradbatchsparsesubset(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t setsize, const integer_1d_array &idx, const ae_int_t subsetsize, double &e, real_1d_array &grad, const xparams _xparams = alglib::xdefault);
-
+void mlpgradbatchsparsesubset(const multilayerperceptron &network,
+                              const sparsematrix &xy,
+                              const ae_int_t setsize,
+                              const integer_1d_array &idx,
+                              const ae_int_t subsetsize,
+                              double &e,
+                              real_1d_array &grad,
+                              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Batch gradient calculation for a set of inputs/outputs
@@ -3284,8 +3362,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 04.11.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpgradnbatch(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t ssize, double &e, real_1d_array &grad, const xparams _xparams = alglib::xdefault);
-
+void mlpgradnbatch(const multilayerperceptron &network,
+                   const real_2d_array &xy,
+                   const ae_int_t ssize,
+                   double &e,
+                   real_1d_array &grad,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Batch Hessian calculation (natural error function) using R-algorithm.
@@ -3299,8 +3381,13 @@ Internal subroutine.
      B. A. Pearlmutter,
      Neural Computation, 1994.
 *************************************************************************/
-void mlphessiannbatch(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t ssize, double &e, real_1d_array &grad, real_2d_array &h, const xparams _xparams = alglib::xdefault);
-
+void mlphessiannbatch(const multilayerperceptron &network,
+                      const real_2d_array &xy,
+                      const ae_int_t ssize,
+                      double &e,
+                      real_1d_array &grad,
+                      real_2d_array &h,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Batch Hessian calculation using R-algorithm.
@@ -3314,8 +3401,13 @@ Internal subroutine.
      B. A. Pearlmutter,
      Neural Computation, 1994.
 *************************************************************************/
-void mlphessianbatch(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t ssize, double &e, real_1d_array &grad, real_2d_array &h, const xparams _xparams = alglib::xdefault);
-
+void mlphessianbatch(const multilayerperceptron &network,
+                     const real_2d_array &xy,
+                     const ae_int_t ssize,
+                     double &e,
+                     real_1d_array &grad,
+                     real_2d_array &h,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Calculation of all types of errors on subset of dataset.
@@ -3351,8 +3443,13 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 04.09.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpallerrorssubset(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t setsize, const integer_1d_array &subset, const ae_int_t subsetsize, modelerrors &rep, const xparams _xparams = alglib::xdefault);
-
+void mlpallerrorssubset(const multilayerperceptron &network,
+                        const real_2d_array &xy,
+                        const ae_int_t setsize,
+                        const integer_1d_array &subset,
+                        const ae_int_t subsetsize,
+                        modelerrors &rep,
+                        const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Calculation of all types of errors on subset of dataset.
@@ -3390,8 +3487,13 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 04.09.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpallerrorssparsesubset(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t setsize, const integer_1d_array &subset, const ae_int_t subsetsize, modelerrors &rep, const xparams _xparams = alglib::xdefault);
-
+void mlpallerrorssparsesubset(const multilayerperceptron &network,
+                              const sparsematrix &xy,
+                              const ae_int_t setsize,
+                              const integer_1d_array &subset,
+                              const ae_int_t subsetsize,
+                              modelerrors &rep,
+                              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Error of the neural network on subset of dataset.
@@ -3444,8 +3546,12 @@ dataset format is used:
   -- ALGLIB --
      Copyright 04.09.2012 by Bochkanov Sergey
 *************************************************************************/
-double mlperrorsubset(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t setsize, const integer_1d_array &subset, const ae_int_t subsetsize, const xparams _xparams = alglib::xdefault);
-
+double mlperrorsubset(const multilayerperceptron &network,
+                      const real_2d_array &xy,
+                      const ae_int_t setsize,
+                      const integer_1d_array &subset,
+                      const ae_int_t subsetsize,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Error of the neural network on subset of sparse dataset.
@@ -3503,7 +3609,12 @@ dataset format is used:
   -- ALGLIB --
      Copyright 04.09.2012 by Bochkanov Sergey
 *************************************************************************/
-double mlperrorsparsesubset(const multilayerperceptron &network, const sparsematrix &xy, const ae_int_t setsize, const integer_1d_array &subset, const ae_int_t subsetsize, const xparams _xparams = alglib::xdefault);
+double mlperrorsparsesubset(const multilayerperceptron &network,
+                            const sparsematrix &xy,
+                            const ae_int_t setsize,
+                            const integer_1d_array &subset,
+                            const ae_int_t subsetsize,
+                            const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_LDA) || !defined(AE_PARTIAL_BUILD)
@@ -3563,8 +3674,13 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 31.05.2008 by Bochkanov Sergey
 *************************************************************************/
-void fisherlda(const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nclasses, ae_int_t &info, real_1d_array &w, const xparams _xparams = alglib::xdefault);
-
+void fisherlda(const real_2d_array &xy,
+               const ae_int_t npoints,
+               const ae_int_t nvars,
+               const ae_int_t nclasses,
+               ae_int_t &info,
+               real_1d_array &w,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 N-dimensional multiclass Fisher LDA
@@ -3614,7 +3730,13 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 31.05.2008 by Bochkanov Sergey
 *************************************************************************/
-void fisherldan(const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nclasses, ae_int_t &info, real_2d_array &w, const xparams _xparams = alglib::xdefault);
+void fisherldan(const real_2d_array &xy,
+                const ae_int_t npoints,
+                const ae_int_t nvars,
+                const ae_int_t nclasses,
+                ae_int_t &info,
+                real_2d_array &w,
+                const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_SSA) || !defined(AE_PARTIAL_BUILD)
@@ -3663,7 +3785,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void ssacreate(ssamodel &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function sets window width for SSA model. You should call  it  before
 analysis phase. Default window width is 1 (not for real use).
@@ -3692,7 +3813,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void ssasetwindow(const ssamodel &s, const ae_int_t windowwidth, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This  function  sets  seed  which  is used to initialize internal RNG when
 we make pseudorandom decisions on model updates.
@@ -3719,7 +3839,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void ssasetseed(const ssamodel &s, const ae_int_t seed, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function sets length of power-up cycle for real-time algorithm.
 
@@ -3744,7 +3863,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void ssasetpoweruplength(const ssamodel &s, const ae_int_t pwlen, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function sets memory limit of SSA analysis.
 
@@ -3766,7 +3884,6 @@ INPUT PARAMETERS:
      Copyright 20.12.2017 by Bochkanov Sergey
 *************************************************************************/
 void ssasetmemorylimit(const ssamodel &s, const ae_int_t memlimit, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function adds data sequence to SSA  model.  Only   single-dimensional
@@ -3810,9 +3927,11 @@ NOTE: you can clear dataset with ssacleardata()
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaaddsequence(const ssamodel &s, const real_1d_array &x, const ae_int_t n, const xparams _xparams = alglib::xdefault);
+void ssaaddsequence(const ssamodel &s,
+                    const real_1d_array &x,
+                    const ae_int_t n,
+                    const xparams _xparams = alglib::xdefault);
 void ssaaddsequence(const ssamodel &s, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function appends single point to last data sequence stored in the SSA
@@ -3873,8 +3992,10 @@ NOTE: this function throws an exception if called for empty dataset (there
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaappendpointandupdate(const ssamodel &s, const double x, const double updateits, const xparams _xparams = alglib::xdefault);
-
+void ssaappendpointandupdate(const ssamodel &s,
+                             const double x,
+                             const double updateits,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function appends new sequence to dataset stored in the SSA  model and
@@ -3933,9 +4054,15 @@ NOTE: this function uses internal  RNG  to  handle  fractional  values  of
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaappendsequenceandupdate(const ssamodel &s, const real_1d_array &x, const ae_int_t nticks, const double updateits, const xparams _xparams = alglib::xdefault);
-void ssaappendsequenceandupdate(const ssamodel &s, const real_1d_array &x, const double updateits, const xparams _xparams = alglib::xdefault);
-
+void ssaappendsequenceandupdate(const ssamodel &s,
+                                const real_1d_array &x,
+                                const ae_int_t nticks,
+                                const double updateits,
+                                const xparams _xparams = alglib::xdefault);
+void ssaappendsequenceandupdate(const ssamodel &s,
+                                const real_1d_array &x,
+                                const double updateits,
+                                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function sets SSA algorithm to "precomputed vectors" algorithm.
@@ -3972,9 +4099,12 @@ NOTE: calling this function invalidates basis in all cases.
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssasetalgoprecomputed(const ssamodel &s, const real_2d_array &a, const ae_int_t windowwidth, const ae_int_t nbasis, const xparams _xparams = alglib::xdefault);
+void ssasetalgoprecomputed(const ssamodel &s,
+                           const real_2d_array &a,
+                           const ae_int_t windowwidth,
+                           const ae_int_t nbasis,
+                           const xparams _xparams = alglib::xdefault);
 void ssasetalgoprecomputed(const ssamodel &s, const real_2d_array &a, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function sets SSA algorithm to "direct top-K" algorithm.
@@ -4006,7 +4136,6 @@ NOTE: calling this function invalidates basis, except  for  the  situation
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
 void ssasetalgotopkdirect(const ssamodel &s, const ae_int_t topk, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets SSA algorithm to "top-K real time algorithm". This algo
@@ -4051,7 +4180,6 @@ NOTE: calling this function invalidates basis, except  for  the  situation
 *************************************************************************/
 void ssasetalgotopkrealtime(const ssamodel &s, const ae_int_t topk, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function clears all data stored in the  model  and  invalidates  all
 basis components found so far.
@@ -4066,7 +4194,6 @@ OUTPUT PARAMETERS:
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
 void ssacleardata(const ssamodel &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function executes SSA on internally stored dataset and returns  basis
@@ -4109,8 +4236,12 @@ just one zero vector.
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssagetbasis(const ssamodel &s, real_2d_array &a, real_1d_array &sv, ae_int_t &windowwidth, ae_int_t &nbasis, const xparams _xparams = alglib::xdefault);
-
+void ssagetbasis(const ssamodel &s,
+                 real_2d_array &a,
+                 real_1d_array &sv,
+                 ae_int_t &windowwidth,
+                 ae_int_t &nbasis,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function returns linear recurrence relation (LRR) coefficients  found
@@ -4151,7 +4282,6 @@ shorter than window size; no algorithm is specified) returns zeros.
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
 void ssagetlrr(const ssamodel &s, real_1d_array &a, ae_int_t &windowwidth, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function  executes  SSA  on  internally  stored  dataset and returns
@@ -4226,8 +4356,11 @@ values, no basis is constructed).
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaanalyzelastwindow(const ssamodel &s, real_1d_array &trend, real_1d_array &noise, ae_int_t &nticks, const xparams _xparams = alglib::xdefault);
-
+void ssaanalyzelastwindow(const ssamodel &s,
+                          real_1d_array &trend,
+                          real_1d_array &noise,
+                          ae_int_t &nticks,
+                          const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function:
@@ -4319,8 +4452,11 @@ values, no basis is constructed).
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaanalyzelast(const ssamodel &s, const ae_int_t nticks, real_1d_array &trend, real_1d_array &noise, const xparams _xparams = alglib::xdefault);
-
+void ssaanalyzelast(const ssamodel &s,
+                    const ae_int_t nticks,
+                    real_1d_array &trend,
+                    real_1d_array &noise,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function:
@@ -4395,9 +4531,17 @@ values, no basis is constructed).
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaanalyzesequence(const ssamodel &s, const real_1d_array &data, const ae_int_t nticks, real_1d_array &trend, real_1d_array &noise, const xparams _xparams = alglib::xdefault);
-void ssaanalyzesequence(const ssamodel &s, const real_1d_array &data, real_1d_array &trend, real_1d_array &noise, const xparams _xparams = alglib::xdefault);
-
+void ssaanalyzesequence(const ssamodel &s,
+                        const real_1d_array &data,
+                        const ae_int_t nticks,
+                        real_1d_array &trend,
+                        real_1d_array &noise,
+                        const xparams _xparams = alglib::xdefault);
+void ssaanalyzesequence(const ssamodel &s,
+                        const real_1d_array &data,
+                        real_1d_array &trend,
+                        real_1d_array &noise,
+                        const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function builds SSA basis and performs forecasting  for  a  specified
@@ -4472,8 +4616,10 @@ values, no basis is ever constructed).
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaforecastlast(const ssamodel &s, const ae_int_t nticks, real_1d_array &trend, const xparams _xparams = alglib::xdefault);
-
+void ssaforecastlast(const ssamodel &s,
+                     const ae_int_t nticks,
+                     real_1d_array &trend,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function builds SSA  basis  and  performs  forecasting  for  a  user-
@@ -4551,9 +4697,18 @@ values, no basis is ever constructed).
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaforecastsequence(const ssamodel &s, const real_1d_array &data, const ae_int_t datalen, const ae_int_t forecastlen, const bool applysmoothing, real_1d_array &trend, const xparams _xparams = alglib::xdefault);
-void ssaforecastsequence(const ssamodel &s, const real_1d_array &data, const ae_int_t forecastlen, real_1d_array &trend, const xparams _xparams = alglib::xdefault);
-
+void ssaforecastsequence(const ssamodel &s,
+                         const real_1d_array &data,
+                         const ae_int_t datalen,
+                         const ae_int_t forecastlen,
+                         const bool applysmoothing,
+                         real_1d_array &trend,
+                         const xparams _xparams = alglib::xdefault);
+void ssaforecastsequence(const ssamodel &s,
+                         const real_1d_array &data,
+                         const ae_int_t forecastlen,
+                         real_1d_array &trend,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function builds SSA basis and performs forecasting  for  a  specified
@@ -4632,8 +4787,11 @@ values, no basis is ever constructed).
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaforecastavglast(const ssamodel &s, const ae_int_t m, const ae_int_t nticks, real_1d_array &trend, const xparams _xparams = alglib::xdefault);
-
+void ssaforecastavglast(const ssamodel &s,
+                        const ae_int_t m,
+                        const ae_int_t nticks,
+                        real_1d_array &trend,
+                        const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function builds SSA  basis  and  performs  forecasting  for  a  user-
@@ -4714,8 +4872,20 @@ values, no basis is ever constructed).
   -- ALGLIB --
      Copyright 30.10.2017 by Bochkanov Sergey
 *************************************************************************/
-void ssaforecastavgsequence(const ssamodel &s, const real_1d_array &data, const ae_int_t datalen, const ae_int_t m, const ae_int_t forecastlen, const bool applysmoothing, real_1d_array &trend, const xparams _xparams = alglib::xdefault);
-void ssaforecastavgsequence(const ssamodel &s, const real_1d_array &data, const ae_int_t m, const ae_int_t forecastlen, real_1d_array &trend, const xparams _xparams = alglib::xdefault);
+void ssaforecastavgsequence(const ssamodel &s,
+                            const real_1d_array &data,
+                            const ae_int_t datalen,
+                            const ae_int_t m,
+                            const ae_int_t forecastlen,
+                            const bool applysmoothing,
+                            real_1d_array &trend,
+                            const xparams _xparams = alglib::xdefault);
+void ssaforecastavgsequence(const ssamodel &s,
+                            const real_1d_array &data,
+                            const ae_int_t m,
+                            const ae_int_t forecastlen,
+                            real_1d_array &trend,
+                            const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_LINREG) || !defined(AE_PARTIAL_BUILD)
@@ -4755,8 +4925,13 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 02.08.2008 by Bochkanov Sergey
 *************************************************************************/
-void lrbuild(const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, ae_int_t &info, linearmodel &lm, lrreport &ar, const xparams _xparams = alglib::xdefault);
-
+void lrbuild(const real_2d_array &xy,
+             const ae_int_t npoints,
+             const ae_int_t nvars,
+             ae_int_t &info,
+             linearmodel &lm,
+             lrreport &ar,
+             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Linear regression
@@ -4788,8 +4963,14 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 02.08.2008 by Bochkanov Sergey
 *************************************************************************/
-void lrbuilds(const real_2d_array &xy, const real_1d_array &s, const ae_int_t npoints, const ae_int_t nvars, ae_int_t &info, linearmodel &lm, lrreport &ar, const xparams _xparams = alglib::xdefault);
-
+void lrbuilds(const real_2d_array &xy,
+              const real_1d_array &s,
+              const ae_int_t npoints,
+              const ae_int_t nvars,
+              ae_int_t &info,
+              linearmodel &lm,
+              lrreport &ar,
+              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like LRBuildS, but builds model
@@ -4801,8 +4982,14 @@ i.e. with zero constant term.
   -- ALGLIB --
      Copyright 30.10.2008 by Bochkanov Sergey
 *************************************************************************/
-void lrbuildzs(const real_2d_array &xy, const real_1d_array &s, const ae_int_t npoints, const ae_int_t nvars, ae_int_t &info, linearmodel &lm, lrreport &ar, const xparams _xparams = alglib::xdefault);
-
+void lrbuildzs(const real_2d_array &xy,
+               const real_1d_array &s,
+               const ae_int_t npoints,
+               const ae_int_t nvars,
+               ae_int_t &info,
+               linearmodel &lm,
+               lrreport &ar,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like LRBuild but builds model
@@ -4814,8 +5001,13 @@ i.e. with zero constant term.
   -- ALGLIB --
      Copyright 30.10.2008 by Bochkanov Sergey
 *************************************************************************/
-void lrbuildz(const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, ae_int_t &info, linearmodel &lm, lrreport &ar, const xparams _xparams = alglib::xdefault);
-
+void lrbuildz(const real_2d_array &xy,
+              const ae_int_t npoints,
+              const ae_int_t nvars,
+              ae_int_t &info,
+              linearmodel &lm,
+              lrreport &ar,
+              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Unpacks coefficients of linear model.
@@ -4834,7 +5026,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void lrunpack(const linearmodel &lm, real_1d_array &v, ae_int_t &nvars, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 "Packs" coefficients and creates linear model in ALGLIB format (LRUnpack
 reversed).
@@ -4851,7 +5042,6 @@ OUTPUT PAREMETERS:
 *************************************************************************/
 void lrpack(const real_1d_array &v, const ae_int_t nvars, linearmodel &lm, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Procesing
 
@@ -4867,7 +5057,6 @@ Result:
 *************************************************************************/
 double lrprocess(const linearmodel &lm, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 RMS error on the test set
 
@@ -4882,8 +5071,10 @@ RESULT:
   -- ALGLIB --
      Copyright 30.08.2008 by Bochkanov Sergey
 *************************************************************************/
-double lrrmserror(const linearmodel &lm, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double lrrmserror(const linearmodel &lm,
+                  const real_2d_array &xy,
+                  const ae_int_t npoints,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average error on the test set
@@ -4899,8 +5090,10 @@ RESULT:
   -- ALGLIB --
      Copyright 30.08.2008 by Bochkanov Sergey
 *************************************************************************/
-double lravgerror(const linearmodel &lm, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double lravgerror(const linearmodel &lm,
+                  const real_2d_array &xy,
+                  const ae_int_t npoints,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 RMS error on the test set
@@ -4916,7 +5109,10 @@ RESULT:
   -- ALGLIB --
      Copyright 30.08.2008 by Bochkanov Sergey
 *************************************************************************/
-double lravgrelerror(const linearmodel &lm, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
+double lravgrelerror(const linearmodel &lm,
+                     const real_2d_array &xy,
+                     const ae_int_t npoints,
+                     const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_FILTERS) || !defined(AE_PARTIAL_BUILD)
@@ -4959,7 +5155,6 @@ NOTE 3: this  is  unsymmetric version of the algorithm,  which  does  NOT
 void filtersma(real_1d_array &x, const ae_int_t n, const ae_int_t k, const xparams _xparams = alglib::xdefault);
 void filtersma(real_1d_array &x, const ae_int_t k, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Filters: exponential moving averages.
 
@@ -4993,7 +5188,6 @@ NOTE 3: technical analytis users quite often work  with  EMA  coefficient
 *************************************************************************/
 void filterema(real_1d_array &x, const ae_int_t n, const double alpha, const xparams _xparams = alglib::xdefault);
 void filterema(real_1d_array &x, const double alpha, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Filters: linear regression moving averages.
@@ -5065,8 +5259,14 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 10.09.2008 by Bochkanov Sergey
 *************************************************************************/
-void mnltrainh(const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nclasses, ae_int_t &info, logitmodel &lm, mnlreport &rep, const xparams _xparams = alglib::xdefault);
-
+void mnltrainh(const real_2d_array &xy,
+               const ae_int_t npoints,
+               const ae_int_t nvars,
+               const ae_int_t nclasses,
+               ae_int_t &info,
+               logitmodel &lm,
+               mnlreport &rep,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Procesing
@@ -5087,8 +5287,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 10.09.2008 by Bochkanov Sergey
 *************************************************************************/
-void mnlprocess(const logitmodel &lm, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void mnlprocess(const logitmodel &lm,
+                const real_1d_array &x,
+                real_1d_array &y,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 'interactive'  variant  of  MNLProcess  for  languages  like  Python which
@@ -5102,8 +5304,10 @@ when you call it from command line.
   -- ALGLIB --
      Copyright 10.09.2008 by Bochkanov Sergey
 *************************************************************************/
-void mnlprocessi(const logitmodel &lm, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void mnlprocessi(const logitmodel &lm,
+                 const real_1d_array &x,
+                 real_1d_array &y,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Unpacks coefficients of logit model. Logit model have form:
@@ -5123,8 +5327,11 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 10.09.2008 by Bochkanov Sergey
 *************************************************************************/
-void mnlunpack(const logitmodel &lm, real_2d_array &a, ae_int_t &nvars, ae_int_t &nclasses, const xparams _xparams = alglib::xdefault);
-
+void mnlunpack(const logitmodel &lm,
+               real_2d_array &a,
+               ae_int_t &nvars,
+               ae_int_t &nclasses,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 "Packs" coefficients and creates logit model in ALGLIB format (MNLUnpack
@@ -5141,8 +5348,11 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 10.09.2008 by Bochkanov Sergey
 *************************************************************************/
-void mnlpack(const real_2d_array &a, const ae_int_t nvars, const ae_int_t nclasses, logitmodel &lm, const xparams _xparams = alglib::xdefault);
-
+void mnlpack(const real_2d_array &a,
+             const ae_int_t nvars,
+             const ae_int_t nclasses,
+             logitmodel &lm,
+             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average cross-entropy (in bits per element) on the test set
@@ -5158,8 +5368,10 @@ RESULT:
   -- ALGLIB --
      Copyright 10.09.2008 by Bochkanov Sergey
 *************************************************************************/
-double mnlavgce(const logitmodel &lm, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mnlavgce(const logitmodel &lm,
+                const real_2d_array &xy,
+                const ae_int_t npoints,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Relative classification error on the test set
@@ -5175,8 +5387,10 @@ RESULT:
   -- ALGLIB --
      Copyright 10.09.2008 by Bochkanov Sergey
 *************************************************************************/
-double mnlrelclserror(const logitmodel &lm, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mnlrelclserror(const logitmodel &lm,
+                      const real_2d_array &xy,
+                      const ae_int_t npoints,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 RMS error on the test set
@@ -5192,8 +5406,10 @@ RESULT:
   -- ALGLIB --
      Copyright 30.08.2008 by Bochkanov Sergey
 *************************************************************************/
-double mnlrmserror(const logitmodel &lm, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mnlrmserror(const logitmodel &lm,
+                   const real_2d_array &xy,
+                   const ae_int_t npoints,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average error on the test set
@@ -5209,8 +5425,10 @@ RESULT:
   -- ALGLIB --
      Copyright 30.08.2008 by Bochkanov Sergey
 *************************************************************************/
-double mnlavgerror(const logitmodel &lm, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mnlavgerror(const logitmodel &lm,
+                   const real_2d_array &xy,
+                   const ae_int_t npoints,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average relative error on the test set
@@ -5226,8 +5444,10 @@ RESULT:
   -- ALGLIB --
      Copyright 30.08.2008 by Bochkanov Sergey
 *************************************************************************/
-double mnlavgrelerror(const logitmodel &lm, const real_2d_array &xy, const ae_int_t ssize, const xparams _xparams = alglib::xdefault);
-
+double mnlavgrelerror(const logitmodel &lm,
+                      const real_2d_array &xy,
+                      const ae_int_t ssize,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Classification error on test set = MNLRelClsError*NPoints
@@ -5235,7 +5455,10 @@ Classification error on test set = MNLRelClsError*NPoints
   -- ALGLIB --
      Copyright 10.09.2008 by Bochkanov Sergey
 *************************************************************************/
-ae_int_t mnlclserror(const logitmodel &lm, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
+ae_int_t mnlclserror(const logitmodel &lm,
+                     const real_2d_array &xy,
+                     const ae_int_t npoints,
+                     const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_MCPD) || !defined(AE_PARTIAL_BUILD)
@@ -5297,7 +5520,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void mcpdcreate(const ae_int_t n, mcpdstate &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 DESCRIPTION:
 
@@ -5344,8 +5566,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-void mcpdcreateentry(const ae_int_t n, const ae_int_t entrystate, mcpdstate &s, const xparams _xparams = alglib::xdefault);
-
+void mcpdcreateentry(const ae_int_t n,
+                     const ae_int_t entrystate,
+                     mcpdstate &s,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 DESCRIPTION:
@@ -5393,8 +5617,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-void mcpdcreateexit(const ae_int_t n, const ae_int_t exitstate, mcpdstate &s, const xparams _xparams = alglib::xdefault);
-
+void mcpdcreateexit(const ae_int_t n,
+                    const ae_int_t exitstate,
+                    mcpdstate &s,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 DESCRIPTION:
@@ -5453,8 +5679,11 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-void mcpdcreateentryexit(const ae_int_t n, const ae_int_t entrystate, const ae_int_t exitstate, mcpdstate &s, const xparams _xparams = alglib::xdefault);
-
+void mcpdcreateentryexit(const ae_int_t n,
+                         const ae_int_t entrystate,
+                         const ae_int_t exitstate,
+                         mcpdstate &s,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  is  used to add a track - sequence of system states at the
@@ -5488,9 +5717,11 @@ NOTES:
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-void mcpdaddtrack(const mcpdstate &s, const real_2d_array &xy, const ae_int_t k, const xparams _xparams = alglib::xdefault);
+void mcpdaddtrack(const mcpdstate &s,
+                  const real_2d_array &xy,
+                  const ae_int_t k,
+                  const xparams _xparams = alglib::xdefault);
 void mcpdaddtrack(const mcpdstate &s, const real_2d_array &xy, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function is used to add equality constraints on the elements  of  the
@@ -5550,7 +5781,6 @@ call to MCPDSolve().
 *************************************************************************/
 void mcpdsetec(const mcpdstate &s, const real_2d_array &ec, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function is used to add equality constraints on the elements  of  the
 transition matrix P.
@@ -5603,8 +5833,11 @@ call to MCPDSolve().
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-void mcpdaddec(const mcpdstate &s, const ae_int_t i, const ae_int_t j, const double c, const xparams _xparams = alglib::xdefault);
-
+void mcpdaddec(const mcpdstate &s,
+               const ae_int_t i,
+               const ae_int_t j,
+               const double c,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function is used to add bound constraints  on  the  elements  of  the
@@ -5654,8 +5887,10 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-void mcpdsetbc(const mcpdstate &s, const real_2d_array &bndl, const real_2d_array &bndu, const xparams _xparams = alglib::xdefault);
-
+void mcpdsetbc(const mcpdstate &s,
+               const real_2d_array &bndl,
+               const real_2d_array &bndu,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function is used to add bound constraints  on  the  elements  of  the
@@ -5705,8 +5940,12 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-void mcpdaddbc(const mcpdstate &s, const ae_int_t i, const ae_int_t j, const double bndl, const double bndu, const xparams _xparams = alglib::xdefault);
-
+void mcpdaddbc(const mcpdstate &s,
+               const ae_int_t i,
+               const ae_int_t j,
+               const double bndl,
+               const double bndu,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function is used to set linear equality/inequality constraints on the
@@ -5749,9 +5988,15 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
-void mcpdsetlc(const mcpdstate &s, const real_2d_array &c, const integer_1d_array &ct, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-void mcpdsetlc(const mcpdstate &s, const real_2d_array &c, const integer_1d_array &ct, const xparams _xparams = alglib::xdefault);
-
+void mcpdsetlc(const mcpdstate &s,
+               const real_2d_array &c,
+               const integer_1d_array &ct,
+               const ae_int_t k,
+               const xparams _xparams = alglib::xdefault);
+void mcpdsetlc(const mcpdstate &s,
+               const real_2d_array &c,
+               const integer_1d_array &ct,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function allows to  tune  amount  of  Tikhonov  regularization  being
@@ -5774,7 +6019,6 @@ INPUT PARAMETERS:
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
 void mcpdsettikhonovregularizer(const mcpdstate &s, const double v, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function  allows to set prior values used for regularization of your
@@ -5799,7 +6043,6 @@ INPUT PARAMETERS:
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
 void mcpdsetprior(const mcpdstate &s, const real_2d_array &pp, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function is used to change prediction weights
@@ -5828,7 +6071,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void mcpdsetpredictionweights(const mcpdstate &s, const real_1d_array &pw, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function is used to start solution of the MCPD problem.
 
@@ -5839,7 +6081,6 @@ and completion code.
      Copyright 23.05.2010 by Bochkanov Sergey
 *************************************************************************/
 void mcpdsolve(const mcpdstate &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 MCPD results
@@ -5871,29 +6112,25 @@ Important properties of s_out:
 * it contains alphanumeric characters, dots, underscores, minus signs
 * these symbols are grouped into words, which are separated by spaces
   and Windows-style (CR+LF) newlines
-* although  serializer  uses  spaces and CR+LF as separators, you can 
+* although  serializer  uses  spaces and CR+LF as separators, you can
   replace any separator character by arbitrary combination of spaces,
   tabs, Windows or Unix newlines. It allows flexible reformatting  of
-  the  string  in  case you want to include it into text or XML file. 
+  the  string  in  case you want to include it into text or XML file.
   But you should not insert separators into the middle of the "words"
   nor you should change case of letters.
 * s_out can be freely moved between 32-bit and 64-bit systems, little
   and big endian machines, and so on. You can serialize structure  on
   32-bit machine and unserialize it on 64-bit one (or vice versa), or
-  serialize  it  on  SPARC  and  unserialize  on  x86.  You  can also 
-  serialize  it  in  C++ version of ALGLIB and unserialize in C# one, 
+  serialize  it  on  SPARC  and  unserialize  on  x86.  You  can also
+  serialize  it  in  C++ version of ALGLIB and unserialize in C# one,
   and vice versa.
 *************************************************************************/
 void mlpeserialize(mlpensemble &obj, std::string &s_out);
-
 
 /*************************************************************************
 This function unserializes data structure from string.
 *************************************************************************/
 void mlpeunserialize(const std::string &s_in, mlpensemble &obj);
-
-
-
 
 /*************************************************************************
 This function serializes data structure to C++ stream.
@@ -5908,12 +6145,10 @@ out more about serialization of AlGLIB objects.
 *************************************************************************/
 void mlpeserialize(mlpensemble &obj, std::ostream &s_out);
 
-
 /*************************************************************************
 This function unserializes data structure from stream.
 *************************************************************************/
 void mlpeunserialize(const std::istream &s_in, mlpensemble &obj);
-
 
 /*************************************************************************
 Like MLPCreate0, but for ensembles.
@@ -5921,8 +6156,11 @@ Like MLPCreate0, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreate0(const ae_int_t nin, const ae_int_t nout, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreate0(const ae_int_t nin,
+                 const ae_int_t nout,
+                 const ae_int_t ensemblesize,
+                 mlpensemble &ensemble,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreate1, but for ensembles.
@@ -5930,8 +6168,12 @@ Like MLPCreate1, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreate1(const ae_int_t nin, const ae_int_t nhid, const ae_int_t nout, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreate1(const ae_int_t nin,
+                 const ae_int_t nhid,
+                 const ae_int_t nout,
+                 const ae_int_t ensemblesize,
+                 mlpensemble &ensemble,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreate2, but for ensembles.
@@ -5939,8 +6181,13 @@ Like MLPCreate2, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreate2(const ae_int_t nin, const ae_int_t nhid1, const ae_int_t nhid2, const ae_int_t nout, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreate2(const ae_int_t nin,
+                 const ae_int_t nhid1,
+                 const ae_int_t nhid2,
+                 const ae_int_t nout,
+                 const ae_int_t ensemblesize,
+                 mlpensemble &ensemble,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreateB0, but for ensembles.
@@ -5948,8 +6195,13 @@ Like MLPCreateB0, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreateb0(const ae_int_t nin, const ae_int_t nout, const double b, const double d, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreateb0(const ae_int_t nin,
+                  const ae_int_t nout,
+                  const double b,
+                  const double d,
+                  const ae_int_t ensemblesize,
+                  mlpensemble &ensemble,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreateB1, but for ensembles.
@@ -5957,8 +6209,14 @@ Like MLPCreateB1, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreateb1(const ae_int_t nin, const ae_int_t nhid, const ae_int_t nout, const double b, const double d, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreateb1(const ae_int_t nin,
+                  const ae_int_t nhid,
+                  const ae_int_t nout,
+                  const double b,
+                  const double d,
+                  const ae_int_t ensemblesize,
+                  mlpensemble &ensemble,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreateB2, but for ensembles.
@@ -5966,8 +6224,15 @@ Like MLPCreateB2, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreateb2(const ae_int_t nin, const ae_int_t nhid1, const ae_int_t nhid2, const ae_int_t nout, const double b, const double d, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreateb2(const ae_int_t nin,
+                  const ae_int_t nhid1,
+                  const ae_int_t nhid2,
+                  const ae_int_t nout,
+                  const double b,
+                  const double d,
+                  const ae_int_t ensemblesize,
+                  mlpensemble &ensemble,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreateR0, but for ensembles.
@@ -5975,8 +6240,13 @@ Like MLPCreateR0, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreater0(const ae_int_t nin, const ae_int_t nout, const double a, const double b, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreater0(const ae_int_t nin,
+                  const ae_int_t nout,
+                  const double a,
+                  const double b,
+                  const ae_int_t ensemblesize,
+                  mlpensemble &ensemble,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreateR1, but for ensembles.
@@ -5984,8 +6254,14 @@ Like MLPCreateR1, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreater1(const ae_int_t nin, const ae_int_t nhid, const ae_int_t nout, const double a, const double b, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreater1(const ae_int_t nin,
+                  const ae_int_t nhid,
+                  const ae_int_t nout,
+                  const double a,
+                  const double b,
+                  const ae_int_t ensemblesize,
+                  mlpensemble &ensemble,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreateR2, but for ensembles.
@@ -5993,8 +6269,15 @@ Like MLPCreateR2, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreater2(const ae_int_t nin, const ae_int_t nhid1, const ae_int_t nhid2, const ae_int_t nout, const double a, const double b, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreater2(const ae_int_t nin,
+                  const ae_int_t nhid1,
+                  const ae_int_t nhid2,
+                  const ae_int_t nout,
+                  const double a,
+                  const double b,
+                  const ae_int_t ensemblesize,
+                  mlpensemble &ensemble,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreateC0, but for ensembles.
@@ -6002,8 +6285,11 @@ Like MLPCreateC0, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreatec0(const ae_int_t nin, const ae_int_t nout, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreatec0(const ae_int_t nin,
+                  const ae_int_t nout,
+                  const ae_int_t ensemblesize,
+                  mlpensemble &ensemble,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreateC1, but for ensembles.
@@ -6011,8 +6297,12 @@ Like MLPCreateC1, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreatec1(const ae_int_t nin, const ae_int_t nhid, const ae_int_t nout, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreatec1(const ae_int_t nin,
+                  const ae_int_t nhid,
+                  const ae_int_t nout,
+                  const ae_int_t ensemblesize,
+                  mlpensemble &ensemble,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Like MLPCreateC2, but for ensembles.
@@ -6020,8 +6310,13 @@ Like MLPCreateC2, but for ensembles.
   -- ALGLIB --
      Copyright 18.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreatec2(const ae_int_t nin, const ae_int_t nhid1, const ae_int_t nhid2, const ae_int_t nout, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreatec2(const ae_int_t nin,
+                  const ae_int_t nhid1,
+                  const ae_int_t nhid2,
+                  const ae_int_t nout,
+                  const ae_int_t ensemblesize,
+                  mlpensemble &ensemble,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Creates ensemble from network. Only network geometry is copied.
@@ -6029,8 +6324,10 @@ Creates ensemble from network. Only network geometry is copied.
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpecreatefromnetwork(const multilayerperceptron &network, const ae_int_t ensemblesize, mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
+void mlpecreatefromnetwork(const multilayerperceptron &network,
+                           const ae_int_t ensemblesize,
+                           mlpensemble &ensemble,
+                           const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Randomization of MLP ensemble
@@ -6040,15 +6337,16 @@ Randomization of MLP ensemble
 *************************************************************************/
 void mlperandomize(const mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Return ensemble properties (number of inputs and outputs).
 
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpeproperties(const mlpensemble &ensemble, ae_int_t &nin, ae_int_t &nout, const xparams _xparams = alglib::xdefault);
-
+void mlpeproperties(const mlpensemble &ensemble,
+                    ae_int_t &nin,
+                    ae_int_t &nout,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Return normalization type (whether ensemble is SOFTMAX-normalized or not).
@@ -6057,7 +6355,6 @@ Return normalization type (whether ensemble is SOFTMAX-normalized or not).
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
 bool mlpeissoftmax(const mlpensemble &ensemble, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Procesing
@@ -6077,8 +6374,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpeprocess(const mlpensemble &ensemble, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void mlpeprocess(const mlpensemble &ensemble,
+                 const real_1d_array &x,
+                 real_1d_array &y,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 'interactive'  variant  of  MLPEProcess  for  languages  like Python which
@@ -6092,8 +6391,10 @@ when you call it from command line.
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpeprocessi(const mlpensemble &ensemble, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void mlpeprocessi(const mlpensemble &ensemble,
+                  const real_1d_array &x,
+                  real_1d_array &y,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Relative classification error on the test set
@@ -6111,8 +6412,10 @@ are used as classifiers.
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double mlperelclserror(const mlpensemble &ensemble, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlperelclserror(const mlpensemble &ensemble,
+                       const real_2d_array &xy,
+                       const ae_int_t npoints,
+                       const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average cross-entropy (in bits per element) on the test set
@@ -6129,8 +6432,10 @@ RESULT:
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double mlpeavgce(const mlpensemble &ensemble, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlpeavgce(const mlpensemble &ensemble,
+                 const real_2d_array &xy,
+                 const ae_int_t npoints,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 RMS error on the test set
@@ -6148,8 +6453,10 @@ RMS error means error when estimating posterior probabilities.
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double mlpermserror(const mlpensemble &ensemble, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlpermserror(const mlpensemble &ensemble,
+                    const real_2d_array &xy,
+                    const ae_int_t npoints,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average error on the test set
@@ -6166,8 +6473,10 @@ it means average error when estimating posterior probabilities.
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double mlpeavgerror(const mlpensemble &ensemble, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double mlpeavgerror(const mlpensemble &ensemble,
+                    const real_2d_array &xy,
+                    const ae_int_t npoints,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average relative error on the test set
@@ -6184,7 +6493,10 @@ it means average relative error when estimating posterior probabilities.
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double mlpeavgrelerror(const mlpensemble &ensemble, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
+double mlpeavgrelerror(const mlpensemble &ensemble,
+                       const real_2d_array &xy,
+                       const ae_int_t npoints,
+                       const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_MLPTRAIN) || !defined(AE_PARTIAL_BUILD)
@@ -6219,8 +6531,14 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 10.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlptrainlm(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const double decay, const ae_int_t restarts, ae_int_t &info, mlpreport &rep, const xparams _xparams = alglib::xdefault);
-
+void mlptrainlm(const multilayerperceptron &network,
+                const real_2d_array &xy,
+                const ae_int_t npoints,
+                const double decay,
+                const ae_int_t restarts,
+                ae_int_t &info,
+                mlpreport &rep,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Neural  network  training  using  L-BFGS  algorithm  with  regularization.
@@ -6259,8 +6577,16 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 09.12.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlptrainlbfgs(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const double decay, const ae_int_t restarts, const double wstep, const ae_int_t maxits, ae_int_t &info, mlpreport &rep, const xparams _xparams = alglib::xdefault);
-
+void mlptrainlbfgs(const multilayerperceptron &network,
+                   const real_2d_array &xy,
+                   const ae_int_t npoints,
+                   const double decay,
+                   const ae_int_t restarts,
+                   const double wstep,
+                   const ae_int_t maxits,
+                   ae_int_t &info,
+                   mlpreport &rep,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Neural network training using early stopping (base algorithm - L-BFGS with
@@ -6312,8 +6638,16 @@ minimum of validation set error.
   -- ALGLIB --
      Copyright 10.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlptraines(const multilayerperceptron &network, const real_2d_array &trnxy, const ae_int_t trnsize, const real_2d_array &valxy, const ae_int_t valsize, const double decay, const ae_int_t restarts, ae_int_t &info, mlpreport &rep, const xparams _xparams = alglib::xdefault);
-
+void mlptraines(const multilayerperceptron &network,
+                const real_2d_array &trnxy,
+                const ae_int_t trnsize,
+                const real_2d_array &valxy,
+                const ae_int_t valsize,
+                const double decay,
+                const ae_int_t restarts,
+                ae_int_t &info,
+                mlpreport &rep,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Cross-validation estimate of generalization error.
@@ -6344,8 +6678,18 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 09.12.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpkfoldcvlbfgs(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const double decay, const ae_int_t restarts, const double wstep, const ae_int_t maxits, const ae_int_t foldscount, ae_int_t &info, mlpreport &rep, mlpcvreport &cvrep, const xparams _xparams = alglib::xdefault);
-
+void mlpkfoldcvlbfgs(const multilayerperceptron &network,
+                     const real_2d_array &xy,
+                     const ae_int_t npoints,
+                     const double decay,
+                     const ae_int_t restarts,
+                     const double wstep,
+                     const ae_int_t maxits,
+                     const ae_int_t foldscount,
+                     ae_int_t &info,
+                     mlpreport &rep,
+                     mlpcvreport &cvrep,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Cross-validation estimate of generalization error.
@@ -6374,8 +6718,16 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 09.12.2007 by Bochkanov Sergey
 *************************************************************************/
-void mlpkfoldcvlm(const multilayerperceptron &network, const real_2d_array &xy, const ae_int_t npoints, const double decay, const ae_int_t restarts, const ae_int_t foldscount, ae_int_t &info, mlpreport &rep, mlpcvreport &cvrep, const xparams _xparams = alglib::xdefault);
-
+void mlpkfoldcvlm(const multilayerperceptron &network,
+                  const real_2d_array &xy,
+                  const ae_int_t npoints,
+                  const double decay,
+                  const ae_int_t restarts,
+                  const ae_int_t foldscount,
+                  ae_int_t &info,
+                  mlpreport &rep,
+                  mlpcvreport &cvrep,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function estimates generalization error using cross-validation on the
@@ -6437,8 +6789,12 @@ NOTE: on classification problems Rep.RMSError/Rep.AvgError/Rep.AvgRelError
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpkfoldcv(const mlptrainer &s, const multilayerperceptron &network, const ae_int_t nrestarts, const ae_int_t foldscount, mlpreport &rep, const xparams _xparams = alglib::xdefault);
-
+void mlpkfoldcv(const mlptrainer &s,
+                const multilayerperceptron &network,
+                const ae_int_t nrestarts,
+                const ae_int_t foldscount,
+                mlpreport &rep,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Creation of the network trainer object for regression networks
@@ -6455,8 +6811,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreatetrainer(const ae_int_t nin, const ae_int_t nout, mlptrainer &s, const xparams _xparams = alglib::xdefault);
-
+void mlpcreatetrainer(const ae_int_t nin,
+                      const ae_int_t nout,
+                      mlptrainer &s,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Creation of the network trainer object for classification networks
@@ -6473,8 +6831,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpcreatetrainercls(const ae_int_t nin, const ae_int_t nclasses, mlptrainer &s, const xparams _xparams = alglib::xdefault);
-
+void mlpcreatetrainercls(const ae_int_t nin,
+                         const ae_int_t nclasses,
+                         mlptrainer &s,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets "current dataset" of the trainer object to  one  passed
@@ -6510,8 +6870,10 @@ datasetformat is used:
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpsetdataset(const mlptrainer &s, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+void mlpsetdataset(const mlptrainer &s,
+                   const real_2d_array &xy,
+                   const ae_int_t npoints,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets "current dataset" of the trainer object to  one  passed
@@ -6548,8 +6910,10 @@ datasetformat is used:
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpsetsparsedataset(const mlptrainer &s, const sparsematrix &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+void mlpsetsparsedataset(const mlptrainer &s,
+                         const sparsematrix &xy,
+                         const ae_int_t npoints,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets weight decay coefficient which is used for training.
@@ -6568,7 +6932,6 @@ NOTE: by default network uses some small nonzero value for weight decay.
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
 void mlpsetdecay(const mlptrainer &s, const double decay, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets stopping criteria for the optimizer.
@@ -6596,8 +6959,10 @@ NOTE: these stopping criteria are used for all kinds of neural training  -
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpsetcond(const mlptrainer &s, const double wstep, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void mlpsetcond(const mlptrainer &s,
+                const double wstep,
+                const ae_int_t maxits,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets training algorithm: batch training using L-BFGS will be
@@ -6617,7 +6982,6 @@ INPUT PARAMETERS:
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
 void mlpsetalgobatch(const mlptrainer &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function trains neural network passed to this function, using current
@@ -6662,8 +7026,11 @@ NOTE: this method uses sum-of-squares error function for training.
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlptrainnetwork(const mlptrainer &s, const multilayerperceptron &network, const ae_int_t nrestarts, mlpreport &rep, const xparams _xparams = alglib::xdefault);
-
+void mlptrainnetwork(const mlptrainer &s,
+                     const multilayerperceptron &network,
+                     const ae_int_t nrestarts,
+                     mlpreport &rep,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 IMPORTANT: this is an "expert" version of the MLPTrain() function.  We  do
@@ -6717,8 +7084,10 @@ NOTE: it is expected that trainer object settings are NOT  changed  during
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlpstarttraining(const mlptrainer &s, const multilayerperceptron &network, const bool randomstart, const xparams _xparams = alglib::xdefault);
-
+void mlpstarttraining(const mlptrainer &s,
+                      const multilayerperceptron &network,
+                      const bool randomstart,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 IMPORTANT: this is an "expert" version of the MLPTrain() function.  We  do
@@ -6794,8 +7163,9 @@ NOTE: It  is  expected that Network is the same one which  was  passed  to
   -- ALGLIB --
      Copyright 23.07.2012 by Bochkanov Sergey
 *************************************************************************/
-bool mlpcontinuetraining(const mlptrainer &s, const multilayerperceptron &network, const xparams _xparams = alglib::xdefault);
-
+bool mlpcontinuetraining(const mlptrainer &s,
+                         const multilayerperceptron &network,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Training neural networks ensemble using  bootstrap  aggregating (bagging).
@@ -6822,8 +7192,15 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpebagginglm(const mlpensemble &ensemble, const real_2d_array &xy, const ae_int_t npoints, const double decay, const ae_int_t restarts, ae_int_t &info, mlpreport &rep, mlpcvreport &ooberrors, const xparams _xparams = alglib::xdefault);
-
+void mlpebagginglm(const mlpensemble &ensemble,
+                   const real_2d_array &xy,
+                   const ae_int_t npoints,
+                   const double decay,
+                   const ae_int_t restarts,
+                   ae_int_t &info,
+                   mlpreport &rep,
+                   mlpcvreport &ooberrors,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Training neural networks ensemble using  bootstrap  aggregating (bagging).
@@ -6853,8 +7230,17 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 17.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpebagginglbfgs(const mlpensemble &ensemble, const real_2d_array &xy, const ae_int_t npoints, const double decay, const ae_int_t restarts, const double wstep, const ae_int_t maxits, ae_int_t &info, mlpreport &rep, mlpcvreport &ooberrors, const xparams _xparams = alglib::xdefault);
-
+void mlpebagginglbfgs(const mlpensemble &ensemble,
+                      const real_2d_array &xy,
+                      const ae_int_t npoints,
+                      const double decay,
+                      const ae_int_t restarts,
+                      const double wstep,
+                      const ae_int_t maxits,
+                      ae_int_t &info,
+                      mlpreport &rep,
+                      mlpcvreport &ooberrors,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Training neural networks ensemble using early stopping.
@@ -6880,8 +7266,14 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 10.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void mlpetraines(const mlpensemble &ensemble, const real_2d_array &xy, const ae_int_t npoints, const double decay, const ae_int_t restarts, ae_int_t &info, mlpreport &rep, const xparams _xparams = alglib::xdefault);
-
+void mlpetraines(const mlpensemble &ensemble,
+                 const real_2d_array &xy,
+                 const ae_int_t npoints,
+                 const double decay,
+                 const ae_int_t restarts,
+                 ae_int_t &info,
+                 mlpreport &rep,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function trains neural network ensemble passed to this function using
@@ -6927,7 +7319,11 @@ NOTE: this method uses sum-of-squares error function for training.
   -- ALGLIB --
      Copyright 22.08.2012 by Bochkanov Sergey
 *************************************************************************/
-void mlptrainensemblees(const mlptrainer &s, const mlpensemble &ensemble, const ae_int_t nrestarts, mlpreport &rep, const xparams _xparams = alglib::xdefault);
+void mlptrainensemblees(const mlptrainer &s,
+                        const mlpensemble &ensemble,
+                        const ae_int_t nrestarts,
+                        mlpreport &rep,
+                        const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_CLUSTERING) || !defined(AE_PARTIAL_BUILD)
@@ -6943,7 +7339,6 @@ empty, i.e. it does not contain dataset. You should use it as follows:
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
 void clusterizercreate(clusterizerstate &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function adds dataset to the clusterizer structure.
@@ -6994,9 +7389,16 @@ NOTE 2: different clustering algorithms have different limitations:
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void clusterizersetpoints(const clusterizerstate &s, const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nfeatures, const ae_int_t disttype, const xparams _xparams = alglib::xdefault);
-void clusterizersetpoints(const clusterizerstate &s, const real_2d_array &xy, const ae_int_t disttype, const xparams _xparams = alglib::xdefault);
-
+void clusterizersetpoints(const clusterizerstate &s,
+                          const real_2d_array &xy,
+                          const ae_int_t npoints,
+                          const ae_int_t nfeatures,
+                          const ae_int_t disttype,
+                          const xparams _xparams = alglib::xdefault);
+void clusterizersetpoints(const clusterizerstate &s,
+                          const real_2d_array &xy,
+                          const ae_int_t disttype,
+                          const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function adds dataset given by distance  matrix  to  the  clusterizer
@@ -7027,9 +7429,15 @@ NOTE 1: different clustering algorithms have different limitations:
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void clusterizersetdistances(const clusterizerstate &s, const real_2d_array &d, const ae_int_t npoints, const bool isupper, const xparams _xparams = alglib::xdefault);
-void clusterizersetdistances(const clusterizerstate &s, const real_2d_array &d, const bool isupper, const xparams _xparams = alglib::xdefault);
-
+void clusterizersetdistances(const clusterizerstate &s,
+                             const real_2d_array &d,
+                             const ae_int_t npoints,
+                             const bool isupper,
+                             const xparams _xparams = alglib::xdefault);
+void clusterizersetdistances(const clusterizerstate &s,
+                             const real_2d_array &d,
+                             const bool isupper,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets agglomerative hierarchical clustering algorithm
@@ -7056,7 +7464,6 @@ NOTE: Ward's method works correctly only with Euclidean  distance,  that's
 *************************************************************************/
 void clusterizersetahcalgo(const clusterizerstate &s, const ae_int_t algo, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This  function  sets k-means properties:  number  of  restarts and maximum
 number of iterations per one run.
@@ -7073,8 +7480,10 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void clusterizersetkmeanslimits(const clusterizerstate &s, const ae_int_t restarts, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void clusterizersetkmeanslimits(const clusterizerstate &s,
+                                const ae_int_t restarts,
+                                const ae_int_t maxits,
+                                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets k-means  initialization  algorithm.  Several  different
@@ -7101,8 +7510,9 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.01.2015 by Bochkanov Sergey
 *************************************************************************/
-void clusterizersetkmeansinit(const clusterizerstate &s, const ae_int_t initalgo, const xparams _xparams = alglib::xdefault);
-
+void clusterizersetkmeansinit(const clusterizerstate &s,
+                              const ae_int_t initalgo,
+                              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  sets  seed  which  is  used to initialize internal RNG. By
@@ -7122,7 +7532,6 @@ INPUT PARAMETERS:
      Copyright 08.06.2017 by Bochkanov Sergey
 *************************************************************************/
 void clusterizersetseed(const clusterizerstate &s, const ae_int_t seed, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function performs agglomerative hierarchical clustering
@@ -7170,7 +7579,6 @@ NOTE 1: hierarchical clustering algorithms require large amounts of memory.
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
 void clusterizerrunahc(const clusterizerstate &s, ahcreport &rep, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function performs clustering by k-means++ algorithm.
@@ -7231,8 +7639,10 @@ NOTE 2: by default, k-means uses non-deterministic seed to initialize  RNG
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void clusterizerrunkmeans(const clusterizerstate &s, const ae_int_t k, kmeansreport &rep, const xparams _xparams = alglib::xdefault);
-
+void clusterizerrunkmeans(const clusterizerstate &s,
+                          const ae_int_t k,
+                          kmeansreport &rep,
+                          const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function returns distance matrix for dataset
@@ -7288,8 +7698,12 @@ NOTE:  different distance functions have different performance penalty:
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void clusterizergetdistances(const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nfeatures, const ae_int_t disttype, real_2d_array &d, const xparams _xparams = alglib::xdefault);
-
+void clusterizergetdistances(const real_2d_array &xy,
+                             const ae_int_t npoints,
+                             const ae_int_t nfeatures,
+                             const ae_int_t disttype,
+                             real_2d_array &d,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function takes as input clusterization report Rep,  desired  clusters
@@ -7334,8 +7748,11 @@ NOTE: this subroutine is optimized for moderate values of K. Say, for  K=5
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void clusterizergetkclusters(const ahcreport &rep, const ae_int_t k, integer_1d_array &cidx, integer_1d_array &cz, const xparams _xparams = alglib::xdefault);
-
+void clusterizergetkclusters(const ahcreport &rep,
+                             const ae_int_t k,
+                             integer_1d_array &cidx,
+                             integer_1d_array &cz,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  accepts  AHC  report  Rep,  desired  minimum  intercluster
@@ -7386,8 +7803,12 @@ NOTE: this subroutine is optimized for moderate values of K. Say, for  K=5
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void clusterizerseparatedbydist(const ahcreport &rep, const double r, ae_int_t &k, integer_1d_array &cidx, integer_1d_array &cz, const xparams _xparams = alglib::xdefault);
-
+void clusterizerseparatedbydist(const ahcreport &rep,
+                                const double r,
+                                ae_int_t &k,
+                                integer_1d_array &cidx,
+                                integer_1d_array &cz,
+                                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  accepts  AHC  report  Rep,  desired  maximum  intercluster
@@ -7438,7 +7859,12 @@ NOTE: this subroutine is optimized for moderate values of K. Say, for  K=5
   -- ALGLIB --
      Copyright 10.07.2012 by Bochkanov Sergey
 *************************************************************************/
-void clusterizerseparatedbycorr(const ahcreport &rep, const double r, ae_int_t &k, integer_1d_array &cidx, integer_1d_array &cz, const xparams _xparams = alglib::xdefault);
+void clusterizerseparatedbycorr(const ahcreport &rep,
+                                const double r,
+                                ae_int_t &k,
+                                integer_1d_array &cidx,
+                                integer_1d_array &cz,
+                                const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_DFOREST) || !defined(AE_PARTIAL_BUILD)
@@ -7449,29 +7875,25 @@ Important properties of s_out:
 * it contains alphanumeric characters, dots, underscores, minus signs
 * these symbols are grouped into words, which are separated by spaces
   and Windows-style (CR+LF) newlines
-* although  serializer  uses  spaces and CR+LF as separators, you can 
+* although  serializer  uses  spaces and CR+LF as separators, you can
   replace any separator character by arbitrary combination of spaces,
   tabs, Windows or Unix newlines. It allows flexible reformatting  of
-  the  string  in  case you want to include it into text or XML file. 
+  the  string  in  case you want to include it into text or XML file.
   But you should not insert separators into the middle of the "words"
   nor you should change case of letters.
 * s_out can be freely moved between 32-bit and 64-bit systems, little
   and big endian machines, and so on. You can serialize structure  on
   32-bit machine and unserialize it on 64-bit one (or vice versa), or
-  serialize  it  on  SPARC  and  unserialize  on  x86.  You  can also 
-  serialize  it  in  C++ version of ALGLIB and unserialize in C# one, 
+  serialize  it  on  SPARC  and  unserialize  on  x86.  You  can also
+  serialize  it  in  C++ version of ALGLIB and unserialize in C# one,
   and vice versa.
 *************************************************************************/
 void dfserialize(decisionforest &obj, std::string &s_out);
-
 
 /*************************************************************************
 This function unserializes data structure from string.
 *************************************************************************/
 void dfunserialize(const std::string &s_in, decisionforest &obj);
-
-
-
 
 /*************************************************************************
 This function serializes data structure to C++ stream.
@@ -7486,12 +7908,10 @@ out more about serialization of AlGLIB objects.
 *************************************************************************/
 void dfserialize(decisionforest &obj, std::ostream &s_out);
 
-
 /*************************************************************************
 This function unserializes data structure from stream.
 *************************************************************************/
 void dfunserialize(const std::istream &s_in, decisionforest &obj);
-
 
 /*************************************************************************
 This function creates buffer  structure  which  can  be  used  to  perform
@@ -7521,7 +7941,6 @@ IMPORTANT: buffer object should be used only with model which was used  to
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
 void dfcreatebuffer(const decisionforest &model, decisionforestbuffer &buf, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine creates DecisionForestBuilder  object  which  is  used  to
@@ -7555,7 +7974,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void dfbuildercreate(decisionforestbuilder &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This subroutine adds dense dataset to the internal storage of the  builder
 object. Specifying your dataset in the dense format means that  the  dense
@@ -7584,8 +8002,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
-void dfbuildersetdataset(const decisionforestbuilder &s, const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nclasses, const xparams _xparams = alglib::xdefault);
-
+void dfbuildersetdataset(const decisionforestbuilder &s,
+                         const real_2d_array &xy,
+                         const ae_int_t npoints,
+                         const ae_int_t nvars,
+                         const ae_int_t nclasses,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets number  of  variables  (in  [1,NVars]  range)  used  by
@@ -7604,8 +8026,9 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
-void dfbuildersetrndvars(const decisionforestbuilder &s, const ae_int_t rndvars, const xparams _xparams = alglib::xdefault);
-
+void dfbuildersetrndvars(const decisionforestbuilder &s,
+                         const ae_int_t rndvars,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets number of variables used by decision forest construction
@@ -7623,8 +8046,9 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
-void dfbuildersetrndvarsratio(const decisionforestbuilder &s, const double f, const xparams _xparams = alglib::xdefault);
-
+void dfbuildersetrndvarsratio(const decisionforestbuilder &s,
+                              const double f,
+                              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function tells decision forest builder to automatically choose number
@@ -7641,7 +8065,6 @@ OUTPUT PARAMETERS:
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
 void dfbuildersetrndvarsauto(const decisionforestbuilder &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets size of dataset subsample generated the decision forest
@@ -7665,8 +8088,9 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
-void dfbuildersetsubsampleratio(const decisionforestbuilder &s, const double f, const xparams _xparams = alglib::xdefault);
-
+void dfbuildersetsubsampleratio(const decisionforestbuilder &s,
+                                const double f,
+                                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets seed used by internal RNG for  random  subsampling  and
@@ -7694,8 +8118,9 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
-void dfbuildersetseed(const decisionforestbuilder &s, const ae_int_t seedval, const xparams _xparams = alglib::xdefault);
-
+void dfbuildersetseed(const decisionforestbuilder &s,
+                      const ae_int_t seedval,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets random decision forest construction algorithm.
@@ -7714,8 +8139,9 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
-void dfbuildersetrdfalgo(const decisionforestbuilder &s, const ae_int_t algotype, const xparams _xparams = alglib::xdefault);
-
+void dfbuildersetrdfalgo(const decisionforestbuilder &s,
+                         const ae_int_t algotype,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  sets  split  selection  algorithm used by decision  forest
@@ -7735,8 +8161,9 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
-void dfbuildersetrdfsplitstrength(const decisionforestbuilder &s, const ae_int_t splitstrength, const xparams _xparams = alglib::xdefault);
-
+void dfbuildersetrdfsplitstrength(const decisionforestbuilder &s,
+                                  const ae_int_t splitstrength,
+                                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  tells  decision  forest  construction  algorithm  to   use
@@ -7795,7 +8222,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void dfbuildersetimportancetrngini(const decisionforestbuilder &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This  function  tells  decision  forest  construction  algorithm  to   use
 out-of-bag version of Gini variable importance estimation (also  known  as
@@ -7853,7 +8279,6 @@ OUTPUT PARAMETERS:
      Copyright 29.07.2019 by Bochkanov Sergey
 *************************************************************************/
 void dfbuildersetimportanceoobgini(const decisionforestbuilder &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function  tells  decision  forest  construction  algorithm  to   use
@@ -7920,7 +8345,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void dfbuildersetimportancepermutation(const decisionforestbuilder &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This  function  tells  decision  forest  construction  algorithm  to  skip
 variable importance estimation.
@@ -7938,7 +8362,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void dfbuildersetimportancenone(const decisionforestbuilder &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function is an alias for dfbuilderpeekprogress(), left in ALGLIB  for
 backward compatibility reasons.
@@ -7947,7 +8370,6 @@ backward compatibility reasons.
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
 double dfbuildergetprogress(const decisionforestbuilder &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function is used to peek into  decision  forest  construction process
@@ -7966,7 +8388,6 @@ RESULT:
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
 double dfbuilderpeekprogress(const decisionforestbuilder &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine builds decision forest according to current settings using
@@ -8043,8 +8464,11 @@ You can find more information about report fields in:
   -- ALGLIB --
      Copyright 21.05.2018 by Bochkanov Sergey
 *************************************************************************/
-void dfbuilderbuildrandomforest(const decisionforestbuilder &s, const ae_int_t ntrees, decisionforest &df, dfreport &rep, const xparams _xparams = alglib::xdefault);
-
+void dfbuilderbuildrandomforest(const decisionforestbuilder &s,
+                                const ae_int_t ntrees,
+                                decisionforest &df,
+                                dfreport &rep,
+                                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function performs binary compression of the decision forest.
@@ -8087,7 +8511,6 @@ RESULT:
 *************************************************************************/
 double dfbinarycompression(const decisionforest &df, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Inference using decision forest
 
@@ -8113,8 +8536,10 @@ See also DFProcessI.
   -- ALGLIB --
      Copyright 16.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void dfprocess(const decisionforest &df, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void dfprocess(const decisionforest &df,
+               const real_1d_array &x,
+               real_1d_array &y,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 'interactive' variant of DFProcess for languages like Python which support
@@ -8134,8 +8559,10 @@ IMPORTANT: this  function  is  thread-unsafe  and  may   modify   internal
   -- ALGLIB --
      Copyright 28.02.2010 by Bochkanov Sergey
 *************************************************************************/
-void dfprocessi(const decisionforest &df, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void dfprocessi(const decisionforest &df,
+                const real_1d_array &x,
+                real_1d_array &y,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function returns first component of the  inferred  vector  (i.e.  one
@@ -8171,7 +8598,6 @@ RESULT:
 *************************************************************************/
 double dfprocess0(const decisionforest &model, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function returns most probable class number for an  input  X.  It  is
 same as calling  dfprocess(model,x,y), then determining i=argmax(y[i]) and
@@ -8199,7 +8625,6 @@ RESULT:
 *************************************************************************/
 ae_int_t dfclassify(const decisionforest &model, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Inference using decision forest
 
@@ -8226,8 +8651,11 @@ See also DFProcessI.
   -- ALGLIB --
      Copyright 16.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void dftsprocess(const decisionforest &df, const decisionforestbuffer &buf, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void dftsprocess(const decisionforest &df,
+                 const decisionforestbuffer &buf,
+                 const real_1d_array &x,
+                 real_1d_array &y,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Relative classification error on the test set
@@ -8244,8 +8672,10 @@ RESULT:
   -- ALGLIB --
      Copyright 16.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double dfrelclserror(const decisionforest &df, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double dfrelclserror(const decisionforest &df,
+                     const real_2d_array &xy,
+                     const ae_int_t npoints,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average cross-entropy (in bits per element) on the test set
@@ -8262,8 +8692,10 @@ RESULT:
   -- ALGLIB --
      Copyright 16.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double dfavgce(const decisionforest &df, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double dfavgce(const decisionforest &df,
+               const real_2d_array &xy,
+               const ae_int_t npoints,
+               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 RMS error on the test set
@@ -8282,8 +8714,10 @@ RESULT:
   -- ALGLIB --
      Copyright 16.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double dfrmserror(const decisionforest &df, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double dfrmserror(const decisionforest &df,
+                  const real_2d_array &xy,
+                  const ae_int_t npoints,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average error on the test set
@@ -8301,8 +8735,10 @@ RESULT:
   -- ALGLIB --
      Copyright 16.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double dfavgerror(const decisionforest &df, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double dfavgerror(const decisionforest &df,
+                  const real_2d_array &xy,
+                  const ae_int_t npoints,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average relative error on the test set
@@ -8320,19 +8756,10 @@ RESULT:
   -- ALGLIB --
      Copyright 16.02.2009 by Bochkanov Sergey
 *************************************************************************/
-double dfavgrelerror(const decisionforest &df, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
-
-/*************************************************************************
-This subroutine builds random decision forest.
-
---------- DEPRECATED VERSION! USE DECISION FOREST BUILDER OBJECT ---------
-
-  -- ALGLIB --
-     Copyright 19.02.2009 by Bochkanov Sergey
-*************************************************************************/
-void dfbuildrandomdecisionforest(const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nclasses, const ae_int_t ntrees, const double r, ae_int_t &info, decisionforest &df, dfreport &rep, const xparams _xparams = alglib::xdefault);
-
+double dfavgrelerror(const decisionforest &df,
+                     const real_2d_array &xy,
+                     const ae_int_t npoints,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This subroutine builds random decision forest.
@@ -8342,7 +8769,36 @@ This subroutine builds random decision forest.
   -- ALGLIB --
      Copyright 19.02.2009 by Bochkanov Sergey
 *************************************************************************/
-void dfbuildrandomdecisionforestx1(const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nclasses, const ae_int_t ntrees, const ae_int_t nrndvars, const double r, ae_int_t &info, decisionforest &df, dfreport &rep, const xparams _xparams = alglib::xdefault);
+void dfbuildrandomdecisionforest(const real_2d_array &xy,
+                                 const ae_int_t npoints,
+                                 const ae_int_t nvars,
+                                 const ae_int_t nclasses,
+                                 const ae_int_t ntrees,
+                                 const double r,
+                                 ae_int_t &info,
+                                 decisionforest &df,
+                                 dfreport &rep,
+                                 const xparams _xparams = alglib::xdefault);
+
+/*************************************************************************
+This subroutine builds random decision forest.
+
+--------- DEPRECATED VERSION! USE DECISION FOREST BUILDER OBJECT ---------
+
+  -- ALGLIB --
+     Copyright 19.02.2009 by Bochkanov Sergey
+*************************************************************************/
+void dfbuildrandomdecisionforestx1(const real_2d_array &xy,
+                                   const ae_int_t npoints,
+                                   const ae_int_t nvars,
+                                   const ae_int_t nclasses,
+                                   const ae_int_t ntrees,
+                                   const ae_int_t nrndvars,
+                                   const double r,
+                                   ae_int_t &info,
+                                   decisionforest &df,
+                                   dfreport &rep,
+                                   const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_KNN) || !defined(AE_PARTIAL_BUILD)
@@ -8353,29 +8809,25 @@ Important properties of s_out:
 * it contains alphanumeric characters, dots, underscores, minus signs
 * these symbols are grouped into words, which are separated by spaces
   and Windows-style (CR+LF) newlines
-* although  serializer  uses  spaces and CR+LF as separators, you can 
+* although  serializer  uses  spaces and CR+LF as separators, you can
   replace any separator character by arbitrary combination of spaces,
   tabs, Windows or Unix newlines. It allows flexible reformatting  of
-  the  string  in  case you want to include it into text or XML file. 
+  the  string  in  case you want to include it into text or XML file.
   But you should not insert separators into the middle of the "words"
   nor you should change case of letters.
 * s_out can be freely moved between 32-bit and 64-bit systems, little
   and big endian machines, and so on. You can serialize structure  on
   32-bit machine and unserialize it on 64-bit one (or vice versa), or
-  serialize  it  on  SPARC  and  unserialize  on  x86.  You  can also 
-  serialize  it  in  C++ version of ALGLIB and unserialize in C# one, 
+  serialize  it  on  SPARC  and  unserialize  on  x86.  You  can also
+  serialize  it  in  C++ version of ALGLIB and unserialize in C# one,
   and vice versa.
 *************************************************************************/
 void knnserialize(knnmodel &obj, std::string &s_out);
-
 
 /*************************************************************************
 This function unserializes data structure from string.
 *************************************************************************/
 void knnunserialize(const std::string &s_in, knnmodel &obj);
-
-
-
 
 /*************************************************************************
 This function serializes data structure to C++ stream.
@@ -8390,12 +8842,10 @@ out more about serialization of AlGLIB objects.
 *************************************************************************/
 void knnserialize(knnmodel &obj, std::ostream &s_out);
 
-
 /*************************************************************************
 This function unserializes data structure from stream.
 *************************************************************************/
 void knnunserialize(const std::istream &s_in, knnmodel &obj);
-
 
 /*************************************************************************
 This function creates buffer  structure  which  can  be  used  to  perform
@@ -8426,7 +8876,6 @@ IMPORTANT: buffer object should be used only with model which was used  to
 *************************************************************************/
 void knncreatebuffer(const knnmodel &model, knnbuffer &buf, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This subroutine creates KNNBuilder object which is used to train KNN models.
 
@@ -8454,7 +8903,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void knnbuildercreate(knnbuilder &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Specifies regression problem (one or more continuous  output variables are
 predicted). There also exists "classification" version of this function.
@@ -8481,8 +8929,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-void knnbuildersetdatasetreg(const knnbuilder &s, const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nout, const xparams _xparams = alglib::xdefault);
-
+void knnbuildersetdatasetreg(const knnbuilder &s,
+                             const real_2d_array &xy,
+                             const ae_int_t npoints,
+                             const ae_int_t nvars,
+                             const ae_int_t nout,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Specifies classification problem (two  or  more  classes  are  predicted).
@@ -8509,8 +8961,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-void knnbuildersetdatasetcls(const knnbuilder &s, const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t nclasses, const xparams _xparams = alglib::xdefault);
-
+void knnbuildersetdatasetcls(const knnbuilder &s,
+                             const real_2d_array &xy,
+                             const ae_int_t npoints,
+                             const ae_int_t nvars,
+                             const ae_int_t nclasses,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets norm type used for neighbor search.
@@ -8529,7 +8985,6 @@ OUTPUT PARAMETERS:
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
 void knnbuildersetnorm(const knnbuilder &s, const ae_int_t nrmtype, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine builds KNN model  according  to  current  settings,  using
@@ -8571,8 +9026,12 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-void knnbuilderbuildknnmodel(const knnbuilder &s, const ae_int_t k, const double eps, knnmodel &model, knnreport &rep, const xparams _xparams = alglib::xdefault);
-
+void knnbuilderbuildknnmodel(const knnbuilder &s,
+                             const ae_int_t k,
+                             const double eps,
+                             knnmodel &model,
+                             knnreport &rep,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Changing search settings of KNN model.
@@ -8601,8 +9060,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-void knnrewritekeps(const knnmodel &model, const ae_int_t k, const double eps, const xparams _xparams = alglib::xdefault);
-
+void knnrewritekeps(const knnmodel &model,
+                    const ae_int_t k,
+                    const double eps,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Inference using KNN model.
@@ -8629,8 +9090,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-void knnprocess(const knnmodel &model, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void knnprocess(const knnmodel &model,
+                const real_1d_array &x,
+                real_1d_array &y,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function returns first component of the  inferred  vector  (i.e.  one
@@ -8666,7 +9129,6 @@ RESULT:
 *************************************************************************/
 double knnprocess0(const knnmodel &model, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function returns most probable class number for an  input  X.  It  is
 same as calling knnprocess(model,x,y), then determining i=argmax(y[i]) and
@@ -8694,7 +9156,6 @@ RESULT:
 *************************************************************************/
 ae_int_t knnclassify(const knnmodel &model, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 'interactive' variant of knnprocess()  for  languages  like  Python  which
 support constructs like "y = knnprocessi(model,x)" and interactive mode of
@@ -8714,8 +9175,10 @@ IMPORTANT: this  function  is  thread-unsafe  and  may   modify   internal
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-void knnprocessi(const knnmodel &model, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void knnprocessi(const knnmodel &model,
+                 const real_1d_array &x,
+                 real_1d_array &y,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Thread-safe procesing using external buffer for temporaries.
@@ -8738,8 +9201,11 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-void knntsprocess(const knnmodel &model, const knnbuffer &buf, const real_1d_array &x, real_1d_array &y, const xparams _xparams = alglib::xdefault);
-
+void knntsprocess(const knnmodel &model,
+                  const knnbuffer &buf,
+                  const real_1d_array &x,
+                  real_1d_array &y,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Relative classification error on the test set
@@ -8760,8 +9226,10 @@ NOTE: if  you  need several different kinds of error metrics, it is better
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-double knnrelclserror(const knnmodel &model, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double knnrelclserror(const knnmodel &model,
+                      const real_2d_array &xy,
+                      const ae_int_t npoints,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average cross-entropy (in bits per element) on the test set
@@ -8786,8 +9254,10 @@ NOTE: if  you  need several different kinds of error metrics, it is better
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-double knnavgce(const knnmodel &model, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double knnavgce(const knnmodel &model,
+                const real_2d_array &xy,
+                const ae_int_t npoints,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 RMS error on the test set.
@@ -8810,8 +9280,10 @@ NOTE: if  you  need several different kinds of error metrics, it is better
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-double knnrmserror(const knnmodel &model, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double knnrmserror(const knnmodel &model,
+                   const real_2d_array &xy,
+                   const ae_int_t npoints,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average error on the test set
@@ -8834,8 +9306,10 @@ NOTE: if  you  need several different kinds of error metrics, it is better
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-double knnavgerror(const knnmodel &model, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double knnavgerror(const knnmodel &model,
+                   const real_2d_array &xy,
+                   const ae_int_t npoints,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Average relative error on the test set
@@ -8858,8 +9332,10 @@ NOTE: if  you  need several different kinds of error metrics, it is better
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-double knnavgrelerror(const knnmodel &model, const real_2d_array &xy, const ae_int_t npoints, const xparams _xparams = alglib::xdefault);
-
+double knnavgrelerror(const knnmodel &model,
+                      const real_2d_array &xy,
+                      const ae_int_t npoints,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Calculates all kinds of errors for the model in one call.
@@ -8894,7 +9370,11 @@ NOTE: the cross-entropy metric is too unstable when used to  evaluate  KNN
   -- ALGLIB --
      Copyright 15.02.2019 by Bochkanov Sergey
 *************************************************************************/
-void knnallerrors(const knnmodel &model, const real_2d_array &xy, const ae_int_t npoints, knnreport &rep, const xparams _xparams = alglib::xdefault);
+void knnallerrors(const knnmodel &model,
+                  const real_2d_array &xy,
+                  const ae_int_t npoints,
+                  knnreport &rep,
+                  const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_DATACOMP) || !defined(AE_PARTIAL_BUILD)
@@ -8906,7 +9386,15 @@ as better replacement.
   -- ALGLIB --
      Copyright 21.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void kmeansgenerate(const real_2d_array &xy, const ae_int_t npoints, const ae_int_t nvars, const ae_int_t k, const ae_int_t restarts, ae_int_t &info, real_2d_array &c, integer_1d_array &xyc, const xparams _xparams = alglib::xdefault);
+void kmeansgenerate(const real_2d_array &xy,
+                    const ae_int_t npoints,
+                    const ae_int_t nvars,
+                    const ae_int_t k,
+                    const ae_int_t restarts,
+                    ae_int_t &info,
+                    real_2d_array &c,
+                    integer_1d_array &xyc,
+                    const xparams _xparams = alglib::xdefault);
 #endif
 }
 
@@ -8915,1561 +9403,1560 @@ void kmeansgenerate(const real_2d_array &xy, const ae_int_t npoints, const ae_in
 // THIS SECTION CONTAINS COMPUTATIONAL CORE DECLARATIONS (FUNCTIONS)
 //
 /////////////////////////////////////////////////////////////////////////
-namespace alglib_impl
-{
+namespace alglib_impl {
 #if defined(AE_COMPILE_PCA) || !defined(AE_PARTIAL_BUILD)
-void pcabuildbasis(/* Real    */ ae_matrix* x,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t* info,
-     /* Real    */ ae_vector* s2,
-     /* Real    */ ae_matrix* v,
-     ae_state *_state);
-void pcatruncatedsubspace(/* Real    */ ae_matrix* x,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nneeded,
-     double eps,
-     ae_int_t maxits,
-     /* Real    */ ae_vector* s2,
-     /* Real    */ ae_matrix* v,
-     ae_state *_state);
-void pcatruncatedsubspacesparse(sparsematrix* x,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nneeded,
-     double eps,
-     ae_int_t maxits,
-     /* Real    */ ae_vector* s2,
-     /* Real    */ ae_matrix* v,
-     ae_state *_state);
+void pcabuildbasis(/* Real    */ ae_matrix *x,
+                                 ae_int_t npoints,
+                                 ae_int_t nvars,
+                                 ae_int_t *info,
+    /* Real    */ ae_vector *s2,
+    /* Real    */ ae_matrix *v,
+                                 ae_state *_state);
+void pcatruncatedsubspace(/* Real    */ ae_matrix *x,
+                                        ae_int_t npoints,
+                                        ae_int_t nvars,
+                                        ae_int_t nneeded,
+                                        double eps,
+                                        ae_int_t maxits,
+    /* Real    */ ae_vector *s2,
+    /* Real    */ ae_matrix *v,
+                                        ae_state *_state);
+void pcatruncatedsubspacesparse(sparsematrix *x,
+                                ae_int_t npoints,
+                                ae_int_t nvars,
+                                ae_int_t nneeded,
+                                double eps,
+                                ae_int_t maxits,
+    /* Real    */ ae_vector *s2,
+    /* Real    */ ae_matrix *v,
+                                ae_state *_state);
 #endif
 #if defined(AE_COMPILE_BDSS) || !defined(AE_PARTIAL_BUILD)
 void dserrallocate(ae_int_t nclasses,
-     /* Real    */ ae_vector* buf,
-     ae_state *_state);
-void dserraccumulate(/* Real    */ ae_vector* buf,
-     /* Real    */ ae_vector* y,
-     /* Real    */ ae_vector* desiredy,
-     ae_state *_state);
-void dserrfinish(/* Real    */ ae_vector* buf, ae_state *_state);
-void dsnormalize(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t* info,
-     /* Real    */ ae_vector* means,
-     /* Real    */ ae_vector* sigmas,
-     ae_state *_state);
-void dsnormalizec(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t* info,
-     /* Real    */ ae_vector* means,
-     /* Real    */ ae_vector* sigmas,
-     ae_state *_state);
-double dsgetmeanmindistance(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_state *_state);
-void dstie(/* Real    */ ae_vector* a,
-     ae_int_t n,
-     /* Integer */ ae_vector* ties,
-     ae_int_t* tiecount,
-     /* Integer */ ae_vector* p1,
-     /* Integer */ ae_vector* p2,
-     ae_state *_state);
-void dstiefasti(/* Real    */ ae_vector* a,
-     /* Integer */ ae_vector* b,
-     ae_int_t n,
-     /* Integer */ ae_vector* ties,
-     ae_int_t* tiecount,
-     /* Real    */ ae_vector* bufr,
-     /* Integer */ ae_vector* bufi,
-     ae_state *_state);
-void dsoptimalsplit2(/* Real    */ ae_vector* a,
-     /* Integer */ ae_vector* c,
-     ae_int_t n,
-     ae_int_t* info,
-     double* threshold,
-     double* pal,
-     double* pbl,
-     double* par,
-     double* pbr,
-     double* cve,
-     ae_state *_state);
-void dsoptimalsplit2fast(/* Real    */ ae_vector* a,
-     /* Integer */ ae_vector* c,
-     /* Integer */ ae_vector* tiesbuf,
-     /* Integer */ ae_vector* cntbuf,
-     /* Real    */ ae_vector* bufr,
-     /* Integer */ ae_vector* bufi,
-     ae_int_t n,
-     ae_int_t nc,
-     double alpha,
-     ae_int_t* info,
-     double* threshold,
-     double* rms,
-     double* cvrms,
-     ae_state *_state);
-void dssplitk(/* Real    */ ae_vector* a,
-     /* Integer */ ae_vector* c,
-     ae_int_t n,
-     ae_int_t nc,
-     ae_int_t kmax,
-     ae_int_t* info,
-     /* Real    */ ae_vector* thresholds,
-     ae_int_t* ni,
-     double* cve,
-     ae_state *_state);
-void dsoptimalsplitk(/* Real    */ ae_vector* a,
-     /* Integer */ ae_vector* c,
-     ae_int_t n,
-     ae_int_t nc,
-     ae_int_t kmax,
-     ae_int_t* info,
-     /* Real    */ ae_vector* thresholds,
-     ae_int_t* ni,
-     double* cve,
-     ae_state *_state);
-void _cvreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _cvreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _cvreport_clear(void* _p);
-void _cvreport_destroy(void* _p);
+    /* Real    */ ae_vector *buf,
+                   ae_state *_state);
+void dserraccumulate(/* Real    */ ae_vector *buf,
+    /* Real    */ ae_vector *y,
+    /* Real    */ ae_vector *desiredy,
+                                   ae_state *_state);
+void dserrfinish(/* Real    */ ae_vector *buf, ae_state *_state);
+void dsnormalize(/* Real    */ ae_matrix *xy,
+                               ae_int_t npoints,
+                               ae_int_t nvars,
+                               ae_int_t *info,
+    /* Real    */ ae_vector *means,
+    /* Real    */ ae_vector *sigmas,
+                               ae_state *_state);
+void dsnormalizec(/* Real    */ ae_matrix *xy,
+                                ae_int_t npoints,
+                                ae_int_t nvars,
+                                ae_int_t *info,
+    /* Real    */ ae_vector *means,
+    /* Real    */ ae_vector *sigmas,
+                                ae_state *_state);
+double dsgetmeanmindistance(/* Real    */ ae_matrix *xy,
+                                          ae_int_t npoints,
+                                          ae_int_t nvars,
+                                          ae_state *_state);
+void dstie(/* Real    */ ae_vector *a,
+                         ae_int_t n,
+    /* Integer */ ae_vector *ties,
+                         ae_int_t *tiecount,
+    /* Integer */ ae_vector *p1,
+    /* Integer */ ae_vector *p2,
+                         ae_state *_state);
+void dstiefasti(/* Real    */ ae_vector *a,
+    /* Integer */ ae_vector *b,
+                              ae_int_t n,
+    /* Integer */ ae_vector *ties,
+                              ae_int_t *tiecount,
+    /* Real    */ ae_vector *bufr,
+    /* Integer */ ae_vector *bufi,
+                              ae_state *_state);
+void dsoptimalsplit2(/* Real    */ ae_vector *a,
+    /* Integer */ ae_vector *c,
+                                   ae_int_t n,
+                                   ae_int_t *info,
+                                   double *threshold,
+                                   double *pal,
+                                   double *pbl,
+                                   double *par,
+                                   double *pbr,
+                                   double *cve,
+                                   ae_state *_state);
+void dsoptimalsplit2fast(/* Real    */ ae_vector *a,
+    /* Integer */ ae_vector *c,
+    /* Integer */ ae_vector *tiesbuf,
+    /* Integer */ ae_vector *cntbuf,
+    /* Real    */ ae_vector *bufr,
+    /* Integer */ ae_vector *bufi,
+                                       ae_int_t n,
+                                       ae_int_t nc,
+                                       double alpha,
+                                       ae_int_t *info,
+                                       double *threshold,
+                                       double *rms,
+                                       double *cvrms,
+                                       ae_state *_state);
+void dssplitk(/* Real    */ ae_vector *a,
+    /* Integer */ ae_vector *c,
+                            ae_int_t n,
+                            ae_int_t nc,
+                            ae_int_t kmax,
+                            ae_int_t *info,
+    /* Real    */ ae_vector *thresholds,
+                            ae_int_t *ni,
+                            double *cve,
+                            ae_state *_state);
+void dsoptimalsplitk(/* Real    */ ae_vector *a,
+    /* Integer */ ae_vector *c,
+                                   ae_int_t n,
+                                   ae_int_t nc,
+                                   ae_int_t kmax,
+                                   ae_int_t *info,
+    /* Real    */ ae_vector *thresholds,
+                                   ae_int_t *ni,
+                                   double *cve,
+                                   ae_state *_state);
+void _cvreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _cvreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _cvreport_clear(void *_p);
+void _cvreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MLPBASE) || !defined(AE_PARTIAL_BUILD)
 ae_int_t mlpgradsplitcost(ae_state *_state);
 ae_int_t mlpgradsplitsize(ae_state *_state);
 void mlpcreate0(ae_int_t nin,
-     ae_int_t nout,
-     multilayerperceptron* network,
-     ae_state *_state);
+                ae_int_t nout,
+                multilayerperceptron *network,
+                ae_state *_state);
 void mlpcreate1(ae_int_t nin,
-     ae_int_t nhid,
-     ae_int_t nout,
-     multilayerperceptron* network,
-     ae_state *_state);
+                ae_int_t nhid,
+                ae_int_t nout,
+                multilayerperceptron *network,
+                ae_state *_state);
 void mlpcreate2(ae_int_t nin,
-     ae_int_t nhid1,
-     ae_int_t nhid2,
-     ae_int_t nout,
-     multilayerperceptron* network,
-     ae_state *_state);
+                ae_int_t nhid1,
+                ae_int_t nhid2,
+                ae_int_t nout,
+                multilayerperceptron *network,
+                ae_state *_state);
 void mlpcreateb0(ae_int_t nin,
-     ae_int_t nout,
-     double b,
-     double d,
-     multilayerperceptron* network,
-     ae_state *_state);
+                 ae_int_t nout,
+                 double b,
+                 double d,
+                 multilayerperceptron *network,
+                 ae_state *_state);
 void mlpcreateb1(ae_int_t nin,
-     ae_int_t nhid,
-     ae_int_t nout,
-     double b,
-     double d,
-     multilayerperceptron* network,
-     ae_state *_state);
+                 ae_int_t nhid,
+                 ae_int_t nout,
+                 double b,
+                 double d,
+                 multilayerperceptron *network,
+                 ae_state *_state);
 void mlpcreateb2(ae_int_t nin,
-     ae_int_t nhid1,
-     ae_int_t nhid2,
-     ae_int_t nout,
-     double b,
-     double d,
-     multilayerperceptron* network,
-     ae_state *_state);
+                 ae_int_t nhid1,
+                 ae_int_t nhid2,
+                 ae_int_t nout,
+                 double b,
+                 double d,
+                 multilayerperceptron *network,
+                 ae_state *_state);
 void mlpcreater0(ae_int_t nin,
-     ae_int_t nout,
-     double a,
-     double b,
-     multilayerperceptron* network,
-     ae_state *_state);
+                 ae_int_t nout,
+                 double a,
+                 double b,
+                 multilayerperceptron *network,
+                 ae_state *_state);
 void mlpcreater1(ae_int_t nin,
-     ae_int_t nhid,
-     ae_int_t nout,
-     double a,
-     double b,
-     multilayerperceptron* network,
-     ae_state *_state);
+                 ae_int_t nhid,
+                 ae_int_t nout,
+                 double a,
+                 double b,
+                 multilayerperceptron *network,
+                 ae_state *_state);
 void mlpcreater2(ae_int_t nin,
-     ae_int_t nhid1,
-     ae_int_t nhid2,
-     ae_int_t nout,
-     double a,
-     double b,
-     multilayerperceptron* network,
-     ae_state *_state);
+                 ae_int_t nhid1,
+                 ae_int_t nhid2,
+                 ae_int_t nout,
+                 double a,
+                 double b,
+                 multilayerperceptron *network,
+                 ae_state *_state);
 void mlpcreatec0(ae_int_t nin,
-     ae_int_t nout,
-     multilayerperceptron* network,
-     ae_state *_state);
+                 ae_int_t nout,
+                 multilayerperceptron *network,
+                 ae_state *_state);
 void mlpcreatec1(ae_int_t nin,
-     ae_int_t nhid,
-     ae_int_t nout,
-     multilayerperceptron* network,
-     ae_state *_state);
+                 ae_int_t nhid,
+                 ae_int_t nout,
+                 multilayerperceptron *network,
+                 ae_state *_state);
 void mlpcreatec2(ae_int_t nin,
-     ae_int_t nhid1,
-     ae_int_t nhid2,
-     ae_int_t nout,
-     multilayerperceptron* network,
-     ae_state *_state);
-void mlpcopy(multilayerperceptron* network1,
-     multilayerperceptron* network2,
-     ae_state *_state);
-void mlpcopyshared(multilayerperceptron* network1,
-     multilayerperceptron* network2,
-     ae_state *_state);
-ae_bool mlpsamearchitecture(multilayerperceptron* network1,
-     multilayerperceptron* network2,
-     ae_state *_state);
-void mlpcopytunableparameters(multilayerperceptron* network1,
-     multilayerperceptron* network2,
-     ae_state *_state);
-void mlpexporttunableparameters(multilayerperceptron* network,
-     /* Real    */ ae_vector* p,
-     ae_int_t* pcount,
-     ae_state *_state);
-void mlpimporttunableparameters(multilayerperceptron* network,
-     /* Real    */ ae_vector* p,
-     ae_state *_state);
-void mlpserializeold(multilayerperceptron* network,
-     /* Real    */ ae_vector* ra,
-     ae_int_t* rlen,
-     ae_state *_state);
-void mlpunserializeold(/* Real    */ ae_vector* ra,
-     multilayerperceptron* network,
-     ae_state *_state);
-void mlprandomize(multilayerperceptron* network, ae_state *_state);
-void mlprandomizefull(multilayerperceptron* network, ae_state *_state);
-void mlpinitpreprocessor(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t ssize,
-     ae_state *_state);
-void mlpinitpreprocessorsparse(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t ssize,
-     ae_state *_state);
-void mlpinitpreprocessorsubset(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t setsize,
-     /* Integer */ ae_vector* idx,
-     ae_int_t subsetsize,
-     ae_state *_state);
-void mlpinitpreprocessorsparsesubset(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t setsize,
-     /* Integer */ ae_vector* idx,
-     ae_int_t subsetsize,
-     ae_state *_state);
-void mlpproperties(multilayerperceptron* network,
-     ae_int_t* nin,
-     ae_int_t* nout,
-     ae_int_t* wcount,
-     ae_state *_state);
-ae_int_t mlpntotal(multilayerperceptron* network, ae_state *_state);
-ae_int_t mlpgetinputscount(multilayerperceptron* network,
-     ae_state *_state);
-ae_int_t mlpgetoutputscount(multilayerperceptron* network,
-     ae_state *_state);
-ae_int_t mlpgetweightscount(multilayerperceptron* network,
-     ae_state *_state);
-ae_bool mlpissoftmax(multilayerperceptron* network, ae_state *_state);
-ae_int_t mlpgetlayerscount(multilayerperceptron* network,
-     ae_state *_state);
-ae_int_t mlpgetlayersize(multilayerperceptron* network,
-     ae_int_t k,
-     ae_state *_state);
-void mlpgetinputscaling(multilayerperceptron* network,
-     ae_int_t i,
-     double* mean,
-     double* sigma,
-     ae_state *_state);
-void mlpgetoutputscaling(multilayerperceptron* network,
-     ae_int_t i,
-     double* mean,
-     double* sigma,
-     ae_state *_state);
-void mlpgetneuroninfo(multilayerperceptron* network,
-     ae_int_t k,
-     ae_int_t i,
-     ae_int_t* fkind,
-     double* threshold,
-     ae_state *_state);
-double mlpgetweight(multilayerperceptron* network,
-     ae_int_t k0,
-     ae_int_t i0,
-     ae_int_t k1,
-     ae_int_t i1,
-     ae_state *_state);
-void mlpsetinputscaling(multilayerperceptron* network,
-     ae_int_t i,
-     double mean,
-     double sigma,
-     ae_state *_state);
-void mlpsetoutputscaling(multilayerperceptron* network,
-     ae_int_t i,
-     double mean,
-     double sigma,
-     ae_state *_state);
-void mlpsetneuroninfo(multilayerperceptron* network,
-     ae_int_t k,
-     ae_int_t i,
-     ae_int_t fkind,
-     double threshold,
-     ae_state *_state);
-void mlpsetweight(multilayerperceptron* network,
-     ae_int_t k0,
-     ae_int_t i0,
-     ae_int_t k1,
-     ae_int_t i1,
-     double w,
-     ae_state *_state);
+                 ae_int_t nhid1,
+                 ae_int_t nhid2,
+                 ae_int_t nout,
+                 multilayerperceptron *network,
+                 ae_state *_state);
+void mlpcopy(multilayerperceptron *network1,
+             multilayerperceptron *network2,
+             ae_state *_state);
+void mlpcopyshared(multilayerperceptron *network1,
+                   multilayerperceptron *network2,
+                   ae_state *_state);
+ae_bool mlpsamearchitecture(multilayerperceptron *network1,
+                            multilayerperceptron *network2,
+                            ae_state *_state);
+void mlpcopytunableparameters(multilayerperceptron *network1,
+                              multilayerperceptron *network2,
+                              ae_state *_state);
+void mlpexporttunableparameters(multilayerperceptron *network,
+    /* Real    */ ae_vector *p,
+                                ae_int_t *pcount,
+                                ae_state *_state);
+void mlpimporttunableparameters(multilayerperceptron *network,
+    /* Real    */ ae_vector *p,
+                                ae_state *_state);
+void mlpserializeold(multilayerperceptron *network,
+    /* Real    */ ae_vector *ra,
+                     ae_int_t *rlen,
+                     ae_state *_state);
+void mlpunserializeold(/* Real    */ ae_vector *ra,
+                                     multilayerperceptron *network,
+                                     ae_state *_state);
+void mlprandomize(multilayerperceptron *network, ae_state *_state);
+void mlprandomizefull(multilayerperceptron *network, ae_state *_state);
+void mlpinitpreprocessor(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                         ae_int_t ssize,
+                         ae_state *_state);
+void mlpinitpreprocessorsparse(multilayerperceptron *network,
+                               sparsematrix *xy,
+                               ae_int_t ssize,
+                               ae_state *_state);
+void mlpinitpreprocessorsubset(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                               ae_int_t setsize,
+    /* Integer */ ae_vector *idx,
+                               ae_int_t subsetsize,
+                               ae_state *_state);
+void mlpinitpreprocessorsparsesubset(multilayerperceptron *network,
+                                     sparsematrix *xy,
+                                     ae_int_t setsize,
+    /* Integer */ ae_vector *idx,
+                                     ae_int_t subsetsize,
+                                     ae_state *_state);
+void mlpproperties(multilayerperceptron *network,
+                   ae_int_t *nin,
+                   ae_int_t *nout,
+                   ae_int_t *wcount,
+                   ae_state *_state);
+ae_int_t mlpntotal(multilayerperceptron *network, ae_state *_state);
+ae_int_t mlpgetinputscount(multilayerperceptron *network,
+                           ae_state *_state);
+ae_int_t mlpgetoutputscount(multilayerperceptron *network,
+                            ae_state *_state);
+ae_int_t mlpgetweightscount(multilayerperceptron *network,
+                            ae_state *_state);
+ae_bool mlpissoftmax(multilayerperceptron *network, ae_state *_state);
+ae_int_t mlpgetlayerscount(multilayerperceptron *network,
+                           ae_state *_state);
+ae_int_t mlpgetlayersize(multilayerperceptron *network,
+                         ae_int_t k,
+                         ae_state *_state);
+void mlpgetinputscaling(multilayerperceptron *network,
+                        ae_int_t i,
+                        double *mean,
+                        double *sigma,
+                        ae_state *_state);
+void mlpgetoutputscaling(multilayerperceptron *network,
+                         ae_int_t i,
+                         double *mean,
+                         double *sigma,
+                         ae_state *_state);
+void mlpgetneuroninfo(multilayerperceptron *network,
+                      ae_int_t k,
+                      ae_int_t i,
+                      ae_int_t *fkind,
+                      double *threshold,
+                      ae_state *_state);
+double mlpgetweight(multilayerperceptron *network,
+                    ae_int_t k0,
+                    ae_int_t i0,
+                    ae_int_t k1,
+                    ae_int_t i1,
+                    ae_state *_state);
+void mlpsetinputscaling(multilayerperceptron *network,
+                        ae_int_t i,
+                        double mean,
+                        double sigma,
+                        ae_state *_state);
+void mlpsetoutputscaling(multilayerperceptron *network,
+                         ae_int_t i,
+                         double mean,
+                         double sigma,
+                         ae_state *_state);
+void mlpsetneuroninfo(multilayerperceptron *network,
+                      ae_int_t k,
+                      ae_int_t i,
+                      ae_int_t fkind,
+                      double threshold,
+                      ae_state *_state);
+void mlpsetweight(multilayerperceptron *network,
+                  ae_int_t k0,
+                  ae_int_t i0,
+                  ae_int_t k1,
+                  ae_int_t i1,
+                  double w,
+                  ae_state *_state);
 void mlpactivationfunction(double net,
-     ae_int_t k,
-     double* f,
-     double* df,
-     double* d2f,
-     ae_state *_state);
-void mlpprocess(multilayerperceptron* network,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-void mlpprocessi(multilayerperceptron* network,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-double mlperror(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlperrorsparse(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlperrorn(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t ssize,
-     ae_state *_state);
-ae_int_t mlpclserror(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlprelclserror(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlprelclserrorsparse(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpavgce(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpavgcesparse(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlprmserror(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlprmserrorsparse(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpavgerror(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpavgerrorsparse(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpavgrelerror(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpavgrelerrorsparse(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-void mlpgrad(multilayerperceptron* network,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* desiredy,
-     double* e,
-     /* Real    */ ae_vector* grad,
-     ae_state *_state);
-void mlpgradn(multilayerperceptron* network,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* desiredy,
-     double* e,
-     /* Real    */ ae_vector* grad,
-     ae_state *_state);
-void mlpgradbatch(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t ssize,
-     double* e,
-     /* Real    */ ae_vector* grad,
-     ae_state *_state);
-void mlpgradbatchsparse(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t ssize,
-     double* e,
-     /* Real    */ ae_vector* grad,
-     ae_state *_state);
-void mlpgradbatchsubset(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t setsize,
-     /* Integer */ ae_vector* idx,
-     ae_int_t subsetsize,
-     double* e,
-     /* Real    */ ae_vector* grad,
-     ae_state *_state);
-void mlpgradbatchsparsesubset(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t setsize,
-     /* Integer */ ae_vector* idx,
-     ae_int_t subsetsize,
-     double* e,
-     /* Real    */ ae_vector* grad,
-     ae_state *_state);
-void mlpgradbatchx(multilayerperceptron* network,
-     /* Real    */ ae_matrix* densexy,
-     sparsematrix* sparsexy,
-     ae_int_t datasetsize,
-     ae_int_t datasettype,
-     /* Integer */ ae_vector* idx,
-     ae_int_t subset0,
-     ae_int_t subset1,
-     ae_int_t subsettype,
-     ae_shared_pool* buf,
-     ae_shared_pool* gradbuf,
-     ae_state *_state);
-ae_bool _trypexec_mlpgradbatchx(multilayerperceptron* network,
-    /* Real    */ ae_matrix* densexy,
-    sparsematrix* sparsexy,
-    ae_int_t datasetsize,
-    ae_int_t datasettype,
-    /* Integer */ ae_vector* idx,
-    ae_int_t subset0,
-    ae_int_t subset1,
-    ae_int_t subsettype,
-    ae_shared_pool* buf,
-    ae_shared_pool* gradbuf, ae_state *_state);
-void mlpgradnbatch(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t ssize,
-     double* e,
-     /* Real    */ ae_vector* grad,
-     ae_state *_state);
-void mlphessiannbatch(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t ssize,
-     double* e,
-     /* Real    */ ae_vector* grad,
-     /* Real    */ ae_matrix* h,
-     ae_state *_state);
-void mlphessianbatch(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t ssize,
-     double* e,
-     /* Real    */ ae_vector* grad,
-     /* Real    */ ae_matrix* h,
-     ae_state *_state);
-void mlpinternalprocessvector(/* Integer */ ae_vector* structinfo,
-     /* Real    */ ae_vector* weights,
-     /* Real    */ ae_vector* columnmeans,
-     /* Real    */ ae_vector* columnsigmas,
-     /* Real    */ ae_vector* neurons,
-     /* Real    */ ae_vector* dfdnet,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-void mlpalloc(ae_serializer* s,
-     multilayerperceptron* network,
-     ae_state *_state);
-void mlpserialize(ae_serializer* s,
-     multilayerperceptron* network,
-     ae_state *_state);
-void mlpunserialize(ae_serializer* s,
-     multilayerperceptron* network,
-     ae_state *_state);
-void mlpallerrorssubset(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t setsize,
-     /* Integer */ ae_vector* subset,
-     ae_int_t subsetsize,
-     modelerrors* rep,
-     ae_state *_state);
-void mlpallerrorssparsesubset(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t setsize,
-     /* Integer */ ae_vector* subset,
-     ae_int_t subsetsize,
-     modelerrors* rep,
-     ae_state *_state);
-double mlperrorsubset(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t setsize,
-     /* Integer */ ae_vector* subset,
-     ae_int_t subsetsize,
-     ae_state *_state);
-double mlperrorsparsesubset(multilayerperceptron* network,
-     sparsematrix* xy,
-     ae_int_t setsize,
-     /* Integer */ ae_vector* subset,
-     ae_int_t subsetsize,
-     ae_state *_state);
-void mlpallerrorsx(multilayerperceptron* network,
-     /* Real    */ ae_matrix* densexy,
-     sparsematrix* sparsexy,
-     ae_int_t datasetsize,
-     ae_int_t datasettype,
-     /* Integer */ ae_vector* idx,
-     ae_int_t subset0,
-     ae_int_t subset1,
-     ae_int_t subsettype,
-     ae_shared_pool* buf,
-     modelerrors* rep,
-     ae_state *_state);
-ae_bool _trypexec_mlpallerrorsx(multilayerperceptron* network,
-    /* Real    */ ae_matrix* densexy,
-    sparsematrix* sparsexy,
-    ae_int_t datasetsize,
-    ae_int_t datasettype,
-    /* Integer */ ae_vector* idx,
-    ae_int_t subset0,
-    ae_int_t subset1,
-    ae_int_t subsettype,
-    ae_shared_pool* buf,
-    modelerrors* rep, ae_state *_state);
-void _modelerrors_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _modelerrors_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _modelerrors_clear(void* _p);
-void _modelerrors_destroy(void* _p);
-void _smlpgrad_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _smlpgrad_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _smlpgrad_clear(void* _p);
-void _smlpgrad_destroy(void* _p);
-void _multilayerperceptron_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _multilayerperceptron_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _multilayerperceptron_clear(void* _p);
-void _multilayerperceptron_destroy(void* _p);
+                           ae_int_t k,
+                           double *f,
+                           double *df,
+                           double *d2f,
+                           ae_state *_state);
+void mlpprocess(multilayerperceptron *network,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                ae_state *_state);
+void mlpprocessi(multilayerperceptron *network,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                 ae_state *_state);
+double mlperror(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                ae_int_t npoints,
+                ae_state *_state);
+double mlperrorsparse(multilayerperceptron *network,
+                      sparsematrix *xy,
+                      ae_int_t npoints,
+                      ae_state *_state);
+double mlperrorn(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                 ae_int_t ssize,
+                 ae_state *_state);
+ae_int_t mlpclserror(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                     ae_int_t npoints,
+                     ae_state *_state);
+double mlprelclserror(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                      ae_int_t npoints,
+                      ae_state *_state);
+double mlprelclserrorsparse(multilayerperceptron *network,
+                            sparsematrix *xy,
+                            ae_int_t npoints,
+                            ae_state *_state);
+double mlpavgce(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                ae_int_t npoints,
+                ae_state *_state);
+double mlpavgcesparse(multilayerperceptron *network,
+                      sparsematrix *xy,
+                      ae_int_t npoints,
+                      ae_state *_state);
+double mlprmserror(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t npoints,
+                   ae_state *_state);
+double mlprmserrorsparse(multilayerperceptron *network,
+                         sparsematrix *xy,
+                         ae_int_t npoints,
+                         ae_state *_state);
+double mlpavgerror(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t npoints,
+                   ae_state *_state);
+double mlpavgerrorsparse(multilayerperceptron *network,
+                         sparsematrix *xy,
+                         ae_int_t npoints,
+                         ae_state *_state);
+double mlpavgrelerror(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                      ae_int_t npoints,
+                      ae_state *_state);
+double mlpavgrelerrorsparse(multilayerperceptron *network,
+                            sparsematrix *xy,
+                            ae_int_t npoints,
+                            ae_state *_state);
+void mlpgrad(multilayerperceptron *network,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *desiredy,
+             double *e,
+    /* Real    */ ae_vector *grad,
+             ae_state *_state);
+void mlpgradn(multilayerperceptron *network,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *desiredy,
+              double *e,
+    /* Real    */ ae_vector *grad,
+              ae_state *_state);
+void mlpgradbatch(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                  ae_int_t ssize,
+                  double *e,
+    /* Real    */ ae_vector *grad,
+                  ae_state *_state);
+void mlpgradbatchsparse(multilayerperceptron *network,
+                        sparsematrix *xy,
+                        ae_int_t ssize,
+                        double *e,
+    /* Real    */ ae_vector *grad,
+                        ae_state *_state);
+void mlpgradbatchsubset(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                        ae_int_t setsize,
+    /* Integer */ ae_vector *idx,
+                        ae_int_t subsetsize,
+                        double *e,
+    /* Real    */ ae_vector *grad,
+                        ae_state *_state);
+void mlpgradbatchsparsesubset(multilayerperceptron *network,
+                              sparsematrix *xy,
+                              ae_int_t setsize,
+    /* Integer */ ae_vector *idx,
+                              ae_int_t subsetsize,
+                              double *e,
+    /* Real    */ ae_vector *grad,
+                              ae_state *_state);
+void mlpgradbatchx(multilayerperceptron *network,
+    /* Real    */ ae_matrix *densexy,
+                   sparsematrix *sparsexy,
+                   ae_int_t datasetsize,
+                   ae_int_t datasettype,
+    /* Integer */ ae_vector *idx,
+                   ae_int_t subset0,
+                   ae_int_t subset1,
+                   ae_int_t subsettype,
+                   ae_shared_pool *buf,
+                   ae_shared_pool *gradbuf,
+                   ae_state *_state);
+ae_bool _trypexec_mlpgradbatchx(multilayerperceptron *network,
+    /* Real    */ ae_matrix *densexy,
+                                sparsematrix *sparsexy,
+                                ae_int_t datasetsize,
+                                ae_int_t datasettype,
+    /* Integer */ ae_vector *idx,
+                                ae_int_t subset0,
+                                ae_int_t subset1,
+                                ae_int_t subsettype,
+                                ae_shared_pool *buf,
+                                ae_shared_pool *gradbuf, ae_state *_state);
+void mlpgradnbatch(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t ssize,
+                   double *e,
+    /* Real    */ ae_vector *grad,
+                   ae_state *_state);
+void mlphessiannbatch(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                      ae_int_t ssize,
+                      double *e,
+    /* Real    */ ae_vector *grad,
+    /* Real    */ ae_matrix *h,
+                      ae_state *_state);
+void mlphessianbatch(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                     ae_int_t ssize,
+                     double *e,
+    /* Real    */ ae_vector *grad,
+    /* Real    */ ae_matrix *h,
+                     ae_state *_state);
+void mlpinternalprocessvector(/* Integer */ ae_vector *structinfo,
+    /* Real    */ ae_vector *weights,
+    /* Real    */ ae_vector *columnmeans,
+    /* Real    */ ae_vector *columnsigmas,
+    /* Real    */ ae_vector *neurons,
+    /* Real    */ ae_vector *dfdnet,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                                            ae_state *_state);
+void mlpalloc(ae_serializer *s,
+              multilayerperceptron *network,
+              ae_state *_state);
+void mlpserialize(ae_serializer *s,
+                  multilayerperceptron *network,
+                  ae_state *_state);
+void mlpunserialize(ae_serializer *s,
+                    multilayerperceptron *network,
+                    ae_state *_state);
+void mlpallerrorssubset(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                        ae_int_t setsize,
+    /* Integer */ ae_vector *subset,
+                        ae_int_t subsetsize,
+                        modelerrors *rep,
+                        ae_state *_state);
+void mlpallerrorssparsesubset(multilayerperceptron *network,
+                              sparsematrix *xy,
+                              ae_int_t setsize,
+    /* Integer */ ae_vector *subset,
+                              ae_int_t subsetsize,
+                              modelerrors *rep,
+                              ae_state *_state);
+double mlperrorsubset(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                      ae_int_t setsize,
+    /* Integer */ ae_vector *subset,
+                      ae_int_t subsetsize,
+                      ae_state *_state);
+double mlperrorsparsesubset(multilayerperceptron *network,
+                            sparsematrix *xy,
+                            ae_int_t setsize,
+    /* Integer */ ae_vector *subset,
+                            ae_int_t subsetsize,
+                            ae_state *_state);
+void mlpallerrorsx(multilayerperceptron *network,
+    /* Real    */ ae_matrix *densexy,
+                   sparsematrix *sparsexy,
+                   ae_int_t datasetsize,
+                   ae_int_t datasettype,
+    /* Integer */ ae_vector *idx,
+                   ae_int_t subset0,
+                   ae_int_t subset1,
+                   ae_int_t subsettype,
+                   ae_shared_pool *buf,
+                   modelerrors *rep,
+                   ae_state *_state);
+ae_bool _trypexec_mlpallerrorsx(multilayerperceptron *network,
+    /* Real    */ ae_matrix *densexy,
+                                sparsematrix *sparsexy,
+                                ae_int_t datasetsize,
+                                ae_int_t datasettype,
+    /* Integer */ ae_vector *idx,
+                                ae_int_t subset0,
+                                ae_int_t subset1,
+                                ae_int_t subsettype,
+                                ae_shared_pool *buf,
+                                modelerrors *rep, ae_state *_state);
+void _modelerrors_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _modelerrors_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _modelerrors_clear(void *_p);
+void _modelerrors_destroy(void *_p);
+void _smlpgrad_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _smlpgrad_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _smlpgrad_clear(void *_p);
+void _smlpgrad_destroy(void *_p);
+void _multilayerperceptron_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _multilayerperceptron_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _multilayerperceptron_clear(void *_p);
+void _multilayerperceptron_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_LDA) || !defined(AE_PARTIAL_BUILD)
-void fisherlda(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nclasses,
-     ae_int_t* info,
-     /* Real    */ ae_vector* w,
-     ae_state *_state);
-void fisherldan(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nclasses,
-     ae_int_t* info,
-     /* Real    */ ae_matrix* w,
-     ae_state *_state);
+void fisherlda(/* Real    */ ae_matrix *xy,
+                             ae_int_t npoints,
+                             ae_int_t nvars,
+                             ae_int_t nclasses,
+                             ae_int_t *info,
+    /* Real    */ ae_vector *w,
+                             ae_state *_state);
+void fisherldan(/* Real    */ ae_matrix *xy,
+                              ae_int_t npoints,
+                              ae_int_t nvars,
+                              ae_int_t nclasses,
+                              ae_int_t *info,
+    /* Real    */ ae_matrix *w,
+                              ae_state *_state);
 #endif
 #if defined(AE_COMPILE_SSA) || !defined(AE_PARTIAL_BUILD)
-void ssacreate(ssamodel* s, ae_state *_state);
-void ssasetwindow(ssamodel* s, ae_int_t windowwidth, ae_state *_state);
-void ssasetseed(ssamodel* s, ae_int_t seed, ae_state *_state);
-void ssasetpoweruplength(ssamodel* s, ae_int_t pwlen, ae_state *_state);
-void ssasetmemorylimit(ssamodel* s, ae_int_t memlimit, ae_state *_state);
-void ssaaddsequence(ssamodel* s,
-     /* Real    */ ae_vector* x,
-     ae_int_t n,
-     ae_state *_state);
-void ssaappendpointandupdate(ssamodel* s,
-     double x,
-     double updateits,
-     ae_state *_state);
-void ssaappendsequenceandupdate(ssamodel* s,
-     /* Real    */ ae_vector* x,
-     ae_int_t nticks,
-     double updateits,
-     ae_state *_state);
-void ssasetalgoprecomputed(ssamodel* s,
-     /* Real    */ ae_matrix* a,
-     ae_int_t windowwidth,
-     ae_int_t nbasis,
-     ae_state *_state);
-void ssasetalgotopkdirect(ssamodel* s, ae_int_t topk, ae_state *_state);
-void ssasetalgotopkrealtime(ssamodel* s, ae_int_t topk, ae_state *_state);
-void ssacleardata(ssamodel* s, ae_state *_state);
-void ssagetbasis(ssamodel* s,
-     /* Real    */ ae_matrix* a,
-     /* Real    */ ae_vector* sv,
-     ae_int_t* windowwidth,
-     ae_int_t* nbasis,
-     ae_state *_state);
-void ssagetlrr(ssamodel* s,
-     /* Real    */ ae_vector* a,
-     ae_int_t* windowwidth,
-     ae_state *_state);
-void ssaanalyzelastwindow(ssamodel* s,
-     /* Real    */ ae_vector* trend,
-     /* Real    */ ae_vector* noise,
-     ae_int_t* nticks,
-     ae_state *_state);
-void ssaanalyzelast(ssamodel* s,
-     ae_int_t nticks,
-     /* Real    */ ae_vector* trend,
-     /* Real    */ ae_vector* noise,
-     ae_state *_state);
-void ssaanalyzesequence(ssamodel* s,
-     /* Real    */ ae_vector* data,
-     ae_int_t nticks,
-     /* Real    */ ae_vector* trend,
-     /* Real    */ ae_vector* noise,
-     ae_state *_state);
-void ssaforecastlast(ssamodel* s,
-     ae_int_t nticks,
-     /* Real    */ ae_vector* trend,
-     ae_state *_state);
-void ssaforecastsequence(ssamodel* s,
-     /* Real    */ ae_vector* data,
-     ae_int_t datalen,
-     ae_int_t forecastlen,
-     ae_bool applysmoothing,
-     /* Real    */ ae_vector* trend,
-     ae_state *_state);
-void ssaforecastavglast(ssamodel* s,
-     ae_int_t m,
-     ae_int_t nticks,
-     /* Real    */ ae_vector* trend,
-     ae_state *_state);
-void ssaforecastavgsequence(ssamodel* s,
-     /* Real    */ ae_vector* data,
-     ae_int_t datalen,
-     ae_int_t m,
-     ae_int_t forecastlen,
-     ae_bool applysmoothing,
-     /* Real    */ ae_vector* trend,
-     ae_state *_state);
-void _ssamodel_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _ssamodel_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _ssamodel_clear(void* _p);
-void _ssamodel_destroy(void* _p);
+void ssacreate(ssamodel *s, ae_state *_state);
+void ssasetwindow(ssamodel *s, ae_int_t windowwidth, ae_state *_state);
+void ssasetseed(ssamodel *s, ae_int_t seed, ae_state *_state);
+void ssasetpoweruplength(ssamodel *s, ae_int_t pwlen, ae_state *_state);
+void ssasetmemorylimit(ssamodel *s, ae_int_t memlimit, ae_state *_state);
+void ssaaddsequence(ssamodel *s,
+    /* Real    */ ae_vector *x,
+                    ae_int_t n,
+                    ae_state *_state);
+void ssaappendpointandupdate(ssamodel *s,
+                             double x,
+                             double updateits,
+                             ae_state *_state);
+void ssaappendsequenceandupdate(ssamodel *s,
+    /* Real    */ ae_vector *x,
+                                ae_int_t nticks,
+                                double updateits,
+                                ae_state *_state);
+void ssasetalgoprecomputed(ssamodel *s,
+    /* Real    */ ae_matrix *a,
+                           ae_int_t windowwidth,
+                           ae_int_t nbasis,
+                           ae_state *_state);
+void ssasetalgotopkdirect(ssamodel *s, ae_int_t topk, ae_state *_state);
+void ssasetalgotopkrealtime(ssamodel *s, ae_int_t topk, ae_state *_state);
+void ssacleardata(ssamodel *s, ae_state *_state);
+void ssagetbasis(ssamodel *s,
+    /* Real    */ ae_matrix *a,
+    /* Real    */ ae_vector *sv,
+                 ae_int_t *windowwidth,
+                 ae_int_t *nbasis,
+                 ae_state *_state);
+void ssagetlrr(ssamodel *s,
+    /* Real    */ ae_vector *a,
+               ae_int_t *windowwidth,
+               ae_state *_state);
+void ssaanalyzelastwindow(ssamodel *s,
+    /* Real    */ ae_vector *trend,
+    /* Real    */ ae_vector *noise,
+                          ae_int_t *nticks,
+                          ae_state *_state);
+void ssaanalyzelast(ssamodel *s,
+                    ae_int_t nticks,
+    /* Real    */ ae_vector *trend,
+    /* Real    */ ae_vector *noise,
+                    ae_state *_state);
+void ssaanalyzesequence(ssamodel *s,
+    /* Real    */ ae_vector *data,
+                        ae_int_t nticks,
+    /* Real    */ ae_vector *trend,
+    /* Real    */ ae_vector *noise,
+                        ae_state *_state);
+void ssaforecastlast(ssamodel *s,
+                     ae_int_t nticks,
+    /* Real    */ ae_vector *trend,
+                     ae_state *_state);
+void ssaforecastsequence(ssamodel *s,
+    /* Real    */ ae_vector *data,
+                         ae_int_t datalen,
+                         ae_int_t forecastlen,
+                         ae_bool applysmoothing,
+    /* Real    */ ae_vector *trend,
+                         ae_state *_state);
+void ssaforecastavglast(ssamodel *s,
+                        ae_int_t m,
+                        ae_int_t nticks,
+    /* Real    */ ae_vector *trend,
+                        ae_state *_state);
+void ssaforecastavgsequence(ssamodel *s,
+    /* Real    */ ae_vector *data,
+                            ae_int_t datalen,
+                            ae_int_t m,
+                            ae_int_t forecastlen,
+                            ae_bool applysmoothing,
+    /* Real    */ ae_vector *trend,
+                            ae_state *_state);
+void _ssamodel_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _ssamodel_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _ssamodel_clear(void *_p);
+void _ssamodel_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_LINREG) || !defined(AE_PARTIAL_BUILD)
-void lrbuild(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t* info,
-     linearmodel* lm,
-     lrreport* ar,
-     ae_state *_state);
-void lrbuilds(/* Real    */ ae_matrix* xy,
-     /* Real    */ ae_vector* s,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t* info,
-     linearmodel* lm,
-     lrreport* ar,
-     ae_state *_state);
-void lrbuildzs(/* Real    */ ae_matrix* xy,
-     /* Real    */ ae_vector* s,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t* info,
-     linearmodel* lm,
-     lrreport* ar,
-     ae_state *_state);
-void lrbuildz(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t* info,
-     linearmodel* lm,
-     lrreport* ar,
-     ae_state *_state);
-void lrunpack(linearmodel* lm,
-     /* Real    */ ae_vector* v,
-     ae_int_t* nvars,
-     ae_state *_state);
-void lrpack(/* Real    */ ae_vector* v,
-     ae_int_t nvars,
-     linearmodel* lm,
-     ae_state *_state);
-double lrprocess(linearmodel* lm,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-double lrrmserror(linearmodel* lm,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double lravgerror(linearmodel* lm,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double lravgrelerror(linearmodel* lm,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-void lrcopy(linearmodel* lm1, linearmodel* lm2, ae_state *_state);
-void lrlines(/* Real    */ ae_matrix* xy,
-     /* Real    */ ae_vector* s,
-     ae_int_t n,
-     ae_int_t* info,
-     double* a,
-     double* b,
-     double* vara,
-     double* varb,
-     double* covab,
-     double* corrab,
-     double* p,
-     ae_state *_state);
-void lrline(/* Real    */ ae_matrix* xy,
-     ae_int_t n,
-     ae_int_t* info,
-     double* a,
-     double* b,
-     ae_state *_state);
-void _linearmodel_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _linearmodel_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _linearmodel_clear(void* _p);
-void _linearmodel_destroy(void* _p);
-void _lrreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _lrreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _lrreport_clear(void* _p);
-void _lrreport_destroy(void* _p);
+void lrbuild(/* Real    */ ae_matrix *xy,
+                           ae_int_t npoints,
+                           ae_int_t nvars,
+                           ae_int_t *info,
+                           linearmodel *lm,
+                           lrreport *ar,
+                           ae_state *_state);
+void lrbuilds(/* Real    */ ae_matrix *xy,
+    /* Real    */ ae_vector *s,
+                            ae_int_t npoints,
+                            ae_int_t nvars,
+                            ae_int_t *info,
+                            linearmodel *lm,
+                            lrreport *ar,
+                            ae_state *_state);
+void lrbuildzs(/* Real    */ ae_matrix *xy,
+    /* Real    */ ae_vector *s,
+                             ae_int_t npoints,
+                             ae_int_t nvars,
+                             ae_int_t *info,
+                             linearmodel *lm,
+                             lrreport *ar,
+                             ae_state *_state);
+void lrbuildz(/* Real    */ ae_matrix *xy,
+                            ae_int_t npoints,
+                            ae_int_t nvars,
+                            ae_int_t *info,
+                            linearmodel *lm,
+                            lrreport *ar,
+                            ae_state *_state);
+void lrunpack(linearmodel *lm,
+    /* Real    */ ae_vector *v,
+              ae_int_t *nvars,
+              ae_state *_state);
+void lrpack(/* Real    */ ae_vector *v,
+                          ae_int_t nvars,
+                          linearmodel *lm,
+                          ae_state *_state);
+double lrprocess(linearmodel *lm,
+    /* Real    */ ae_vector *x,
+                 ae_state *_state);
+double lrrmserror(linearmodel *lm,
+    /* Real    */ ae_matrix *xy,
+                  ae_int_t npoints,
+                  ae_state *_state);
+double lravgerror(linearmodel *lm,
+    /* Real    */ ae_matrix *xy,
+                  ae_int_t npoints,
+                  ae_state *_state);
+double lravgrelerror(linearmodel *lm,
+    /* Real    */ ae_matrix *xy,
+                     ae_int_t npoints,
+                     ae_state *_state);
+void lrcopy(linearmodel *lm1, linearmodel *lm2, ae_state *_state);
+void lrlines(/* Real    */ ae_matrix *xy,
+    /* Real    */ ae_vector *s,
+                           ae_int_t n,
+                           ae_int_t *info,
+                           double *a,
+                           double *b,
+                           double *vara,
+                           double *varb,
+                           double *covab,
+                           double *corrab,
+                           double *p,
+                           ae_state *_state);
+void lrline(/* Real    */ ae_matrix *xy,
+                          ae_int_t n,
+                          ae_int_t *info,
+                          double *a,
+                          double *b,
+                          ae_state *_state);
+void _linearmodel_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _linearmodel_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _linearmodel_clear(void *_p);
+void _linearmodel_destroy(void *_p);
+void _lrreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _lrreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _lrreport_clear(void *_p);
+void _lrreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_FILTERS) || !defined(AE_PARTIAL_BUILD)
-void filtersma(/* Real    */ ae_vector* x,
-     ae_int_t n,
-     ae_int_t k,
-     ae_state *_state);
-void filterema(/* Real    */ ae_vector* x,
-     ae_int_t n,
-     double alpha,
-     ae_state *_state);
-void filterlrma(/* Real    */ ae_vector* x,
-     ae_int_t n,
-     ae_int_t k,
-     ae_state *_state);
+void filtersma(/* Real    */ ae_vector *x,
+                             ae_int_t n,
+                             ae_int_t k,
+                             ae_state *_state);
+void filterema(/* Real    */ ae_vector *x,
+                             ae_int_t n,
+                             double alpha,
+                             ae_state *_state);
+void filterlrma(/* Real    */ ae_vector *x,
+                              ae_int_t n,
+                              ae_int_t k,
+                              ae_state *_state);
 #endif
 #if defined(AE_COMPILE_LOGIT) || !defined(AE_PARTIAL_BUILD)
-void mnltrainh(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nclasses,
-     ae_int_t* info,
-     logitmodel* lm,
-     mnlreport* rep,
-     ae_state *_state);
-void mnlprocess(logitmodel* lm,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-void mnlprocessi(logitmodel* lm,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-void mnlunpack(logitmodel* lm,
-     /* Real    */ ae_matrix* a,
-     ae_int_t* nvars,
-     ae_int_t* nclasses,
-     ae_state *_state);
-void mnlpack(/* Real    */ ae_matrix* a,
-     ae_int_t nvars,
-     ae_int_t nclasses,
-     logitmodel* lm,
-     ae_state *_state);
-void mnlcopy(logitmodel* lm1, logitmodel* lm2, ae_state *_state);
-double mnlavgce(logitmodel* lm,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mnlrelclserror(logitmodel* lm,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mnlrmserror(logitmodel* lm,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mnlavgerror(logitmodel* lm,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mnlavgrelerror(logitmodel* lm,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t ssize,
-     ae_state *_state);
-ae_int_t mnlclserror(logitmodel* lm,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-void _logitmodel_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _logitmodel_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _logitmodel_clear(void* _p);
-void _logitmodel_destroy(void* _p);
-void _logitmcstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _logitmcstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _logitmcstate_clear(void* _p);
-void _logitmcstate_destroy(void* _p);
-void _mnlreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mnlreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mnlreport_clear(void* _p);
-void _mnlreport_destroy(void* _p);
+void mnltrainh(/* Real    */ ae_matrix *xy,
+                             ae_int_t npoints,
+                             ae_int_t nvars,
+                             ae_int_t nclasses,
+                             ae_int_t *info,
+                             logitmodel *lm,
+                             mnlreport *rep,
+                             ae_state *_state);
+void mnlprocess(logitmodel *lm,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                ae_state *_state);
+void mnlprocessi(logitmodel *lm,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                 ae_state *_state);
+void mnlunpack(logitmodel *lm,
+    /* Real    */ ae_matrix *a,
+               ae_int_t *nvars,
+               ae_int_t *nclasses,
+               ae_state *_state);
+void mnlpack(/* Real    */ ae_matrix *a,
+                           ae_int_t nvars,
+                           ae_int_t nclasses,
+                           logitmodel *lm,
+                           ae_state *_state);
+void mnlcopy(logitmodel *lm1, logitmodel *lm2, ae_state *_state);
+double mnlavgce(logitmodel *lm,
+    /* Real    */ ae_matrix *xy,
+                ae_int_t npoints,
+                ae_state *_state);
+double mnlrelclserror(logitmodel *lm,
+    /* Real    */ ae_matrix *xy,
+                      ae_int_t npoints,
+                      ae_state *_state);
+double mnlrmserror(logitmodel *lm,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t npoints,
+                   ae_state *_state);
+double mnlavgerror(logitmodel *lm,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t npoints,
+                   ae_state *_state);
+double mnlavgrelerror(logitmodel *lm,
+    /* Real    */ ae_matrix *xy,
+                      ae_int_t ssize,
+                      ae_state *_state);
+ae_int_t mnlclserror(logitmodel *lm,
+    /* Real    */ ae_matrix *xy,
+                     ae_int_t npoints,
+                     ae_state *_state);
+void _logitmodel_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _logitmodel_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _logitmodel_clear(void *_p);
+void _logitmodel_destroy(void *_p);
+void _logitmcstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _logitmcstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _logitmcstate_clear(void *_p);
+void _logitmcstate_destroy(void *_p);
+void _mnlreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mnlreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mnlreport_clear(void *_p);
+void _mnlreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MCPD) || !defined(AE_PARTIAL_BUILD)
-void mcpdcreate(ae_int_t n, mcpdstate* s, ae_state *_state);
+void mcpdcreate(ae_int_t n, mcpdstate *s, ae_state *_state);
 void mcpdcreateentry(ae_int_t n,
-     ae_int_t entrystate,
-     mcpdstate* s,
-     ae_state *_state);
+                     ae_int_t entrystate,
+                     mcpdstate *s,
+                     ae_state *_state);
 void mcpdcreateexit(ae_int_t n,
-     ae_int_t exitstate,
-     mcpdstate* s,
-     ae_state *_state);
+                    ae_int_t exitstate,
+                    mcpdstate *s,
+                    ae_state *_state);
 void mcpdcreateentryexit(ae_int_t n,
-     ae_int_t entrystate,
-     ae_int_t exitstate,
-     mcpdstate* s,
-     ae_state *_state);
-void mcpdaddtrack(mcpdstate* s,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t k,
-     ae_state *_state);
-void mcpdsetec(mcpdstate* s,
-     /* Real    */ ae_matrix* ec,
-     ae_state *_state);
-void mcpdaddec(mcpdstate* s,
-     ae_int_t i,
-     ae_int_t j,
-     double c,
-     ae_state *_state);
-void mcpdsetbc(mcpdstate* s,
-     /* Real    */ ae_matrix* bndl,
-     /* Real    */ ae_matrix* bndu,
-     ae_state *_state);
-void mcpdaddbc(mcpdstate* s,
-     ae_int_t i,
-     ae_int_t j,
-     double bndl,
-     double bndu,
-     ae_state *_state);
-void mcpdsetlc(mcpdstate* s,
-     /* Real    */ ae_matrix* c,
-     /* Integer */ ae_vector* ct,
-     ae_int_t k,
-     ae_state *_state);
-void mcpdsettikhonovregularizer(mcpdstate* s, double v, ae_state *_state);
-void mcpdsetprior(mcpdstate* s,
-     /* Real    */ ae_matrix* pp,
-     ae_state *_state);
-void mcpdsetpredictionweights(mcpdstate* s,
-     /* Real    */ ae_vector* pw,
-     ae_state *_state);
-void mcpdsolve(mcpdstate* s, ae_state *_state);
-void mcpdresults(mcpdstate* s,
-     /* Real    */ ae_matrix* p,
-     mcpdreport* rep,
-     ae_state *_state);
-void _mcpdstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mcpdstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mcpdstate_clear(void* _p);
-void _mcpdstate_destroy(void* _p);
-void _mcpdreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mcpdreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mcpdreport_clear(void* _p);
-void _mcpdreport_destroy(void* _p);
+                         ae_int_t entrystate,
+                         ae_int_t exitstate,
+                         mcpdstate *s,
+                         ae_state *_state);
+void mcpdaddtrack(mcpdstate *s,
+    /* Real    */ ae_matrix *xy,
+                  ae_int_t k,
+                  ae_state *_state);
+void mcpdsetec(mcpdstate *s,
+    /* Real    */ ae_matrix *ec,
+               ae_state *_state);
+void mcpdaddec(mcpdstate *s,
+               ae_int_t i,
+               ae_int_t j,
+               double c,
+               ae_state *_state);
+void mcpdsetbc(mcpdstate *s,
+    /* Real    */ ae_matrix *bndl,
+    /* Real    */ ae_matrix *bndu,
+               ae_state *_state);
+void mcpdaddbc(mcpdstate *s,
+               ae_int_t i,
+               ae_int_t j,
+               double bndl,
+               double bndu,
+               ae_state *_state);
+void mcpdsetlc(mcpdstate *s,
+    /* Real    */ ae_matrix *c,
+    /* Integer */ ae_vector *ct,
+               ae_int_t k,
+               ae_state *_state);
+void mcpdsettikhonovregularizer(mcpdstate *s, double v, ae_state *_state);
+void mcpdsetprior(mcpdstate *s,
+    /* Real    */ ae_matrix *pp,
+                  ae_state *_state);
+void mcpdsetpredictionweights(mcpdstate *s,
+    /* Real    */ ae_vector *pw,
+                              ae_state *_state);
+void mcpdsolve(mcpdstate *s, ae_state *_state);
+void mcpdresults(mcpdstate *s,
+    /* Real    */ ae_matrix *p,
+                 mcpdreport *rep,
+                 ae_state *_state);
+void _mcpdstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mcpdstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mcpdstate_clear(void *_p);
+void _mcpdstate_destroy(void *_p);
+void _mcpdreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mcpdreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mcpdreport_clear(void *_p);
+void _mcpdreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MLPE) || !defined(AE_PARTIAL_BUILD)
 void mlpecreate0(ae_int_t nin,
-     ae_int_t nout,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                 ae_int_t nout,
+                 ae_int_t ensemblesize,
+                 mlpensemble *ensemble,
+                 ae_state *_state);
 void mlpecreate1(ae_int_t nin,
-     ae_int_t nhid,
-     ae_int_t nout,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                 ae_int_t nhid,
+                 ae_int_t nout,
+                 ae_int_t ensemblesize,
+                 mlpensemble *ensemble,
+                 ae_state *_state);
 void mlpecreate2(ae_int_t nin,
-     ae_int_t nhid1,
-     ae_int_t nhid2,
-     ae_int_t nout,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                 ae_int_t nhid1,
+                 ae_int_t nhid2,
+                 ae_int_t nout,
+                 ae_int_t ensemblesize,
+                 mlpensemble *ensemble,
+                 ae_state *_state);
 void mlpecreateb0(ae_int_t nin,
-     ae_int_t nout,
-     double b,
-     double d,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                  ae_int_t nout,
+                  double b,
+                  double d,
+                  ae_int_t ensemblesize,
+                  mlpensemble *ensemble,
+                  ae_state *_state);
 void mlpecreateb1(ae_int_t nin,
-     ae_int_t nhid,
-     ae_int_t nout,
-     double b,
-     double d,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                  ae_int_t nhid,
+                  ae_int_t nout,
+                  double b,
+                  double d,
+                  ae_int_t ensemblesize,
+                  mlpensemble *ensemble,
+                  ae_state *_state);
 void mlpecreateb2(ae_int_t nin,
-     ae_int_t nhid1,
-     ae_int_t nhid2,
-     ae_int_t nout,
-     double b,
-     double d,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                  ae_int_t nhid1,
+                  ae_int_t nhid2,
+                  ae_int_t nout,
+                  double b,
+                  double d,
+                  ae_int_t ensemblesize,
+                  mlpensemble *ensemble,
+                  ae_state *_state);
 void mlpecreater0(ae_int_t nin,
-     ae_int_t nout,
-     double a,
-     double b,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                  ae_int_t nout,
+                  double a,
+                  double b,
+                  ae_int_t ensemblesize,
+                  mlpensemble *ensemble,
+                  ae_state *_state);
 void mlpecreater1(ae_int_t nin,
-     ae_int_t nhid,
-     ae_int_t nout,
-     double a,
-     double b,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                  ae_int_t nhid,
+                  ae_int_t nout,
+                  double a,
+                  double b,
+                  ae_int_t ensemblesize,
+                  mlpensemble *ensemble,
+                  ae_state *_state);
 void mlpecreater2(ae_int_t nin,
-     ae_int_t nhid1,
-     ae_int_t nhid2,
-     ae_int_t nout,
-     double a,
-     double b,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                  ae_int_t nhid1,
+                  ae_int_t nhid2,
+                  ae_int_t nout,
+                  double a,
+                  double b,
+                  ae_int_t ensemblesize,
+                  mlpensemble *ensemble,
+                  ae_state *_state);
 void mlpecreatec0(ae_int_t nin,
-     ae_int_t nout,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                  ae_int_t nout,
+                  ae_int_t ensemblesize,
+                  mlpensemble *ensemble,
+                  ae_state *_state);
 void mlpecreatec1(ae_int_t nin,
-     ae_int_t nhid,
-     ae_int_t nout,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
+                  ae_int_t nhid,
+                  ae_int_t nout,
+                  ae_int_t ensemblesize,
+                  mlpensemble *ensemble,
+                  ae_state *_state);
 void mlpecreatec2(ae_int_t nin,
-     ae_int_t nhid1,
-     ae_int_t nhid2,
-     ae_int_t nout,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
-void mlpecreatefromnetwork(multilayerperceptron* network,
-     ae_int_t ensemblesize,
-     mlpensemble* ensemble,
-     ae_state *_state);
-void mlpecopy(mlpensemble* ensemble1,
-     mlpensemble* ensemble2,
-     ae_state *_state);
-void mlperandomize(mlpensemble* ensemble, ae_state *_state);
-void mlpeproperties(mlpensemble* ensemble,
-     ae_int_t* nin,
-     ae_int_t* nout,
-     ae_state *_state);
-ae_bool mlpeissoftmax(mlpensemble* ensemble, ae_state *_state);
-void mlpeprocess(mlpensemble* ensemble,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-void mlpeprocessi(mlpensemble* ensemble,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-void mlpeallerrorsx(mlpensemble* ensemble,
-     /* Real    */ ae_matrix* densexy,
-     sparsematrix* sparsexy,
-     ae_int_t datasetsize,
-     ae_int_t datasettype,
-     /* Integer */ ae_vector* idx,
-     ae_int_t subset0,
-     ae_int_t subset1,
-     ae_int_t subsettype,
-     ae_shared_pool* buf,
-     modelerrors* rep,
-     ae_state *_state);
-void mlpeallerrorssparse(mlpensemble* ensemble,
-     sparsematrix* xy,
-     ae_int_t npoints,
-     double* relcls,
-     double* avgce,
-     double* rms,
-     double* avg,
-     double* avgrel,
-     ae_state *_state);
-double mlperelclserror(mlpensemble* ensemble,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpeavgce(mlpensemble* ensemble,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpermserror(mlpensemble* ensemble,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpeavgerror(mlpensemble* ensemble,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double mlpeavgrelerror(mlpensemble* ensemble,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-void mlpealloc(ae_serializer* s, mlpensemble* ensemble, ae_state *_state);
-void mlpeserialize(ae_serializer* s,
-     mlpensemble* ensemble,
-     ae_state *_state);
-void mlpeunserialize(ae_serializer* s,
-     mlpensemble* ensemble,
-     ae_state *_state);
-void _mlpensemble_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mlpensemble_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mlpensemble_clear(void* _p);
-void _mlpensemble_destroy(void* _p);
+                  ae_int_t nhid1,
+                  ae_int_t nhid2,
+                  ae_int_t nout,
+                  ae_int_t ensemblesize,
+                  mlpensemble *ensemble,
+                  ae_state *_state);
+void mlpecreatefromnetwork(multilayerperceptron *network,
+                           ae_int_t ensemblesize,
+                           mlpensemble *ensemble,
+                           ae_state *_state);
+void mlpecopy(mlpensemble *ensemble1,
+              mlpensemble *ensemble2,
+              ae_state *_state);
+void mlperandomize(mlpensemble *ensemble, ae_state *_state);
+void mlpeproperties(mlpensemble *ensemble,
+                    ae_int_t *nin,
+                    ae_int_t *nout,
+                    ae_state *_state);
+ae_bool mlpeissoftmax(mlpensemble *ensemble, ae_state *_state);
+void mlpeprocess(mlpensemble *ensemble,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                 ae_state *_state);
+void mlpeprocessi(mlpensemble *ensemble,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                  ae_state *_state);
+void mlpeallerrorsx(mlpensemble *ensemble,
+    /* Real    */ ae_matrix *densexy,
+                    sparsematrix *sparsexy,
+                    ae_int_t datasetsize,
+                    ae_int_t datasettype,
+    /* Integer */ ae_vector *idx,
+                    ae_int_t subset0,
+                    ae_int_t subset1,
+                    ae_int_t subsettype,
+                    ae_shared_pool *buf,
+                    modelerrors *rep,
+                    ae_state *_state);
+void mlpeallerrorssparse(mlpensemble *ensemble,
+                         sparsematrix *xy,
+                         ae_int_t npoints,
+                         double *relcls,
+                         double *avgce,
+                         double *rms,
+                         double *avg,
+                         double *avgrel,
+                         ae_state *_state);
+double mlperelclserror(mlpensemble *ensemble,
+    /* Real    */ ae_matrix *xy,
+                       ae_int_t npoints,
+                       ae_state *_state);
+double mlpeavgce(mlpensemble *ensemble,
+    /* Real    */ ae_matrix *xy,
+                 ae_int_t npoints,
+                 ae_state *_state);
+double mlpermserror(mlpensemble *ensemble,
+    /* Real    */ ae_matrix *xy,
+                    ae_int_t npoints,
+                    ae_state *_state);
+double mlpeavgerror(mlpensemble *ensemble,
+    /* Real    */ ae_matrix *xy,
+                    ae_int_t npoints,
+                    ae_state *_state);
+double mlpeavgrelerror(mlpensemble *ensemble,
+    /* Real    */ ae_matrix *xy,
+                       ae_int_t npoints,
+                       ae_state *_state);
+void mlpealloc(ae_serializer *s, mlpensemble *ensemble, ae_state *_state);
+void mlpeserialize(ae_serializer *s,
+                   mlpensemble *ensemble,
+                   ae_state *_state);
+void mlpeunserialize(ae_serializer *s,
+                     mlpensemble *ensemble,
+                     ae_state *_state);
+void _mlpensemble_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mlpensemble_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mlpensemble_clear(void *_p);
+void _mlpensemble_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MLPTRAIN) || !defined(AE_PARTIAL_BUILD)
-void mlptrainlm(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     double decay,
-     ae_int_t restarts,
-     ae_int_t* info,
-     mlpreport* rep,
-     ae_state *_state);
-void mlptrainlbfgs(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     double decay,
-     ae_int_t restarts,
-     double wstep,
-     ae_int_t maxits,
-     ae_int_t* info,
-     mlpreport* rep,
-     ae_state *_state);
-void mlptraines(multilayerperceptron* network,
-     /* Real    */ ae_matrix* trnxy,
-     ae_int_t trnsize,
-     /* Real    */ ae_matrix* valxy,
-     ae_int_t valsize,
-     double decay,
-     ae_int_t restarts,
-     ae_int_t* info,
-     mlpreport* rep,
-     ae_state *_state);
-void mlpkfoldcvlbfgs(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     double decay,
-     ae_int_t restarts,
-     double wstep,
-     ae_int_t maxits,
-     ae_int_t foldscount,
-     ae_int_t* info,
-     mlpreport* rep,
-     mlpcvreport* cvrep,
-     ae_state *_state);
-void mlpkfoldcvlm(multilayerperceptron* network,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     double decay,
-     ae_int_t restarts,
-     ae_int_t foldscount,
-     ae_int_t* info,
-     mlpreport* rep,
-     mlpcvreport* cvrep,
-     ae_state *_state);
-void mlpkfoldcv(mlptrainer* s,
-     multilayerperceptron* network,
-     ae_int_t nrestarts,
-     ae_int_t foldscount,
-     mlpreport* rep,
-     ae_state *_state);
+void mlptrainlm(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                ae_int_t npoints,
+                double decay,
+                ae_int_t restarts,
+                ae_int_t *info,
+                mlpreport *rep,
+                ae_state *_state);
+void mlptrainlbfgs(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t npoints,
+                   double decay,
+                   ae_int_t restarts,
+                   double wstep,
+                   ae_int_t maxits,
+                   ae_int_t *info,
+                   mlpreport *rep,
+                   ae_state *_state);
+void mlptraines(multilayerperceptron *network,
+    /* Real    */ ae_matrix *trnxy,
+                ae_int_t trnsize,
+    /* Real    */ ae_matrix *valxy,
+                ae_int_t valsize,
+                double decay,
+                ae_int_t restarts,
+                ae_int_t *info,
+                mlpreport *rep,
+                ae_state *_state);
+void mlpkfoldcvlbfgs(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                     ae_int_t npoints,
+                     double decay,
+                     ae_int_t restarts,
+                     double wstep,
+                     ae_int_t maxits,
+                     ae_int_t foldscount,
+                     ae_int_t *info,
+                     mlpreport *rep,
+                     mlpcvreport *cvrep,
+                     ae_state *_state);
+void mlpkfoldcvlm(multilayerperceptron *network,
+    /* Real    */ ae_matrix *xy,
+                  ae_int_t npoints,
+                  double decay,
+                  ae_int_t restarts,
+                  ae_int_t foldscount,
+                  ae_int_t *info,
+                  mlpreport *rep,
+                  mlpcvreport *cvrep,
+                  ae_state *_state);
+void mlpkfoldcv(mlptrainer *s,
+                multilayerperceptron *network,
+                ae_int_t nrestarts,
+                ae_int_t foldscount,
+                mlpreport *rep,
+                ae_state *_state);
 void mlpcreatetrainer(ae_int_t nin,
-     ae_int_t nout,
-     mlptrainer* s,
-     ae_state *_state);
+                      ae_int_t nout,
+                      mlptrainer *s,
+                      ae_state *_state);
 void mlpcreatetrainercls(ae_int_t nin,
-     ae_int_t nclasses,
-     mlptrainer* s,
-     ae_state *_state);
-void mlpsetdataset(mlptrainer* s,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-void mlpsetsparsedataset(mlptrainer* s,
-     sparsematrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-void mlpsetdecay(mlptrainer* s, double decay, ae_state *_state);
-void mlpsetcond(mlptrainer* s,
-     double wstep,
-     ae_int_t maxits,
-     ae_state *_state);
-void mlpsetalgobatch(mlptrainer* s, ae_state *_state);
-void mlptrainnetwork(mlptrainer* s,
-     multilayerperceptron* network,
-     ae_int_t nrestarts,
-     mlpreport* rep,
-     ae_state *_state);
-void mlpstarttraining(mlptrainer* s,
-     multilayerperceptron* network,
-     ae_bool randomstart,
-     ae_state *_state);
-ae_bool mlpcontinuetraining(mlptrainer* s,
-     multilayerperceptron* network,
-     ae_state *_state);
-void mlpebagginglm(mlpensemble* ensemble,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     double decay,
-     ae_int_t restarts,
-     ae_int_t* info,
-     mlpreport* rep,
-     mlpcvreport* ooberrors,
-     ae_state *_state);
-void mlpebagginglbfgs(mlpensemble* ensemble,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     double decay,
-     ae_int_t restarts,
-     double wstep,
-     ae_int_t maxits,
-     ae_int_t* info,
-     mlpreport* rep,
-     mlpcvreport* ooberrors,
-     ae_state *_state);
-void mlpetraines(mlpensemble* ensemble,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     double decay,
-     ae_int_t restarts,
-     ae_int_t* info,
-     mlpreport* rep,
-     ae_state *_state);
-void mlptrainensemblees(mlptrainer* s,
-     mlpensemble* ensemble,
-     ae_int_t nrestarts,
-     mlpreport* rep,
-     ae_state *_state);
-void _mlpreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mlpreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mlpreport_clear(void* _p);
-void _mlpreport_destroy(void* _p);
-void _mlpcvreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mlpcvreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mlpcvreport_clear(void* _p);
-void _mlpcvreport_destroy(void* _p);
-void _smlptrnsession_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _smlptrnsession_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _smlptrnsession_clear(void* _p);
-void _smlptrnsession_destroy(void* _p);
-void _mlpetrnsession_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mlpetrnsession_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mlpetrnsession_clear(void* _p);
-void _mlpetrnsession_destroy(void* _p);
-void _mlptrainer_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mlptrainer_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mlptrainer_clear(void* _p);
-void _mlptrainer_destroy(void* _p);
-void _mlpparallelizationcv_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mlpparallelizationcv_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mlpparallelizationcv_clear(void* _p);
-void _mlpparallelizationcv_destroy(void* _p);
+                         ae_int_t nclasses,
+                         mlptrainer *s,
+                         ae_state *_state);
+void mlpsetdataset(mlptrainer *s,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t npoints,
+                   ae_state *_state);
+void mlpsetsparsedataset(mlptrainer *s,
+                         sparsematrix *xy,
+                         ae_int_t npoints,
+                         ae_state *_state);
+void mlpsetdecay(mlptrainer *s, double decay, ae_state *_state);
+void mlpsetcond(mlptrainer *s,
+                double wstep,
+                ae_int_t maxits,
+                ae_state *_state);
+void mlpsetalgobatch(mlptrainer *s, ae_state *_state);
+void mlptrainnetwork(mlptrainer *s,
+                     multilayerperceptron *network,
+                     ae_int_t nrestarts,
+                     mlpreport *rep,
+                     ae_state *_state);
+void mlpstarttraining(mlptrainer *s,
+                      multilayerperceptron *network,
+                      ae_bool randomstart,
+                      ae_state *_state);
+ae_bool mlpcontinuetraining(mlptrainer *s,
+                            multilayerperceptron *network,
+                            ae_state *_state);
+void mlpebagginglm(mlpensemble *ensemble,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t npoints,
+                   double decay,
+                   ae_int_t restarts,
+                   ae_int_t *info,
+                   mlpreport *rep,
+                   mlpcvreport *ooberrors,
+                   ae_state *_state);
+void mlpebagginglbfgs(mlpensemble *ensemble,
+    /* Real    */ ae_matrix *xy,
+                      ae_int_t npoints,
+                      double decay,
+                      ae_int_t restarts,
+                      double wstep,
+                      ae_int_t maxits,
+                      ae_int_t *info,
+                      mlpreport *rep,
+                      mlpcvreport *ooberrors,
+                      ae_state *_state);
+void mlpetraines(mlpensemble *ensemble,
+    /* Real    */ ae_matrix *xy,
+                 ae_int_t npoints,
+                 double decay,
+                 ae_int_t restarts,
+                 ae_int_t *info,
+                 mlpreport *rep,
+                 ae_state *_state);
+void mlptrainensemblees(mlptrainer *s,
+                        mlpensemble *ensemble,
+                        ae_int_t nrestarts,
+                        mlpreport *rep,
+                        ae_state *_state);
+void _mlpreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mlpreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mlpreport_clear(void *_p);
+void _mlpreport_destroy(void *_p);
+void _mlpcvreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mlpcvreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mlpcvreport_clear(void *_p);
+void _mlpcvreport_destroy(void *_p);
+void _smlptrnsession_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _smlptrnsession_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _smlptrnsession_clear(void *_p);
+void _smlptrnsession_destroy(void *_p);
+void _mlpetrnsession_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mlpetrnsession_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mlpetrnsession_clear(void *_p);
+void _mlpetrnsession_destroy(void *_p);
+void _mlptrainer_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mlptrainer_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mlptrainer_clear(void *_p);
+void _mlptrainer_destroy(void *_p);
+void _mlpparallelizationcv_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mlpparallelizationcv_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mlpparallelizationcv_clear(void *_p);
+void _mlpparallelizationcv_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_CLUSTERING) || !defined(AE_PARTIAL_BUILD)
-void clusterizercreate(clusterizerstate* s, ae_state *_state);
-void clusterizersetpoints(clusterizerstate* s,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nfeatures,
-     ae_int_t disttype,
-     ae_state *_state);
-void clusterizersetdistances(clusterizerstate* s,
-     /* Real    */ ae_matrix* d,
-     ae_int_t npoints,
-     ae_bool isupper,
-     ae_state *_state);
-void clusterizersetahcalgo(clusterizerstate* s,
-     ae_int_t algo,
-     ae_state *_state);
-void clusterizersetkmeanslimits(clusterizerstate* s,
-     ae_int_t restarts,
-     ae_int_t maxits,
-     ae_state *_state);
-void clusterizersetkmeansinit(clusterizerstate* s,
-     ae_int_t initalgo,
-     ae_state *_state);
-void clusterizersetseed(clusterizerstate* s,
-     ae_int_t seed,
-     ae_state *_state);
-void clusterizerrunahc(clusterizerstate* s,
-     ahcreport* rep,
-     ae_state *_state);
-void clusterizerrunkmeans(clusterizerstate* s,
-     ae_int_t k,
-     kmeansreport* rep,
-     ae_state *_state);
-void clusterizergetdistances(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nfeatures,
-     ae_int_t disttype,
-     /* Real    */ ae_matrix* d,
-     ae_state *_state);
-void clusterizergetdistancesbuf(apbuffers* buf,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nfeatures,
-     ae_int_t disttype,
-     /* Real    */ ae_matrix* d,
-     ae_state *_state);
-void clusterizergetkclusters(ahcreport* rep,
-     ae_int_t k,
-     /* Integer */ ae_vector* cidx,
-     /* Integer */ ae_vector* cz,
-     ae_state *_state);
-void clusterizerseparatedbydist(ahcreport* rep,
-     double r,
-     ae_int_t* k,
-     /* Integer */ ae_vector* cidx,
-     /* Integer */ ae_vector* cz,
-     ae_state *_state);
-void clusterizerseparatedbycorr(ahcreport* rep,
-     double r,
-     ae_int_t* k,
-     /* Integer */ ae_vector* cidx,
-     /* Integer */ ae_vector* cz,
-     ae_state *_state);
-void kmeansinitbuf(kmeansbuffers* buf, ae_state *_state);
-void kmeansgenerateinternal(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t k,
-     ae_int_t initalgo,
-     ae_int_t seed,
-     ae_int_t maxits,
-     ae_int_t restarts,
-     ae_bool kmeansdbgnoits,
-     ae_int_t* info,
-     ae_int_t* iterationscount,
-     /* Real    */ ae_matrix* ccol,
-     ae_bool needccol,
-     /* Real    */ ae_matrix* crow,
-     ae_bool needcrow,
-     /* Integer */ ae_vector* xyc,
-     double* energy,
-     kmeansbuffers* buf,
-     ae_state *_state);
-void kmeansupdatedistances(/* Real    */ ae_matrix* xy,
-     ae_int_t idx0,
-     ae_int_t idx1,
-     ae_int_t nvars,
-     /* Real    */ ae_matrix* ct,
-     ae_int_t cidx0,
-     ae_int_t cidx1,
-     /* Integer */ ae_vector* xyc,
-     /* Real    */ ae_vector* xydist2,
-     ae_shared_pool* bufferpool,
-     ae_state *_state);
-ae_bool _trypexec_kmeansupdatedistances(/* Real    */ ae_matrix* xy,
-    ae_int_t idx0,
-    ae_int_t idx1,
-    ae_int_t nvars,
-    /* Real    */ ae_matrix* ct,
-    ae_int_t cidx0,
-    ae_int_t cidx1,
-    /* Integer */ ae_vector* xyc,
-    /* Real    */ ae_vector* xydist2,
-    ae_shared_pool* bufferpool, ae_state *_state);
-void _kmeansbuffers_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _kmeansbuffers_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _kmeansbuffers_clear(void* _p);
-void _kmeansbuffers_destroy(void* _p);
-void _clusterizerstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _clusterizerstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _clusterizerstate_clear(void* _p);
-void _clusterizerstate_destroy(void* _p);
-void _ahcreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _ahcreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _ahcreport_clear(void* _p);
-void _ahcreport_destroy(void* _p);
-void _kmeansreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _kmeansreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _kmeansreport_clear(void* _p);
-void _kmeansreport_destroy(void* _p);
+void clusterizercreate(clusterizerstate *s, ae_state *_state);
+void clusterizersetpoints(clusterizerstate *s,
+    /* Real    */ ae_matrix *xy,
+                          ae_int_t npoints,
+                          ae_int_t nfeatures,
+                          ae_int_t disttype,
+                          ae_state *_state);
+void clusterizersetdistances(clusterizerstate *s,
+    /* Real    */ ae_matrix *d,
+                             ae_int_t npoints,
+                             ae_bool isupper,
+                             ae_state *_state);
+void clusterizersetahcalgo(clusterizerstate *s,
+                           ae_int_t algo,
+                           ae_state *_state);
+void clusterizersetkmeanslimits(clusterizerstate *s,
+                                ae_int_t restarts,
+                                ae_int_t maxits,
+                                ae_state *_state);
+void clusterizersetkmeansinit(clusterizerstate *s,
+                              ae_int_t initalgo,
+                              ae_state *_state);
+void clusterizersetseed(clusterizerstate *s,
+                        ae_int_t seed,
+                        ae_state *_state);
+void clusterizerrunahc(clusterizerstate *s,
+                       ahcreport *rep,
+                       ae_state *_state);
+void clusterizerrunkmeans(clusterizerstate *s,
+                          ae_int_t k,
+                          kmeansreport *rep,
+                          ae_state *_state);
+void clusterizergetdistances(/* Real    */ ae_matrix *xy,
+                                           ae_int_t npoints,
+                                           ae_int_t nfeatures,
+                                           ae_int_t disttype,
+    /* Real    */ ae_matrix *d,
+                                           ae_state *_state);
+void clusterizergetdistancesbuf(apbuffers *buf,
+    /* Real    */ ae_matrix *xy,
+                                ae_int_t npoints,
+                                ae_int_t nfeatures,
+                                ae_int_t disttype,
+    /* Real    */ ae_matrix *d,
+                                ae_state *_state);
+void clusterizergetkclusters(ahcreport *rep,
+                             ae_int_t k,
+    /* Integer */ ae_vector *cidx,
+    /* Integer */ ae_vector *cz,
+                             ae_state *_state);
+void clusterizerseparatedbydist(ahcreport *rep,
+                                double r,
+                                ae_int_t *k,
+    /* Integer */ ae_vector *cidx,
+    /* Integer */ ae_vector *cz,
+                                ae_state *_state);
+void clusterizerseparatedbycorr(ahcreport *rep,
+                                double r,
+                                ae_int_t *k,
+    /* Integer */ ae_vector *cidx,
+    /* Integer */ ae_vector *cz,
+                                ae_state *_state);
+void kmeansinitbuf(kmeansbuffers *buf, ae_state *_state);
+void kmeansgenerateinternal(/* Real    */ ae_matrix *xy,
+                                          ae_int_t npoints,
+                                          ae_int_t nvars,
+                                          ae_int_t k,
+                                          ae_int_t initalgo,
+                                          ae_int_t seed,
+                                          ae_int_t maxits,
+                                          ae_int_t restarts,
+                                          ae_bool kmeansdbgnoits,
+                                          ae_int_t *info,
+                                          ae_int_t *iterationscount,
+    /* Real    */ ae_matrix *ccol,
+                                          ae_bool needccol,
+    /* Real    */ ae_matrix *crow,
+                                          ae_bool needcrow,
+    /* Integer */ ae_vector *xyc,
+                                          double *energy,
+                                          kmeansbuffers *buf,
+                                          ae_state *_state);
+void kmeansupdatedistances(/* Real    */ ae_matrix *xy,
+                                         ae_int_t idx0,
+                                         ae_int_t idx1,
+                                         ae_int_t nvars,
+    /* Real    */ ae_matrix *ct,
+                                         ae_int_t cidx0,
+                                         ae_int_t cidx1,
+    /* Integer */ ae_vector *xyc,
+    /* Real    */ ae_vector *xydist2,
+                                         ae_shared_pool *bufferpool,
+                                         ae_state *_state);
+ae_bool _trypexec_kmeansupdatedistances(/* Real    */ ae_matrix *xy,
+                                                      ae_int_t idx0,
+                                                      ae_int_t idx1,
+                                                      ae_int_t nvars,
+    /* Real    */ ae_matrix *ct,
+                                                      ae_int_t cidx0,
+                                                      ae_int_t cidx1,
+    /* Integer */ ae_vector *xyc,
+    /* Real    */ ae_vector *xydist2,
+                                                      ae_shared_pool *bufferpool, ae_state *_state);
+void _kmeansbuffers_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _kmeansbuffers_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _kmeansbuffers_clear(void *_p);
+void _kmeansbuffers_destroy(void *_p);
+void _clusterizerstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _clusterizerstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _clusterizerstate_clear(void *_p);
+void _clusterizerstate_destroy(void *_p);
+void _ahcreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _ahcreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _ahcreport_clear(void *_p);
+void _ahcreport_destroy(void *_p);
+void _kmeansreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _kmeansreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _kmeansreport_clear(void *_p);
+void _kmeansreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_DFOREST) || !defined(AE_PARTIAL_BUILD)
-void dfcreatebuffer(decisionforest* model,
-     decisionforestbuffer* buf,
-     ae_state *_state);
-void dfbuildercreate(decisionforestbuilder* s, ae_state *_state);
-void dfbuildersetdataset(decisionforestbuilder* s,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nclasses,
-     ae_state *_state);
-void dfbuildersetrndvars(decisionforestbuilder* s,
-     ae_int_t rndvars,
-     ae_state *_state);
-void dfbuildersetrndvarsratio(decisionforestbuilder* s,
-     double f,
-     ae_state *_state);
-void dfbuildersetrndvarsauto(decisionforestbuilder* s, ae_state *_state);
-void dfbuildersetsubsampleratio(decisionforestbuilder* s,
-     double f,
-     ae_state *_state);
-void dfbuildersetseed(decisionforestbuilder* s,
-     ae_int_t seedval,
-     ae_state *_state);
-void dfbuildersetrdfalgo(decisionforestbuilder* s,
-     ae_int_t algotype,
-     ae_state *_state);
-void dfbuildersetrdfsplitstrength(decisionforestbuilder* s,
-     ae_int_t splitstrength,
-     ae_state *_state);
-void dfbuildersetimportancetrngini(decisionforestbuilder* s,
-     ae_state *_state);
-void dfbuildersetimportanceoobgini(decisionforestbuilder* s,
-     ae_state *_state);
-void dfbuildersetimportancepermutation(decisionforestbuilder* s,
-     ae_state *_state);
-void dfbuildersetimportancenone(decisionforestbuilder* s,
-     ae_state *_state);
-double dfbuildergetprogress(decisionforestbuilder* s, ae_state *_state);
-double dfbuilderpeekprogress(decisionforestbuilder* s, ae_state *_state);
-void dfbuilderbuildrandomforest(decisionforestbuilder* s,
-     ae_int_t ntrees,
-     decisionforest* df,
-     dfreport* rep,
-     ae_state *_state);
-double dfbinarycompression(decisionforest* df, ae_state *_state);
-double dfbinarycompression8(decisionforest* df, ae_state *_state);
-void dfprocess(decisionforest* df,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-void dfprocessi(decisionforest* df,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-double dfprocess0(decisionforest* model,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-ae_int_t dfclassify(decisionforest* model,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void dftsprocess(decisionforest* df,
-     decisionforestbuffer* buf,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-double dfrelclserror(decisionforest* df,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double dfavgce(decisionforest* df,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double dfrmserror(decisionforest* df,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double dfavgerror(decisionforest* df,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double dfavgrelerror(decisionforest* df,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-void dfcopy(decisionforest* df1, decisionforest* df2, ae_state *_state);
-void dfalloc(ae_serializer* s, decisionforest* forest, ae_state *_state);
-void dfserialize(ae_serializer* s,
-     decisionforest* forest,
-     ae_state *_state);
-void dfunserialize(ae_serializer* s,
-     decisionforest* forest,
-     ae_state *_state);
-void dfbuildrandomdecisionforest(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nclasses,
-     ae_int_t ntrees,
-     double r,
-     ae_int_t* info,
-     decisionforest* df,
-     dfreport* rep,
-     ae_state *_state);
-void dfbuildrandomdecisionforestx1(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nclasses,
-     ae_int_t ntrees,
-     ae_int_t nrndvars,
-     double r,
-     ae_int_t* info,
-     decisionforest* df,
-     dfreport* rep,
-     ae_state *_state);
-void dfbuildinternal(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nclasses,
-     ae_int_t ntrees,
-     ae_int_t samplesize,
-     ae_int_t nfeatures,
-     ae_int_t flags,
-     ae_int_t* info,
-     decisionforest* df,
-     dfreport* rep,
-     ae_state *_state);
-void _decisionforestbuilder_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _decisionforestbuilder_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _decisionforestbuilder_clear(void* _p);
-void _decisionforestbuilder_destroy(void* _p);
-void _dfworkbuf_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dfworkbuf_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dfworkbuf_clear(void* _p);
-void _dfworkbuf_destroy(void* _p);
-void _dfvotebuf_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dfvotebuf_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dfvotebuf_clear(void* _p);
-void _dfvotebuf_destroy(void* _p);
-void _dfpermimpbuf_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dfpermimpbuf_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dfpermimpbuf_clear(void* _p);
-void _dfpermimpbuf_destroy(void* _p);
-void _dftreebuf_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dftreebuf_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dftreebuf_clear(void* _p);
-void _dftreebuf_destroy(void* _p);
-void _decisionforestbuffer_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _decisionforestbuffer_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _decisionforestbuffer_clear(void* _p);
-void _decisionforestbuffer_destroy(void* _p);
-void _decisionforest_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _decisionforest_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _decisionforest_clear(void* _p);
-void _decisionforest_destroy(void* _p);
-void _dfreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dfreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dfreport_clear(void* _p);
-void _dfreport_destroy(void* _p);
-void _dfinternalbuffers_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dfinternalbuffers_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dfinternalbuffers_clear(void* _p);
-void _dfinternalbuffers_destroy(void* _p);
+void dfcreatebuffer(decisionforest *model,
+                    decisionforestbuffer *buf,
+                    ae_state *_state);
+void dfbuildercreate(decisionforestbuilder *s, ae_state *_state);
+void dfbuildersetdataset(decisionforestbuilder *s,
+    /* Real    */ ae_matrix *xy,
+                         ae_int_t npoints,
+                         ae_int_t nvars,
+                         ae_int_t nclasses,
+                         ae_state *_state);
+void dfbuildersetrndvars(decisionforestbuilder *s,
+                         ae_int_t rndvars,
+                         ae_state *_state);
+void dfbuildersetrndvarsratio(decisionforestbuilder *s,
+                              double f,
+                              ae_state *_state);
+void dfbuildersetrndvarsauto(decisionforestbuilder *s, ae_state *_state);
+void dfbuildersetsubsampleratio(decisionforestbuilder *s,
+                                double f,
+                                ae_state *_state);
+void dfbuildersetseed(decisionforestbuilder *s,
+                      ae_int_t seedval,
+                      ae_state *_state);
+void dfbuildersetrdfalgo(decisionforestbuilder *s,
+                         ae_int_t algotype,
+                         ae_state *_state);
+void dfbuildersetrdfsplitstrength(decisionforestbuilder *s,
+                                  ae_int_t splitstrength,
+                                  ae_state *_state);
+void dfbuildersetimportancetrngini(decisionforestbuilder *s,
+                                   ae_state *_state);
+void dfbuildersetimportanceoobgini(decisionforestbuilder *s,
+                                   ae_state *_state);
+void dfbuildersetimportancepermutation(decisionforestbuilder *s,
+                                       ae_state *_state);
+void dfbuildersetimportancenone(decisionforestbuilder *s,
+                                ae_state *_state);
+double dfbuildergetprogress(decisionforestbuilder *s, ae_state *_state);
+double dfbuilderpeekprogress(decisionforestbuilder *s, ae_state *_state);
+void dfbuilderbuildrandomforest(decisionforestbuilder *s,
+                                ae_int_t ntrees,
+                                decisionforest *df,
+                                dfreport *rep,
+                                ae_state *_state);
+double dfbinarycompression(decisionforest *df, ae_state *_state);
+double dfbinarycompression8(decisionforest *df, ae_state *_state);
+void dfprocess(decisionforest *df,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+               ae_state *_state);
+void dfprocessi(decisionforest *df,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                ae_state *_state);
+double dfprocess0(decisionforest *model,
+    /* Real    */ ae_vector *x,
+                  ae_state *_state);
+ae_int_t dfclassify(decisionforest *model,
+    /* Real    */ ae_vector *x,
+                    ae_state *_state);
+void dftsprocess(decisionforest *df,
+                 decisionforestbuffer *buf,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                 ae_state *_state);
+double dfrelclserror(decisionforest *df,
+    /* Real    */ ae_matrix *xy,
+                     ae_int_t npoints,
+                     ae_state *_state);
+double dfavgce(decisionforest *df,
+    /* Real    */ ae_matrix *xy,
+               ae_int_t npoints,
+               ae_state *_state);
+double dfrmserror(decisionforest *df,
+    /* Real    */ ae_matrix *xy,
+                  ae_int_t npoints,
+                  ae_state *_state);
+double dfavgerror(decisionforest *df,
+    /* Real    */ ae_matrix *xy,
+                  ae_int_t npoints,
+                  ae_state *_state);
+double dfavgrelerror(decisionforest *df,
+    /* Real    */ ae_matrix *xy,
+                     ae_int_t npoints,
+                     ae_state *_state);
+void dfcopy(decisionforest *df1, decisionforest *df2, ae_state *_state);
+void dfalloc(ae_serializer *s, decisionforest *forest, ae_state *_state);
+void dfserialize(ae_serializer *s,
+                 decisionforest *forest,
+                 ae_state *_state);
+void dfunserialize(ae_serializer *s,
+                   decisionforest *forest,
+                   ae_state *_state);
+void dfbuildrandomdecisionforest(/* Real    */ ae_matrix *xy,
+                                               ae_int_t npoints,
+                                               ae_int_t nvars,
+                                               ae_int_t nclasses,
+                                               ae_int_t ntrees,
+                                               double r,
+                                               ae_int_t *info,
+                                               decisionforest *df,
+                                               dfreport *rep,
+                                               ae_state *_state);
+void dfbuildrandomdecisionforestx1(/* Real    */ ae_matrix *xy,
+                                                 ae_int_t npoints,
+                                                 ae_int_t nvars,
+                                                 ae_int_t nclasses,
+                                                 ae_int_t ntrees,
+                                                 ae_int_t nrndvars,
+                                                 double r,
+                                                 ae_int_t *info,
+                                                 decisionforest *df,
+                                                 dfreport *rep,
+                                                 ae_state *_state);
+void dfbuildinternal(/* Real    */ ae_matrix *xy,
+                                   ae_int_t npoints,
+                                   ae_int_t nvars,
+                                   ae_int_t nclasses,
+                                   ae_int_t ntrees,
+                                   ae_int_t samplesize,
+                                   ae_int_t nfeatures,
+                                   ae_int_t flags,
+                                   ae_int_t *info,
+                                   decisionforest *df,
+                                   dfreport *rep,
+                                   ae_state *_state);
+void _decisionforestbuilder_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _decisionforestbuilder_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _decisionforestbuilder_clear(void *_p);
+void _decisionforestbuilder_destroy(void *_p);
+void _dfworkbuf_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dfworkbuf_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dfworkbuf_clear(void *_p);
+void _dfworkbuf_destroy(void *_p);
+void _dfvotebuf_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dfvotebuf_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dfvotebuf_clear(void *_p);
+void _dfvotebuf_destroy(void *_p);
+void _dfpermimpbuf_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dfpermimpbuf_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dfpermimpbuf_clear(void *_p);
+void _dfpermimpbuf_destroy(void *_p);
+void _dftreebuf_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dftreebuf_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dftreebuf_clear(void *_p);
+void _dftreebuf_destroy(void *_p);
+void _decisionforestbuffer_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _decisionforestbuffer_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _decisionforestbuffer_clear(void *_p);
+void _decisionforestbuffer_destroy(void *_p);
+void _decisionforest_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _decisionforest_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _decisionforest_clear(void *_p);
+void _decisionforest_destroy(void *_p);
+void _dfreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dfreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dfreport_clear(void *_p);
+void _dfreport_destroy(void *_p);
+void _dfinternalbuffers_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dfinternalbuffers_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dfinternalbuffers_clear(void *_p);
+void _dfinternalbuffers_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_KNN) || !defined(AE_PARTIAL_BUILD)
-void knncreatebuffer(knnmodel* model, knnbuffer* buf, ae_state *_state);
-void knnbuildercreate(knnbuilder* s, ae_state *_state);
-void knnbuildersetdatasetreg(knnbuilder* s,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nout,
-     ae_state *_state);
-void knnbuildersetdatasetcls(knnbuilder* s,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t nclasses,
-     ae_state *_state);
-void knnbuildersetnorm(knnbuilder* s, ae_int_t nrmtype, ae_state *_state);
-void knnbuilderbuildknnmodel(knnbuilder* s,
-     ae_int_t k,
-     double eps,
-     knnmodel* model,
-     knnreport* rep,
-     ae_state *_state);
-void knnrewritekeps(knnmodel* model,
-     ae_int_t k,
-     double eps,
-     ae_state *_state);
-void knnprocess(knnmodel* model,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-double knnprocess0(knnmodel* model,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-ae_int_t knnclassify(knnmodel* model,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void knnprocessi(knnmodel* model,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-void knntsprocess(knnmodel* model,
-     knnbuffer* buf,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-double knnrelclserror(knnmodel* model,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double knnavgce(knnmodel* model,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double knnrmserror(knnmodel* model,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double knnavgerror(knnmodel* model,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-double knnavgrelerror(knnmodel* model,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_state *_state);
-void knnallerrors(knnmodel* model,
-     /* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     knnreport* rep,
-     ae_state *_state);
-void knnalloc(ae_serializer* s, knnmodel* model, ae_state *_state);
-void knnserialize(ae_serializer* s, knnmodel* model, ae_state *_state);
-void knnunserialize(ae_serializer* s, knnmodel* model, ae_state *_state);
-void _knnbuffer_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _knnbuffer_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _knnbuffer_clear(void* _p);
-void _knnbuffer_destroy(void* _p);
-void _knnbuilder_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _knnbuilder_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _knnbuilder_clear(void* _p);
-void _knnbuilder_destroy(void* _p);
-void _knnmodel_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _knnmodel_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _knnmodel_clear(void* _p);
-void _knnmodel_destroy(void* _p);
-void _knnreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _knnreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _knnreport_clear(void* _p);
-void _knnreport_destroy(void* _p);
+void knncreatebuffer(knnmodel *model, knnbuffer *buf, ae_state *_state);
+void knnbuildercreate(knnbuilder *s, ae_state *_state);
+void knnbuildersetdatasetreg(knnbuilder *s,
+    /* Real    */ ae_matrix *xy,
+                             ae_int_t npoints,
+                             ae_int_t nvars,
+                             ae_int_t nout,
+                             ae_state *_state);
+void knnbuildersetdatasetcls(knnbuilder *s,
+    /* Real    */ ae_matrix *xy,
+                             ae_int_t npoints,
+                             ae_int_t nvars,
+                             ae_int_t nclasses,
+                             ae_state *_state);
+void knnbuildersetnorm(knnbuilder *s, ae_int_t nrmtype, ae_state *_state);
+void knnbuilderbuildknnmodel(knnbuilder *s,
+                             ae_int_t k,
+                             double eps,
+                             knnmodel *model,
+                             knnreport *rep,
+                             ae_state *_state);
+void knnrewritekeps(knnmodel *model,
+                    ae_int_t k,
+                    double eps,
+                    ae_state *_state);
+void knnprocess(knnmodel *model,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                ae_state *_state);
+double knnprocess0(knnmodel *model,
+    /* Real    */ ae_vector *x,
+                   ae_state *_state);
+ae_int_t knnclassify(knnmodel *model,
+    /* Real    */ ae_vector *x,
+                     ae_state *_state);
+void knnprocessi(knnmodel *model,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                 ae_state *_state);
+void knntsprocess(knnmodel *model,
+                  knnbuffer *buf,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+                  ae_state *_state);
+double knnrelclserror(knnmodel *model,
+    /* Real    */ ae_matrix *xy,
+                      ae_int_t npoints,
+                      ae_state *_state);
+double knnavgce(knnmodel *model,
+    /* Real    */ ae_matrix *xy,
+                ae_int_t npoints,
+                ae_state *_state);
+double knnrmserror(knnmodel *model,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t npoints,
+                   ae_state *_state);
+double knnavgerror(knnmodel *model,
+    /* Real    */ ae_matrix *xy,
+                   ae_int_t npoints,
+                   ae_state *_state);
+double knnavgrelerror(knnmodel *model,
+    /* Real    */ ae_matrix *xy,
+                      ae_int_t npoints,
+                      ae_state *_state);
+void knnallerrors(knnmodel *model,
+    /* Real    */ ae_matrix *xy,
+                  ae_int_t npoints,
+                  knnreport *rep,
+                  ae_state *_state);
+void knnalloc(ae_serializer *s, knnmodel *model, ae_state *_state);
+void knnserialize(ae_serializer *s, knnmodel *model, ae_state *_state);
+void knnunserialize(ae_serializer *s, knnmodel *model, ae_state *_state);
+void _knnbuffer_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _knnbuffer_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _knnbuffer_clear(void *_p);
+void _knnbuffer_destroy(void *_p);
+void _knnbuilder_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _knnbuilder_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _knnbuilder_clear(void *_p);
+void _knnbuilder_destroy(void *_p);
+void _knnmodel_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _knnmodel_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _knnmodel_clear(void *_p);
+void _knnmodel_destroy(void *_p);
+void _knnreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _knnreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _knnreport_clear(void *_p);
+void _knnreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_DATACOMP) || !defined(AE_PARTIAL_BUILD)
-void kmeansgenerate(/* Real    */ ae_matrix* xy,
-     ae_int_t npoints,
-     ae_int_t nvars,
-     ae_int_t k,
-     ae_int_t restarts,
-     ae_int_t* info,
-     /* Real    */ ae_matrix* c,
-     /* Integer */ ae_vector* xyc,
-     ae_state *_state);
+void kmeansgenerate(/* Real    */ ae_matrix *xy,
+                                  ae_int_t npoints,
+                                  ae_int_t nvars,
+                                  ae_int_t k,
+                                  ae_int_t restarts,
+                                  ae_int_t *info,
+    /* Real    */ ae_matrix *c,
+    /* Integer */ ae_vector *xyc,
+                                  ae_state *_state);
 #endif
 
 }

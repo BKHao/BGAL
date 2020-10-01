@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.17)
 project(BKHao_CODE_2)
 
+
 # Default Build_type RELEASE
 set(CMAKE_BUILD_TYPE RELEASE)
 # CXX STANDARD
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
+# Set Version
+set(VERSION 1.0)
 # include header from project_source_dir
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
@@ -31,11 +34,11 @@ else ()
 endif ()
 
 # Set lib output directory
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${PROJECT_BINARY_DIR}/../lib/Debug)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_BINARY_DIR}/../lib/Release)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
+# Generator to static?
+option(BUILD_STATIC_LIB "build BKHao.a static lib" OFF)
 
-#target_include_directories()
 add_subdirectory(include)
 add_subdirectory(src)
 

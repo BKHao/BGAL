@@ -20,7 +20,6 @@ http://www.fsf.org/licensing/licenses
 #ifdef _MSC_VER
 #define _CRT_SECURE_NO_WARNINGS
 #endif
-// #include "optimization.h"
 #include "BK_Optimization/ALGLIB/optimization.h"
 
 

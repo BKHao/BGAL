@@ -1,6 +1,4 @@
-//#include "BKICP.h"
 #include "BK_PointCloudProcessing/Registration/ICP/BKICP.h"
-//#include "../../../BK_BaseShape/BKKDTree.h"
 #include "BK_BaseShape/BKKDTree.h"
 #include <Eigen/SVD>
 namespace BKHao {
