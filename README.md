@@ -21,5 +21,7 @@ make -j8
 make install
 ```
 
+After installed, using FindBKHao in your project please.
+
 ### MSVC on Windows
 

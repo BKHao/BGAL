@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <Eigen/Dense>
-#include "BK_BaseShape/BKPoint.h"
+#include "../../../BK_BaseShape/BKPoint.h"
 
 namespace BKHao {
 class _ICP {

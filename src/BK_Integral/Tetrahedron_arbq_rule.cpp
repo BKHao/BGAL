@@ -2080,18 +2080,18 @@ double tetrahedron_volume(double tetra[3 * 4])
 //	node_xyz2[11] = C3.z;
 //
 //
-//	double *w;//���Ȩ��
-//	double *xyz;//��¼��λ������ĵ������
-//	double *xyz2;//��¼�û��Լ������������ĵ������
+//	double *w;
+//	double *xyz;
+//	double *xyz2;
 //
-//	int order_num = keast_order_num(rule);//���ݹ����������ֵ����Ŀ
+//	int order_num = keast_order_num(rule);
 //	xyz = new double[3 * order_num];
 //	xyz2 = new double[3 * order_num];
 //	w = new double[order_num];
 //
-//	keast_rule(rule, order_num, xyz, w);//������ֵ��Ȩ��
+//	keast_rule(rule, order_num, xyz, w);
 //
-//	tetrahedron_reference_to_physical(node_xyz2, order_num, xyz, xyz2);//����λ�������е��λ��ӳ�䵽�û��Լ��������������
+//	tetrahedron_reference_to_physical(node_xyz2, order_num, xyz, xyz2);
 //
 //	double volume = tetrahedron_volume(node_xyz2);//��������������
 //
@@ -2110,7 +2110,7 @@ double tetrahedron_volume(double tetra[3 * 4])
 //{
 //	Geex::vec3  u = C3 - C1;
 //	Geex::vec3  v = C2 - C1;
-//	//��������ÿһ���������еõ��������ֵ�
+//	
 //	Geex::vec3 p1 = C1 + u / 2 + v / 2;
 //	Points.push_back(Geex::vec4(p1.x, p1.y, p1.z, 1.0 / 30));
 //	Geex::vec3 p2 = C1 + u / 2;

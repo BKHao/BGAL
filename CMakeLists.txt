@@ -45,4 +45,3 @@ add_subdirectory(include)
 add_subdirectory(src)
 
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
-

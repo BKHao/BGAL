@@ -1,4 +1,5 @@
 #include "BK_BaseShape/BKPoint.h"
+//#include "../../include/BK_BaseShape/BKPoint.h"
 
 namespace BKHao {
 _Point2::_Point2() {
