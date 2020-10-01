@@ -73,3 +73,9 @@ if (BUILD_STATIC_LIB)
     set_target_properties(${PROJECT_NAME}_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 endif ()
 
+# Install shared lib
+install(TARGETS ${PROJECT_NAME} LIBRARY DESTINATION BKHao)
+# Install static lib
+if (BUILD_STATIC_LIB)
+    install(TARGETS ${PROJECT_NAME}_static LIBRARY BKHao)
+endif ()

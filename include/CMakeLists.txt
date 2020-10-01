@@ -62,3 +62,5 @@ set(BKHao_HEADERS
         BK_Tessellation3D/BKSide3D.h
         BK_Tessellation3D/BKTessellation3D.h
         )
+
+install(FILES ${BKHao_HEADERS} DESTINATION include/BKHao)

@@ -41,12 +41,19 @@
 #include <stdio.h>
 #include <string.h>
 
+//#include "PQP.h"
+//#include "BVTQ.h"
+//#include "Build.h"
+//#include "MatVec.h"
+//#include "GetTime.h"
+//#include "TriDist.h"
 #include "BK_PQP/GetTime.h"
 #include "BK_PQP/MatVec.h"
 #include "BK_PQP/TriDist.h"
 #include "BK_PQP/PQP.h"
 #include "BK_PQP/BVTQ.h"
 #include "BK_PQP/Build.h"
+//#include "BK_PQP/MatVec.h"
 
 enum BUILD_STATE {
   PQP_BUILD_STATE_EMPTY,     // empty state, immediately after constructor
