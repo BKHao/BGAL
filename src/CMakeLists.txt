@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.17)
 set(BKHao_SRC
         # BK_Algorithm
         #        BK_Algorithm/BOC/BOC.cpp
-        BK_Algorithm/GraphCuts/graph.cpp
-        BK_Algorithm/GraphCuts/maxflow.cpp
+        #        BK_Algorithm/GraphCuts/graph.cpp
+        #        BK_Algorithm/GraphCuts/maxflow.cpp
         # BK_BaseShape
         BK_BaseShape/BKKDTree.cpp
         BK_BaseShape/BKLine.cpp

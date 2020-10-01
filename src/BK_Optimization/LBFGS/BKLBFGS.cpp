@@ -1,4 +1,3 @@
-//#include "BKLBFGS.h"
 #include "BK_Optimization/LBFGS/BKLBFGS.h"
 namespace BKHao {
 _LBFGS::_Parameter::_Parameter() {

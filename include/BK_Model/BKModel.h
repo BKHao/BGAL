@@ -3,30 +3,27 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
-#include "../BK_BaseShape/BKPoint.h"
-#include "../BK_BaseShape/BKPolygon.h"
-#include "../BK_BaseShape/BKTriangle.h"
-#include "../BK_PQP/PQP.h"
-namespace BKHao
-{
-	class _Face_Iterator;
-	class _Vertex_Iterator;
-	class _FV_Iterator;
-	class _Model
-	{
-		friend class _Face_Iterator;
-		friend class _Vertex_Iterator;
-		friend class _FV_Iterator;
-	public:
-		class _MFace : public _Triangle3
-		{
-		public:
-			std::vector<int> _vertices;
-			int id;
-			_MFace();
-			_MFace(const int& id1, const int& id2, const int& id3);
-			_MFace(const int& id1, const int& id2, const int& id3, const _Point3& p1, const _Point3& p2, const _Point3& p3);
-			int& operator[](int index);
+#include "BK_BaseShape/BKPoint.h"
+#include "BK_BaseShape/BKPolygon.h"
+#include "BK_BaseShape/BKTriangle.h"
+#include "BK_PQP/PQP.h"
+namespace BKHao {
+class _Face_Iterator;
+class _Vertex_Iterator;
+class _FV_Iterator;
+class _Model {
+  friend class _Face_Iterator;
+  friend class _Vertex_Iterator;
+  friend class _FV_Iterator;
+ public:
+  class _MFace : public _Triangle3 {
+   public:
+    std::vector<int> _vertices;
+    int id;
+    _MFace();
+    _MFace(const int &id1, const int &id2, const int &id3);
+    _MFace(const int &id1, const int &id2, const int &id3, const _Point3 &p1, const _Point3 &p2, const _Point3 &p3);
+    int &operator[](int index);
 			int operator[](int index) const;
 			bool operator<(const _MFace& other) const;
 		};

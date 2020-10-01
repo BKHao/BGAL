@@ -43,7 +43,6 @@
 
 #include "PQP.h"
 
-int
-build_model(PQP_Model *m);
+int build_model(PQP_Model *m);
 
 #endif

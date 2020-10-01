@@ -31,1741 +31,1685 @@ http://www.fsf.org/licensing/licenses
 // THIS SECTION CONTAINS COMPUTATIONAL CORE DECLARATIONS (DATATYPES)
 //
 /////////////////////////////////////////////////////////////////////////
-namespace alglib_impl
-{
+namespace alglib_impl {
 #if defined(AE_COMPILE_CQMODELS) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t k;
-    double alpha;
-    double tau;
-    double theta;
-    ae_matrix a;
-    ae_matrix q;
-    ae_vector b;
-    ae_vector r;
-    ae_vector xc;
-    ae_vector d;
-    ae_vector activeset;
-    ae_matrix tq2dense;
-    ae_matrix tk2;
-    ae_vector tq2diag;
-    ae_vector tq1;
-    ae_vector tk1;
-    double tq0;
-    double tk0;
-    ae_vector txc;
-    ae_vector tb;
-    ae_int_t nfree;
-    ae_int_t ecakind;
-    ae_matrix ecadense;
-    ae_matrix eq;
-    ae_matrix eccm;
-    ae_vector ecadiag;
-    ae_vector eb;
-    double ec;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    ae_vector tmpg;
-    ae_matrix tmp2;
-    ae_bool ismaintermchanged;
-    ae_bool issecondarytermchanged;
-    ae_bool islineartermchanged;
-    ae_bool isactivesetchanged;
+typedef struct {
+  ae_int_t n;
+  ae_int_t k;
+  double alpha;
+  double tau;
+  double theta;
+  ae_matrix a;
+  ae_matrix q;
+  ae_vector b;
+  ae_vector r;
+  ae_vector xc;
+  ae_vector d;
+  ae_vector activeset;
+  ae_matrix tq2dense;
+  ae_matrix tk2;
+  ae_vector tq2diag;
+  ae_vector tq1;
+  ae_vector tk1;
+  double tq0;
+  double tk0;
+  ae_vector txc;
+  ae_vector tb;
+  ae_int_t nfree;
+  ae_int_t ecakind;
+  ae_matrix ecadense;
+  ae_matrix eq;
+  ae_matrix eccm;
+  ae_vector ecadiag;
+  ae_vector eb;
+  double ec;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  ae_vector tmpg;
+  ae_matrix tmp2;
+  ae_bool ismaintermchanged;
+  ae_bool issecondarytermchanged;
+  ae_bool islineartermchanged;
+  ae_bool isactivesetchanged;
 } convexquadraticmodel;
 #endif
 #if defined(AE_COMPILE_OPTGUARDAPI) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_bool nonc0suspected;
-    ae_bool nonc0test0positive;
-    ae_int_t nonc0fidx;
-    double nonc0lipschitzc;
-    ae_bool nonc1suspected;
-    ae_bool nonc1test0positive;
-    ae_bool nonc1test1positive;
-    ae_int_t nonc1fidx;
-    double nonc1lipschitzc;
-    ae_bool badgradsuspected;
-    ae_int_t badgradfidx;
-    ae_int_t badgradvidx;
-    ae_vector badgradxbase;
-    ae_matrix badgraduser;
-    ae_matrix badgradnum;
+typedef struct {
+  ae_bool nonc0suspected;
+  ae_bool nonc0test0positive;
+  ae_int_t nonc0fidx;
+  double nonc0lipschitzc;
+  ae_bool nonc1suspected;
+  ae_bool nonc1test0positive;
+  ae_bool nonc1test1positive;
+  ae_int_t nonc1fidx;
+  double nonc1lipschitzc;
+  ae_bool badgradsuspected;
+  ae_int_t badgradfidx;
+  ae_int_t badgradvidx;
+  ae_vector badgradxbase;
+  ae_matrix badgraduser;
+  ae_matrix badgradnum;
 } optguardreport;
-typedef struct
-{
-    ae_bool positive;
-    ae_int_t fidx;
-    ae_vector x0;
-    ae_vector d;
-    ae_int_t n;
-    ae_vector stp;
-    ae_vector f;
-    ae_int_t cnt;
-    ae_int_t stpidxa;
-    ae_int_t stpidxb;
+typedef struct {
+  ae_bool positive;
+  ae_int_t fidx;
+  ae_vector x0;
+  ae_vector d;
+  ae_int_t n;
+  ae_vector stp;
+  ae_vector f;
+  ae_int_t cnt;
+  ae_int_t stpidxa;
+  ae_int_t stpidxb;
 } optguardnonc0report;
-typedef struct
-{
-    ae_bool positive;
-    ae_int_t fidx;
-    ae_vector x0;
-    ae_vector d;
-    ae_int_t n;
-    ae_vector stp;
-    ae_vector f;
-    ae_int_t cnt;
-    ae_int_t stpidxa;
-    ae_int_t stpidxb;
+typedef struct {
+  ae_bool positive;
+  ae_int_t fidx;
+  ae_vector x0;
+  ae_vector d;
+  ae_int_t n;
+  ae_vector stp;
+  ae_vector f;
+  ae_int_t cnt;
+  ae_int_t stpidxa;
+  ae_int_t stpidxb;
 } optguardnonc1test0report;
-typedef struct
-{
-    ae_bool positive;
-    ae_int_t fidx;
-    ae_int_t vidx;
-    ae_vector x0;
-    ae_vector d;
-    ae_int_t n;
-    ae_vector stp;
-    ae_vector g;
-    ae_int_t cnt;
-    ae_int_t stpidxa;
-    ae_int_t stpidxb;
+typedef struct {
+  ae_bool positive;
+  ae_int_t fidx;
+  ae_int_t vidx;
+  ae_vector x0;
+  ae_vector d;
+  ae_int_t n;
+  ae_vector stp;
+  ae_vector g;
+  ae_int_t cnt;
+  ae_int_t stpidxa;
+  ae_int_t stpidxb;
 } optguardnonc1test1report;
 #endif
 #if defined(AE_COMPILE_OPTSERV) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_vector norms;
-    ae_vector alpha;
-    ae_vector rho;
-    ae_matrix yk;
-    ae_vector idx;
-    ae_vector bufa;
-    ae_vector bufb;
+typedef struct {
+  ae_vector norms;
+  ae_vector alpha;
+  ae_vector rho;
+  ae_matrix yk;
+  ae_vector idx;
+  ae_vector bufa;
+  ae_vector bufb;
 } precbuflbfgs;
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t k;
-    ae_vector d;
-    ae_matrix v;
-    ae_vector bufc;
-    ae_matrix bufz;
-    ae_matrix bufw;
-    ae_vector tmp;
+typedef struct {
+  ae_int_t n;
+  ae_int_t k;
+  ae_vector d;
+  ae_matrix v;
+  ae_vector bufc;
+  ae_matrix bufz;
+  ae_matrix bufw;
+  ae_vector tmp;
 } precbuflowrank;
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t k;
-    ae_bool checksmoothness;
-    ae_vector dcur;
-    ae_int_t enqueuedcnt;
-    ae_vector enqueuedstp;
-    ae_vector enqueuedx;
-    ae_vector enqueuedfunc;
-    ae_matrix enqueuedjac;
-    ae_vector sortedstp;
-    ae_vector sortedidx;
-    ae_int_t sortedcnt;
-    double probingstp;
-    ae_vector probingf;
-    ae_int_t probingnvalues;
-    double probingstepmax;
-    double probingstepscale;
-    ae_int_t probingnstepsstored;
-    ae_vector probingsteps;
-    ae_matrix probingvalues;
-    ae_matrix probingslopes;
-    rcommstate probingrcomm;
-    ae_bool linesearchspoiled;
-    ae_bool linesearchstarted;
-    double nonc0currentrating;
-    double nonc1currentrating;
-    ae_bool badgradhasxj;
-    optguardreport rep;
-    double nonc0strrating;
-    double nonc0lngrating;
-    optguardnonc0report nonc0strrep;
-    optguardnonc0report nonc0lngrep;
-    double nonc1test0strrating;
-    double nonc1test0lngrating;
-    optguardnonc1test0report nonc1test0strrep;
-    optguardnonc1test0report nonc1test0lngrep;
-    double nonc1test1strrating;
-    double nonc1test1lngrating;
-    optguardnonc1test1report nonc1test1strrep;
-    optguardnonc1test1report nonc1test1lngrep;
-    ae_bool needfij;
-    ae_vector x;
-    ae_vector fi;
-    ae_matrix j;
-    rcommstate rstateg0;
-    ae_vector xbase;
-    ae_vector fbase;
-    ae_vector fm;
-    ae_vector fc;
-    ae_vector fp;
-    ae_vector jm;
-    ae_vector jc;
-    ae_vector jp;
-    ae_matrix jbaseusr;
-    ae_matrix jbasenum;
-    ae_vector stp;
-    ae_vector bufr;
-    ae_vector f;
-    ae_vector g;
-    ae_vector deltax;
-    ae_vector tmpidx;
-    ae_vector bufi;
-    ae_vector xu;
-    ae_vector du;
-    ae_vector f0;
-    ae_matrix j0;
+typedef struct {
+  ae_int_t n;
+  ae_int_t k;
+  ae_bool checksmoothness;
+  ae_vector dcur;
+  ae_int_t enqueuedcnt;
+  ae_vector enqueuedstp;
+  ae_vector enqueuedx;
+  ae_vector enqueuedfunc;
+  ae_matrix enqueuedjac;
+  ae_vector sortedstp;
+  ae_vector sortedidx;
+  ae_int_t sortedcnt;
+  double probingstp;
+  ae_vector probingf;
+  ae_int_t probingnvalues;
+  double probingstepmax;
+  double probingstepscale;
+  ae_int_t probingnstepsstored;
+  ae_vector probingsteps;
+  ae_matrix probingvalues;
+  ae_matrix probingslopes;
+  rcommstate probingrcomm;
+  ae_bool linesearchspoiled;
+  ae_bool linesearchstarted;
+  double nonc0currentrating;
+  double nonc1currentrating;
+  ae_bool badgradhasxj;
+  optguardreport rep;
+  double nonc0strrating;
+  double nonc0lngrating;
+  optguardnonc0report nonc0strrep;
+  optguardnonc0report nonc0lngrep;
+  double nonc1test0strrating;
+  double nonc1test0lngrating;
+  optguardnonc1test0report nonc1test0strrep;
+  optguardnonc1test0report nonc1test0lngrep;
+  double nonc1test1strrating;
+  double nonc1test1lngrating;
+  optguardnonc1test1report nonc1test1strrep;
+  optguardnonc1test1report nonc1test1lngrep;
+  ae_bool needfij;
+  ae_vector x;
+  ae_vector fi;
+  ae_matrix j;
+  rcommstate rstateg0;
+  ae_vector xbase;
+  ae_vector fbase;
+  ae_vector fm;
+  ae_vector fc;
+  ae_vector fp;
+  ae_vector jm;
+  ae_vector jc;
+  ae_vector jp;
+  ae_matrix jbaseusr;
+  ae_matrix jbasenum;
+  ae_vector stp;
+  ae_vector bufr;
+  ae_vector f;
+  ae_vector g;
+  ae_vector deltax;
+  ae_vector tmpidx;
+  ae_vector bufi;
+  ae_vector xu;
+  ae_vector du;
+  ae_vector f0;
+  ae_matrix j0;
 } smoothnessmonitor;
 #endif
 #if defined(AE_COMPILE_SNNLS) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t ns;
-    ae_int_t nd;
-    ae_int_t nr;
-    ae_matrix densea;
-    ae_vector b;
-    ae_vector nnc;
-    double debugflops;
-    ae_int_t debugmaxinnerits;
-    ae_vector xn;
-    ae_vector xp;
-    ae_matrix tmpca;
-    ae_matrix tmplq;
-    ae_matrix trda;
-    ae_vector trdd;
-    ae_vector crb;
-    ae_vector g;
-    ae_vector d;
-    ae_vector dx;
-    ae_vector diagaa;
-    ae_vector cb;
-    ae_vector cx;
-    ae_vector cborg;
-    ae_vector tmpcholesky;
-    ae_vector r;
-    ae_vector regdiag;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    ae_vector tmp2;
-    ae_vector rdtmprowmap;
+typedef struct {
+  ae_int_t ns;
+  ae_int_t nd;
+  ae_int_t nr;
+  ae_matrix densea;
+  ae_vector b;
+  ae_vector nnc;
+  double debugflops;
+  ae_int_t debugmaxinnerits;
+  ae_vector xn;
+  ae_vector xp;
+  ae_matrix tmpca;
+  ae_matrix tmplq;
+  ae_matrix trda;
+  ae_vector trdd;
+  ae_vector crb;
+  ae_vector g;
+  ae_vector d;
+  ae_vector dx;
+  ae_vector diagaa;
+  ae_vector cb;
+  ae_vector cx;
+  ae_vector cborg;
+  ae_vector tmpcholesky;
+  ae_vector r;
+  ae_vector regdiag;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  ae_vector tmp2;
+  ae_vector rdtmprowmap;
 } snnlssolver;
 #endif
 #if defined(AE_COMPILE_SACTIVESETS) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t algostate;
-    ae_vector xc;
-    ae_bool hasxc;
-    ae_vector s;
-    ae_vector h;
-    ae_vector cstatus;
-    ae_bool basisisready;
-    ae_matrix sdensebatch;
-    ae_matrix pdensebatch;
-    ae_matrix idensebatch;
-    ae_int_t densebatchsize;
-    ae_vector sparsebatch;
-    ae_int_t sparsebatchsize;
-    ae_int_t basisage;
-    ae_bool feasinitpt;
-    ae_bool constraintschanged;
-    ae_vector hasbndl;
-    ae_vector hasbndu;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_matrix cleic;
-    ae_int_t nec;
-    ae_int_t nic;
-    ae_vector mtnew;
-    ae_vector mtx;
-    ae_vector mtas;
-    ae_vector cdtmp;
-    ae_vector corrtmp;
-    ae_vector unitdiagonal;
-    snnlssolver solver;
-    ae_vector scntmp;
-    ae_vector tmp0;
-    ae_vector tmpfeas;
-    ae_matrix tmpm0;
-    ae_vector rctmps;
-    ae_vector rctmpg;
-    ae_vector rctmprightpart;
-    ae_matrix rctmpdense0;
-    ae_matrix rctmpdense1;
-    ae_vector rctmpisequality;
-    ae_vector rctmpconstraintidx;
-    ae_vector rctmplambdas;
-    ae_matrix tmpbasis;
-    ae_vector tmpnormestimates;
-    ae_vector tmpreciph;
-    ae_vector tmpprodp;
-    ae_vector tmpprods;
-    ae_vector tmpcp;
-    ae_vector tmpcs;
-    ae_vector tmpci;
+typedef struct {
+  ae_int_t n;
+  ae_int_t algostate;
+  ae_vector xc;
+  ae_bool hasxc;
+  ae_vector s;
+  ae_vector h;
+  ae_vector cstatus;
+  ae_bool basisisready;
+  ae_matrix sdensebatch;
+  ae_matrix pdensebatch;
+  ae_matrix idensebatch;
+  ae_int_t densebatchsize;
+  ae_vector sparsebatch;
+  ae_int_t sparsebatchsize;
+  ae_int_t basisage;
+  ae_bool feasinitpt;
+  ae_bool constraintschanged;
+  ae_vector hasbndl;
+  ae_vector hasbndu;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_matrix cleic;
+  ae_int_t nec;
+  ae_int_t nic;
+  ae_vector mtnew;
+  ae_vector mtx;
+  ae_vector mtas;
+  ae_vector cdtmp;
+  ae_vector corrtmp;
+  ae_vector unitdiagonal;
+  snnlssolver solver;
+  ae_vector scntmp;
+  ae_vector tmp0;
+  ae_vector tmpfeas;
+  ae_matrix tmpm0;
+  ae_vector rctmps;
+  ae_vector rctmpg;
+  ae_vector rctmprightpart;
+  ae_matrix rctmpdense0;
+  ae_matrix rctmpdense1;
+  ae_vector rctmpisequality;
+  ae_vector rctmpconstraintidx;
+  ae_vector rctmplambdas;
+  ae_matrix tmpbasis;
+  ae_vector tmpnormestimates;
+  ae_vector tmpreciph;
+  ae_vector tmpprodp;
+  ae_vector tmpprods;
+  ae_vector tmpcp;
+  ae_vector tmpcs;
+  ae_vector tmpci;
 } sactiveset;
 #endif
 #if defined(AE_COMPILE_QQPSOLVER) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    double epsg;
-    double epsf;
-    double epsx;
-    ae_int_t maxouterits;
-    ae_bool cgphase;
-    ae_bool cnphase;
-    ae_int_t cgminits;
-    ae_int_t cgmaxits;
-    ae_int_t cnmaxupdates;
-    ae_int_t sparsesolver;
+typedef struct {
+  double epsg;
+  double epsf;
+  double epsx;
+  ae_int_t maxouterits;
+  ae_bool cgphase;
+  ae_bool cnphase;
+  ae_int_t cgminits;
+  ae_int_t cgmaxits;
+  ae_int_t cnmaxupdates;
+  ae_int_t sparsesolver;
 } qqpsettings;
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t akind;
-    ae_matrix densea;
-    sparsematrix sparsea;
-    ae_bool sparseupper;
-    double absamax;
-    double absasum;
-    double absasum2;
-    ae_vector b;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_vector havebndl;
-    ae_vector havebndu;
-    ae_vector xs;
-    ae_vector xf;
-    ae_vector gc;
-    ae_vector xp;
-    ae_vector dc;
-    ae_vector dp;
-    ae_vector cgc;
-    ae_vector cgp;
-    sactiveset sas;
-    ae_vector activated;
-    ae_int_t nfree;
-    ae_int_t cnmodelage;
-    ae_matrix densez;
-    sparsematrix sparsecca;
-    ae_vector yidx;
-    ae_vector regdiag;
-    ae_vector regx0;
-    ae_vector tmpcn;
-    ae_vector tmpcni;
-    ae_vector tmpcnb;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    ae_vector stpbuf;
-    sparsebuffers sbuf;
-    ae_int_t repinneriterationscount;
-    ae_int_t repouteriterationscount;
-    ae_int_t repncholesky;
-    ae_int_t repncupdates;
+typedef struct {
+  ae_int_t n;
+  ae_int_t akind;
+  ae_matrix densea;
+  sparsematrix sparsea;
+  ae_bool sparseupper;
+  double absamax;
+  double absasum;
+  double absasum2;
+  ae_vector b;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_vector havebndl;
+  ae_vector havebndu;
+  ae_vector xs;
+  ae_vector xf;
+  ae_vector gc;
+  ae_vector xp;
+  ae_vector dc;
+  ae_vector dp;
+  ae_vector cgc;
+  ae_vector cgp;
+  sactiveset sas;
+  ae_vector activated;
+  ae_int_t nfree;
+  ae_int_t cnmodelage;
+  ae_matrix densez;
+  sparsematrix sparsecca;
+  ae_vector yidx;
+  ae_vector regdiag;
+  ae_vector regx0;
+  ae_vector tmpcn;
+  ae_vector tmpcni;
+  ae_vector tmpcnb;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  ae_vector stpbuf;
+  sparsebuffers sbuf;
+  ae_int_t repinneriterationscount;
+  ae_int_t repouteriterationscount;
+  ae_int_t repncholesky;
+  ae_int_t repncupdates;
 } qqpbuffers;
 #endif
 #if defined(AE_COMPILE_LPQPSERV) || !defined(AE_PARTIAL_BUILD)
 #endif
 #if defined(AE_COMPILE_VIPMSOLVER) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t m;
-    ae_vector x;
-    ae_vector g;
-    ae_vector w;
-    ae_vector t;
-    ae_vector p;
-    ae_vector y;
-    ae_vector z;
-    ae_vector v;
-    ae_vector s;
-    ae_vector q;
+typedef struct {
+  ae_int_t n;
+  ae_int_t m;
+  ae_vector x;
+  ae_vector g;
+  ae_vector w;
+  ae_vector t;
+  ae_vector p;
+  ae_vector y;
+  ae_vector z;
+  ae_vector v;
+  ae_vector s;
+  ae_vector q;
 } vipmvars;
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t nmain;
-    double regeps;
-    double epsp;
-    double epsd;
-    double epsgap;
-    ae_bool islinear;
-    ae_vector scl;
-    ae_vector invscl;
-    ae_vector xorigin;
-    double targetscale;
-    ae_vector c;
-    ae_matrix denseh;
-    sparsematrix sparseh;
-    ae_int_t hkind;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_vector rawbndl;
-    ae_vector rawbndu;
-    ae_vector hasbndl;
-    ae_vector hasbndu;
-    ae_matrix denseafull;
-    ae_matrix denseamain;
-    sparsematrix sparseafull;
-    sparsematrix sparseamain;
-    sparsematrix combinedaslack;
-    ae_vector ascales;
-    ae_vector b;
-    ae_vector r;
-    ae_vector hasr;
-    ae_int_t mdense;
-    ae_int_t msparse;
-    vipmvars current;
-    vipmvars trial;
-    vipmvars deltaaff;
-    vipmvars deltacorr;
-    double errp2;
-    double errd2;
-    double errpinf;
-    double errdinf;
-    ae_int_t repiterationscount;
-    ae_int_t repncholesky;
-    ae_int_t factorizationtype;
-    ae_bool factorizationpoweredup;
-    ae_bool factorizationpresent;
-    ae_vector diagginvz;
-    ae_vector diagzinvg;
-    ae_vector diagtinvs;
-    ae_vector diagsinvt;
-    ae_vector diagvinvw;
-    ae_vector diagpinvq;
-    ae_vector diagqinvp;
-    ae_vector diagd;
-    ae_vector diage;
-    ae_matrix factdensehaug;
-    ae_vector factdh;
-    ae_vector factdz;
-    ae_vector factinvdz;
-    ae_vector facteffectivee;
-    sparsematrix factsparsekkttmpl;
-    sparsematrix factsparsekkt;
-    ae_vector factsparsekktpivp;
-    ae_vector factsparsekktpivq;
-    ae_vector rhsrho;
-    ae_vector rhsnu;
-    ae_vector rhstau;
-    ae_vector rhsalpha;
-    ae_vector rhssigma;
-    ae_vector rhsbeta;
-    ae_vector rhsgammaz;
-    ae_vector rhsgammas;
-    ae_vector rhsgammaw;
-    ae_vector rhsgammaq;
-    ae_vector rhsalphacap;
-    ae_vector rhsbetacap;
-    ae_vector rhsnucap;
-    ae_vector rhstaucap;
-    ae_vector deltaxy;
-    ae_vector tmphx;
-    ae_vector tmpax;
-    ae_vector tmpaty;
-    ae_vector dummyr;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    ae_vector tmp2;
-    ae_matrix tmpr2;
-    ae_vector evalprogressg;
-    ae_vector tmpi;
-    sparsematrix tmpsparse0;
-    sparsematrix tmpsparse1;
+typedef struct {
+  ae_int_t n;
+  ae_int_t nmain;
+  double regeps;
+  double epsp;
+  double epsd;
+  double epsgap;
+  ae_bool islinear;
+  ae_vector scl;
+  ae_vector invscl;
+  ae_vector xorigin;
+  double targetscale;
+  ae_vector c;
+  ae_matrix denseh;
+  sparsematrix sparseh;
+  ae_int_t hkind;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_vector rawbndl;
+  ae_vector rawbndu;
+  ae_vector hasbndl;
+  ae_vector hasbndu;
+  ae_matrix denseafull;
+  ae_matrix denseamain;
+  sparsematrix sparseafull;
+  sparsematrix sparseamain;
+  sparsematrix combinedaslack;
+  ae_vector ascales;
+  ae_vector b;
+  ae_vector r;
+  ae_vector hasr;
+  ae_int_t mdense;
+  ae_int_t msparse;
+  vipmvars current;
+  vipmvars trial;
+  vipmvars deltaaff;
+  vipmvars deltacorr;
+  double errp2;
+  double errd2;
+  double errpinf;
+  double errdinf;
+  ae_int_t repiterationscount;
+  ae_int_t repncholesky;
+  ae_int_t factorizationtype;
+  ae_bool factorizationpoweredup;
+  ae_bool factorizationpresent;
+  ae_vector diagginvz;
+  ae_vector diagzinvg;
+  ae_vector diagtinvs;
+  ae_vector diagsinvt;
+  ae_vector diagvinvw;
+  ae_vector diagpinvq;
+  ae_vector diagqinvp;
+  ae_vector diagd;
+  ae_vector diage;
+  ae_matrix factdensehaug;
+  ae_vector factdh;
+  ae_vector factdz;
+  ae_vector factinvdz;
+  ae_vector facteffectivee;
+  sparsematrix factsparsekkttmpl;
+  sparsematrix factsparsekkt;
+  ae_vector factsparsekktpivp;
+  ae_vector factsparsekktpivq;
+  ae_vector rhsrho;
+  ae_vector rhsnu;
+  ae_vector rhstau;
+  ae_vector rhsalpha;
+  ae_vector rhssigma;
+  ae_vector rhsbeta;
+  ae_vector rhsgammaz;
+  ae_vector rhsgammas;
+  ae_vector rhsgammaw;
+  ae_vector rhsgammaq;
+  ae_vector rhsalphacap;
+  ae_vector rhsbetacap;
+  ae_vector rhsnucap;
+  ae_vector rhstaucap;
+  ae_vector deltaxy;
+  ae_vector tmphx;
+  ae_vector tmpax;
+  ae_vector tmpaty;
+  ae_vector dummyr;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  ae_vector tmp2;
+  ae_matrix tmpr2;
+  ae_vector evalprogressg;
+  ae_vector tmpi;
+  sparsematrix tmpsparse0;
+  sparsematrix tmpsparse1;
 } vipmstate;
 #endif
 #if defined(AE_COMPILE_NLCSQP) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t algokind;
-    vipmstate ipmsolver;
-    ae_vector curb;
-    ae_vector curbndl;
-    ae_vector curbndu;
-    ae_vector cural;
-    ae_vector curau;
-    sparsematrix sparserawlc;
-    sparsematrix sparseefflc;
-    ae_vector d0;
-    ae_matrix h;
-    ae_matrix densedummy;
-    sparsematrix sparsedummy;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    ae_vector tmp2;
-    ae_vector sk;
-    ae_vector yk;
-    ae_vector hasbndl;
-    ae_vector hasbndu;
-    ae_vector hasal;
-    ae_vector hasau;
-    ae_matrix activea;
-    ae_vector activerhs;
-    ae_vector activeidx;
-    ae_int_t activesetsize;
+typedef struct {
+  ae_int_t algokind;
+  vipmstate ipmsolver;
+  ae_vector curb;
+  ae_vector curbndl;
+  ae_vector curbndu;
+  ae_vector cural;
+  ae_vector curau;
+  sparsematrix sparserawlc;
+  sparsematrix sparseefflc;
+  ae_vector d0;
+  ae_matrix h;
+  ae_matrix densedummy;
+  sparsematrix sparsedummy;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  ae_vector tmp2;
+  ae_vector sk;
+  ae_vector yk;
+  ae_vector hasbndl;
+  ae_vector hasbndu;
+  ae_vector hasal;
+  ae_vector hasau;
+  ae_matrix activea;
+  ae_vector activerhs;
+  ae_vector activeidx;
+  ae_int_t activesetsize;
 } minsqpsubsolver;
-typedef struct
-{
-    ae_vector sclagtmp0;
-    ae_vector sclagtmp1;
+typedef struct {
+  ae_vector sclagtmp0;
+  ae_vector sclagtmp1;
 } minsqptmplagrangian;
-typedef struct
-{
-    ae_vector mftmp0;
+typedef struct {
+  ae_vector mftmp0;
 } minsqptmpmerit;
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t nec;
-    ae_int_t nic;
-    ae_int_t nlec;
-    ae_int_t nlic;
-    ae_vector d;
-    ae_vector dx;
-    ae_vector stepkx;
-    ae_vector stepkxc;
-    ae_vector stepkxn;
-    ae_vector stepkfi;
-    ae_vector stepkfic;
-    ae_vector stepkfin;
-    ae_matrix stepkj;
-    ae_matrix stepkjc;
-    ae_matrix stepkjn;
-    ae_vector lagmult;
-    ae_vector dummylagmult;
-    minsqptmpmerit tmpmerit;
-    minsqptmplagrangian tmplagrangianfg;
-    ae_vector stepklaggrad;
-    ae_vector stepknlaggrad;
-    ae_int_t status;
-    rcommstate rmeritphasestate;
+typedef struct {
+  ae_int_t n;
+  ae_int_t nec;
+  ae_int_t nic;
+  ae_int_t nlec;
+  ae_int_t nlic;
+  ae_vector d;
+  ae_vector dx;
+  ae_vector stepkx;
+  ae_vector stepkxc;
+  ae_vector stepkxn;
+  ae_vector stepkfi;
+  ae_vector stepkfic;
+  ae_vector stepkfin;
+  ae_matrix stepkj;
+  ae_matrix stepkjc;
+  ae_matrix stepkjn;
+  ae_vector lagmult;
+  ae_vector dummylagmult;
+  minsqptmpmerit tmpmerit;
+  minsqptmplagrangian tmplagrangianfg;
+  ae_vector stepklaggrad;
+  ae_vector stepknlaggrad;
+  ae_int_t status;
+  rcommstate rmeritphasestate;
 } minsqpmeritphasestate;
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t nec;
-    ae_int_t nic;
-    ae_int_t nlec;
-    ae_int_t nlic;
-    ae_vector s;
-    ae_matrix scaledcleic;
-    ae_vector lcsrcidx;
-    ae_vector hasbndl;
-    ae_vector hasbndu;
-    ae_vector scaledbndl;
-    ae_vector scaledbndu;
-    double epsx;
-    ae_int_t maxits;
-    ae_vector x;
-    ae_vector fi;
-    ae_matrix j;
-    double f;
-    ae_bool needfij;
-    ae_bool xupdated;
-    minsqpmeritphasestate meritstate;
-    double trustrad;
-    ae_int_t fstagnationcnt;
-    ae_vector step0x;
-    ae_vector stepkx;
-    ae_vector backupx;
-    ae_vector step0fi;
-    ae_vector stepkfi;
-    ae_vector backupfi;
-    ae_matrix step0j;
-    ae_matrix stepkj;
-    ae_bool haslagmult;
-    ae_vector meritlagmult;
-    ae_vector dummylagmult;
-    ae_vector fscales;
-    minsqpsubsolver subsolver;
-    minsqptmpmerit tmpmerit;
-    ae_int_t repsimplexiterations;
-    ae_int_t repsimplexiterations1;
-    ae_int_t repsimplexiterations2;
-    ae_int_t repsimplexiterations3;
-    ae_int_t repiterationscount;
-    ae_int_t repterminationtype;
-    double repbcerr;
-    ae_int_t repbcidx;
-    double replcerr;
-    ae_int_t replcidx;
-    double repnlcerr;
-    ae_int_t repnlcidx;
-    rcommstate rstate;
+typedef struct {
+  ae_int_t n;
+  ae_int_t nec;
+  ae_int_t nic;
+  ae_int_t nlec;
+  ae_int_t nlic;
+  ae_vector s;
+  ae_matrix scaledcleic;
+  ae_vector lcsrcidx;
+  ae_vector hasbndl;
+  ae_vector hasbndu;
+  ae_vector scaledbndl;
+  ae_vector scaledbndu;
+  double epsx;
+  ae_int_t maxits;
+  ae_vector x;
+  ae_vector fi;
+  ae_matrix j;
+  double f;
+  ae_bool needfij;
+  ae_bool xupdated;
+  minsqpmeritphasestate meritstate;
+  double trustrad;
+  ae_int_t fstagnationcnt;
+  ae_vector step0x;
+  ae_vector stepkx;
+  ae_vector backupx;
+  ae_vector step0fi;
+  ae_vector stepkfi;
+  ae_vector backupfi;
+  ae_matrix step0j;
+  ae_matrix stepkj;
+  ae_bool haslagmult;
+  ae_vector meritlagmult;
+  ae_vector dummylagmult;
+  ae_vector fscales;
+  minsqpsubsolver subsolver;
+  minsqptmpmerit tmpmerit;
+  ae_int_t repsimplexiterations;
+  ae_int_t repsimplexiterations1;
+  ae_int_t repsimplexiterations2;
+  ae_int_t repsimplexiterations3;
+  ae_int_t repiterationscount;
+  ae_int_t repterminationtype;
+  double repbcerr;
+  ae_int_t repbcidx;
+  double replcerr;
+  ae_int_t replcidx;
+  double repnlcerr;
+  ae_int_t repnlcidx;
+  rcommstate rstate;
 } minsqpstate;
 #endif
 #if defined(AE_COMPILE_MINLBFGS) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t m;
-    double epsg;
-    double epsf;
-    double epsx;
-    ae_int_t maxits;
-    ae_bool xrep;
-    double stpmax;
-    ae_vector s;
-    double diffstep;
-    ae_int_t nfev;
-    ae_int_t mcstage;
-    ae_int_t k;
-    ae_int_t q;
-    ae_int_t p;
-    ae_vector rho;
-    ae_matrix yk;
-    ae_matrix sk;
-    ae_vector xp;
-    ae_vector theta;
-    ae_vector d;
-    double stp;
-    ae_vector work;
-    double fold;
-    double trimthreshold;
-    ae_vector xbase;
-    ae_int_t prectype;
-    double gammak;
-    ae_matrix denseh;
-    ae_vector diagh;
-    ae_vector precc;
-    ae_vector precd;
-    ae_matrix precw;
-    ae_int_t preck;
-    precbuflbfgs precbuf;
-    precbuflowrank lowrankbuf;
-    double fbase;
-    double fm2;
-    double fm1;
-    double fp1;
-    double fp2;
-    ae_vector autobuf;
-    ae_vector invs;
-    ae_vector x;
-    double f;
-    ae_vector g;
-    ae_bool needf;
-    ae_bool needfg;
-    ae_bool xupdated;
-    ae_bool userterminationneeded;
-    double teststep;
-    rcommstate rstate;
-    ae_int_t repiterationscount;
-    ae_int_t repnfev;
-    ae_int_t repterminationtype;
-    linminstate lstate;
-    ae_int_t smoothnessguardlevel;
-    smoothnessmonitor smonitor;
-    ae_vector lastscaleused;
+typedef struct {
+  ae_int_t n;
+  ae_int_t m;
+  double epsg;
+  double epsf;
+  double epsx;
+  ae_int_t maxits;
+  ae_bool xrep;
+  double stpmax;
+  ae_vector s;
+  double diffstep;
+  ae_int_t nfev;
+  ae_int_t mcstage;
+  ae_int_t k;
+  ae_int_t q;
+  ae_int_t p;
+  ae_vector rho;
+  ae_matrix yk;
+  ae_matrix sk;
+  ae_vector xp;
+  ae_vector theta;
+  ae_vector d;
+  double stp;
+  ae_vector work;
+  double fold;
+  double trimthreshold;
+  ae_vector xbase;
+  ae_int_t prectype;
+  double gammak;
+  ae_matrix denseh;
+  ae_vector diagh;
+  ae_vector precc;
+  ae_vector precd;
+  ae_matrix precw;
+  ae_int_t preck;
+  precbuflbfgs precbuf;
+  precbuflowrank lowrankbuf;
+  double fbase;
+  double fm2;
+  double fm1;
+  double fp1;
+  double fp2;
+  ae_vector autobuf;
+  ae_vector invs;
+  ae_vector x;
+  double f;
+  ae_vector g;
+  ae_bool needf;
+  ae_bool needfg;
+  ae_bool xupdated;
+  ae_bool userterminationneeded;
+  double teststep;
+  rcommstate rstate;
+  ae_int_t repiterationscount;
+  ae_int_t repnfev;
+  ae_int_t repterminationtype;
+  linminstate lstate;
+  ae_int_t smoothnessguardlevel;
+  smoothnessmonitor smonitor;
+  ae_vector lastscaleused;
 } minlbfgsstate;
-typedef struct
-{
-    ae_int_t iterationscount;
-    ae_int_t nfev;
-    ae_int_t terminationtype;
+typedef struct {
+  ae_int_t iterationscount;
+  ae_int_t nfev;
+  ae_int_t terminationtype;
 } minlbfgsreport;
 #endif
 #if defined(AE_COMPILE_QPDENSEAULSOLVER) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    double epsx;
-    ae_int_t outerits;
-    double rho;
+typedef struct {
+  double epsx;
+  ae_int_t outerits;
+  double rho;
 } qpdenseaulsettings;
-typedef struct
-{
-    ae_vector nulc;
-    ae_matrix sclsfta;
-    ae_vector sclsftb;
-    ae_vector sclsfthasbndl;
-    ae_vector sclsfthasbndu;
-    ae_vector sclsftbndl;
-    ae_vector sclsftbndu;
-    ae_vector sclsftxc;
-    ae_matrix sclsftcleic;
-    ae_vector cidx;
-    ae_vector cscales;
-    ae_matrix exa;
-    ae_vector exb;
-    ae_vector exxc;
-    ae_vector exbndl;
-    ae_vector exbndu;
-    ae_vector exscale;
-    ae_vector exxorigin;
-    qqpsettings qqpsettingsuser;
-    qqpbuffers qqpbuf;
-    ae_vector nulcest;
-    ae_vector tmpg;
-    ae_vector tmp0;
-    ae_matrix tmp2;
-    ae_vector modelg;
-    ae_vector d;
-    ae_vector deltax;
-    convexquadraticmodel dummycqm;
-    sparsematrix dummysparse;
-    ae_matrix qrkkt;
-    ae_vector qrrightpart;
-    ae_vector qrtau;
-    ae_vector qrsv0;
-    ae_vector qrsvx1;
-    ae_vector nicerr;
-    ae_vector nicnact;
-    ae_int_t repinneriterationscount;
-    ae_int_t repouteriterationscount;
-    ae_int_t repncholesky;
-    ae_int_t repnwrkchanges;
-    ae_int_t repnwrk0;
-    ae_int_t repnwrk1;
-    ae_int_t repnwrkf;
-    ae_int_t repnmv;
+typedef struct {
+  ae_vector nulc;
+  ae_matrix sclsfta;
+  ae_vector sclsftb;
+  ae_vector sclsfthasbndl;
+  ae_vector sclsfthasbndu;
+  ae_vector sclsftbndl;
+  ae_vector sclsftbndu;
+  ae_vector sclsftxc;
+  ae_matrix sclsftcleic;
+  ae_vector cidx;
+  ae_vector cscales;
+  ae_matrix exa;
+  ae_vector exb;
+  ae_vector exxc;
+  ae_vector exbndl;
+  ae_vector exbndu;
+  ae_vector exscale;
+  ae_vector exxorigin;
+  qqpsettings qqpsettingsuser;
+  qqpbuffers qqpbuf;
+  ae_vector nulcest;
+  ae_vector tmpg;
+  ae_vector tmp0;
+  ae_matrix tmp2;
+  ae_vector modelg;
+  ae_vector d;
+  ae_vector deltax;
+  convexquadraticmodel dummycqm;
+  sparsematrix dummysparse;
+  ae_matrix qrkkt;
+  ae_vector qrrightpart;
+  ae_vector qrtau;
+  ae_vector qrsv0;
+  ae_vector qrsvx1;
+  ae_vector nicerr;
+  ae_vector nicnact;
+  ae_int_t repinneriterationscount;
+  ae_int_t repouteriterationscount;
+  ae_int_t repncholesky;
+  ae_int_t repnwrkchanges;
+  ae_int_t repnwrk0;
+  ae_int_t repnwrk1;
+  ae_int_t repnwrkf;
+  ae_int_t repnmv;
 } qpdenseaulbuffers;
 #endif
 #if defined(AE_COMPILE_MINBLEIC) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t nmain;
-    ae_int_t nslack;
-    double epsg;
-    double epsf;
-    double epsx;
-    ae_int_t maxits;
-    ae_bool xrep;
-    ae_bool drep;
-    double stpmax;
-    double diffstep;
-    sactiveset sas;
-    ae_vector s;
-    ae_int_t prectype;
-    ae_vector diagh;
-    ae_vector x;
-    double f;
-    ae_vector g;
-    ae_bool needf;
-    ae_bool needfg;
-    ae_bool xupdated;
-    ae_bool lsstart;
-    ae_bool steepestdescentstep;
-    ae_bool boundedstep;
-    ae_bool userterminationneeded;
-    rcommstate rstate;
-    ae_vector ugc;
-    ae_vector cgc;
-    ae_vector xn;
-    ae_vector ugn;
-    ae_vector cgn;
-    ae_vector xp;
-    double fc;
-    double fn;
-    double fp;
-    ae_vector d;
-    ae_matrix cleic;
-    ae_int_t nec;
-    ae_int_t nic;
-    double lastgoodstep;
-    double lastscaledgoodstep;
-    double maxscaledgrad;
-    ae_vector hasbndl;
-    ae_vector hasbndu;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_int_t repinneriterationscount;
-    ae_int_t repouteriterationscount;
-    ae_int_t repnfev;
-    ae_int_t repvaridx;
-    ae_int_t repterminationtype;
-    double repdebugeqerr;
-    double repdebugfs;
-    double repdebugff;
-    double repdebugdx;
-    ae_int_t repdebugfeasqpits;
-    ae_int_t repdebugfeasgpaits;
-    ae_vector xstart;
-    snnlssolver solver;
-    double fbase;
-    double fm2;
-    double fm1;
-    double fp1;
-    double fp2;
-    double xm1;
-    double xp1;
-    double gm1;
-    double gp1;
-    ae_int_t cidx;
-    double cval;
-    ae_vector tmpprec;
-    ae_vector tmp0;
-    ae_int_t nfev;
-    ae_int_t mcstage;
-    double stp;
-    double curstpmax;
-    double activationstep;
-    ae_vector work;
-    linminstate lstate;
-    double trimthreshold;
-    ae_int_t nonmonotoniccnt;
-    ae_matrix bufyk;
-    ae_matrix bufsk;
-    ae_vector bufrho;
-    ae_vector buftheta;
-    ae_int_t bufsize;
-    double teststep;
-    ae_int_t smoothnessguardlevel;
-    smoothnessmonitor smonitor;
-    ae_vector lastscaleused;
-    ae_vector invs;
+typedef struct {
+  ae_int_t nmain;
+  ae_int_t nslack;
+  double epsg;
+  double epsf;
+  double epsx;
+  ae_int_t maxits;
+  ae_bool xrep;
+  ae_bool drep;
+  double stpmax;
+  double diffstep;
+  sactiveset sas;
+  ae_vector s;
+  ae_int_t prectype;
+  ae_vector diagh;
+  ae_vector x;
+  double f;
+  ae_vector g;
+  ae_bool needf;
+  ae_bool needfg;
+  ae_bool xupdated;
+  ae_bool lsstart;
+  ae_bool steepestdescentstep;
+  ae_bool boundedstep;
+  ae_bool userterminationneeded;
+  rcommstate rstate;
+  ae_vector ugc;
+  ae_vector cgc;
+  ae_vector xn;
+  ae_vector ugn;
+  ae_vector cgn;
+  ae_vector xp;
+  double fc;
+  double fn;
+  double fp;
+  ae_vector d;
+  ae_matrix cleic;
+  ae_int_t nec;
+  ae_int_t nic;
+  double lastgoodstep;
+  double lastscaledgoodstep;
+  double maxscaledgrad;
+  ae_vector hasbndl;
+  ae_vector hasbndu;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_int_t repinneriterationscount;
+  ae_int_t repouteriterationscount;
+  ae_int_t repnfev;
+  ae_int_t repvaridx;
+  ae_int_t repterminationtype;
+  double repdebugeqerr;
+  double repdebugfs;
+  double repdebugff;
+  double repdebugdx;
+  ae_int_t repdebugfeasqpits;
+  ae_int_t repdebugfeasgpaits;
+  ae_vector xstart;
+  snnlssolver solver;
+  double fbase;
+  double fm2;
+  double fm1;
+  double fp1;
+  double fp2;
+  double xm1;
+  double xp1;
+  double gm1;
+  double gp1;
+  ae_int_t cidx;
+  double cval;
+  ae_vector tmpprec;
+  ae_vector tmp0;
+  ae_int_t nfev;
+  ae_int_t mcstage;
+  double stp;
+  double curstpmax;
+  double activationstep;
+  ae_vector work;
+  linminstate lstate;
+  double trimthreshold;
+  ae_int_t nonmonotoniccnt;
+  ae_matrix bufyk;
+  ae_matrix bufsk;
+  ae_vector bufrho;
+  ae_vector buftheta;
+  ae_int_t bufsize;
+  double teststep;
+  ae_int_t smoothnessguardlevel;
+  smoothnessmonitor smonitor;
+  ae_vector lastscaleused;
+  ae_vector invs;
 } minbleicstate;
-typedef struct
-{
-    ae_int_t iterationscount;
-    ae_int_t nfev;
-    ae_int_t varidx;
-    ae_int_t terminationtype;
-    double debugeqerr;
-    double debugfs;
-    double debugff;
-    double debugdx;
-    ae_int_t debugfeasqpits;
-    ae_int_t debugfeasgpaits;
-    ae_int_t inneriterationscount;
-    ae_int_t outeriterationscount;
+typedef struct {
+  ae_int_t iterationscount;
+  ae_int_t nfev;
+  ae_int_t varidx;
+  ae_int_t terminationtype;
+  double debugeqerr;
+  double debugfs;
+  double debugff;
+  double debugdx;
+  ae_int_t debugfeasqpits;
+  ae_int_t debugfeasgpaits;
+  ae_int_t inneriterationscount;
+  ae_int_t outeriterationscount;
 } minbleicreport;
 #endif
 #if defined(AE_COMPILE_QPBLEICSOLVER) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    double epsg;
-    double epsf;
-    double epsx;
-    ae_int_t maxits;
+typedef struct {
+  double epsg;
+  double epsf;
+  double epsx;
+  ae_int_t maxits;
 } qpbleicsettings;
-typedef struct
-{
-    minbleicstate solver;
-    minbleicreport solverrep;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    ae_vector tmpi;
-    ae_int_t repinneriterationscount;
-    ae_int_t repouteriterationscount;
+typedef struct {
+  minbleicstate solver;
+  minbleicreport solverrep;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  ae_vector tmpi;
+  ae_int_t repinneriterationscount;
+  ae_int_t repouteriterationscount;
 } qpbleicbuffers;
 #endif
 #if defined(AE_COMPILE_MINQP) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    qqpsettings qqpsettingsuser;
-    qpbleicsettings qpbleicsettingsuser;
-    qpdenseaulsettings qpdenseaulsettingsuser;
-    double veps;
-    ae_bool dbgskipconstraintnormalization;
-    ae_int_t algokind;
-    ae_int_t akind;
-    convexquadraticmodel a;
-    sparsematrix sparsea;
-    ae_bool sparseaupper;
-    double absamax;
-    double absasum;
-    double absasum2;
-    ae_vector b;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_int_t stype;
-    ae_vector s;
-    ae_vector havebndl;
-    ae_vector havebndu;
-    ae_vector xorigin;
-    ae_vector startx;
-    ae_bool havex;
-    ae_matrix densec;
-    sparsematrix sparsec;
-    ae_vector cl;
-    ae_vector cu;
-    ae_int_t mdense;
-    ae_int_t msparse;
-    ae_vector xs;
-    ae_int_t repinneriterationscount;
-    ae_int_t repouteriterationscount;
-    ae_int_t repncholesky;
-    ae_int_t repnmv;
-    ae_int_t repterminationtype;
-    ae_vector replagbc;
-    ae_vector replaglc;
-    ae_vector effectives;
-    ae_vector tmp0;
-    ae_matrix ecleic;
-    ae_vector elaglc;
-    ae_vector elagmlt;
-    ae_vector elagidx;
-    ae_matrix dummyr2;
-    sparsematrix dummysparse;
-    ae_matrix tmpr2;
-    ae_bool qpbleicfirstcall;
-    qpbleicbuffers qpbleicbuf;
-    qqpbuffers qqpbuf;
-    qpdenseaulbuffers qpdenseaulbuf;
-    vipmstate vsolver;
+typedef struct {
+  ae_int_t n;
+  qqpsettings qqpsettingsuser;
+  qpbleicsettings qpbleicsettingsuser;
+  qpdenseaulsettings qpdenseaulsettingsuser;
+  double veps;
+  ae_bool dbgskipconstraintnormalization;
+  ae_int_t algokind;
+  ae_int_t akind;
+  convexquadraticmodel a;
+  sparsematrix sparsea;
+  ae_bool sparseaupper;
+  double absamax;
+  double absasum;
+  double absasum2;
+  ae_vector b;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_int_t stype;
+  ae_vector s;
+  ae_vector havebndl;
+  ae_vector havebndu;
+  ae_vector xorigin;
+  ae_vector startx;
+  ae_bool havex;
+  ae_matrix densec;
+  sparsematrix sparsec;
+  ae_vector cl;
+  ae_vector cu;
+  ae_int_t mdense;
+  ae_int_t msparse;
+  ae_vector xs;
+  ae_int_t repinneriterationscount;
+  ae_int_t repouteriterationscount;
+  ae_int_t repncholesky;
+  ae_int_t repnmv;
+  ae_int_t repterminationtype;
+  ae_vector replagbc;
+  ae_vector replaglc;
+  ae_vector effectives;
+  ae_vector tmp0;
+  ae_matrix ecleic;
+  ae_vector elaglc;
+  ae_vector elagmlt;
+  ae_vector elagidx;
+  ae_matrix dummyr2;
+  sparsematrix dummysparse;
+  ae_matrix tmpr2;
+  ae_bool qpbleicfirstcall;
+  qpbleicbuffers qpbleicbuf;
+  qqpbuffers qqpbuf;
+  qpdenseaulbuffers qpdenseaulbuf;
+  vipmstate vsolver;
 } minqpstate;
-typedef struct
-{
-    ae_int_t inneriterationscount;
-    ae_int_t outeriterationscount;
-    ae_int_t nmv;
-    ae_int_t ncholesky;
-    ae_int_t terminationtype;
-    ae_vector lagbc;
-    ae_vector laglc;
+typedef struct {
+  ae_int_t inneriterationscount;
+  ae_int_t outeriterationscount;
+  ae_int_t nmv;
+  ae_int_t ncholesky;
+  ae_int_t terminationtype;
+  ae_vector lagbc;
+  ae_vector laglc;
 } minqpreport;
 #endif
 #if defined(AE_COMPILE_REVISEDDUALSIMPLEX) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    double pivottol;
-    double perturbmag;
-    ae_int_t maxtrfage;
-    ae_int_t trftype;
-    ae_int_t ratiotest;
-    ae_int_t pricing;
-    ae_int_t shifting;
+typedef struct {
+  double pivottol;
+  double perturbmag;
+  ae_int_t maxtrfage;
+  ae_int_t trftype;
+  ae_int_t ratiotest;
+  ae_int_t pricing;
+  ae_int_t shifting;
 } dualsimplexsettings;
-typedef struct
-{
-    ae_int_t ns;
-    ae_int_t m;
-    ae_vector idx;
-    ae_vector nidx;
-    ae_vector isbasic;
-    ae_int_t trftype;
-    ae_bool isvalidtrf;
-    ae_int_t trfage;
-    ae_matrix denselu;
-    sparsematrix sparsel;
-    sparsematrix sparseu;
-    sparsematrix sparseut;
-    ae_vector rowpermbwd;
-    ae_vector colpermbwd;
-    ae_vector densepfieta;
-    ae_vector densemu;
-    ae_vector rk;
-    ae_vector dk;
-    ae_vector dseweights;
-    ae_bool dsevalid;
-    double eminu;
-    ae_vector wtmp0;
-    ae_vector wtmp1;
-    ae_vector wtmp2;
-    ae_vector nrs;
-    ae_vector tcinvidx;
-    ae_matrix denselu2;
-    ae_vector densep2;
-    ae_vector densep2c;
-    sparsematrix sparselu1;
-    sparsematrix sparselu2;
-    sluv2buffer lubuf2;
-    ae_vector tmpi;
-    ae_vector utmp0;
-    ae_vector utmpi;
-    sparsematrix sparseludbg;
+typedef struct {
+  ae_int_t ns;
+  ae_int_t m;
+  ae_vector idx;
+  ae_vector nidx;
+  ae_vector isbasic;
+  ae_int_t trftype;
+  ae_bool isvalidtrf;
+  ae_int_t trfage;
+  ae_matrix denselu;
+  sparsematrix sparsel;
+  sparsematrix sparseu;
+  sparsematrix sparseut;
+  ae_vector rowpermbwd;
+  ae_vector colpermbwd;
+  ae_vector densepfieta;
+  ae_vector densemu;
+  ae_vector rk;
+  ae_vector dk;
+  ae_vector dseweights;
+  ae_bool dsevalid;
+  double eminu;
+  ae_vector wtmp0;
+  ae_vector wtmp1;
+  ae_vector wtmp2;
+  ae_vector nrs;
+  ae_vector tcinvidx;
+  ae_matrix denselu2;
+  ae_vector densep2;
+  ae_vector densep2c;
+  sparsematrix sparselu1;
+  sparsematrix sparselu2;
+  sluv2buffer lubuf2;
+  ae_vector tmpi;
+  ae_vector utmp0;
+  ae_vector utmpi;
+  sparsematrix sparseludbg;
 } dualsimplexbasis;
-typedef struct
-{
-    ae_int_t ns;
-    ae_int_t m;
-    ae_vector rawc;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_vector bndt;
-    ae_vector xa;
-    ae_vector d;
-    ae_int_t state;
-    ae_vector xb;
-    ae_vector bndlb;
-    ae_vector bndub;
-    ae_vector bndtb;
-    ae_vector effc;
-    ae_vector colscales;
+typedef struct {
+  ae_int_t ns;
+  ae_int_t m;
+  ae_vector rawc;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_vector bndt;
+  ae_vector xa;
+  ae_vector d;
+  ae_int_t state;
+  ae_vector xb;
+  ae_vector bndlb;
+  ae_vector bndub;
+  ae_vector bndtb;
+  ae_vector effc;
+  ae_vector colscales;
 } dualsimplexsubproblem;
-typedef struct
-{
-    ae_vector varscales;
-    ae_vector rowscales;
-    ae_vector rawbndl;
-    ae_vector rawbndu;
-    ae_int_t ns;
-    ae_int_t m;
-    sparsematrix a;
-    sparsematrix at;
-    dualsimplexbasis basis;
-    dualsimplexsubproblem primary;
-    dualsimplexsubproblem phase1;
-    dualsimplexsubproblem phase3;
-    ae_vector repx;
-    ae_vector repy;
-    ae_vector repdx;
-    ae_vector repstats;
-    double repf;
-    double repprimalerror;
-    double repdualerror;
-    ae_int_t repterminationtype;
-    ae_int_t repiterationscount;
-    ae_int_t repiterationscount1;
-    ae_int_t repiterationscount2;
-    ae_int_t repiterationscount3;
-    ae_vector possibleflips;
-    ae_int_t possibleflipscnt;
-    ae_vector dfctmp0;
-    ae_vector dfctmp1;
-    ae_vector dfctmp2;
-    ae_vector ustmpi;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    ae_vector tmp2;
-    ae_vector alphar;
-    ae_vector rhor;
-    ae_vector tau;
-    ae_vector alphaq;
-    ae_vector alphaqim;
-    ae_vector eligibleset;
-    ae_vector harrisset;
+typedef struct {
+  ae_vector varscales;
+  ae_vector rowscales;
+  ae_vector rawbndl;
+  ae_vector rawbndu;
+  ae_int_t ns;
+  ae_int_t m;
+  sparsematrix a;
+  sparsematrix at;
+  dualsimplexbasis basis;
+  dualsimplexsubproblem primary;
+  dualsimplexsubproblem phase1;
+  dualsimplexsubproblem phase3;
+  ae_vector repx;
+  ae_vector repy;
+  ae_vector repdx;
+  ae_vector repstats;
+  double repf;
+  double repprimalerror;
+  double repdualerror;
+  ae_int_t repterminationtype;
+  ae_int_t repiterationscount;
+  ae_int_t repiterationscount1;
+  ae_int_t repiterationscount2;
+  ae_int_t repiterationscount3;
+  ae_vector possibleflips;
+  ae_int_t possibleflipscnt;
+  ae_vector dfctmp0;
+  ae_vector dfctmp1;
+  ae_vector dfctmp2;
+  ae_vector ustmpi;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  ae_vector tmp2;
+  ae_vector alphar;
+  ae_vector rhor;
+  ae_vector tau;
+  ae_vector alphaq;
+  ae_vector alphaqim;
+  ae_vector eligibleset;
+  ae_vector harrisset;
 } dualsimplexstate;
 #endif
 #if defined(AE_COMPILE_MINLP) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t algokind;
-    ae_vector s;
-    ae_vector c;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_int_t m;
-    sparsematrix a;
-    ae_vector al;
-    ae_vector au;
-    ae_vector xs;
-    ae_vector ys;
-    ae_vector cs;
-    double repf;
-    double repprimalerror;
-    double repdualerror;
-    ae_int_t repiterationscount;
-    ae_int_t repterminationtype;
-    dualsimplexstate dss;
-    ae_vector adddtmpi;
-    ae_vector adddtmpr;
+typedef struct {
+  ae_int_t n;
+  ae_int_t algokind;
+  ae_vector s;
+  ae_vector c;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_int_t m;
+  sparsematrix a;
+  ae_vector al;
+  ae_vector au;
+  ae_vector xs;
+  ae_vector ys;
+  ae_vector cs;
+  double repf;
+  double repprimalerror;
+  double repdualerror;
+  ae_int_t repiterationscount;
+  ae_int_t repterminationtype;
+  dualsimplexstate dss;
+  ae_vector adddtmpi;
+  ae_vector adddtmpr;
 } minlpstate;
-typedef struct
-{
-    double f;
-    ae_vector y;
-    ae_vector stats;
-    double primalerror;
-    double dualerror;
-    ae_int_t iterationscount;
-    ae_int_t terminationtype;
+typedef struct {
+  double f;
+  ae_vector y;
+  ae_vector stats;
+  double primalerror;
+  double dualerror;
+  ae_int_t iterationscount;
+  ae_int_t terminationtype;
 } minlpreport;
 #endif
 #if defined(AE_COMPILE_NLCSLP) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    dualsimplexstate dss;
-    dualsimplexsettings dsssettings;
-    dualsimplexbasis lastbasis;
-    ae_bool basispresent;
-    ae_matrix curd;
-    ae_int_t curdcnt;
-    ae_vector curb;
-    ae_vector curbndl;
-    ae_vector curbndu;
-    ae_vector cural;
-    ae_vector curau;
-    sparsematrix sparserawlc;
-    sparsematrix sparseefflc;
-    ae_int_t hessiantype;
-    ae_matrix h;
-    ae_matrix curhd;
-    ae_matrix densedummy;
-    sparsematrix sparsedummy;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    ae_vector sk;
-    ae_vector yk;
+typedef struct {
+  dualsimplexstate dss;
+  dualsimplexsettings dsssettings;
+  dualsimplexbasis lastbasis;
+  ae_bool basispresent;
+  ae_matrix curd;
+  ae_int_t curdcnt;
+  ae_vector curb;
+  ae_vector curbndl;
+  ae_vector curbndu;
+  ae_vector cural;
+  ae_vector curau;
+  sparsematrix sparserawlc;
+  sparsematrix sparseefflc;
+  ae_int_t hessiantype;
+  ae_matrix h;
+  ae_matrix curhd;
+  ae_matrix densedummy;
+  sparsematrix sparsedummy;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  ae_vector sk;
+  ae_vector yk;
 } minslpsubsolver;
-typedef struct
-{
-    ae_vector sclagtmp0;
-    ae_vector sclagtmp1;
+typedef struct {
+  ae_vector sclagtmp0;
+  ae_vector sclagtmp1;
 } minslptmplagrangian;
-typedef struct
-{
-    ae_vector mftmp0;
+typedef struct {
+  ae_vector mftmp0;
 } minslptmpmerit;
-typedef struct
-{
-    ae_bool usecorrection;
-    ae_vector d;
-    ae_vector dx;
-    ae_vector stepkxc;
-    ae_vector stepkxn;
-    ae_vector stepkfic;
-    ae_vector stepkfin;
-    ae_matrix stepkjc;
-    ae_matrix stepkjn;
-    ae_vector dummylagmult;
-    minslptmpmerit tmpmerit;
-    rcommstate rphase13state;
+typedef struct {
+  ae_bool usecorrection;
+  ae_vector d;
+  ae_vector dx;
+  ae_vector stepkxc;
+  ae_vector stepkxn;
+  ae_vector stepkfic;
+  ae_vector stepkfin;
+  ae_matrix stepkjc;
+  ae_matrix stepkjn;
+  ae_vector dummylagmult;
+  minslptmpmerit tmpmerit;
+  rcommstate rphase13state;
 } minslpphase13state;
-typedef struct
-{
-    ae_vector stepkxn;
-    ae_vector stepkxc;
-    ae_vector stepkfin;
-    ae_vector stepkfic;
-    ae_matrix stepkjn;
-    ae_matrix stepkjc;
-    ae_vector stepklaggrad;
-    ae_vector stepknlaggrad;
-    ae_vector stepknlagmult;
-    ae_vector meritlagmult;
-    minslptmplagrangian tmplagrangianfg;
-    double lastlcerr;
-    ae_int_t lastlcidx;
-    double lastnlcerr;
-    ae_int_t lastnlcidx;
-    ae_vector tmp0;
-    ae_vector d;
-    linminstate mcstate;
-    minslptmpmerit tmpmerit;
-    rcommstate rphase2state;
+typedef struct {
+  ae_vector stepkxn;
+  ae_vector stepkxc;
+  ae_vector stepkfin;
+  ae_vector stepkfic;
+  ae_matrix stepkjn;
+  ae_matrix stepkjc;
+  ae_vector stepklaggrad;
+  ae_vector stepknlaggrad;
+  ae_vector stepknlagmult;
+  ae_vector meritlagmult;
+  minslptmplagrangian tmplagrangianfg;
+  double lastlcerr;
+  ae_int_t lastlcidx;
+  double lastnlcerr;
+  ae_int_t lastnlcidx;
+  ae_vector tmp0;
+  ae_vector d;
+  linminstate mcstate;
+  minslptmpmerit tmpmerit;
+  rcommstate rphase2state;
 } minslpphase2state;
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t nec;
-    ae_int_t nic;
-    ae_int_t nlec;
-    ae_int_t nlic;
-    ae_vector s;
-    ae_matrix scaledcleic;
-    ae_vector lcsrcidx;
-    ae_vector hasbndl;
-    ae_vector hasbndu;
-    ae_vector scaledbndl;
-    ae_vector scaledbndu;
-    double epsx;
-    ae_int_t maxits;
-    ae_int_t hessiantype;
-    ae_vector x;
-    ae_vector fi;
-    ae_matrix j;
-    double f;
-    ae_bool needfij;
-    ae_bool xupdated;
-    minslpphase13state state13;
-    minslpphase2state state2;
-    double trustrad;
-    ae_int_t lpfailurecnt;
-    ae_int_t fstagnationcnt;
-    ae_vector step0x;
-    ae_vector stepkx;
-    ae_vector backupx;
-    ae_vector step0fi;
-    ae_vector stepkfi;
-    ae_vector backupfi;
-    ae_matrix step0j;
-    ae_matrix stepkj;
-    ae_matrix backupj;
-    ae_vector meritlagmult;
-    ae_vector dummylagmult;
-    ae_vector fscales;
-    ae_vector meritfunctionhistory;
-    ae_int_t historylen;
-    minslpsubsolver subsolver;
-    minslptmpmerit tmpmerit;
-    ae_int_t repsimplexiterations;
-    ae_int_t repsimplexiterations1;
-    ae_int_t repsimplexiterations2;
-    ae_int_t repsimplexiterations3;
-    ae_int_t repinneriterationscount;
-    ae_int_t repouteriterationscount;
-    ae_int_t repterminationtype;
-    double repbcerr;
-    ae_int_t repbcidx;
-    double replcerr;
-    ae_int_t replcidx;
-    double repnlcerr;
-    ae_int_t repnlcidx;
-    rcommstate rstate;
+typedef struct {
+  ae_int_t n;
+  ae_int_t nec;
+  ae_int_t nic;
+  ae_int_t nlec;
+  ae_int_t nlic;
+  ae_vector s;
+  ae_matrix scaledcleic;
+  ae_vector lcsrcidx;
+  ae_vector hasbndl;
+  ae_vector hasbndu;
+  ae_vector scaledbndl;
+  ae_vector scaledbndu;
+  double epsx;
+  ae_int_t maxits;
+  ae_int_t hessiantype;
+  ae_vector x;
+  ae_vector fi;
+  ae_matrix j;
+  double f;
+  ae_bool needfij;
+  ae_bool xupdated;
+  minslpphase13state state13;
+  minslpphase2state state2;
+  double trustrad;
+  ae_int_t lpfailurecnt;
+  ae_int_t fstagnationcnt;
+  ae_vector step0x;
+  ae_vector stepkx;
+  ae_vector backupx;
+  ae_vector step0fi;
+  ae_vector stepkfi;
+  ae_vector backupfi;
+  ae_matrix step0j;
+  ae_matrix stepkj;
+  ae_matrix backupj;
+  ae_vector meritlagmult;
+  ae_vector dummylagmult;
+  ae_vector fscales;
+  ae_vector meritfunctionhistory;
+  ae_int_t historylen;
+  minslpsubsolver subsolver;
+  minslptmpmerit tmpmerit;
+  ae_int_t repsimplexiterations;
+  ae_int_t repsimplexiterations1;
+  ae_int_t repsimplexiterations2;
+  ae_int_t repsimplexiterations3;
+  ae_int_t repinneriterationscount;
+  ae_int_t repouteriterationscount;
+  ae_int_t repterminationtype;
+  double repbcerr;
+  ae_int_t repbcidx;
+  double replcerr;
+  ae_int_t replcidx;
+  double repnlcerr;
+  ae_int_t repnlcidx;
+  rcommstate rstate;
 } minslpstate;
 #endif
 #if defined(AE_COMPILE_MINNLC) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    double stabilizingpoint;
-    double initialinequalitymultiplier;
-    ae_int_t solvertype;
-    ae_int_t prectype;
-    ae_int_t updatefreq;
-    double rho;
-    ae_int_t n;
-    double epsx;
-    ae_int_t maxits;
-    ae_int_t aulitscnt;
-    ae_bool xrep;
-    double stpmax;
-    double diffstep;
-    double teststep;
-    ae_vector s;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_vector hasbndl;
-    ae_vector hasbndu;
-    ae_int_t nec;
-    ae_int_t nic;
-    ae_matrix cleic;
-    ae_vector lcsrcidx;
-    ae_int_t ng;
-    ae_int_t nh;
-    ae_vector x;
-    double f;
-    ae_vector fi;
-    ae_matrix j;
-    ae_bool needfij;
-    ae_bool needfi;
-    ae_bool xupdated;
-    rcommstate rstate;
-    rcommstate rstateaul;
-    rcommstate rstateslp;
-    ae_vector scaledbndl;
-    ae_vector scaledbndu;
-    ae_matrix scaledcleic;
-    ae_vector xc;
-    ae_vector xstart;
-    ae_vector xbase;
-    ae_vector fbase;
-    ae_vector dfbase;
-    ae_vector fm2;
-    ae_vector fm1;
-    ae_vector fp1;
-    ae_vector fp2;
-    ae_vector dfm1;
-    ae_vector dfp1;
-    ae_vector bufd;
-    ae_vector bufc;
-    ae_vector tmp0;
-    ae_matrix bufw;
-    ae_matrix bufz;
-    ae_vector xk;
-    ae_vector xk1;
-    ae_vector gk;
-    ae_vector gk1;
-    double gammak;
-    ae_bool xkpresent;
-    minlbfgsstate auloptimizer;
-    minlbfgsreport aulreport;
-    ae_vector nubc;
-    ae_vector nulc;
-    ae_vector nunlc;
-    ae_bool userterminationneeded;
-    minslpstate slpsolverstate;
-    minsqpstate sqpsolverstate;
-    ae_int_t smoothnessguardlevel;
-    smoothnessmonitor smonitor;
-    ae_vector lastscaleused;
-    ae_int_t repinneriterationscount;
-    ae_int_t repouteriterationscount;
-    ae_int_t repnfev;
-    ae_int_t repterminationtype;
-    double repbcerr;
-    ae_int_t repbcidx;
-    double replcerr;
-    ae_int_t replcidx;
-    double repnlcerr;
-    ae_int_t repnlcidx;
-    ae_int_t repdbgphase0its;
+typedef struct {
+  double stabilizingpoint;
+  double initialinequalitymultiplier;
+  ae_int_t solvertype;
+  ae_int_t prectype;
+  ae_int_t updatefreq;
+  double rho;
+  ae_int_t n;
+  double epsx;
+  ae_int_t maxits;
+  ae_int_t aulitscnt;
+  ae_bool xrep;
+  double stpmax;
+  double diffstep;
+  double teststep;
+  ae_vector s;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_vector hasbndl;
+  ae_vector hasbndu;
+  ae_int_t nec;
+  ae_int_t nic;
+  ae_matrix cleic;
+  ae_vector lcsrcidx;
+  ae_int_t ng;
+  ae_int_t nh;
+  ae_vector x;
+  double f;
+  ae_vector fi;
+  ae_matrix j;
+  ae_bool needfij;
+  ae_bool needfi;
+  ae_bool xupdated;
+  rcommstate rstate;
+  rcommstate rstateaul;
+  rcommstate rstateslp;
+  ae_vector scaledbndl;
+  ae_vector scaledbndu;
+  ae_matrix scaledcleic;
+  ae_vector xc;
+  ae_vector xstart;
+  ae_vector xbase;
+  ae_vector fbase;
+  ae_vector dfbase;
+  ae_vector fm2;
+  ae_vector fm1;
+  ae_vector fp1;
+  ae_vector fp2;
+  ae_vector dfm1;
+  ae_vector dfp1;
+  ae_vector bufd;
+  ae_vector bufc;
+  ae_vector tmp0;
+  ae_matrix bufw;
+  ae_matrix bufz;
+  ae_vector xk;
+  ae_vector xk1;
+  ae_vector gk;
+  ae_vector gk1;
+  double gammak;
+  ae_bool xkpresent;
+  minlbfgsstate auloptimizer;
+  minlbfgsreport aulreport;
+  ae_vector nubc;
+  ae_vector nulc;
+  ae_vector nunlc;
+  ae_bool userterminationneeded;
+  minslpstate slpsolverstate;
+  minsqpstate sqpsolverstate;
+  ae_int_t smoothnessguardlevel;
+  smoothnessmonitor smonitor;
+  ae_vector lastscaleused;
+  ae_int_t repinneriterationscount;
+  ae_int_t repouteriterationscount;
+  ae_int_t repnfev;
+  ae_int_t repterminationtype;
+  double repbcerr;
+  ae_int_t repbcidx;
+  double replcerr;
+  ae_int_t replcidx;
+  double repnlcerr;
+  ae_int_t repnlcidx;
+  ae_int_t repdbgphase0its;
 } minnlcstate;
-typedef struct
-{
-    ae_int_t iterationscount;
-    ae_int_t nfev;
-    ae_int_t terminationtype;
-    double bcerr;
-    ae_int_t bcidx;
-    double lcerr;
-    ae_int_t lcidx;
-    double nlcerr;
-    ae_int_t nlcidx;
-    ae_int_t dbgphase0its;
+typedef struct {
+  ae_int_t iterationscount;
+  ae_int_t nfev;
+  ae_int_t terminationtype;
+  double bcerr;
+  ae_int_t bcidx;
+  double lcerr;
+  ae_int_t lcidx;
+  double nlcerr;
+  ae_int_t nlcidx;
+  ae_int_t dbgphase0its;
 } minnlcreport;
 #endif
 #if defined(AE_COMPILE_MINBC) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t nmain;
-    double epsg;
-    double epsf;
-    double epsx;
-    ae_int_t maxits;
-    ae_bool xrep;
-    double stpmax;
-    double diffstep;
-    ae_vector s;
-    ae_int_t prectype;
-    ae_vector diagh;
-    ae_vector x;
-    double f;
-    ae_vector g;
-    ae_bool needf;
-    ae_bool needfg;
-    ae_bool xupdated;
-    ae_bool userterminationneeded;
-    rcommstate rstate;
-    ae_vector xc;
-    ae_vector ugc;
-    ae_vector cgc;
-    ae_vector xn;
-    ae_vector ugn;
-    ae_vector cgn;
-    ae_vector xp;
-    double fc;
-    double fn;
-    double fp;
-    ae_vector d;
-    double lastscaledgoodstep;
-    ae_vector hasbndl;
-    ae_vector hasbndu;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_int_t repiterationscount;
-    ae_int_t repnfev;
-    ae_int_t repvaridx;
-    ae_int_t repterminationtype;
-    ae_vector xstart;
-    double fbase;
-    double fm2;
-    double fm1;
-    double fp1;
-    double fp2;
-    double xm1;
-    double xp1;
-    double gm1;
-    double gp1;
-    ae_vector tmpprec;
-    ae_vector tmp0;
-    ae_int_t nfev;
-    ae_int_t mcstage;
-    double stp;
-    double curstpmax;
-    ae_vector work;
-    linminstate lstate;
-    double trimthreshold;
-    ae_int_t nonmonotoniccnt;
-    ae_matrix bufyk;
-    ae_matrix bufsk;
-    ae_vector bufrho;
-    ae_vector buftheta;
-    ae_int_t bufsize;
-    double teststep;
-    ae_int_t smoothnessguardlevel;
-    smoothnessmonitor smonitor;
-    ae_vector lastscaleused;
-    ae_vector invs;
+typedef struct {
+  ae_int_t nmain;
+  double epsg;
+  double epsf;
+  double epsx;
+  ae_int_t maxits;
+  ae_bool xrep;
+  double stpmax;
+  double diffstep;
+  ae_vector s;
+  ae_int_t prectype;
+  ae_vector diagh;
+  ae_vector x;
+  double f;
+  ae_vector g;
+  ae_bool needf;
+  ae_bool needfg;
+  ae_bool xupdated;
+  ae_bool userterminationneeded;
+  rcommstate rstate;
+  ae_vector xc;
+  ae_vector ugc;
+  ae_vector cgc;
+  ae_vector xn;
+  ae_vector ugn;
+  ae_vector cgn;
+  ae_vector xp;
+  double fc;
+  double fn;
+  double fp;
+  ae_vector d;
+  double lastscaledgoodstep;
+  ae_vector hasbndl;
+  ae_vector hasbndu;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_int_t repiterationscount;
+  ae_int_t repnfev;
+  ae_int_t repvaridx;
+  ae_int_t repterminationtype;
+  ae_vector xstart;
+  double fbase;
+  double fm2;
+  double fm1;
+  double fp1;
+  double fp2;
+  double xm1;
+  double xp1;
+  double gm1;
+  double gp1;
+  ae_vector tmpprec;
+  ae_vector tmp0;
+  ae_int_t nfev;
+  ae_int_t mcstage;
+  double stp;
+  double curstpmax;
+  ae_vector work;
+  linminstate lstate;
+  double trimthreshold;
+  ae_int_t nonmonotoniccnt;
+  ae_matrix bufyk;
+  ae_matrix bufsk;
+  ae_vector bufrho;
+  ae_vector buftheta;
+  ae_int_t bufsize;
+  double teststep;
+  ae_int_t smoothnessguardlevel;
+  smoothnessmonitor smonitor;
+  ae_vector lastscaleused;
+  ae_vector invs;
 } minbcstate;
-typedef struct
-{
-    ae_int_t iterationscount;
-    ae_int_t nfev;
-    ae_int_t varidx;
-    ae_int_t terminationtype;
+typedef struct {
+  ae_int_t iterationscount;
+  ae_int_t nfev;
+  ae_int_t varidx;
+  ae_int_t terminationtype;
 } minbcreport;
 #endif
 #if defined(AE_COMPILE_MINNS) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    double fc;
-    double fn;
-    ae_vector xc;
-    ae_vector xn;
-    ae_vector x0;
-    ae_vector gc;
-    ae_vector d;
-    ae_matrix uh;
-    ae_matrix ch;
-    ae_matrix rk;
-    ae_vector invutc;
-    ae_vector tmp0;
-    ae_vector tmpidx;
-    ae_vector tmpd;
-    ae_vector tmpc;
-    ae_vector tmplambdas;
-    ae_matrix tmpc2;
-    ae_vector tmpb;
-    snnlssolver nnls;
+typedef struct {
+  double fc;
+  double fn;
+  ae_vector xc;
+  ae_vector xn;
+  ae_vector x0;
+  ae_vector gc;
+  ae_vector d;
+  ae_matrix uh;
+  ae_matrix ch;
+  ae_matrix rk;
+  ae_vector invutc;
+  ae_vector tmp0;
+  ae_vector tmpidx;
+  ae_vector tmpd;
+  ae_vector tmpc;
+  ae_vector tmplambdas;
+  ae_matrix tmpc2;
+  ae_vector tmpb;
+  snnlssolver nnls;
 } minnsqp;
-typedef struct
-{
-    ae_int_t solvertype;
-    ae_int_t n;
-    double epsx;
-    ae_int_t maxits;
-    ae_bool xrep;
-    double diffstep;
-    ae_vector s;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_vector hasbndl;
-    ae_vector hasbndu;
-    ae_int_t nec;
-    ae_int_t nic;
-    ae_matrix cleic;
-    ae_int_t ng;
-    ae_int_t nh;
-    ae_vector x;
-    double f;
-    ae_vector fi;
-    ae_matrix j;
-    ae_bool needfij;
-    ae_bool needfi;
-    ae_bool xupdated;
-    rcommstate rstate;
-    rcommstate rstateags;
-    hqrndstate agsrs;
-    double agsradius;
-    ae_int_t agssamplesize;
-    double agsraddecay;
-    double agsalphadecay;
-    double agsdecrease;
-    double agsinitstp;
-    double agsstattold;
-    double agsshortstpabs;
-    double agsshortstprel;
-    double agsshortf;
-    ae_int_t agsshortlimit;
-    double agsrhononlinear;
-    ae_int_t agsminupdate;
-    ae_int_t agsmaxraddecays;
-    ae_int_t agsmaxbacktrack;
-    ae_int_t agsmaxbacktracknonfull;
-    double agspenaltylevel;
-    double agspenaltyincrease;
-    ae_vector xstart;
-    ae_vector xc;
-    ae_vector xn;
-    ae_vector grs;
-    ae_vector d;
-    ae_vector colmax;
-    ae_vector diagh;
-    ae_vector signmin;
-    ae_vector signmax;
-    ae_bool userterminationneeded;
-    ae_vector scaledbndl;
-    ae_vector scaledbndu;
-    ae_matrix scaledcleic;
-    ae_vector rholinear;
-    ae_matrix samplex;
-    ae_matrix samplegm;
-    ae_matrix samplegmbc;
-    ae_vector samplef;
-    ae_vector samplef0;
-    minnsqp nsqp;
-    ae_vector tmp0;
-    ae_vector tmp1;
-    ae_matrix tmp2;
-    ae_vector tmp3;
-    ae_vector xbase;
-    ae_vector fp;
-    ae_vector fm;
-    ae_int_t repinneriterationscount;
-    ae_int_t repouteriterationscount;
-    ae_int_t repnfev;
-    ae_int_t repvaridx;
-    ae_int_t repfuncidx;
-    ae_int_t repterminationtype;
-    double replcerr;
-    double repnlcerr;
-    ae_int_t dbgncholesky;
+typedef struct {
+  ae_int_t solvertype;
+  ae_int_t n;
+  double epsx;
+  ae_int_t maxits;
+  ae_bool xrep;
+  double diffstep;
+  ae_vector s;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_vector hasbndl;
+  ae_vector hasbndu;
+  ae_int_t nec;
+  ae_int_t nic;
+  ae_matrix cleic;
+  ae_int_t ng;
+  ae_int_t nh;
+  ae_vector x;
+  double f;
+  ae_vector fi;
+  ae_matrix j;
+  ae_bool needfij;
+  ae_bool needfi;
+  ae_bool xupdated;
+  rcommstate rstate;
+  rcommstate rstateags;
+  hqrndstate agsrs;
+  double agsradius;
+  ae_int_t agssamplesize;
+  double agsraddecay;
+  double agsalphadecay;
+  double agsdecrease;
+  double agsinitstp;
+  double agsstattold;
+  double agsshortstpabs;
+  double agsshortstprel;
+  double agsshortf;
+  ae_int_t agsshortlimit;
+  double agsrhononlinear;
+  ae_int_t agsminupdate;
+  ae_int_t agsmaxraddecays;
+  ae_int_t agsmaxbacktrack;
+  ae_int_t agsmaxbacktracknonfull;
+  double agspenaltylevel;
+  double agspenaltyincrease;
+  ae_vector xstart;
+  ae_vector xc;
+  ae_vector xn;
+  ae_vector grs;
+  ae_vector d;
+  ae_vector colmax;
+  ae_vector diagh;
+  ae_vector signmin;
+  ae_vector signmax;
+  ae_bool userterminationneeded;
+  ae_vector scaledbndl;
+  ae_vector scaledbndu;
+  ae_matrix scaledcleic;
+  ae_vector rholinear;
+  ae_matrix samplex;
+  ae_matrix samplegm;
+  ae_matrix samplegmbc;
+  ae_vector samplef;
+  ae_vector samplef0;
+  minnsqp nsqp;
+  ae_vector tmp0;
+  ae_vector tmp1;
+  ae_matrix tmp2;
+  ae_vector tmp3;
+  ae_vector xbase;
+  ae_vector fp;
+  ae_vector fm;
+  ae_int_t repinneriterationscount;
+  ae_int_t repouteriterationscount;
+  ae_int_t repnfev;
+  ae_int_t repvaridx;
+  ae_int_t repfuncidx;
+  ae_int_t repterminationtype;
+  double replcerr;
+  double repnlcerr;
+  ae_int_t dbgncholesky;
 } minnsstate;
-typedef struct
-{
-    ae_int_t iterationscount;
-    ae_int_t nfev;
-    double cerr;
-    double lcerr;
-    double nlcerr;
-    ae_int_t terminationtype;
-    ae_int_t varidx;
-    ae_int_t funcidx;
+typedef struct {
+  ae_int_t iterationscount;
+  ae_int_t nfev;
+  double cerr;
+  double lcerr;
+  double nlcerr;
+  ae_int_t terminationtype;
+  ae_int_t varidx;
+  ae_int_t funcidx;
 } minnsreport;
 #endif
 #if defined(AE_COMPILE_MINCOMP) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    double epsg;
-    double epsf;
-    double epsx;
-    ae_int_t maxits;
-    ae_bool xrep;
-    double stpmax;
-    ae_int_t cgtype;
-    ae_int_t k;
-    ae_int_t nfev;
-    ae_int_t mcstage;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_int_t curalgo;
-    ae_int_t acount;
-    double mu;
-    double finit;
-    double dginit;
-    ae_vector ak;
-    ae_vector xk;
-    ae_vector dk;
-    ae_vector an;
-    ae_vector xn;
-    ae_vector dn;
-    ae_vector d;
-    double fold;
-    double stp;
-    ae_vector work;
-    ae_vector yk;
-    ae_vector gc;
-    double laststep;
-    ae_vector x;
-    double f;
-    ae_vector g;
-    ae_bool needfg;
-    ae_bool xupdated;
-    rcommstate rstate;
-    ae_int_t repiterationscount;
-    ae_int_t repnfev;
-    ae_int_t repterminationtype;
-    ae_int_t debugrestartscount;
-    linminstate lstate;
-    double betahs;
-    double betady;
+typedef struct {
+  ae_int_t n;
+  double epsg;
+  double epsf;
+  double epsx;
+  ae_int_t maxits;
+  ae_bool xrep;
+  double stpmax;
+  ae_int_t cgtype;
+  ae_int_t k;
+  ae_int_t nfev;
+  ae_int_t mcstage;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_int_t curalgo;
+  ae_int_t acount;
+  double mu;
+  double finit;
+  double dginit;
+  ae_vector ak;
+  ae_vector xk;
+  ae_vector dk;
+  ae_vector an;
+  ae_vector xn;
+  ae_vector dn;
+  ae_vector d;
+  double fold;
+  double stp;
+  ae_vector work;
+  ae_vector yk;
+  ae_vector gc;
+  double laststep;
+  ae_vector x;
+  double f;
+  ae_vector g;
+  ae_bool needfg;
+  ae_bool xupdated;
+  rcommstate rstate;
+  ae_int_t repiterationscount;
+  ae_int_t repnfev;
+  ae_int_t repterminationtype;
+  ae_int_t debugrestartscount;
+  linminstate lstate;
+  double betahs;
+  double betady;
 } minasastate;
-typedef struct
-{
-    ae_int_t iterationscount;
-    ae_int_t nfev;
-    ae_int_t terminationtype;
-    ae_int_t activeconstraints;
+typedef struct {
+  ae_int_t iterationscount;
+  ae_int_t nfev;
+  ae_int_t terminationtype;
+  ae_int_t activeconstraints;
 } minasareport;
 #endif
 #if defined(AE_COMPILE_MINCG) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    double epsg;
-    double epsf;
-    double epsx;
-    ae_int_t maxits;
-    double stpmax;
-    double suggestedstep;
-    ae_bool xrep;
-    ae_bool drep;
-    ae_int_t cgtype;
-    ae_int_t prectype;
-    ae_vector diagh;
-    ae_vector diaghl2;
-    ae_matrix vcorr;
-    ae_int_t vcnt;
-    ae_vector s;
-    double diffstep;
-    ae_int_t nfev;
-    ae_int_t mcstage;
-    ae_int_t k;
-    ae_vector xk;
-    ae_vector dk;
-    ae_vector xn;
-    ae_vector dn;
-    ae_vector d;
-    double fold;
-    double stp;
-    double curstpmax;
-    ae_vector yk;
-    double lastgoodstep;
-    double lastscaledstep;
-    ae_int_t mcinfo;
-    ae_bool innerresetneeded;
-    ae_bool terminationneeded;
-    double trimthreshold;
-    ae_vector xbase;
-    ae_int_t rstimer;
-    ae_vector x;
-    double f;
-    ae_vector g;
-    ae_bool needf;
-    ae_bool needfg;
-    ae_bool xupdated;
-    ae_bool algpowerup;
-    ae_bool lsstart;
-    ae_bool lsend;
-    ae_bool userterminationneeded;
-    rcommstate rstate;
-    ae_int_t repiterationscount;
-    ae_int_t repnfev;
-    ae_int_t repterminationtype;
-    ae_int_t debugrestartscount;
-    linminstate lstate;
-    double fbase;
-    double fm2;
-    double fm1;
-    double fp1;
-    double fp2;
-    double betahs;
-    double betady;
-    ae_vector work0;
-    ae_vector work1;
-    ae_vector invs;
-    double teststep;
-    ae_int_t smoothnessguardlevel;
-    smoothnessmonitor smonitor;
-    ae_vector lastscaleused;
+typedef struct {
+  ae_int_t n;
+  double epsg;
+  double epsf;
+  double epsx;
+  ae_int_t maxits;
+  double stpmax;
+  double suggestedstep;
+  ae_bool xrep;
+  ae_bool drep;
+  ae_int_t cgtype;
+  ae_int_t prectype;
+  ae_vector diagh;
+  ae_vector diaghl2;
+  ae_matrix vcorr;
+  ae_int_t vcnt;
+  ae_vector s;
+  double diffstep;
+  ae_int_t nfev;
+  ae_int_t mcstage;
+  ae_int_t k;
+  ae_vector xk;
+  ae_vector dk;
+  ae_vector xn;
+  ae_vector dn;
+  ae_vector d;
+  double fold;
+  double stp;
+  double curstpmax;
+  ae_vector yk;
+  double lastgoodstep;
+  double lastscaledstep;
+  ae_int_t mcinfo;
+  ae_bool innerresetneeded;
+  ae_bool terminationneeded;
+  double trimthreshold;
+  ae_vector xbase;
+  ae_int_t rstimer;
+  ae_vector x;
+  double f;
+  ae_vector g;
+  ae_bool needf;
+  ae_bool needfg;
+  ae_bool xupdated;
+  ae_bool algpowerup;
+  ae_bool lsstart;
+  ae_bool lsend;
+  ae_bool userterminationneeded;
+  rcommstate rstate;
+  ae_int_t repiterationscount;
+  ae_int_t repnfev;
+  ae_int_t repterminationtype;
+  ae_int_t debugrestartscount;
+  linminstate lstate;
+  double fbase;
+  double fm2;
+  double fm1;
+  double fp1;
+  double fp2;
+  double betahs;
+  double betady;
+  ae_vector work0;
+  ae_vector work1;
+  ae_vector invs;
+  double teststep;
+  ae_int_t smoothnessguardlevel;
+  smoothnessmonitor smonitor;
+  ae_vector lastscaleused;
 } mincgstate;
-typedef struct
-{
-    ae_int_t iterationscount;
-    ae_int_t nfev;
-    ae_int_t terminationtype;
+typedef struct {
+  ae_int_t iterationscount;
+  ae_int_t nfev;
+  ae_int_t terminationtype;
 } mincgreport;
 #endif
 #if defined(AE_COMPILE_MINLM) || !defined(AE_PARTIAL_BUILD)
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t m;
-    double stpmax;
-    ae_int_t modelage;
-    ae_int_t maxmodelage;
-    ae_bool hasfi;
-    double epsx;
-    ae_vector x;
-    double f;
-    ae_vector fi;
-    ae_bool needf;
-    ae_bool needfi;
-    double fbase;
-    ae_vector modeldiag;
-    ae_vector xbase;
-    ae_vector fibase;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_vector havebndl;
-    ae_vector havebndu;
-    ae_vector s;
-    rcommstate rstate;
-    ae_vector xdir;
-    ae_vector choleskybuf;
-    ae_vector tmp0;
-    ae_vector tmpct;
-    double actualdecrease;
-    double predicteddecrease;
-    minqpstate qpstate;
-    minqpreport qprep;
-    sparsematrix tmpsp;
+typedef struct {
+  ae_int_t n;
+  ae_int_t m;
+  double stpmax;
+  ae_int_t modelage;
+  ae_int_t maxmodelage;
+  ae_bool hasfi;
+  double epsx;
+  ae_vector x;
+  double f;
+  ae_vector fi;
+  ae_bool needf;
+  ae_bool needfi;
+  double fbase;
+  ae_vector modeldiag;
+  ae_vector xbase;
+  ae_vector fibase;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_vector havebndl;
+  ae_vector havebndu;
+  ae_vector s;
+  rcommstate rstate;
+  ae_vector xdir;
+  ae_vector choleskybuf;
+  ae_vector tmp0;
+  ae_vector tmpct;
+  double actualdecrease;
+  double predicteddecrease;
+  minqpstate qpstate;
+  minqpreport qprep;
+  sparsematrix tmpsp;
 } minlmstepfinder;
-typedef struct
-{
-    ae_int_t n;
-    ae_int_t m;
-    double diffstep;
-    double epsx;
-    ae_int_t maxits;
-    ae_bool xrep;
-    double stpmax;
-    ae_int_t maxmodelage;
-    ae_bool makeadditers;
-    ae_vector x;
-    double f;
-    ae_vector fi;
-    ae_matrix j;
-    ae_matrix h;
-    ae_vector g;
-    ae_bool needf;
-    ae_bool needfg;
-    ae_bool needfgh;
-    ae_bool needfij;
-    ae_bool needfi;
-    ae_bool xupdated;
-    ae_bool userterminationneeded;
-    ae_int_t algomode;
-    ae_bool hasf;
-    ae_bool hasfi;
-    ae_bool hasg;
-    ae_vector xbase;
-    double fbase;
-    ae_vector fibase;
-    ae_vector gbase;
-    ae_matrix quadraticmodel;
-    ae_vector bndl;
-    ae_vector bndu;
-    ae_vector havebndl;
-    ae_vector havebndu;
-    ae_vector s;
-    ae_matrix cleic;
-    ae_int_t nec;
-    ae_int_t nic;
-    double lambdav;
-    double nu;
-    ae_int_t modelage;
-    ae_vector xnew;
-    ae_vector xdir;
-    ae_vector deltax;
-    ae_vector deltaf;
-    ae_bool deltaxready;
-    ae_bool deltafready;
-    smoothnessmonitor smonitor;
-    double teststep;
-    ae_vector lastscaleused;
-    ae_int_t repiterationscount;
-    ae_int_t repterminationtype;
-    ae_int_t repnfunc;
-    ae_int_t repnjac;
-    ae_int_t repngrad;
-    ae_int_t repnhess;
-    ae_int_t repncholesky;
-    rcommstate rstate;
-    ae_vector choleskybuf;
-    ae_vector tmp0;
-    double actualdecrease;
-    double predicteddecrease;
-    double xm1;
-    double xp1;
-    ae_vector fm1;
-    ae_vector fp1;
-    ae_vector fc1;
-    ae_vector gm1;
-    ae_vector gp1;
-    ae_vector gc1;
-    minlbfgsstate internalstate;
-    minlbfgsreport internalrep;
-    minqpstate qpstate;
-    minqpreport qprep;
-    minlmstepfinder finderstate;
+typedef struct {
+  ae_int_t n;
+  ae_int_t m;
+  double diffstep;
+  double epsx;
+  ae_int_t maxits;
+  ae_bool xrep;
+  double stpmax;
+  ae_int_t maxmodelage;
+  ae_bool makeadditers;
+  ae_vector x;
+  double f;
+  ae_vector fi;
+  ae_matrix j;
+  ae_matrix h;
+  ae_vector g;
+  ae_bool needf;
+  ae_bool needfg;
+  ae_bool needfgh;
+  ae_bool needfij;
+  ae_bool needfi;
+  ae_bool xupdated;
+  ae_bool userterminationneeded;
+  ae_int_t algomode;
+  ae_bool hasf;
+  ae_bool hasfi;
+  ae_bool hasg;
+  ae_vector xbase;
+  double fbase;
+  ae_vector fibase;
+  ae_vector gbase;
+  ae_matrix quadraticmodel;
+  ae_vector bndl;
+  ae_vector bndu;
+  ae_vector havebndl;
+  ae_vector havebndu;
+  ae_vector s;
+  ae_matrix cleic;
+  ae_int_t nec;
+  ae_int_t nic;
+  double lambdav;
+  double nu;
+  ae_int_t modelage;
+  ae_vector xnew;
+  ae_vector xdir;
+  ae_vector deltax;
+  ae_vector deltaf;
+  ae_bool deltaxready;
+  ae_bool deltafready;
+  smoothnessmonitor smonitor;
+  double teststep;
+  ae_vector lastscaleused;
+  ae_int_t repiterationscount;
+  ae_int_t repterminationtype;
+  ae_int_t repnfunc;
+  ae_int_t repnjac;
+  ae_int_t repngrad;
+  ae_int_t repnhess;
+  ae_int_t repncholesky;
+  rcommstate rstate;
+  ae_vector choleskybuf;
+  ae_vector tmp0;
+  double actualdecrease;
+  double predicteddecrease;
+  double xm1;
+  double xp1;
+  ae_vector fm1;
+  ae_vector fp1;
+  ae_vector fc1;
+  ae_vector gm1;
+  ae_vector gp1;
+  ae_vector gc1;
+  minlbfgsstate internalstate;
+  minlbfgsreport internalrep;
+  minqpstate qpstate;
+  minqpreport qprep;
+  minlmstepfinder finderstate;
 } minlmstate;
-typedef struct
-{
-    ae_int_t iterationscount;
-    ae_int_t terminationtype;
-    ae_int_t nfunc;
-    ae_int_t njac;
-    ae_int_t ngrad;
-    ae_int_t nhess;
-    ae_int_t ncholesky;
+typedef struct {
+  ae_int_t iterationscount;
+  ae_int_t terminationtype;
+  ae_int_t nfunc;
+  ae_int_t njac;
+  ae_int_t ngrad;
+  ae_int_t nhess;
+  ae_int_t ncholesky;
 } minlmreport;
 #endif
 
@@ -1776,8 +1720,7 @@ typedef struct
 // THIS SECTION CONTAINS C++ INTERFACE
 //
 /////////////////////////////////////////////////////////////////////////
-namespace alglib
-{
+namespace alglib {
 
 #if defined(AE_COMPILE_CQMODELS) || !defined(AE_PARTIAL_BUILD)
 
@@ -1884,43 +1827,40 @@ requesting reports for tests C0.0, C1.0, C1.1.
   -- ALGLIB --
      Copyright 19.11.2018 by Bochkanov Sergey
 *************************************************************************/
-class _optguardreport_owner
-{
-public:
-    _optguardreport_owner();
-    _optguardreport_owner(const _optguardreport_owner &rhs);
-    _optguardreport_owner& operator=(const _optguardreport_owner &rhs);
-    virtual ~_optguardreport_owner();
-    alglib_impl::optguardreport* c_ptr();
-    alglib_impl::optguardreport* c_ptr() const;
-protected:
-    alglib_impl::optguardreport *p_struct;
+class _optguardreport_owner {
+ public:
+  _optguardreport_owner();
+  _optguardreport_owner(const _optguardreport_owner &rhs);
+  _optguardreport_owner &operator=(const _optguardreport_owner &rhs);
+  virtual ~_optguardreport_owner();
+  alglib_impl::optguardreport *c_ptr();
+  alglib_impl::optguardreport *c_ptr() const;
+ protected:
+  alglib_impl::optguardreport *p_struct;
 };
-class optguardreport : public _optguardreport_owner
-{
-public:
-    optguardreport();
-    optguardreport(const optguardreport &rhs);
-    optguardreport& operator=(const optguardreport &rhs);
-    virtual ~optguardreport();
-    ae_bool &nonc0suspected;
-    ae_bool &nonc0test0positive;
-    ae_int_t &nonc0fidx;
-    double &nonc0lipschitzc;
-    ae_bool &nonc1suspected;
-    ae_bool &nonc1test0positive;
-    ae_bool &nonc1test1positive;
-    ae_int_t &nonc1fidx;
-    double &nonc1lipschitzc;
-    ae_bool &badgradsuspected;
-    ae_int_t &badgradfidx;
-    ae_int_t &badgradvidx;
-    real_1d_array badgradxbase;
-    real_2d_array badgraduser;
-    real_2d_array badgradnum;
+class optguardreport : public _optguardreport_owner {
+ public:
+  optguardreport();
+  optguardreport(const optguardreport &rhs);
+  optguardreport &operator=(const optguardreport &rhs);
+  virtual ~optguardreport();
+  ae_bool &nonc0suspected;
+  ae_bool &nonc0test0positive;
+  ae_int_t &nonc0fidx;
+  double &nonc0lipschitzc;
+  ae_bool &nonc1suspected;
+  ae_bool &nonc1test0positive;
+  ae_bool &nonc1test1positive;
+  ae_int_t &nonc1fidx;
+  double &nonc1lipschitzc;
+  ae_bool &badgradsuspected;
+  ae_int_t &badgradfidx;
+  ae_int_t &badgradvidx;
+  real_1d_array badgradxbase;
+  real_2d_array badgraduser;
+  real_2d_array badgradnum;
 
 };
-
 
 /*************************************************************************
 This  structure  is  used  for  detailed   reporting  about  suspected  C0
@@ -1965,38 +1905,35 @@ correctly reported C1 violation.
   -- ALGLIB --
      Copyright 19.11.2018 by Bochkanov Sergey
 *************************************************************************/
-class _optguardnonc0report_owner
-{
-public:
-    _optguardnonc0report_owner();
-    _optguardnonc0report_owner(const _optguardnonc0report_owner &rhs);
-    _optguardnonc0report_owner& operator=(const _optguardnonc0report_owner &rhs);
-    virtual ~_optguardnonc0report_owner();
-    alglib_impl::optguardnonc0report* c_ptr();
-    alglib_impl::optguardnonc0report* c_ptr() const;
-protected:
-    alglib_impl::optguardnonc0report *p_struct;
+class _optguardnonc0report_owner {
+ public:
+  _optguardnonc0report_owner();
+  _optguardnonc0report_owner(const _optguardnonc0report_owner &rhs);
+  _optguardnonc0report_owner &operator=(const _optguardnonc0report_owner &rhs);
+  virtual ~_optguardnonc0report_owner();
+  alglib_impl::optguardnonc0report *c_ptr();
+  alglib_impl::optguardnonc0report *c_ptr() const;
+ protected:
+  alglib_impl::optguardnonc0report *p_struct;
 };
-class optguardnonc0report : public _optguardnonc0report_owner
-{
-public:
-    optguardnonc0report();
-    optguardnonc0report(const optguardnonc0report &rhs);
-    optguardnonc0report& operator=(const optguardnonc0report &rhs);
-    virtual ~optguardnonc0report();
-    ae_bool &positive;
-    ae_int_t &fidx;
-    real_1d_array x0;
-    real_1d_array d;
-    ae_int_t &n;
-    real_1d_array stp;
-    real_1d_array f;
-    ae_int_t &cnt;
-    ae_int_t &stpidxa;
-    ae_int_t &stpidxb;
+class optguardnonc0report : public _optguardnonc0report_owner {
+ public:
+  optguardnonc0report();
+  optguardnonc0report(const optguardnonc0report &rhs);
+  optguardnonc0report &operator=(const optguardnonc0report &rhs);
+  virtual ~optguardnonc0report();
+  ae_bool &positive;
+  ae_int_t &fidx;
+  real_1d_array x0;
+  real_1d_array d;
+  ae_int_t &n;
+  real_1d_array stp;
+  real_1d_array f;
+  ae_int_t &cnt;
+  ae_int_t &stpidxa;
+  ae_int_t &stpidxb;
 
 };
-
 
 /*************************************************************************
 This  structure  is  used  for  detailed   reporting  about  suspected  C1
@@ -2044,38 +1981,35 @@ correctly reported C1 violation.
   -- ALGLIB --
      Copyright 19.11.2018 by Bochkanov Sergey
 *************************************************************************/
-class _optguardnonc1test0report_owner
-{
-public:
-    _optguardnonc1test0report_owner();
-    _optguardnonc1test0report_owner(const _optguardnonc1test0report_owner &rhs);
-    _optguardnonc1test0report_owner& operator=(const _optguardnonc1test0report_owner &rhs);
-    virtual ~_optguardnonc1test0report_owner();
-    alglib_impl::optguardnonc1test0report* c_ptr();
-    alglib_impl::optguardnonc1test0report* c_ptr() const;
-protected:
-    alglib_impl::optguardnonc1test0report *p_struct;
+class _optguardnonc1test0report_owner {
+ public:
+  _optguardnonc1test0report_owner();
+  _optguardnonc1test0report_owner(const _optguardnonc1test0report_owner &rhs);
+  _optguardnonc1test0report_owner &operator=(const _optguardnonc1test0report_owner &rhs);
+  virtual ~_optguardnonc1test0report_owner();
+  alglib_impl::optguardnonc1test0report *c_ptr();
+  alglib_impl::optguardnonc1test0report *c_ptr() const;
+ protected:
+  alglib_impl::optguardnonc1test0report *p_struct;
 };
-class optguardnonc1test0report : public _optguardnonc1test0report_owner
-{
-public:
-    optguardnonc1test0report();
-    optguardnonc1test0report(const optguardnonc1test0report &rhs);
-    optguardnonc1test0report& operator=(const optguardnonc1test0report &rhs);
-    virtual ~optguardnonc1test0report();
-    ae_bool &positive;
-    ae_int_t &fidx;
-    real_1d_array x0;
-    real_1d_array d;
-    ae_int_t &n;
-    real_1d_array stp;
-    real_1d_array f;
-    ae_int_t &cnt;
-    ae_int_t &stpidxa;
-    ae_int_t &stpidxb;
+class optguardnonc1test0report : public _optguardnonc1test0report_owner {
+ public:
+  optguardnonc1test0report();
+  optguardnonc1test0report(const optguardnonc1test0report &rhs);
+  optguardnonc1test0report &operator=(const optguardnonc1test0report &rhs);
+  virtual ~optguardnonc1test0report();
+  ae_bool &positive;
+  ae_int_t &fidx;
+  real_1d_array x0;
+  real_1d_array d;
+  ae_int_t &n;
+  real_1d_array stp;
+  real_1d_array f;
+  ae_int_t &cnt;
+  ae_int_t &stpidxa;
+  ae_int_t &stpidxb;
 
 };
-
 
 /*************************************************************************
 This  structure  is  used  for  detailed   reporting  about  suspected  C1
@@ -2134,36 +2068,34 @@ correctly reported C1 violation.
   -- ALGLIB --
      Copyright 19.11.2018 by Bochkanov Sergey
 *************************************************************************/
-class _optguardnonc1test1report_owner
-{
-public:
-    _optguardnonc1test1report_owner();
-    _optguardnonc1test1report_owner(const _optguardnonc1test1report_owner &rhs);
-    _optguardnonc1test1report_owner& operator=(const _optguardnonc1test1report_owner &rhs);
-    virtual ~_optguardnonc1test1report_owner();
-    alglib_impl::optguardnonc1test1report* c_ptr();
-    alglib_impl::optguardnonc1test1report* c_ptr() const;
-protected:
-    alglib_impl::optguardnonc1test1report *p_struct;
+class _optguardnonc1test1report_owner {
+ public:
+  _optguardnonc1test1report_owner();
+  _optguardnonc1test1report_owner(const _optguardnonc1test1report_owner &rhs);
+  _optguardnonc1test1report_owner &operator=(const _optguardnonc1test1report_owner &rhs);
+  virtual ~_optguardnonc1test1report_owner();
+  alglib_impl::optguardnonc1test1report *c_ptr();
+  alglib_impl::optguardnonc1test1report *c_ptr() const;
+ protected:
+  alglib_impl::optguardnonc1test1report *p_struct;
 };
-class optguardnonc1test1report : public _optguardnonc1test1report_owner
-{
-public:
-    optguardnonc1test1report();
-    optguardnonc1test1report(const optguardnonc1test1report &rhs);
-    optguardnonc1test1report& operator=(const optguardnonc1test1report &rhs);
-    virtual ~optguardnonc1test1report();
-    ae_bool &positive;
-    ae_int_t &fidx;
-    ae_int_t &vidx;
-    real_1d_array x0;
-    real_1d_array d;
-    ae_int_t &n;
-    real_1d_array stp;
-    real_1d_array g;
-    ae_int_t &cnt;
-    ae_int_t &stpidxa;
-    ae_int_t &stpidxb;
+class optguardnonc1test1report : public _optguardnonc1test1report_owner {
+ public:
+  optguardnonc1test1report();
+  optguardnonc1test1report(const optguardnonc1test1report &rhs);
+  optguardnonc1test1report &operator=(const optguardnonc1test1report &rhs);
+  virtual ~optguardnonc1test1report();
+  ae_bool &positive;
+  ae_int_t &fidx;
+  ae_int_t &vidx;
+  real_1d_array x0;
+  real_1d_array d;
+  ae_int_t &n;
+  real_1d_array stp;
+  real_1d_array g;
+  ae_int_t &cnt;
+  ae_int_t &stpidxa;
+  ae_int_t &stpidxb;
 
 };
 #endif
@@ -2200,34 +2132,31 @@ public:
 /*************************************************************************
 
 *************************************************************************/
-class _minlbfgsstate_owner
-{
-public:
-    _minlbfgsstate_owner();
-    _minlbfgsstate_owner(const _minlbfgsstate_owner &rhs);
-    _minlbfgsstate_owner& operator=(const _minlbfgsstate_owner &rhs);
-    virtual ~_minlbfgsstate_owner();
-    alglib_impl::minlbfgsstate* c_ptr();
-    alglib_impl::minlbfgsstate* c_ptr() const;
-protected:
-    alglib_impl::minlbfgsstate *p_struct;
+class _minlbfgsstate_owner {
+ public:
+  _minlbfgsstate_owner();
+  _minlbfgsstate_owner(const _minlbfgsstate_owner &rhs);
+  _minlbfgsstate_owner &operator=(const _minlbfgsstate_owner &rhs);
+  virtual ~_minlbfgsstate_owner();
+  alglib_impl::minlbfgsstate *c_ptr();
+  alglib_impl::minlbfgsstate *c_ptr() const;
+ protected:
+  alglib_impl::minlbfgsstate *p_struct;
 };
-class minlbfgsstate : public _minlbfgsstate_owner
-{
-public:
-    minlbfgsstate();
-    minlbfgsstate(const minlbfgsstate &rhs);
-    minlbfgsstate& operator=(const minlbfgsstate &rhs);
-    virtual ~minlbfgsstate();
-    ae_bool &needf;
-    ae_bool &needfg;
-    ae_bool &xupdated;
-    double &f;
-    real_1d_array g;
-    real_1d_array x;
+class minlbfgsstate : public _minlbfgsstate_owner {
+ public:
+  minlbfgsstate();
+  minlbfgsstate(const minlbfgsstate &rhs);
+  minlbfgsstate &operator=(const minlbfgsstate &rhs);
+  virtual ~minlbfgsstate();
+  ae_bool &needf;
+  ae_bool &needfg;
+  ae_bool &xupdated;
+  double &f;
+  real_1d_array g;
+  real_1d_array x;
 
 };
-
 
 /*************************************************************************
 This structure stores optimization report:
@@ -2253,28 +2182,26 @@ TerminationType field contains completion code, which can be:
 
 Other fields of this structure are not documented and should not be used!
 *************************************************************************/
-class _minlbfgsreport_owner
-{
-public:
-    _minlbfgsreport_owner();
-    _minlbfgsreport_owner(const _minlbfgsreport_owner &rhs);
-    _minlbfgsreport_owner& operator=(const _minlbfgsreport_owner &rhs);
-    virtual ~_minlbfgsreport_owner();
-    alglib_impl::minlbfgsreport* c_ptr();
-    alglib_impl::minlbfgsreport* c_ptr() const;
-protected:
-    alglib_impl::minlbfgsreport *p_struct;
+class _minlbfgsreport_owner {
+ public:
+  _minlbfgsreport_owner();
+  _minlbfgsreport_owner(const _minlbfgsreport_owner &rhs);
+  _minlbfgsreport_owner &operator=(const _minlbfgsreport_owner &rhs);
+  virtual ~_minlbfgsreport_owner();
+  alglib_impl::minlbfgsreport *c_ptr();
+  alglib_impl::minlbfgsreport *c_ptr() const;
+ protected:
+  alglib_impl::minlbfgsreport *p_struct;
 };
-class minlbfgsreport : public _minlbfgsreport_owner
-{
-public:
-    minlbfgsreport();
-    minlbfgsreport(const minlbfgsreport &rhs);
-    minlbfgsreport& operator=(const minlbfgsreport &rhs);
-    virtual ~minlbfgsreport();
-    ae_int_t &iterationscount;
-    ae_int_t &nfev;
-    ae_int_t &terminationtype;
+class minlbfgsreport : public _minlbfgsreport_owner {
+ public:
+  minlbfgsreport();
+  minlbfgsreport(const minlbfgsreport &rhs);
+  minlbfgsreport &operator=(const minlbfgsreport &rhs);
+  virtual ~minlbfgsreport();
+  ae_int_t &iterationscount;
+  ae_int_t &nfev;
+  ae_int_t &terminationtype;
 
 };
 #endif
@@ -2289,34 +2216,31 @@ This object stores nonlinear optimizer state.
 You should use functions provided by MinBLEIC subpackage to work with this
 object
 *************************************************************************/
-class _minbleicstate_owner
-{
-public:
-    _minbleicstate_owner();
-    _minbleicstate_owner(const _minbleicstate_owner &rhs);
-    _minbleicstate_owner& operator=(const _minbleicstate_owner &rhs);
-    virtual ~_minbleicstate_owner();
-    alglib_impl::minbleicstate* c_ptr();
-    alglib_impl::minbleicstate* c_ptr() const;
-protected:
-    alglib_impl::minbleicstate *p_struct;
+class _minbleicstate_owner {
+ public:
+  _minbleicstate_owner();
+  _minbleicstate_owner(const _minbleicstate_owner &rhs);
+  _minbleicstate_owner &operator=(const _minbleicstate_owner &rhs);
+  virtual ~_minbleicstate_owner();
+  alglib_impl::minbleicstate *c_ptr();
+  alglib_impl::minbleicstate *c_ptr() const;
+ protected:
+  alglib_impl::minbleicstate *p_struct;
 };
-class minbleicstate : public _minbleicstate_owner
-{
-public:
-    minbleicstate();
-    minbleicstate(const minbleicstate &rhs);
-    minbleicstate& operator=(const minbleicstate &rhs);
-    virtual ~minbleicstate();
-    ae_bool &needf;
-    ae_bool &needfg;
-    ae_bool &xupdated;
-    double &f;
-    real_1d_array g;
-    real_1d_array x;
+class minbleicstate : public _minbleicstate_owner {
+ public:
+  minbleicstate();
+  minbleicstate(const minbleicstate &rhs);
+  minbleicstate &operator=(const minbleicstate &rhs);
+  virtual ~minbleicstate();
+  ae_bool &needf;
+  ae_bool &needfg;
+  ae_bool &xupdated;
+  double &f;
+  real_1d_array g;
+  real_1d_array x;
 
 };
-
 
 /*************************************************************************
 This structure stores optimization report:
@@ -2352,37 +2276,35 @@ There are additional fields which can be used for debugging:
 * DebugFF                   f, calculated at the final point
 * DebugDX                   |X_start-X_final|
 *************************************************************************/
-class _minbleicreport_owner
-{
-public:
-    _minbleicreport_owner();
-    _minbleicreport_owner(const _minbleicreport_owner &rhs);
-    _minbleicreport_owner& operator=(const _minbleicreport_owner &rhs);
-    virtual ~_minbleicreport_owner();
-    alglib_impl::minbleicreport* c_ptr();
-    alglib_impl::minbleicreport* c_ptr() const;
-protected:
-    alglib_impl::minbleicreport *p_struct;
+class _minbleicreport_owner {
+ public:
+  _minbleicreport_owner();
+  _minbleicreport_owner(const _minbleicreport_owner &rhs);
+  _minbleicreport_owner &operator=(const _minbleicreport_owner &rhs);
+  virtual ~_minbleicreport_owner();
+  alglib_impl::minbleicreport *c_ptr();
+  alglib_impl::minbleicreport *c_ptr() const;
+ protected:
+  alglib_impl::minbleicreport *p_struct;
 };
-class minbleicreport : public _minbleicreport_owner
-{
-public:
-    minbleicreport();
-    minbleicreport(const minbleicreport &rhs);
-    minbleicreport& operator=(const minbleicreport &rhs);
-    virtual ~minbleicreport();
-    ae_int_t &iterationscount;
-    ae_int_t &nfev;
-    ae_int_t &varidx;
-    ae_int_t &terminationtype;
-    double &debugeqerr;
-    double &debugfs;
-    double &debugff;
-    double &debugdx;
-    ae_int_t &debugfeasqpits;
-    ae_int_t &debugfeasgpaits;
-    ae_int_t &inneriterationscount;
-    ae_int_t &outeriterationscount;
+class minbleicreport : public _minbleicreport_owner {
+ public:
+  minbleicreport();
+  minbleicreport(const minbleicreport &rhs);
+  minbleicreport &operator=(const minbleicreport &rhs);
+  virtual ~minbleicreport();
+  ae_int_t &iterationscount;
+  ae_int_t &nfev;
+  ae_int_t &varidx;
+  ae_int_t &terminationtype;
+  double &debugeqerr;
+  double &debugfs;
+  double &debugff;
+  double &debugdx;
+  ae_int_t &debugfeasqpits;
+  ae_int_t &debugfeasgpaits;
+  ae_int_t &inneriterationscount;
+  ae_int_t &outeriterationscount;
 
 };
 #endif
@@ -2397,28 +2319,25 @@ This object stores nonlinear optimizer state.
 You should use functions provided by MinQP subpackage to work with this
 object
 *************************************************************************/
-class _minqpstate_owner
-{
-public:
-    _minqpstate_owner();
-    _minqpstate_owner(const _minqpstate_owner &rhs);
-    _minqpstate_owner& operator=(const _minqpstate_owner &rhs);
-    virtual ~_minqpstate_owner();
-    alglib_impl::minqpstate* c_ptr();
-    alglib_impl::minqpstate* c_ptr() const;
-protected:
-    alglib_impl::minqpstate *p_struct;
+class _minqpstate_owner {
+ public:
+  _minqpstate_owner();
+  _minqpstate_owner(const _minqpstate_owner &rhs);
+  _minqpstate_owner &operator=(const _minqpstate_owner &rhs);
+  virtual ~_minqpstate_owner();
+  alglib_impl::minqpstate *c_ptr();
+  alglib_impl::minqpstate *c_ptr() const;
+ protected:
+  alglib_impl::minqpstate *p_struct;
 };
-class minqpstate : public _minqpstate_owner
-{
-public:
-    minqpstate();
-    minqpstate(const minqpstate &rhs);
-    minqpstate& operator=(const minqpstate &rhs);
-    virtual ~minqpstate();
+class minqpstate : public _minqpstate_owner {
+ public:
+  minqpstate();
+  minqpstate(const minqpstate &rhs);
+  minqpstate &operator=(const minqpstate &rhs);
+  virtual ~minqpstate();
 
 };
-
 
 /*************************************************************************
 This structure stores optimization report:
@@ -2488,32 +2407,30 @@ NOTE: methods  from  IPM  family  may  also  return  meaningful   Lagrange
       infeasibility/unboundedness of the problem is due to rounding errors
       In this case last values of Lagrange multipliers are returned.
 *************************************************************************/
-class _minqpreport_owner
-{
-public:
-    _minqpreport_owner();
-    _minqpreport_owner(const _minqpreport_owner &rhs);
-    _minqpreport_owner& operator=(const _minqpreport_owner &rhs);
-    virtual ~_minqpreport_owner();
-    alglib_impl::minqpreport* c_ptr();
-    alglib_impl::minqpreport* c_ptr() const;
-protected:
-    alglib_impl::minqpreport *p_struct;
+class _minqpreport_owner {
+ public:
+  _minqpreport_owner();
+  _minqpreport_owner(const _minqpreport_owner &rhs);
+  _minqpreport_owner &operator=(const _minqpreport_owner &rhs);
+  virtual ~_minqpreport_owner();
+  alglib_impl::minqpreport *c_ptr();
+  alglib_impl::minqpreport *c_ptr() const;
+ protected:
+  alglib_impl::minqpreport *p_struct;
 };
-class minqpreport : public _minqpreport_owner
-{
-public:
-    minqpreport();
-    minqpreport(const minqpreport &rhs);
-    minqpreport& operator=(const minqpreport &rhs);
-    virtual ~minqpreport();
-    ae_int_t &inneriterationscount;
-    ae_int_t &outeriterationscount;
-    ae_int_t &nmv;
-    ae_int_t &ncholesky;
-    ae_int_t &terminationtype;
-    real_1d_array lagbc;
-    real_1d_array laglc;
+class minqpreport : public _minqpreport_owner {
+ public:
+  minqpreport();
+  minqpreport(const minqpreport &rhs);
+  minqpreport &operator=(const minqpreport &rhs);
+  virtual ~minqpreport();
+  ae_int_t &inneriterationscount;
+  ae_int_t &outeriterationscount;
+  ae_int_t &nmv;
+  ae_int_t &ncholesky;
+  ae_int_t &terminationtype;
+  real_1d_array lagbc;
+  real_1d_array laglc;
 
 };
 #endif
@@ -2528,28 +2445,25 @@ This object stores linear solver state.
 You should use functions provided by MinLP subpackage to work with this
 object
 *************************************************************************/
-class _minlpstate_owner
-{
-public:
-    _minlpstate_owner();
-    _minlpstate_owner(const _minlpstate_owner &rhs);
-    _minlpstate_owner& operator=(const _minlpstate_owner &rhs);
-    virtual ~_minlpstate_owner();
-    alglib_impl::minlpstate* c_ptr();
-    alglib_impl::minlpstate* c_ptr() const;
-protected:
-    alglib_impl::minlpstate *p_struct;
+class _minlpstate_owner {
+ public:
+  _minlpstate_owner();
+  _minlpstate_owner(const _minlpstate_owner &rhs);
+  _minlpstate_owner &operator=(const _minlpstate_owner &rhs);
+  virtual ~_minlpstate_owner();
+  alglib_impl::minlpstate *c_ptr();
+  alglib_impl::minlpstate *c_ptr() const;
+ protected:
+  alglib_impl::minlpstate *p_struct;
 };
-class minlpstate : public _minlpstate_owner
-{
-public:
-    minlpstate();
-    minlpstate(const minlpstate &rhs);
-    minlpstate& operator=(const minlpstate &rhs);
-    virtual ~minlpstate();
+class minlpstate : public _minlpstate_owner {
+ public:
+  minlpstate();
+  minlpstate(const minlpstate &rhs);
+  minlpstate &operator=(const minlpstate &rhs);
+  virtual ~minlpstate();
 
 };
-
 
 /*************************************************************************
 This structure stores optimization report:
@@ -2577,32 +2491,30 @@ Completion codes:
         further improvement is impossible,
         X contains best point found so far.
 *************************************************************************/
-class _minlpreport_owner
-{
-public:
-    _minlpreport_owner();
-    _minlpreport_owner(const _minlpreport_owner &rhs);
-    _minlpreport_owner& operator=(const _minlpreport_owner &rhs);
-    virtual ~_minlpreport_owner();
-    alglib_impl::minlpreport* c_ptr();
-    alglib_impl::minlpreport* c_ptr() const;
-protected:
-    alglib_impl::minlpreport *p_struct;
+class _minlpreport_owner {
+ public:
+  _minlpreport_owner();
+  _minlpreport_owner(const _minlpreport_owner &rhs);
+  _minlpreport_owner &operator=(const _minlpreport_owner &rhs);
+  virtual ~_minlpreport_owner();
+  alglib_impl::minlpreport *c_ptr();
+  alglib_impl::minlpreport *c_ptr() const;
+ protected:
+  alglib_impl::minlpreport *p_struct;
 };
-class minlpreport : public _minlpreport_owner
-{
-public:
-    minlpreport();
-    minlpreport(const minlpreport &rhs);
-    minlpreport& operator=(const minlpreport &rhs);
-    virtual ~minlpreport();
-    double &f;
-    real_1d_array y;
-    integer_1d_array stats;
-    double &primalerror;
-    double &dualerror;
-    ae_int_t &iterationscount;
-    ae_int_t &terminationtype;
+class minlpreport : public _minlpreport_owner {
+ public:
+  minlpreport();
+  minlpreport(const minlpreport &rhs);
+  minlpreport &operator=(const minlpreport &rhs);
+  virtual ~minlpreport();
+  double &f;
+  real_1d_array y;
+  integer_1d_array stats;
+  double &primalerror;
+  double &dualerror;
+  ae_int_t &iterationscount;
+  ae_int_t &terminationtype;
 
 };
 #endif
@@ -2617,35 +2529,32 @@ This object stores nonlinear optimizer state.
 You should use functions provided by MinNLC subpackage to work  with  this
 object
 *************************************************************************/
-class _minnlcstate_owner
-{
-public:
-    _minnlcstate_owner();
-    _minnlcstate_owner(const _minnlcstate_owner &rhs);
-    _minnlcstate_owner& operator=(const _minnlcstate_owner &rhs);
-    virtual ~_minnlcstate_owner();
-    alglib_impl::minnlcstate* c_ptr();
-    alglib_impl::minnlcstate* c_ptr() const;
-protected:
-    alglib_impl::minnlcstate *p_struct;
+class _minnlcstate_owner {
+ public:
+  _minnlcstate_owner();
+  _minnlcstate_owner(const _minnlcstate_owner &rhs);
+  _minnlcstate_owner &operator=(const _minnlcstate_owner &rhs);
+  virtual ~_minnlcstate_owner();
+  alglib_impl::minnlcstate *c_ptr();
+  alglib_impl::minnlcstate *c_ptr() const;
+ protected:
+  alglib_impl::minnlcstate *p_struct;
 };
-class minnlcstate : public _minnlcstate_owner
-{
-public:
-    minnlcstate();
-    minnlcstate(const minnlcstate &rhs);
-    minnlcstate& operator=(const minnlcstate &rhs);
-    virtual ~minnlcstate();
-    ae_bool &needfi;
-    ae_bool &needfij;
-    ae_bool &xupdated;
-    double &f;
-    real_1d_array fi;
-    real_2d_array j;
-    real_1d_array x;
+class minnlcstate : public _minnlcstate_owner {
+ public:
+  minnlcstate();
+  minnlcstate(const minnlcstate &rhs);
+  minnlcstate &operator=(const minnlcstate &rhs);
+  virtual ~minnlcstate();
+  ae_bool &needfi;
+  ae_bool &needfij;
+  ae_bool &xupdated;
+  double &f;
+  real_1d_array fi;
+  real_2d_array j;
+  real_1d_array x;
 
 };
-
 
 /*************************************************************************
 These fields store optimization report:
@@ -2697,35 +2606,33 @@ TerminationType field contains completion code, which can be either:
 
 Other fields of this structure are not documented and should not be used!
 *************************************************************************/
-class _minnlcreport_owner
-{
-public:
-    _minnlcreport_owner();
-    _minnlcreport_owner(const _minnlcreport_owner &rhs);
-    _minnlcreport_owner& operator=(const _minnlcreport_owner &rhs);
-    virtual ~_minnlcreport_owner();
-    alglib_impl::minnlcreport* c_ptr();
-    alglib_impl::minnlcreport* c_ptr() const;
-protected:
-    alglib_impl::minnlcreport *p_struct;
+class _minnlcreport_owner {
+ public:
+  _minnlcreport_owner();
+  _minnlcreport_owner(const _minnlcreport_owner &rhs);
+  _minnlcreport_owner &operator=(const _minnlcreport_owner &rhs);
+  virtual ~_minnlcreport_owner();
+  alglib_impl::minnlcreport *c_ptr();
+  alglib_impl::minnlcreport *c_ptr() const;
+ protected:
+  alglib_impl::minnlcreport *p_struct;
 };
-class minnlcreport : public _minnlcreport_owner
-{
-public:
-    minnlcreport();
-    minnlcreport(const minnlcreport &rhs);
-    minnlcreport& operator=(const minnlcreport &rhs);
-    virtual ~minnlcreport();
-    ae_int_t &iterationscount;
-    ae_int_t &nfev;
-    ae_int_t &terminationtype;
-    double &bcerr;
-    ae_int_t &bcidx;
-    double &lcerr;
-    ae_int_t &lcidx;
-    double &nlcerr;
-    ae_int_t &nlcidx;
-    ae_int_t &dbgphase0its;
+class minnlcreport : public _minnlcreport_owner {
+ public:
+  minnlcreport();
+  minnlcreport(const minnlcreport &rhs);
+  minnlcreport &operator=(const minnlcreport &rhs);
+  virtual ~minnlcreport();
+  ae_int_t &iterationscount;
+  ae_int_t &nfev;
+  ae_int_t &terminationtype;
+  double &bcerr;
+  ae_int_t &bcidx;
+  double &lcerr;
+  ae_int_t &lcidx;
+  double &nlcerr;
+  ae_int_t &nlcidx;
+  ae_int_t &dbgphase0its;
 
 };
 #endif
@@ -2736,34 +2643,31 @@ This object stores nonlinear optimizer state.
 You should use functions provided by MinBC subpackage to work with this
 object
 *************************************************************************/
-class _minbcstate_owner
-{
-public:
-    _minbcstate_owner();
-    _minbcstate_owner(const _minbcstate_owner &rhs);
-    _minbcstate_owner& operator=(const _minbcstate_owner &rhs);
-    virtual ~_minbcstate_owner();
-    alglib_impl::minbcstate* c_ptr();
-    alglib_impl::minbcstate* c_ptr() const;
-protected:
-    alglib_impl::minbcstate *p_struct;
+class _minbcstate_owner {
+ public:
+  _minbcstate_owner();
+  _minbcstate_owner(const _minbcstate_owner &rhs);
+  _minbcstate_owner &operator=(const _minbcstate_owner &rhs);
+  virtual ~_minbcstate_owner();
+  alglib_impl::minbcstate *c_ptr();
+  alglib_impl::minbcstate *c_ptr() const;
+ protected:
+  alglib_impl::minbcstate *p_struct;
 };
-class minbcstate : public _minbcstate_owner
-{
-public:
-    minbcstate();
-    minbcstate(const minbcstate &rhs);
-    minbcstate& operator=(const minbcstate &rhs);
-    virtual ~minbcstate();
-    ae_bool &needf;
-    ae_bool &needfg;
-    ae_bool &xupdated;
-    double &f;
-    real_1d_array g;
-    real_1d_array x;
+class minbcstate : public _minbcstate_owner {
+ public:
+  minbcstate();
+  minbcstate(const minbcstate &rhs);
+  minbcstate &operator=(const minbcstate &rhs);
+  virtual ~minbcstate();
+  ae_bool &needf;
+  ae_bool &needfg;
+  ae_bool &xupdated;
+  double &f;
+  real_1d_array g;
+  real_1d_array x;
 
 };
-
 
 /*************************************************************************
 This structure stores optimization report:
@@ -2788,29 +2692,27 @@ terminationtype field contains completion code, which can be:
         point which was "current accepted" when  termination  request  was
         submitted.
 *************************************************************************/
-class _minbcreport_owner
-{
-public:
-    _minbcreport_owner();
-    _minbcreport_owner(const _minbcreport_owner &rhs);
-    _minbcreport_owner& operator=(const _minbcreport_owner &rhs);
-    virtual ~_minbcreport_owner();
-    alglib_impl::minbcreport* c_ptr();
-    alglib_impl::minbcreport* c_ptr() const;
-protected:
-    alglib_impl::minbcreport *p_struct;
+class _minbcreport_owner {
+ public:
+  _minbcreport_owner();
+  _minbcreport_owner(const _minbcreport_owner &rhs);
+  _minbcreport_owner &operator=(const _minbcreport_owner &rhs);
+  virtual ~_minbcreport_owner();
+  alglib_impl::minbcreport *c_ptr();
+  alglib_impl::minbcreport *c_ptr() const;
+ protected:
+  alglib_impl::minbcreport *p_struct;
 };
-class minbcreport : public _minbcreport_owner
-{
-public:
-    minbcreport();
-    minbcreport(const minbcreport &rhs);
-    minbcreport& operator=(const minbcreport &rhs);
-    virtual ~minbcreport();
-    ae_int_t &iterationscount;
-    ae_int_t &nfev;
-    ae_int_t &varidx;
-    ae_int_t &terminationtype;
+class minbcreport : public _minbcreport_owner {
+ public:
+  minbcreport();
+  minbcreport(const minbcreport &rhs);
+  minbcreport &operator=(const minbcreport &rhs);
+  virtual ~minbcreport();
+  ae_int_t &iterationscount;
+  ae_int_t &nfev;
+  ae_int_t &varidx;
+  ae_int_t &terminationtype;
 
 };
 #endif
@@ -2821,35 +2723,32 @@ This object stores nonlinear optimizer state.
 You should use functions provided by MinNS subpackage to work  with  this
 object
 *************************************************************************/
-class _minnsstate_owner
-{
-public:
-    _minnsstate_owner();
-    _minnsstate_owner(const _minnsstate_owner &rhs);
-    _minnsstate_owner& operator=(const _minnsstate_owner &rhs);
-    virtual ~_minnsstate_owner();
-    alglib_impl::minnsstate* c_ptr();
-    alglib_impl::minnsstate* c_ptr() const;
-protected:
-    alglib_impl::minnsstate *p_struct;
+class _minnsstate_owner {
+ public:
+  _minnsstate_owner();
+  _minnsstate_owner(const _minnsstate_owner &rhs);
+  _minnsstate_owner &operator=(const _minnsstate_owner &rhs);
+  virtual ~_minnsstate_owner();
+  alglib_impl::minnsstate *c_ptr();
+  alglib_impl::minnsstate *c_ptr() const;
+ protected:
+  alglib_impl::minnsstate *p_struct;
 };
-class minnsstate : public _minnsstate_owner
-{
-public:
-    minnsstate();
-    minnsstate(const minnsstate &rhs);
-    minnsstate& operator=(const minnsstate &rhs);
-    virtual ~minnsstate();
-    ae_bool &needfi;
-    ae_bool &needfij;
-    ae_bool &xupdated;
-    double &f;
-    real_1d_array fi;
-    real_2d_array j;
-    real_1d_array x;
+class minnsstate : public _minnsstate_owner {
+ public:
+  minnsstate();
+  minnsstate(const minnsstate &rhs);
+  minnsstate &operator=(const minnsstate &rhs);
+  virtual ~minnsstate();
+  ae_bool &needfi;
+  ae_bool &needfij;
+  ae_bool &xupdated;
+  double &f;
+  real_1d_array fi;
+  real_2d_array j;
+  real_1d_array x;
 
 };
-
 
 /*************************************************************************
 This structure stores optimization report:
@@ -2878,33 +2777,31 @@ TerminationType field contains completion code, which can be:
 
 Other fields of this structure are not documented and should not be used!
 *************************************************************************/
-class _minnsreport_owner
-{
-public:
-    _minnsreport_owner();
-    _minnsreport_owner(const _minnsreport_owner &rhs);
-    _minnsreport_owner& operator=(const _minnsreport_owner &rhs);
-    virtual ~_minnsreport_owner();
-    alglib_impl::minnsreport* c_ptr();
-    alglib_impl::minnsreport* c_ptr() const;
-protected:
-    alglib_impl::minnsreport *p_struct;
+class _minnsreport_owner {
+ public:
+  _minnsreport_owner();
+  _minnsreport_owner(const _minnsreport_owner &rhs);
+  _minnsreport_owner &operator=(const _minnsreport_owner &rhs);
+  virtual ~_minnsreport_owner();
+  alglib_impl::minnsreport *c_ptr();
+  alglib_impl::minnsreport *c_ptr() const;
+ protected:
+  alglib_impl::minnsreport *p_struct;
 };
-class minnsreport : public _minnsreport_owner
-{
-public:
-    minnsreport();
-    minnsreport(const minnsreport &rhs);
-    minnsreport& operator=(const minnsreport &rhs);
-    virtual ~minnsreport();
-    ae_int_t &iterationscount;
-    ae_int_t &nfev;
-    double &cerr;
-    double &lcerr;
-    double &nlcerr;
-    ae_int_t &terminationtype;
-    ae_int_t &varidx;
-    ae_int_t &funcidx;
+class minnsreport : public _minnsreport_owner {
+ public:
+  minnsreport();
+  minnsreport(const minnsreport &rhs);
+  minnsreport &operator=(const minnsreport &rhs);
+  virtual ~minnsreport();
+  ae_int_t &iterationscount;
+  ae_int_t &nfev;
+  double &cerr;
+  double &lcerr;
+  double &nlcerr;
+  ae_int_t &terminationtype;
+  ae_int_t &varidx;
+  ae_int_t &funcidx;
 
 };
 #endif
@@ -2913,60 +2810,55 @@ public:
 /*************************************************************************
 
 *************************************************************************/
-class _minasastate_owner
-{
-public:
-    _minasastate_owner();
-    _minasastate_owner(const _minasastate_owner &rhs);
-    _minasastate_owner& operator=(const _minasastate_owner &rhs);
-    virtual ~_minasastate_owner();
-    alglib_impl::minasastate* c_ptr();
-    alglib_impl::minasastate* c_ptr() const;
-protected:
-    alglib_impl::minasastate *p_struct;
+class _minasastate_owner {
+ public:
+  _minasastate_owner();
+  _minasastate_owner(const _minasastate_owner &rhs);
+  _minasastate_owner &operator=(const _minasastate_owner &rhs);
+  virtual ~_minasastate_owner();
+  alglib_impl::minasastate *c_ptr();
+  alglib_impl::minasastate *c_ptr() const;
+ protected:
+  alglib_impl::minasastate *p_struct;
 };
-class minasastate : public _minasastate_owner
-{
-public:
-    minasastate();
-    minasastate(const minasastate &rhs);
-    minasastate& operator=(const minasastate &rhs);
-    virtual ~minasastate();
-    ae_bool &needfg;
-    ae_bool &xupdated;
-    double &f;
-    real_1d_array g;
-    real_1d_array x;
+class minasastate : public _minasastate_owner {
+ public:
+  minasastate();
+  minasastate(const minasastate &rhs);
+  minasastate &operator=(const minasastate &rhs);
+  virtual ~minasastate();
+  ae_bool &needfg;
+  ae_bool &xupdated;
+  double &f;
+  real_1d_array g;
+  real_1d_array x;
 
 };
-
 
 /*************************************************************************
 
 *************************************************************************/
-class _minasareport_owner
-{
-public:
-    _minasareport_owner();
-    _minasareport_owner(const _minasareport_owner &rhs);
-    _minasareport_owner& operator=(const _minasareport_owner &rhs);
-    virtual ~_minasareport_owner();
-    alglib_impl::minasareport* c_ptr();
-    alglib_impl::minasareport* c_ptr() const;
-protected:
-    alglib_impl::minasareport *p_struct;
+class _minasareport_owner {
+ public:
+  _minasareport_owner();
+  _minasareport_owner(const _minasareport_owner &rhs);
+  _minasareport_owner &operator=(const _minasareport_owner &rhs);
+  virtual ~_minasareport_owner();
+  alglib_impl::minasareport *c_ptr();
+  alglib_impl::minasareport *c_ptr() const;
+ protected:
+  alglib_impl::minasareport *p_struct;
 };
-class minasareport : public _minasareport_owner
-{
-public:
-    minasareport();
-    minasareport(const minasareport &rhs);
-    minasareport& operator=(const minasareport &rhs);
-    virtual ~minasareport();
-    ae_int_t &iterationscount;
-    ae_int_t &nfev;
-    ae_int_t &terminationtype;
-    ae_int_t &activeconstraints;
+class minasareport : public _minasareport_owner {
+ public:
+  minasareport();
+  minasareport(const minasareport &rhs);
+  minasareport &operator=(const minasareport &rhs);
+  virtual ~minasareport();
+  ae_int_t &iterationscount;
+  ae_int_t &nfev;
+  ae_int_t &terminationtype;
+  ae_int_t &activeconstraints;
 
 };
 #endif
@@ -2977,34 +2869,31 @@ This object stores state of the nonlinear CG optimizer.
 
 You should use ALGLIB functions to work with this object.
 *************************************************************************/
-class _mincgstate_owner
-{
-public:
-    _mincgstate_owner();
-    _mincgstate_owner(const _mincgstate_owner &rhs);
-    _mincgstate_owner& operator=(const _mincgstate_owner &rhs);
-    virtual ~_mincgstate_owner();
-    alglib_impl::mincgstate* c_ptr();
-    alglib_impl::mincgstate* c_ptr() const;
-protected:
-    alglib_impl::mincgstate *p_struct;
+class _mincgstate_owner {
+ public:
+  _mincgstate_owner();
+  _mincgstate_owner(const _mincgstate_owner &rhs);
+  _mincgstate_owner &operator=(const _mincgstate_owner &rhs);
+  virtual ~_mincgstate_owner();
+  alglib_impl::mincgstate *c_ptr();
+  alglib_impl::mincgstate *c_ptr() const;
+ protected:
+  alglib_impl::mincgstate *p_struct;
 };
-class mincgstate : public _mincgstate_owner
-{
-public:
-    mincgstate();
-    mincgstate(const mincgstate &rhs);
-    mincgstate& operator=(const mincgstate &rhs);
-    virtual ~mincgstate();
-    ae_bool &needf;
-    ae_bool &needfg;
-    ae_bool &xupdated;
-    double &f;
-    real_1d_array g;
-    real_1d_array x;
+class mincgstate : public _mincgstate_owner {
+ public:
+  mincgstate();
+  mincgstate(const mincgstate &rhs);
+  mincgstate &operator=(const mincgstate &rhs);
+  virtual ~mincgstate();
+  ae_bool &needf;
+  ae_bool &needfg;
+  ae_bool &xupdated;
+  double &f;
+  real_1d_array g;
+  real_1d_array x;
 
 };
-
 
 /*************************************************************************
 This structure stores optimization report:
@@ -3030,28 +2919,26 @@ TerminationType field contains completion code, which can be:
 
 Other fields of this structure are not documented and should not be used!
 *************************************************************************/
-class _mincgreport_owner
-{
-public:
-    _mincgreport_owner();
-    _mincgreport_owner(const _mincgreport_owner &rhs);
-    _mincgreport_owner& operator=(const _mincgreport_owner &rhs);
-    virtual ~_mincgreport_owner();
-    alglib_impl::mincgreport* c_ptr();
-    alglib_impl::mincgreport* c_ptr() const;
-protected:
-    alglib_impl::mincgreport *p_struct;
+class _mincgreport_owner {
+ public:
+  _mincgreport_owner();
+  _mincgreport_owner(const _mincgreport_owner &rhs);
+  _mincgreport_owner &operator=(const _mincgreport_owner &rhs);
+  virtual ~_mincgreport_owner();
+  alglib_impl::mincgreport *c_ptr();
+  alglib_impl::mincgreport *c_ptr() const;
+ protected:
+  alglib_impl::mincgreport *p_struct;
 };
-class mincgreport : public _mincgreport_owner
-{
-public:
-    mincgreport();
-    mincgreport(const mincgreport &rhs);
-    mincgreport& operator=(const mincgreport &rhs);
-    virtual ~mincgreport();
-    ae_int_t &iterationscount;
-    ae_int_t &nfev;
-    ae_int_t &terminationtype;
+class mincgreport : public _mincgreport_owner {
+ public:
+  mincgreport();
+  mincgreport(const mincgreport &rhs);
+  mincgreport &operator=(const mincgreport &rhs);
+  virtual ~mincgreport();
+  ae_int_t &iterationscount;
+  ae_int_t &nfev;
+  ae_int_t &terminationtype;
 
 };
 #endif
@@ -3064,40 +2951,37 @@ This structure should be created using one of the MinLMCreate???()
 functions. You should not access its fields directly; use ALGLIB functions
 to work with it.
 *************************************************************************/
-class _minlmstate_owner
-{
-public:
-    _minlmstate_owner();
-    _minlmstate_owner(const _minlmstate_owner &rhs);
-    _minlmstate_owner& operator=(const _minlmstate_owner &rhs);
-    virtual ~_minlmstate_owner();
-    alglib_impl::minlmstate* c_ptr();
-    alglib_impl::minlmstate* c_ptr() const;
-protected:
-    alglib_impl::minlmstate *p_struct;
+class _minlmstate_owner {
+ public:
+  _minlmstate_owner();
+  _minlmstate_owner(const _minlmstate_owner &rhs);
+  _minlmstate_owner &operator=(const _minlmstate_owner &rhs);
+  virtual ~_minlmstate_owner();
+  alglib_impl::minlmstate *c_ptr();
+  alglib_impl::minlmstate *c_ptr() const;
+ protected:
+  alglib_impl::minlmstate *p_struct;
 };
-class minlmstate : public _minlmstate_owner
-{
-public:
-    minlmstate();
-    minlmstate(const minlmstate &rhs);
-    minlmstate& operator=(const minlmstate &rhs);
-    virtual ~minlmstate();
-    ae_bool &needf;
-    ae_bool &needfg;
-    ae_bool &needfgh;
-    ae_bool &needfi;
-    ae_bool &needfij;
-    ae_bool &xupdated;
-    double &f;
-    real_1d_array fi;
-    real_1d_array g;
-    real_2d_array h;
-    real_2d_array j;
-    real_1d_array x;
+class minlmstate : public _minlmstate_owner {
+ public:
+  minlmstate();
+  minlmstate(const minlmstate &rhs);
+  minlmstate &operator=(const minlmstate &rhs);
+  virtual ~minlmstate();
+  ae_bool &needf;
+  ae_bool &needfg;
+  ae_bool &needfgh;
+  ae_bool &needfi;
+  ae_bool &needfij;
+  ae_bool &xupdated;
+  double &f;
+  real_1d_array fi;
+  real_1d_array g;
+  real_2d_array h;
+  real_2d_array j;
+  real_1d_array x;
 
 };
-
 
 /*************************************************************************
 Optimization report, filled by MinLMResults() function
@@ -3124,32 +3008,30 @@ FIELDS:
 * NHess, number of Hessian calculations
 * NCholesky, number of Cholesky decomposition calculations
 *************************************************************************/
-class _minlmreport_owner
-{
-public:
-    _minlmreport_owner();
-    _minlmreport_owner(const _minlmreport_owner &rhs);
-    _minlmreport_owner& operator=(const _minlmreport_owner &rhs);
-    virtual ~_minlmreport_owner();
-    alglib_impl::minlmreport* c_ptr();
-    alglib_impl::minlmreport* c_ptr() const;
-protected:
-    alglib_impl::minlmreport *p_struct;
+class _minlmreport_owner {
+ public:
+  _minlmreport_owner();
+  _minlmreport_owner(const _minlmreport_owner &rhs);
+  _minlmreport_owner &operator=(const _minlmreport_owner &rhs);
+  virtual ~_minlmreport_owner();
+  alglib_impl::minlmreport *c_ptr();
+  alglib_impl::minlmreport *c_ptr() const;
+ protected:
+  alglib_impl::minlmreport *p_struct;
 };
-class minlmreport : public _minlmreport_owner
-{
-public:
-    minlmreport();
-    minlmreport(const minlmreport &rhs);
-    minlmreport& operator=(const minlmreport &rhs);
-    virtual ~minlmreport();
-    ae_int_t &iterationscount;
-    ae_int_t &terminationtype;
-    ae_int_t &nfunc;
-    ae_int_t &njac;
-    ae_int_t &ngrad;
-    ae_int_t &nhess;
-    ae_int_t &ncholesky;
+class minlmreport : public _minlmreport_owner {
+ public:
+  minlmreport();
+  minlmreport(const minlmreport &rhs);
+  minlmreport &operator=(const minlmreport &rhs);
+  virtual ~minlmreport();
+  ae_int_t &iterationscount;
+  ae_int_t &terminationtype;
+  ae_int_t &nfunc;
+  ae_int_t &njac;
+  ae_int_t &ngrad;
+  ae_int_t &nhess;
+  ae_int_t &ncholesky;
 
 };
 #endif
@@ -3246,9 +3128,15 @@ NOTES:
   -- ALGLIB --
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgscreate(const ae_int_t n, const ae_int_t m, const real_1d_array &x, minlbfgsstate &state, const xparams _xparams = alglib::xdefault);
-void minlbfgscreate(const ae_int_t m, const real_1d_array &x, minlbfgsstate &state, const xparams _xparams = alglib::xdefault);
-
+void minlbfgscreate(const ae_int_t n,
+                    const ae_int_t m,
+                    const real_1d_array &x,
+                    minlbfgsstate &state,
+                    const xparams _xparams = alglib::xdefault);
+void minlbfgscreate(const ae_int_t m,
+                    const real_1d_array &x,
+                    minlbfgsstate &state,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 The subroutine is finite difference variant of MinLBFGSCreate().  It  uses
@@ -3297,9 +3185,17 @@ NOTES:
   -- ALGLIB --
      Copyright 16.05.2011 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgscreatef(const ae_int_t n, const ae_int_t m, const real_1d_array &x, const double diffstep, minlbfgsstate &state, const xparams _xparams = alglib::xdefault);
-void minlbfgscreatef(const ae_int_t m, const real_1d_array &x, const double diffstep, minlbfgsstate &state, const xparams _xparams = alglib::xdefault);
-
+void minlbfgscreatef(const ae_int_t n,
+                     const ae_int_t m,
+                     const real_1d_array &x,
+                     const double diffstep,
+                     minlbfgsstate &state,
+                     const xparams _xparams = alglib::xdefault);
+void minlbfgscreatef(const ae_int_t m,
+                     const real_1d_array &x,
+                     const double diffstep,
+                     minlbfgsstate &state,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets stopping conditions for L-BFGS optimization algorithm.
@@ -3333,8 +3229,12 @@ automatic stopping criterion selection (small EpsX).
   -- ALGLIB --
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgssetcond(const minlbfgsstate &state, const double epsg, const double epsf, const double epsx, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void minlbfgssetcond(const minlbfgsstate &state,
+                     const double epsg,
+                     const double epsf,
+                     const double epsx,
+                     const ae_int_t maxits,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function turns on/off reporting.
@@ -3351,7 +3251,6 @@ provided to MinLBFGSOptimize().
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
 void minlbfgssetxrep(const minlbfgsstate &state, const bool needxrep, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets maximum step length
@@ -3371,7 +3270,6 @@ overflow) without actually calculating function value at the x+stp*d.
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
 void minlbfgssetstpmax(const minlbfgsstate &state, const double stpmax, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets scaling coefficients for LBFGS optimizer.
@@ -3406,7 +3304,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void minlbfgssetscale(const minlbfgsstate &state, const real_1d_array &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Modification  of  the  preconditioner:  default  preconditioner    (simple
 scaling, same for all elements of X) is used.
@@ -3421,7 +3318,6 @@ iterations.
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
 void minlbfgssetprecdefault(const minlbfgsstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Modification of the preconditioner: Cholesky factorization of  approximate
@@ -3446,8 +3342,10 @@ NOTE 2:  P  should  be nonsingular. Exception will be thrown otherwise.
   -- ALGLIB --
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgssetpreccholesky(const minlbfgsstate &state, const real_2d_array &p, const bool isupper, const xparams _xparams = alglib::xdefault);
-
+void minlbfgssetpreccholesky(const minlbfgsstate &state,
+                             const real_2d_array &p,
+                             const bool isupper,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Modification  of  the  preconditioner:  diagonal of approximate Hessian is
@@ -3469,7 +3367,6 @@ NOTE 3: you should pass diagonal of approximate Hessian - NOT ITS INVERSE.
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
 void minlbfgssetprecdiag(const minlbfgsstate &state, const real_1d_array &d, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Modification of the preconditioner: scale-based diagonal preconditioning.
@@ -3495,14 +3392,12 @@ INPUT PARAMETERS:
 *************************************************************************/
 void minlbfgssetprecscale(const minlbfgsstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function provides reverse communication interface
 Reverse communication interface is not documented or recommended to use.
 See below for functions which provide better documented API
 *************************************************************************/
 bool minlbfgsiteration(const minlbfgsstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This family of functions is used to launcn iterations of nonlinear optimizer
@@ -3555,26 +3450,25 @@ NOTES:
 
 *************************************************************************/
 void minlbfgsoptimize(minlbfgsstate &state,
-    void (*func)(const real_1d_array &x, double &func, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                      void (*func)(const real_1d_array &x, double &func, void *ptr),
+                      void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                      void *ptr = NULL,
+                      const xparams _xparams = alglib::xdefault);
 void minlbfgsoptimize(minlbfgsstate &state,
-    void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-void minlbfgsoptimize(minlbfgsstate& state,
-    std::function<void(const real_1d_array& x, double& func, void* ptr)>& func,
-    void  (*rep)(const real_1d_array& x, double func, void* ptr) = NULL,
-    void* ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-void minlbfgsoptimize(minlbfgsstate& state,
-    std::function<void(const real_1d_array& x, double& func, real_1d_array& grad, void* ptr)>& grad,
-    void  (*rep)(const real_1d_array& x, double func, void* ptr) = NULL,
-    void* ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-
+                      void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
+                      void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                      void *ptr = NULL,
+                      const xparams _xparams = alglib::xdefault);
+void minlbfgsoptimize(minlbfgsstate &state,
+                      std::function<void(const real_1d_array &x, double &func, void *ptr)> &func,
+                      void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                      void *ptr = NULL,
+                      const xparams _xparams = alglib::xdefault);
+void minlbfgsoptimize(minlbfgsstate &state,
+                      std::function<void(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr)> &grad,
+                      void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                      void *ptr = NULL,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  activates/deactivates verification  of  the  user-supplied
@@ -3631,8 +3525,9 @@ In order to verify gradient algorithm performs following steps:
   -- ALGLIB --
      Copyright 15.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgsoptguardgradient(const minlbfgsstate &state, const double teststep, const xparams _xparams = alglib::xdefault);
-
+void minlbfgsoptguardgradient(const minlbfgsstate &state,
+                              const double teststep,
+                              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  activates/deactivates nonsmoothness monitoring  option  of
@@ -3697,9 +3592,10 @@ you can study OptGuard result.
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgsoptguardsmoothness(const minlbfgsstate &state, const ae_int_t level, const xparams _xparams = alglib::xdefault);
+void minlbfgsoptguardsmoothness(const minlbfgsstate &state,
+                                const ae_int_t level,
+                                const xparams _xparams = alglib::xdefault);
 void minlbfgsoptguardsmoothness(const minlbfgsstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Results of OptGuard integrity check, should be called  after  optimization
@@ -3773,8 +3669,9 @@ NOTE: false negatives (nonsmooth problems are not identified as  nonsmooth
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgsoptguardresults(const minlbfgsstate &state, optguardreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minlbfgsoptguardresults(const minlbfgsstate &state,
+                             optguardreport &rep,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #0
@@ -3821,8 +3718,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgsoptguardnonc1test0results(const minlbfgsstate &state, optguardnonc1test0report &strrep, optguardnonc1test0report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void minlbfgsoptguardnonc1test0results(const minlbfgsstate &state,
+                                       optguardnonc1test0report &strrep,
+                                       optguardnonc1test0report &lngrep,
+                                       const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #1
@@ -3876,8 +3775,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgsoptguardnonc1test1results(const minlbfgsstate &state, optguardnonc1test1report &strrep, optguardnonc1test1report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void minlbfgsoptguardnonc1test1results(const minlbfgsstate &state,
+                                       optguardnonc1test1report &strrep,
+                                       optguardnonc1test1report &lngrep,
+                                       const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 L-BFGS algorithm results
@@ -3911,8 +3812,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgsresults(const minlbfgsstate &state, real_1d_array &x, minlbfgsreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minlbfgsresults(const minlbfgsstate &state,
+                     real_1d_array &x,
+                     minlbfgsreport &rep,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 L-BFGS algorithm results
@@ -3925,8 +3828,10 @@ where array reallocation penalty is too large to be ignored.
   -- ALGLIB --
      Copyright 20.08.2010 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgsresultsbuf(const minlbfgsstate &state, real_1d_array &x, minlbfgsreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minlbfgsresultsbuf(const minlbfgsstate &state,
+                        real_1d_array &x,
+                        minlbfgsreport &rep,
+                        const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  subroutine restarts LBFGS algorithm from new point. All optimization
@@ -3943,7 +3848,6 @@ INPUT PARAMETERS:
      Copyright 30.07.2010 by Bochkanov Sergey
 *************************************************************************/
 void minlbfgsrestartfrom(const minlbfgsstate &state, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine submits request for termination of running  optimizer.  It
@@ -4044,9 +3948,11 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbleiccreate(const ae_int_t n, const real_1d_array &x, minbleicstate &state, const xparams _xparams = alglib::xdefault);
+void minbleiccreate(const ae_int_t n,
+                    const real_1d_array &x,
+                    minbleicstate &state,
+                    const xparams _xparams = alglib::xdefault);
 void minbleiccreate(const real_1d_array &x, minbleicstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 The subroutine is finite difference variant of MinBLEICCreate().  It  uses
@@ -4090,9 +3996,15 @@ NOTES:
   -- ALGLIB --
      Copyright 16.05.2011 by Bochkanov Sergey
 *************************************************************************/
-void minbleiccreatef(const ae_int_t n, const real_1d_array &x, const double diffstep, minbleicstate &state, const xparams _xparams = alglib::xdefault);
-void minbleiccreatef(const real_1d_array &x, const double diffstep, minbleicstate &state, const xparams _xparams = alglib::xdefault);
-
+void minbleiccreatef(const ae_int_t n,
+                     const real_1d_array &x,
+                     const double diffstep,
+                     minbleicstate &state,
+                     const xparams _xparams = alglib::xdefault);
+void minbleiccreatef(const real_1d_array &x,
+                     const double diffstep,
+                     minbleicstate &state,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets boundary constraints for BLEIC optimizer.
@@ -4130,8 +4042,10 @@ NOTE 2: this solver has following useful properties:
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbleicsetbc(const minbleicstate &state, const real_1d_array &bndl, const real_1d_array &bndu, const xparams _xparams = alglib::xdefault);
-
+void minbleicsetbc(const minbleicstate &state,
+                   const real_1d_array &bndl,
+                   const real_1d_array &bndu,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets linear constraints for BLEIC optimizer.
@@ -4169,9 +4083,15 @@ solution and in all intermediate points).
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbleicsetlc(const minbleicstate &state, const real_2d_array &c, const integer_1d_array &ct, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-void minbleicsetlc(const minbleicstate &state, const real_2d_array &c, const integer_1d_array &ct, const xparams _xparams = alglib::xdefault);
-
+void minbleicsetlc(const minbleicstate &state,
+                   const real_2d_array &c,
+                   const integer_1d_array &ct,
+                   const ae_int_t k,
+                   const xparams _xparams = alglib::xdefault);
+void minbleicsetlc(const minbleicstate &state,
+                   const real_2d_array &c,
+                   const integer_1d_array &ct,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets stopping conditions for the optimizer.
@@ -4209,8 +4129,12 @@ NOTE: when SetCond() called with non-zero MaxIts, BLEIC solver may perform
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbleicsetcond(const minbleicstate &state, const double epsg, const double epsf, const double epsx, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void minbleicsetcond(const minbleicstate &state,
+                     const double epsg,
+                     const double epsf,
+                     const double epsx,
+                     const ae_int_t maxits,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets scaling coefficients for BLEIC optimizer.
@@ -4245,7 +4169,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void minbleicsetscale(const minbleicstate &state, const real_1d_array &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Modification of the preconditioner: preconditioning is turned off.
 
@@ -4256,7 +4179,6 @@ INPUT PARAMETERS:
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
 void minbleicsetprecdefault(const minbleicstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Modification  of  the  preconditioner:  diagonal of approximate Hessian is
@@ -4275,7 +4197,6 @@ NOTE 2: you should pass diagonal of approximate Hessian - NOT ITS INVERSE.
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
 void minbleicsetprecdiag(const minbleicstate &state, const real_1d_array &d, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Modification of the preconditioner: scale-based diagonal preconditioning.
@@ -4301,7 +4222,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void minbleicsetprecscale(const minbleicstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function turns on/off reporting.
 
@@ -4316,7 +4236,6 @@ provided to MinBLEICOptimize().
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
 void minbleicsetxrep(const minbleicstate &state, const bool needxrep, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets maximum step length
@@ -4345,14 +4264,12 @@ overflow) without actually calculating function value at the x+stp*d.
 *************************************************************************/
 void minbleicsetstpmax(const minbleicstate &state, const double stpmax, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function provides reverse communication interface
 Reverse communication interface is not documented or recommended to use.
 See below for functions which provide better documented API
 *************************************************************************/
 bool minbleiciteration(const minbleicstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This family of functions is used to launcn iterations of nonlinear optimizer
@@ -4405,26 +4322,25 @@ NOTES:
 
 *************************************************************************/
 void minbleicoptimize(minbleicstate &state,
-    void (*func)(const real_1d_array &x, double &func, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                      void (*func)(const real_1d_array &x, double &func, void *ptr),
+                      void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                      void *ptr = NULL,
+                      const xparams _xparams = alglib::xdefault);
 void minbleicoptimize(minbleicstate &state,
-	std::function<void(const real_1d_array &x, double &func, void *ptr)>& func,
-	void(*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-	void *ptr = NULL,
-	const xparams _xparams = alglib::xdefault);
+                      std::function<void(const real_1d_array &x, double &func, void *ptr)> &func,
+                      void(*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                      void *ptr = NULL,
+                      const xparams _xparams = alglib::xdefault);
 void minbleicoptimize(minbleicstate &state,
-    void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                      void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
+                      void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                      void *ptr = NULL,
+                      const xparams _xparams = alglib::xdefault);
 void minbleicoptimize(minbleicstate &state,
-	std::function<void(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr)>& grad,
-	void(*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-	void *ptr = NULL,
-	const xparams _xparams = alglib::xdefault);
-
+                      std::function<void(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr)> &grad,
+                      void(*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                      void *ptr = NULL,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  activates/deactivates verification  of  the  user-supplied
@@ -4481,8 +4397,9 @@ In order to verify gradient algorithm performs following steps:
   -- ALGLIB --
      Copyright 15.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minbleicoptguardgradient(const minbleicstate &state, const double teststep, const xparams _xparams = alglib::xdefault);
-
+void minbleicoptguardgradient(const minbleicstate &state,
+                              const double teststep,
+                              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  activates/deactivates nonsmoothness monitoring  option  of
@@ -4547,9 +4464,10 @@ you can study OptGuard result.
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minbleicoptguardsmoothness(const minbleicstate &state, const ae_int_t level, const xparams _xparams = alglib::xdefault);
+void minbleicoptguardsmoothness(const minbleicstate &state,
+                                const ae_int_t level,
+                                const xparams _xparams = alglib::xdefault);
 void minbleicoptguardsmoothness(const minbleicstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Results of OptGuard integrity check, should be called  after  optimization
@@ -4623,8 +4541,9 @@ NOTE: false negatives (nonsmooth problems are not identified as  nonsmooth
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minbleicoptguardresults(const minbleicstate &state, optguardreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minbleicoptguardresults(const minbleicstate &state,
+                             optguardreport &rep,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #0
@@ -4671,8 +4590,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minbleicoptguardnonc1test0results(const minbleicstate &state, optguardnonc1test0report &strrep, optguardnonc1test0report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void minbleicoptguardnonc1test0results(const minbleicstate &state,
+                                       optguardnonc1test0report &strrep,
+                                       optguardnonc1test0report &lngrep,
+                                       const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #1
@@ -4726,8 +4647,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minbleicoptguardnonc1test1results(const minbleicstate &state, optguardnonc1test1report &strrep, optguardnonc1test1report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void minbleicoptguardnonc1test1results(const minbleicstate &state,
+                                       optguardnonc1test1report &strrep,
+                                       optguardnonc1test1report &lngrep,
+                                       const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 BLEIC results
@@ -4759,8 +4682,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbleicresults(const minbleicstate &state, real_1d_array &x, minbleicreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minbleicresults(const minbleicstate &state,
+                     real_1d_array &x,
+                     minbleicreport &rep,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 BLEIC results
@@ -4773,8 +4698,10 @@ where array reallocation penalty is too large to be ignored.
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbleicresultsbuf(const minbleicstate &state, real_1d_array &x, minbleicreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minbleicresultsbuf(const minbleicstate &state,
+                        real_1d_array &x,
+                        minbleicreport &rep,
+                        const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This subroutine restarts algorithm from new point.
@@ -4791,7 +4718,6 @@ INPUT PARAMETERS:
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
 void minbleicrestartfrom(const minbleicstate &state, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine submits request for termination of running  optimizer.  It
@@ -4884,7 +4810,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void minqpcreate(const ae_int_t n, minqpstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function sets linear term for QP solver.
 
@@ -4898,7 +4823,6 @@ INPUT PARAMETERS:
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
 void minqpsetlinearterm(const minqpstate &state, const real_1d_array &b, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function  sets  dense  quadratic  term  for  QP solver. By  default,
@@ -4928,9 +4852,11 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetquadraticterm(const minqpstate &state, const real_2d_array &a, const bool isupper, const xparams _xparams = alglib::xdefault);
+void minqpsetquadraticterm(const minqpstate &state,
+                           const real_2d_array &a,
+                           const bool isupper,
+                           const xparams _xparams = alglib::xdefault);
 void minqpsetquadraticterm(const minqpstate &state, const real_2d_array &a, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function  sets  sparse  quadratic  term  for  QP solver. By default,
@@ -4964,8 +4890,10 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetquadratictermsparse(const minqpstate &state, const sparsematrix &a, const bool isupper, const xparams _xparams = alglib::xdefault);
-
+void minqpsetquadratictermsparse(const minqpstate &state,
+                                 const sparsematrix &a,
+                                 const bool isupper,
+                                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets starting point for QP solver. It is useful to have good
@@ -4982,7 +4910,6 @@ INPUT PARAMETERS:
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
 void minqpsetstartingpoint(const minqpstate &state, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function sets origin for QP solver. By default, following QP program
@@ -5006,7 +4933,6 @@ INPUT PARAMETERS:
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
 void minqpsetorigin(const minqpstate &state, const real_1d_array &xorigin, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets scaling coefficients.
@@ -5035,7 +4961,6 @@ INPUT PARAMETERS:
      Copyright 14.01.2011 by Bochkanov Sergey
 *************************************************************************/
 void minqpsetscale(const minqpstate &state, const real_1d_array &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets automatic evaluation of variable scaling.
@@ -5066,7 +4991,6 @@ INPUT PARAMETERS:
      Copyright 26.12.2017 by Bochkanov Sergey
 *************************************************************************/
 void minqpsetscaleautodiag(const minqpstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function tells solver to use BLEIC-based algorithm and sets  stopping
@@ -5152,8 +5076,12 @@ length, but it may change in the future versions of ALGLIB).
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetalgobleic(const minqpstate &state, const double epsg, const double epsf, const double epsx, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void minqpsetalgobleic(const minqpstate &state,
+                       const double epsg,
+                       const double epsf,
+                       const double epsx,
+                       const ae_int_t maxits,
+                       const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function tells QP solver to use DENSE-AUL algorithm and sets stopping
@@ -5234,8 +5162,11 @@ NOTE: Passing  EpsX=0  will  lead  to  automatic  step  length  selection
   -- ALGLIB --
      Copyright 20.08.2016 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetalgodenseaul(const minqpstate &state, const double epsx, const double rho, const ae_int_t itscnt, const xparams _xparams = alglib::xdefault);
-
+void minqpsetalgodenseaul(const minqpstate &state,
+                          const double epsx,
+                          const double rho,
+                          const ae_int_t itscnt,
+                          const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function tells QP solver to  use  DENSE-IPM  QP  algorithm  and  sets
@@ -5321,7 +5252,6 @@ You may specify multiple symbols by separating them with commas:
 *************************************************************************/
 void minqpsetalgodenseipm(const minqpstate &state, const double eps, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function tells QP solver to  use  SPARSE-IPM  QP algorithm  and  sets
 stopping criteria for the algorithm.
@@ -5388,7 +5318,6 @@ NOTE: Passing EpsX=0 will lead to automatic selection of small epsilon.
      Copyright 01.11.2019 by Bochkanov Sergey
 *************************************************************************/
 void minqpsetalgosparseipm(const minqpstate &state, const double eps, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function tells solver to use QuickQP  algorithm:  special  extra-fast
@@ -5490,8 +5419,13 @@ length, but it may change in the future versions of ALGLIB).
   -- ALGLIB --
      Copyright 22.05.2014 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetalgoquickqp(const minqpstate &state, const double epsg, const double epsf, const double epsx, const ae_int_t maxouterits, const bool usenewton, const xparams _xparams = alglib::xdefault);
-
+void minqpsetalgoquickqp(const minqpstate &state,
+                         const double epsg,
+                         const double epsf,
+                         const double epsx,
+                         const ae_int_t maxouterits,
+                         const bool usenewton,
+                         const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets box constraints for QP solver
@@ -5537,8 +5471,10 @@ NOTE: BndL>BndU will result in QP problem being recognized as infeasible.
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetbc(const minqpstate &state, const real_1d_array &bndl, const real_1d_array &bndu, const xparams _xparams = alglib::xdefault);
-
+void minqpsetbc(const minqpstate &state,
+                const real_1d_array &bndl,
+                const real_1d_array &bndu,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets box constraints for QP solver (all variables  at  once,
@@ -5576,8 +5512,10 @@ NOTE: BndL>BndU will result in QP problem being recognized as infeasible.
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetbcall(const minqpstate &state, const double bndl, const double bndu, const xparams _xparams = alglib::xdefault);
-
+void minqpsetbcall(const minqpstate &state,
+                   const double bndl,
+                   const double bndu,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets box constraints for I-th variable (other variables are
@@ -5610,8 +5548,11 @@ NOTE: BndL>BndU will result in QP problem being recognized as infeasible.
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetbci(const minqpstate &state, const ae_int_t i, const double bndl, const double bndu, const xparams _xparams = alglib::xdefault);
-
+void minqpsetbci(const minqpstate &state,
+                 const ae_int_t i,
+                 const double bndl,
+                 const double bndu,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets dense linear constraints for QP optimizer.
@@ -5648,9 +5589,15 @@ NOTE 1: linear (non-bound) constraints are satisfied only approximately  -
   -- ALGLIB --
      Copyright 19.06.2012 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetlc(const minqpstate &state, const real_2d_array &c, const integer_1d_array &ct, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-void minqpsetlc(const minqpstate &state, const real_2d_array &c, const integer_1d_array &ct, const xparams _xparams = alglib::xdefault);
-
+void minqpsetlc(const minqpstate &state,
+                const real_2d_array &c,
+                const integer_1d_array &ct,
+                const ae_int_t k,
+                const xparams _xparams = alglib::xdefault);
+void minqpsetlc(const minqpstate &state,
+                const real_2d_array &c,
+                const integer_1d_array &ct,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets sparse linear constraints for QP optimizer.
@@ -5687,8 +5634,11 @@ NOTE 1: linear (non-bound) constraints are satisfied only approximately  -
   -- ALGLIB --
      Copyright 22.08.2016 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetlcsparse(const minqpstate &state, const sparsematrix &c, const integer_1d_array &ct, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-
+void minqpsetlcsparse(const minqpstate &state,
+                      const sparsematrix &c,
+                      const integer_1d_array &ct,
+                      const ae_int_t k,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets mixed linear constraints, which include a set of  dense
@@ -5742,8 +5692,14 @@ NOTE 2: due to backward compatibility reasons SparseC can be  larger  than
   -- ALGLIB --
      Copyright 22.08.2016 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetlcmixed(const minqpstate &state, const sparsematrix &sparsec, const integer_1d_array &sparsect, const ae_int_t sparsek, const real_2d_array &densec, const integer_1d_array &densect, const ae_int_t densek, const xparams _xparams = alglib::xdefault);
-
+void minqpsetlcmixed(const minqpstate &state,
+                     const sparsematrix &sparsec,
+                     const integer_1d_array &sparsect,
+                     const ae_int_t sparsek,
+                     const real_2d_array &densec,
+                     const integer_1d_array &densect,
+                     const ae_int_t densek,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function provides legacy API for specification of mixed  dense/sparse
@@ -5762,8 +5718,14 @@ now in correct order.
   -- ALGLIB --
      Copyright 01.11.2019 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetlcmixedlegacy(const minqpstate &state, const real_2d_array &densec, const integer_1d_array &densect, const ae_int_t densek, const sparsematrix &sparsec, const integer_1d_array &sparsect, const ae_int_t sparsek, const xparams _xparams = alglib::xdefault);
-
+void minqpsetlcmixedlegacy(const minqpstate &state,
+                           const real_2d_array &densec,
+                           const integer_1d_array &densect,
+                           const ae_int_t densek,
+                           const sparsematrix &sparsec,
+                           const integer_1d_array &sparsect,
+                           const ae_int_t sparsek,
+                           const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets two-sided linear constraints AL <= A*x <= AU with dense
@@ -5794,9 +5756,17 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 01.11.2019 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetlc2dense(const minqpstate &state, const real_2d_array &a, const real_1d_array &al, const real_1d_array &au, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-void minqpsetlc2dense(const minqpstate &state, const real_2d_array &a, const real_1d_array &al, const real_1d_array &au, const xparams _xparams = alglib::xdefault);
-
+void minqpsetlc2dense(const minqpstate &state,
+                      const real_2d_array &a,
+                      const real_1d_array &al,
+                      const real_1d_array &au,
+                      const ae_int_t k,
+                      const xparams _xparams = alglib::xdefault);
+void minqpsetlc2dense(const minqpstate &state,
+                      const real_2d_array &a,
+                      const real_1d_array &al,
+                      const real_1d_array &au,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  sets  two-sided linear  constraints  AL <= A*x <= AU  with
@@ -5822,8 +5792,12 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 01.11.2019 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetlc2(const minqpstate &state, const sparsematrix &a, const real_1d_array &al, const real_1d_array &au, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-
+void minqpsetlc2(const minqpstate &state,
+                 const sparsematrix &a,
+                 const real_1d_array &al,
+                 const real_1d_array &au,
+                 const ae_int_t k,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  sets  two-sided linear  constraints  AL <= A*x <= AU  with
@@ -5862,8 +5836,14 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 01.11.2019 by Bochkanov Sergey
 *************************************************************************/
-void minqpsetlc2mixed(const minqpstate &state, const sparsematrix &sparsea, const ae_int_t ksparse, const real_2d_array &densea, const ae_int_t kdense, const real_1d_array &al, const real_1d_array &au, const xparams _xparams = alglib::xdefault);
-
+void minqpsetlc2mixed(const minqpstate &state,
+                      const sparsematrix &sparsea,
+                      const ae_int_t ksparse,
+                      const real_2d_array &densea,
+                      const ae_int_t kdense,
+                      const real_1d_array &al,
+                      const real_1d_array &au,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function appends two-sided linear constraint  AL <= A*x <= AU  to the
@@ -5883,8 +5863,11 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minqpaddlc2dense(const minqpstate &state, const real_1d_array &a, const double al, const double au, const xparams _xparams = alglib::xdefault);
-
+void minqpaddlc2dense(const minqpstate &state,
+                      const real_1d_array &a,
+                      const double al,
+                      const double au,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function appends two-sided linear constraint  AL <= A*x <= AU  to the
@@ -5912,8 +5895,13 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minqpaddlc2(const minqpstate &state, const integer_1d_array &idxa, const real_1d_array &vala, const ae_int_t nnz, const double al, const double au, const xparams _xparams = alglib::xdefault);
-
+void minqpaddlc2(const minqpstate &state,
+                 const integer_1d_array &idxa,
+                 const real_1d_array &vala,
+                 const ae_int_t nnz,
+                 const double al,
+                 const double au,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function solves quadratic programming problem.
@@ -5945,7 +5933,6 @@ to this function.
 *************************************************************************/
 void minqpoptimize(const minqpstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 QP solver results
 
@@ -5966,8 +5953,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minqpresults(const minqpstate &state, real_1d_array &x, minqpreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minqpresults(const minqpstate &state,
+                  real_1d_array &x,
+                  minqpreport &rep,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 QP results
@@ -5980,7 +5969,10 @@ where array reallocation penalty is too large to be ignored.
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minqpresultsbuf(const minqpstate &state, real_1d_array &x, minqpreport &rep, const xparams _xparams = alglib::xdefault);
+void minqpresultsbuf(const minqpstate &state,
+                     real_1d_array &x,
+                     minqpreport &rep,
+                     const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_REVISEDDUALSIMPLEX) || !defined(AE_PARTIAL_BUILD)
@@ -6025,7 +6017,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void minlpcreate(const ae_int_t n, minlpstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function sets cost term for LP solver.
 
@@ -6039,7 +6030,6 @@ INPUT PARAMETERS:
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
 void minlpsetcost(const minlpstate &state, const real_1d_array &c, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets scaling coefficients.
@@ -6061,7 +6051,6 @@ INPUT PARAMETERS:
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
 void minlpsetscale(const minlpstate &state, const real_1d_array &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets box constraints for LP solver (all variables  at  once,
@@ -6103,8 +6092,10 @@ NOTE: BndL>BndU will result in LP problem being recognized as infeasible.
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlpsetbc(const minlpstate &state, const real_1d_array &bndl, const real_1d_array &bndu, const xparams _xparams = alglib::xdefault);
-
+void minlpsetbc(const minlpstate &state,
+                const real_1d_array &bndl,
+                const real_1d_array &bndu,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets box constraints for LP solver (all variables  at  once,
@@ -6145,8 +6136,10 @@ NOTE: BndL>BndU will result in LP problem being recognized as infeasible.
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlpsetbcall(const minlpstate &state, const double bndl, const double bndu, const xparams _xparams = alglib::xdefault);
-
+void minlpsetbcall(const minlpstate &state,
+                   const double bndl,
+                   const double bndu,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets box constraints for I-th variable (other variables are
@@ -6186,8 +6179,11 @@ NOTE: BndL>BndU will result in LP problem being recognized as infeasible.
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlpsetbci(const minlpstate &state, const ae_int_t i, const double bndl, const double bndu, const xparams _xparams = alglib::xdefault);
-
+void minlpsetbci(const minlpstate &state,
+                 const ae_int_t i,
+                 const double bndl,
+                 const double bndu,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets one-sided linear constraints A*x ~ AU, where "~" can be
@@ -6217,9 +6213,15 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlpsetlc(const minlpstate &state, const real_2d_array &a, const integer_1d_array &ct, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-void minlpsetlc(const minlpstate &state, const real_2d_array &a, const integer_1d_array &ct, const xparams _xparams = alglib::xdefault);
-
+void minlpsetlc(const minlpstate &state,
+                const real_2d_array &a,
+                const integer_1d_array &ct,
+                const ae_int_t k,
+                const xparams _xparams = alglib::xdefault);
+void minlpsetlc(const minlpstate &state,
+                const real_2d_array &a,
+                const integer_1d_array &ct,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets two-sided linear constraints AL <= A*x <= AU.
@@ -6257,9 +6259,17 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlpsetlc2dense(const minlpstate &state, const real_2d_array &a, const real_1d_array &al, const real_1d_array &au, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-void minlpsetlc2dense(const minlpstate &state, const real_2d_array &a, const real_1d_array &al, const real_1d_array &au, const xparams _xparams = alglib::xdefault);
-
+void minlpsetlc2dense(const minlpstate &state,
+                      const real_2d_array &a,
+                      const real_1d_array &al,
+                      const real_1d_array &au,
+                      const ae_int_t k,
+                      const xparams _xparams = alglib::xdefault);
+void minlpsetlc2dense(const minlpstate &state,
+                      const real_2d_array &a,
+                      const real_1d_array &al,
+                      const real_1d_array &au,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  sets  two-sided linear  constraints  AL <= A*x <= AU  with
@@ -6285,8 +6295,12 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlpsetlc2(const minlpstate &state, const sparsematrix &a, const real_1d_array &al, const real_1d_array &au, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-
+void minlpsetlc2(const minlpstate &state,
+                 const sparsematrix &a,
+                 const real_1d_array &al,
+                 const real_1d_array &au,
+                 const ae_int_t k,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function appends two-sided linear constraint  AL <= A*x <= AU  to the
@@ -6312,8 +6326,11 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlpaddlc2dense(const minlpstate &state, const real_1d_array &a, const double al, const double au, const xparams _xparams = alglib::xdefault);
-
+void minlpaddlc2dense(const minlpstate &state,
+                      const real_1d_array &a,
+                      const double al,
+                      const double au,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function appends two-sided linear constraint  AL <= A*x <= AU  to the
@@ -6341,8 +6358,13 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 19.07.2018 by Bochkanov Sergey
 *************************************************************************/
-void minlpaddlc2(const minlpstate &state, const integer_1d_array &idxa, const real_1d_array &vala, const ae_int_t nnz, const double al, const double au, const xparams _xparams = alglib::xdefault);
-
+void minlpaddlc2(const minlpstate &state,
+                 const integer_1d_array &idxa,
+                 const real_1d_array &vala,
+                 const ae_int_t nnz,
+                 const double al,
+                 const double au,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function solves LP problem.
@@ -6357,7 +6379,6 @@ this function.
      Copyright 19.07.2018 by Bochkanov Sergey.
 *************************************************************************/
 void minlpoptimize(const minlpstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 LP solver results
@@ -6383,8 +6404,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minlpresults(const minlpstate &state, real_1d_array &x, minlpreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minlpresults(const minlpstate &state,
+                  real_1d_array &x,
+                  minlpreport &rep,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 LP results
@@ -6397,7 +6420,10 @@ where array reallocation penalty is too large to be ignored.
   -- ALGLIB --
      Copyright 11.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minlpresultsbuf(const minlpstate &state, real_1d_array &x, minlpreport &rep, const xparams _xparams = alglib::xdefault);
+void minlpresultsbuf(const minlpstate &state,
+                     real_1d_array &x,
+                     minlpreport &rep,
+                     const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_NLCSLP) || !defined(AE_PARTIAL_BUILD)
@@ -6523,9 +6549,11 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 06.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlccreate(const ae_int_t n, const real_1d_array &x, minnlcstate &state, const xparams _xparams = alglib::xdefault);
+void minnlccreate(const ae_int_t n,
+                  const real_1d_array &x,
+                  minnlcstate &state,
+                  const xparams _xparams = alglib::xdefault);
 void minnlccreate(const real_1d_array &x, minnlcstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine is a finite  difference variant of MinNLCCreate(). It uses
@@ -6572,9 +6600,15 @@ NOTES:
   -- ALGLIB --
      Copyright 06.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlccreatef(const ae_int_t n, const real_1d_array &x, const double diffstep, minnlcstate &state, const xparams _xparams = alglib::xdefault);
-void minnlccreatef(const real_1d_array &x, const double diffstep, minnlcstate &state, const xparams _xparams = alglib::xdefault);
-
+void minnlccreatef(const ae_int_t n,
+                   const real_1d_array &x,
+                   const double diffstep,
+                   minnlcstate &state,
+                   const xparams _xparams = alglib::xdefault);
+void minnlccreatef(const real_1d_array &x,
+                   const double diffstep,
+                   minnlcstate &state,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets boundary constraints for NLC optimizer.
@@ -6607,8 +6641,10 @@ NOTE 2:  when you solve your problem  with  augmented  Lagrangian  solver,
   -- ALGLIB --
      Copyright 06.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlcsetbc(const minnlcstate &state, const real_1d_array &bndl, const real_1d_array &bndu, const xparams _xparams = alglib::xdefault);
-
+void minnlcsetbc(const minnlcstate &state,
+                 const real_1d_array &bndl,
+                 const real_1d_array &bndu,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets linear constraints for MinNLC optimizer.
@@ -6645,9 +6681,15 @@ NOTE 1: when you solve your problem  with  augmented  Lagrangian   solver,
   -- ALGLIB --
      Copyright 06.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlcsetlc(const minnlcstate &state, const real_2d_array &c, const integer_1d_array &ct, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-void minnlcsetlc(const minnlcstate &state, const real_2d_array &c, const integer_1d_array &ct, const xparams _xparams = alglib::xdefault);
-
+void minnlcsetlc(const minnlcstate &state,
+                 const real_2d_array &c,
+                 const integer_1d_array &ct,
+                 const ae_int_t k,
+                 const xparams _xparams = alglib::xdefault);
+void minnlcsetlc(const minnlcstate &state,
+                 const real_2d_array &c,
+                 const integer_1d_array &ct,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets nonlinear constraints for MinNLC optimizer.
@@ -6698,8 +6740,10 @@ NOTE 2: algorithm scales variables  according  to   scale   specified   by
   -- ALGLIB --
      Copyright 06.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlcsetnlc(const minnlcstate &state, const ae_int_t nlec, const ae_int_t nlic, const xparams _xparams = alglib::xdefault);
-
+void minnlcsetnlc(const minnlcstate &state,
+                  const ae_int_t nlec,
+                  const ae_int_t nlic,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets stopping conditions for inner iterations of  optimizer.
@@ -6722,8 +6766,10 @@ selection of the stopping condition.
   -- ALGLIB --
      Copyright 06.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlcsetcond(const minnlcstate &state, const double epsx, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void minnlcsetcond(const minnlcstate &state,
+                   const double epsx,
+                   const ae_int_t maxits,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets scaling coefficients for NLC optimizer.
@@ -6746,7 +6792,6 @@ INPUT PARAMETERS:
      Copyright 06.06.2014 by Bochkanov Sergey
 *************************************************************************/
 void minnlcsetscale(const minnlcstate &state, const real_1d_array &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets preconditioner to "inexact LBFGS-based" mode.
@@ -6781,7 +6826,6 @@ INPUT PARAMETERS:
      Copyright 26.09.2014 by Bochkanov Sergey
 *************************************************************************/
 void minnlcsetprecinexact(const minnlcstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets preconditioner to "exact low rank" mode.
@@ -6828,8 +6872,9 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 26.09.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlcsetprecexactlowrank(const minnlcstate &state, const ae_int_t updatefreq, const xparams _xparams = alglib::xdefault);
-
+void minnlcsetprecexactlowrank(const minnlcstate &state,
+                               const ae_int_t updatefreq,
+                               const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets preconditioner to "exact robust" mode.
@@ -6881,8 +6926,9 @@ INPUT PARAMETERS:
   -- ALGLIB --
      Copyright 26.09.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlcsetprecexactrobust(const minnlcstate &state, const ae_int_t updatefreq, const xparams _xparams = alglib::xdefault);
-
+void minnlcsetprecexactrobust(const minnlcstate &state,
+                              const ae_int_t updatefreq,
+                              const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets preconditioner to "turned off" mode.
@@ -6908,7 +6954,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void minnlcsetprecnone(const minnlcstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function sets maximum step length (after scaling of step vector  with
 respect to variable scales specified by minnlcsetscale() call).
@@ -6931,7 +6976,6 @@ NOTE: different solvers employed by MinNLC optimizer use  different  norms
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
 void minnlcsetstpmax(const minnlcstate &state, const double stpmax, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function  tells MinNLC unit to use  Augmented  Lagrangian  algorithm
@@ -7129,8 +7173,10 @@ destabilize algorithm.
   -- ALGLIB --
      Copyright 06.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlcsetalgoaul(const minnlcstate &state, const double rho, const ae_int_t itscnt, const xparams _xparams = alglib::xdefault);
-
+void minnlcsetalgoaul(const minnlcstate &state,
+                      const double rho,
+                      const ae_int_t itscnt,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This   function  tells  MinNLC  optimizer  to  use  SLP (Successive Linear
@@ -7224,7 +7270,6 @@ You may specify multiple symbols by separating them with commas:
 *************************************************************************/
 void minnlcsetalgoslp(const minnlcstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This   function  tells  MinNLC  optimizer to use SQP (Successive Quadratic
 Programming) algorithm for nonlinearly constrained optimization.
@@ -7311,7 +7356,6 @@ You may specify multiple symbols by separating them with commas:
 *************************************************************************/
 void minnlcsetalgosqp(const minnlcstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function turns on/off reporting.
 
@@ -7332,14 +7376,12 @@ NOTE: algorithm passes two parameters to rep() callback  -  current  point
 *************************************************************************/
 void minnlcsetxrep(const minnlcstate &state, const bool needxrep, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function provides reverse communication interface
 Reverse communication interface is not documented or recommended to use.
 See below for functions which provide better documented API
 *************************************************************************/
 bool minnlciteration(const minnlcstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This family of functions is used to launcn iterations of nonlinear optimizer
@@ -7389,16 +7431,15 @@ NOTES:
 
 *************************************************************************/
 void minnlcoptimize(minnlcstate &state,
-    void (*fvec)(const real_1d_array &x, real_1d_array &fi, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                    void (*fvec)(const real_1d_array &x, real_1d_array &fi, void *ptr),
+                    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                    void *ptr = NULL,
+                    const xparams _xparams = alglib::xdefault);
 void minnlcoptimize(minnlcstate &state,
-    void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-
+                    void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
+                    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                    void *ptr = NULL,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  activates/deactivates verification  of  the  user-supplied
@@ -7457,7 +7498,6 @@ In order to verify gradient algorithm performs following steps:
      Copyright 15.06.2014 by Bochkanov Sergey
 *************************************************************************/
 void minnlcoptguardgradient(const minnlcstate &state, const double teststep, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function  activates/deactivates nonsmoothness monitoring  option  of
@@ -7526,9 +7566,10 @@ you can study OptGuard result.
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minnlcoptguardsmoothness(const minnlcstate &state, const ae_int_t level, const xparams _xparams = alglib::xdefault);
+void minnlcoptguardsmoothness(const minnlcstate &state,
+                              const ae_int_t level,
+                              const xparams _xparams = alglib::xdefault);
 void minnlcoptguardsmoothness(const minnlcstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Results of OptGuard integrity check, should be called  after  optimization
@@ -7605,7 +7646,6 @@ NOTE: false negatives (nonsmooth problems are not identified as  nonsmooth
 *************************************************************************/
 void minnlcoptguardresults(const minnlcstate &state, optguardreport &rep, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #0
 
@@ -7653,8 +7693,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minnlcoptguardnonc1test0results(const minnlcstate &state, optguardnonc1test0report &strrep, optguardnonc1test0report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void minnlcoptguardnonc1test0results(const minnlcstate &state,
+                                     optguardnonc1test0report &strrep,
+                                     optguardnonc1test0report &lngrep,
+                                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #1
@@ -7710,8 +7752,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minnlcoptguardnonc1test1results(const minnlcstate &state, optguardnonc1test1report &strrep, optguardnonc1test1report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void minnlcoptguardnonc1test1results(const minnlcstate &state,
+                                     optguardnonc1test1report &strrep,
+                                     optguardnonc1test1report &lngrep,
+                                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 MinNLC results:  the  solution  found,  completion  codes  and  additional
@@ -7760,8 +7804,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 06.06.2014 by Bochkanov Sergey
 *************************************************************************/
-void minnlcresults(const minnlcstate &state, real_1d_array &x, minnlcreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minnlcresults(const minnlcstate &state,
+                   real_1d_array &x,
+                   minnlcreport &rep,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 NLC results
@@ -7774,8 +7820,10 @@ where array reallocation penalty is too large to be ignored.
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minnlcresultsbuf(const minnlcstate &state, real_1d_array &x, minnlcreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minnlcresultsbuf(const minnlcstate &state,
+                      real_1d_array &x,
+                      minnlcreport &rep,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This subroutine submits request for termination of running  optimizer.  It
@@ -7802,7 +7850,6 @@ NOTE: multiple calls to this function are possible. First call is counted,
      Copyright 08.10.2014 by Bochkanov Sergey
 *************************************************************************/
 void minnlcrequesttermination(const minnlcstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine restarts algorithm from new point.
@@ -7883,9 +7930,11 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbccreate(const ae_int_t n, const real_1d_array &x, minbcstate &state, const xparams _xparams = alglib::xdefault);
+void minbccreate(const ae_int_t n,
+                 const real_1d_array &x,
+                 minbcstate &state,
+                 const xparams _xparams = alglib::xdefault);
 void minbccreate(const real_1d_array &x, minbcstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 The subroutine is finite difference variant of MinBCCreate().  It  uses
@@ -7929,9 +7978,15 @@ NOTES:
   -- ALGLIB --
      Copyright 16.05.2011 by Bochkanov Sergey
 *************************************************************************/
-void minbccreatef(const ae_int_t n, const real_1d_array &x, const double diffstep, minbcstate &state, const xparams _xparams = alglib::xdefault);
-void minbccreatef(const real_1d_array &x, const double diffstep, minbcstate &state, const xparams _xparams = alglib::xdefault);
-
+void minbccreatef(const ae_int_t n,
+                  const real_1d_array &x,
+                  const double diffstep,
+                  minbcstate &state,
+                  const xparams _xparams = alglib::xdefault);
+void minbccreatef(const real_1d_array &x,
+                  const double diffstep,
+                  minbcstate &state,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets boundary constraints for BC optimizer.
@@ -7960,8 +8015,10 @@ NOTE 2: this solver has following useful properties:
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbcsetbc(const minbcstate &state, const real_1d_array &bndl, const real_1d_array &bndu, const xparams _xparams = alglib::xdefault);
-
+void minbcsetbc(const minbcstate &state,
+                const real_1d_array &bndl,
+                const real_1d_array &bndu,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets stopping conditions for the optimizer.
@@ -7999,8 +8056,12 @@ NOTE: when SetCond() called with non-zero MaxIts, BC solver may perform
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbcsetcond(const minbcstate &state, const double epsg, const double epsf, const double epsx, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void minbcsetcond(const minbcstate &state,
+                  const double epsg,
+                  const double epsf,
+                  const double epsx,
+                  const ae_int_t maxits,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets scaling coefficients for BC optimizer.
@@ -8035,7 +8096,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void minbcsetscale(const minbcstate &state, const real_1d_array &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Modification of the preconditioner: preconditioning is turned off.
 
@@ -8046,7 +8106,6 @@ INPUT PARAMETERS:
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
 void minbcsetprecdefault(const minbcstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Modification  of  the  preconditioner:  diagonal of approximate Hessian is
@@ -8065,7 +8124,6 @@ NOTE 2: you should pass diagonal of approximate Hessian - NOT ITS INVERSE.
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
 void minbcsetprecdiag(const minbcstate &state, const real_1d_array &d, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Modification of the preconditioner: scale-based diagonal preconditioning.
@@ -8091,7 +8149,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void minbcsetprecscale(const minbcstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function turns on/off reporting.
 
@@ -8106,7 +8163,6 @@ provided to MinBCOptimize().
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
 void minbcsetxrep(const minbcstate &state, const bool needxrep, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets maximum step length
@@ -8127,14 +8183,12 @@ overflow) without actually calculating function value at the x+stp*d.
 *************************************************************************/
 void minbcsetstpmax(const minbcstate &state, const double stpmax, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function provides reverse communication interface
 Reverse communication interface is not documented or recommended to use.
 See below for functions which provide better documented API
 *************************************************************************/
 bool minbciteration(const minbcstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This family of functions is used to launcn iterations of nonlinear optimizer
@@ -8187,16 +8241,15 @@ NOTES:
 
 *************************************************************************/
 void minbcoptimize(minbcstate &state,
-    void (*func)(const real_1d_array &x, double &func, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                   void (*func)(const real_1d_array &x, double &func, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 void minbcoptimize(minbcstate &state,
-    void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-
+                   void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  activates/deactivates verification  of  the  user-supplied
@@ -8254,7 +8307,6 @@ In order to verify gradient algorithm performs following steps:
      Copyright 15.06.2014 by Bochkanov Sergey
 *************************************************************************/
 void minbcoptguardgradient(const minbcstate &state, const double teststep, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function  activates/deactivates nonsmoothness monitoring  option  of
@@ -8321,7 +8373,6 @@ you can study OptGuard result.
 *************************************************************************/
 void minbcoptguardsmoothness(const minbcstate &state, const ae_int_t level, const xparams _xparams = alglib::xdefault);
 void minbcoptguardsmoothness(const minbcstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Results of OptGuard integrity check, should be called  after  optimization
@@ -8397,7 +8448,6 @@ NOTE: false negatives (nonsmooth problems are not identified as  nonsmooth
 *************************************************************************/
 void minbcoptguardresults(const minbcstate &state, optguardreport &rep, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #0
 
@@ -8443,8 +8493,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minbcoptguardnonc1test0results(const minbcstate &state, optguardnonc1test0report &strrep, optguardnonc1test0report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void minbcoptguardnonc1test0results(const minbcstate &state,
+                                    optguardnonc1test0report &strrep,
+                                    optguardnonc1test0report &lngrep,
+                                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #1
@@ -8498,8 +8550,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void minbcoptguardnonc1test1results(const minbcstate &state, optguardnonc1test1report &strrep, optguardnonc1test1report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void minbcoptguardnonc1test1results(const minbcstate &state,
+                                    optguardnonc1test1report &strrep,
+                                    optguardnonc1test1report &lngrep,
+                                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 BC results
@@ -8529,8 +8583,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbcresults(const minbcstate &state, real_1d_array &x, minbcreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minbcresults(const minbcstate &state,
+                  real_1d_array &x,
+                  minbcreport &rep,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 BC results
@@ -8543,8 +8599,10 @@ where array reallocation penalty is too large to be ignored.
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbcresultsbuf(const minbcstate &state, real_1d_array &x, minbcreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minbcresultsbuf(const minbcstate &state,
+                     real_1d_array &x,
+                     minbcreport &rep,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This subroutine restarts algorithm from new point.
@@ -8561,7 +8619,6 @@ INPUT PARAMETERS:
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
 void minbcrestartfrom(const minbcstate &state, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine submits request for termination of running  optimizer.  It
@@ -8697,9 +8754,11 @@ NOTE: minnscreatef() function may be used if  you  do  not  have  analytic
   -- ALGLIB --
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
-void minnscreate(const ae_int_t n, const real_1d_array &x, minnsstate &state, const xparams _xparams = alglib::xdefault);
+void minnscreate(const ae_int_t n,
+                 const real_1d_array &x,
+                 minnsstate &state,
+                 const xparams _xparams = alglib::xdefault);
 void minnscreate(const real_1d_array &x, minnsstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Version of minnscreatef() which uses numerical differentiation. I.e.,  you
@@ -8731,9 +8790,15 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
-void minnscreatef(const ae_int_t n, const real_1d_array &x, const double diffstep, minnsstate &state, const xparams _xparams = alglib::xdefault);
-void minnscreatef(const real_1d_array &x, const double diffstep, minnsstate &state, const xparams _xparams = alglib::xdefault);
-
+void minnscreatef(const ae_int_t n,
+                  const real_1d_array &x,
+                  const double diffstep,
+                  minnsstate &state,
+                  const xparams _xparams = alglib::xdefault);
+void minnscreatef(const real_1d_array &x,
+                  const double diffstep,
+                  minnsstate &state,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets boundary constraints.
@@ -8762,8 +8827,10 @@ NOTE 2: AGS solver has following useful properties:
   -- ALGLIB --
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
-void minnssetbc(const minnsstate &state, const real_1d_array &bndl, const real_1d_array &bndu, const xparams _xparams = alglib::xdefault);
-
+void minnssetbc(const minnsstate &state,
+                const real_1d_array &bndl,
+                const real_1d_array &bndu,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets linear constraints.
@@ -8804,9 +8871,15 @@ solution and in all intermediate points).
   -- ALGLIB --
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
-void minnssetlc(const minnsstate &state, const real_2d_array &c, const integer_1d_array &ct, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-void minnssetlc(const minnsstate &state, const real_2d_array &c, const integer_1d_array &ct, const xparams _xparams = alglib::xdefault);
-
+void minnssetlc(const minnsstate &state,
+                const real_2d_array &c,
+                const integer_1d_array &ct,
+                const ae_int_t k,
+                const xparams _xparams = alglib::xdefault);
+void minnssetlc(const minnsstate &state,
+                const real_2d_array &c,
+                const integer_1d_array &ct,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets nonlinear constraints.
@@ -8868,8 +8941,10 @@ NOTE 3: nonlinear constraints are always hard to handle,  no  matter  what
   -- ALGLIB --
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
-void minnssetnlc(const minnsstate &state, const ae_int_t nlec, const ae_int_t nlic, const xparams _xparams = alglib::xdefault);
-
+void minnssetnlc(const minnsstate &state,
+                 const ae_int_t nlec,
+                 const ae_int_t nlic,
+                 const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets stopping conditions for iterations of optimizer.
@@ -8889,8 +8964,10 @@ choice in production code.
   -- ALGLIB --
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
-void minnssetcond(const minnsstate &state, const double epsx, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void minnssetcond(const minnsstate &state,
+                  const double epsx,
+                  const ae_int_t maxits,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets scaling coefficients for NLC optimizer.
@@ -8913,7 +8990,6 @@ INPUT PARAMETERS:
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
 void minnssetscale(const minnsstate &state, const real_1d_array &s, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function tells MinNS unit to use  AGS  (adaptive  gradient  sampling)
@@ -9009,8 +9085,10 @@ As for the constraints:
   -- ALGLIB --
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
-void minnssetalgoags(const minnsstate &state, const double radius, const double penalty, const xparams _xparams = alglib::xdefault);
-
+void minnssetalgoags(const minnsstate &state,
+                     const double radius,
+                     const double penalty,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function turns on/off reporting.
@@ -9026,7 +9104,6 @@ provided to minnsoptimize().
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
 void minnssetxrep(const minnsstate &state, const bool needxrep, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine submits request for termination of running  optimizer.  It
@@ -9054,14 +9131,12 @@ NOTE: multiple calls to this function are possible. First call is counted,
 *************************************************************************/
 void minnsrequesttermination(const minnsstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function provides reverse communication interface
 Reverse communication interface is not documented or recommended to use.
 See below for functions which provide better documented API
 *************************************************************************/
 bool minnsiteration(const minnsstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This family of functions is used to launcn iterations of nonlinear optimizer
@@ -9111,16 +9186,15 @@ NOTES:
 
 *************************************************************************/
 void minnsoptimize(minnsstate &state,
-    void (*fvec)(const real_1d_array &x, real_1d_array &fi, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                   void (*fvec)(const real_1d_array &x, real_1d_array &fi, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 void minnsoptimize(minnsstate &state,
-    void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-
+                   void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 MinNS results
@@ -9149,8 +9223,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
-void minnsresults(const minnsstate &state, real_1d_array &x, minnsreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minnsresults(const minnsstate &state,
+                  real_1d_array &x,
+                  minnsreport &rep,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 
@@ -9162,8 +9238,10 @@ where array reallocation penalty is too large to be ignored.
   -- ALGLIB --
      Copyright 18.05.2015 by Bochkanov Sergey
 *************************************************************************/
-void minnsresultsbuf(const minnsstate &state, real_1d_array &x, minnsreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minnsresultsbuf(const minnsstate &state,
+                     real_1d_array &x,
+                     minnsreport &rep,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This subroutine restarts algorithm from new point.
@@ -9191,15 +9269,16 @@ Obsolete function, use MinLBFGSSetPrecDefault() instead.
 *************************************************************************/
 void minlbfgssetdefaultpreconditioner(const minlbfgsstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Obsolete function, use MinLBFGSSetCholeskyPreconditioner() instead.
 
   -- ALGLIB --
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
-void minlbfgssetcholeskypreconditioner(const minlbfgsstate &state, const real_2d_array &p, const bool isupper, const xparams _xparams = alglib::xdefault);
-
+void minlbfgssetcholeskypreconditioner(const minlbfgsstate &state,
+                                       const real_2d_array &p,
+                                       const bool isupper,
+                                       const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This is obsolete function which was used by previous version of the  BLEIC
@@ -9210,7 +9289,6 @@ optimizer. It does nothing in the current version of BLEIC.
 *************************************************************************/
 void minbleicsetbarrierwidth(const minbleicstate &state, const double mu, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This is obsolete function which was used by previous version of the  BLEIC
 optimizer. It does nothing in the current version of BLEIC.
@@ -9218,8 +9296,9 @@ optimizer. It does nothing in the current version of BLEIC.
   -- ALGLIB --
      Copyright 28.11.2010 by Bochkanov Sergey
 *************************************************************************/
-void minbleicsetbarrierdecay(const minbleicstate &state, const double mudecay, const xparams _xparams = alglib::xdefault);
-
+void minbleicsetbarrierdecay(const minbleicstate &state,
+                             const double mudecay,
+                             const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Obsolete optimization algorithm.
@@ -9228,9 +9307,17 @@ Was replaced by MinBLEIC subpackage.
   -- ALGLIB --
      Copyright 25.03.2010 by Bochkanov Sergey
 *************************************************************************/
-void minasacreate(const ae_int_t n, const real_1d_array &x, const real_1d_array &bndl, const real_1d_array &bndu, minasastate &state, const xparams _xparams = alglib::xdefault);
-void minasacreate(const real_1d_array &x, const real_1d_array &bndl, const real_1d_array &bndu, minasastate &state, const xparams _xparams = alglib::xdefault);
-
+void minasacreate(const ae_int_t n,
+                  const real_1d_array &x,
+                  const real_1d_array &bndl,
+                  const real_1d_array &bndu,
+                  minasastate &state,
+                  const xparams _xparams = alglib::xdefault);
+void minasacreate(const real_1d_array &x,
+                  const real_1d_array &bndl,
+                  const real_1d_array &bndu,
+                  minasastate &state,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Obsolete optimization algorithm.
@@ -9239,8 +9326,12 @@ Was replaced by MinBLEIC subpackage.
   -- ALGLIB --
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
-void minasasetcond(const minasastate &state, const double epsg, const double epsf, const double epsx, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void minasasetcond(const minasastate &state,
+                   const double epsg,
+                   const double epsf,
+                   const double epsx,
+                   const ae_int_t maxits,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Obsolete optimization algorithm.
@@ -9251,7 +9342,6 @@ Was replaced by MinBLEIC subpackage.
 *************************************************************************/
 void minasasetxrep(const minasastate &state, const bool needxrep, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Obsolete optimization algorithm.
 Was replaced by MinBLEIC subpackage.
@@ -9260,7 +9350,6 @@ Was replaced by MinBLEIC subpackage.
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
 void minasasetalgorithm(const minasastate &state, const ae_int_t algotype, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Obsolete optimization algorithm.
@@ -9271,14 +9360,12 @@ Was replaced by MinBLEIC subpackage.
 *************************************************************************/
 void minasasetstpmax(const minasastate &state, const double stpmax, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function provides reverse communication interface
 Reverse communication interface is not documented or recommended to use.
 See below for functions which provide better documented API
 *************************************************************************/
 bool minasaiteration(const minasastate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This family of functions is used to launcn iterations of nonlinear optimizer
@@ -9298,21 +9385,10 @@ These functions accept following parameters:
 
 *************************************************************************/
 void minasaoptimize(minasastate &state,
-    void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-
-
-/*************************************************************************
-Obsolete optimization algorithm.
-Was replaced by MinBLEIC subpackage.
-
-  -- ALGLIB --
-     Copyright 20.03.2009 by Bochkanov Sergey
-*************************************************************************/
-void minasaresults(const minasastate &state, real_1d_array &x, minasareport &rep, const xparams _xparams = alglib::xdefault);
-
+                    void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
+                    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                    void *ptr = NULL,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Obsolete optimization algorithm.
@@ -9321,8 +9397,22 @@ Was replaced by MinBLEIC subpackage.
   -- ALGLIB --
      Copyright 20.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void minasaresultsbuf(const minasastate &state, real_1d_array &x, minasareport &rep, const xparams _xparams = alglib::xdefault);
+void minasaresults(const minasastate &state,
+                   real_1d_array &x,
+                   minasareport &rep,
+                   const xparams _xparams = alglib::xdefault);
 
+/*************************************************************************
+Obsolete optimization algorithm.
+Was replaced by MinBLEIC subpackage.
+
+  -- ALGLIB --
+     Copyright 20.03.2009 by Bochkanov Sergey
+*************************************************************************/
+void minasaresultsbuf(const minasastate &state,
+                      real_1d_array &x,
+                      minasareport &rep,
+                      const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Obsolete optimization algorithm.
@@ -9331,7 +9421,11 @@ Was replaced by MinBLEIC subpackage.
   -- ALGLIB --
      Copyright 30.07.2010 by Bochkanov Sergey
 *************************************************************************/
-void minasarestartfrom(const minasastate &state, const real_1d_array &x, const real_1d_array &bndl, const real_1d_array &bndu, const xparams _xparams = alglib::xdefault);
+void minasarestartfrom(const minasastate &state,
+                       const real_1d_array &x,
+                       const real_1d_array &bndl,
+                       const real_1d_array &bndu,
+                       const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_MINCG) || !defined(AE_PARTIAL_BUILD)
@@ -9376,9 +9470,11 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 25.03.2010 by Bochkanov Sergey
 *************************************************************************/
-void mincgcreate(const ae_int_t n, const real_1d_array &x, mincgstate &state, const xparams _xparams = alglib::xdefault);
+void mincgcreate(const ae_int_t n,
+                 const real_1d_array &x,
+                 mincgstate &state,
+                 const xparams _xparams = alglib::xdefault);
 void mincgcreate(const real_1d_array &x, mincgstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 The subroutine is finite difference variant of MinCGCreate(). It uses
@@ -9422,9 +9518,15 @@ NOTES:
   -- ALGLIB --
      Copyright 16.05.2011 by Bochkanov Sergey
 *************************************************************************/
-void mincgcreatef(const ae_int_t n, const real_1d_array &x, const double diffstep, mincgstate &state, const xparams _xparams = alglib::xdefault);
-void mincgcreatef(const real_1d_array &x, const double diffstep, mincgstate &state, const xparams _xparams = alglib::xdefault);
-
+void mincgcreatef(const ae_int_t n,
+                  const real_1d_array &x,
+                  const double diffstep,
+                  mincgstate &state,
+                  const xparams _xparams = alglib::xdefault);
+void mincgcreatef(const real_1d_array &x,
+                  const double diffstep,
+                  mincgstate &state,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets stopping conditions for CG optimization algorithm.
@@ -9458,8 +9560,12 @@ automatic stopping criterion selection (small EpsX).
   -- ALGLIB --
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
-void mincgsetcond(const mincgstate &state, const double epsg, const double epsf, const double epsx, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void mincgsetcond(const mincgstate &state,
+                  const double epsg,
+                  const double epsf,
+                  const double epsx,
+                  const ae_int_t maxits,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets scaling coefficients for CG optimizer.
@@ -9493,7 +9599,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void mincgsetscale(const mincgstate &state, const real_1d_array &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function turns on/off reporting.
 
@@ -9509,7 +9614,6 @@ provided to MinCGOptimize().
 *************************************************************************/
 void mincgsetxrep(const mincgstate &state, const bool needxrep, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function sets CG algorithm.
 
@@ -9524,7 +9628,6 @@ INPUT PARAMETERS:
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
 void mincgsetcgtype(const mincgstate &state, const ae_int_t cgtype, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets maximum step length
@@ -9544,7 +9647,6 @@ overflow) without actually calculating function value at the x+stp*d.
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
 void mincgsetstpmax(const mincgstate &state, const double stpmax, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function allows to suggest initial step length to the CG algorithm.
@@ -9581,7 +9683,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void mincgsuggeststep(const mincgstate &state, const double stp, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Modification of the preconditioner: preconditioning is turned off.
 
@@ -9595,7 +9696,6 @@ iterations.
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
 void mincgsetprecdefault(const mincgstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Modification  of  the  preconditioner:  diagonal of approximate Hessian is
@@ -9617,7 +9717,6 @@ NOTE 3: you should pass diagonal of approximate Hessian - NOT ITS INVERSE.
      Copyright 13.10.2010 by Bochkanov Sergey
 *************************************************************************/
 void mincgsetprecdiag(const mincgstate &state, const real_1d_array &d, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Modification of the preconditioner: scale-based diagonal preconditioning.
@@ -9645,14 +9744,12 @@ iterations.
 *************************************************************************/
 void mincgsetprecscale(const mincgstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function provides reverse communication interface
 Reverse communication interface is not documented or recommended to use.
 See below for functions which provide better documented API
 *************************************************************************/
 bool mincgiteration(const mincgstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This family of functions is used to launcn iterations of nonlinear optimizer
@@ -9705,25 +9802,25 @@ NOTES:
 
 *************************************************************************/
 void mincgoptimize(mincgstate &state,
-    void (*func)(const real_1d_array &x, double &func, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                   void (*func)(const real_1d_array &x, double &func, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 void mincgoptimize(mincgstate &state,
-    void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-void mincgoptimize(mincgstate& state,
-    std::function<void(const real_1d_array& x, double& func, void* ptr)>& func,
-    void  (*rep)(const real_1d_array& x, double func, void* ptr) = NULL,
-    void* ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-void mincgoptimize(mincgstate& state,
-    std::function<void(const real_1d_array& x, double& func, real_1d_array& grad, void* ptr)>& grad,
-    void  (*rep)(const real_1d_array& x, double func, void* ptr) = NULL,
-    void* ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                   void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
+void mincgoptimize(mincgstate &state,
+                   std::function<void(const real_1d_array &x, double &func, void *ptr)> &func,
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
+void mincgoptimize(mincgstate &state,
+                   std::function<void(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr)> &grad,
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  activates/deactivates verification  of  the  user-supplied
@@ -9781,7 +9878,6 @@ In order to verify gradient algorithm performs following steps:
      Copyright 15.06.2014 by Bochkanov Sergey
 *************************************************************************/
 void mincgoptguardgradient(const mincgstate &state, const double teststep, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This  function  activates/deactivates nonsmoothness monitoring  option  of
@@ -9848,7 +9944,6 @@ you can study OptGuard result.
 *************************************************************************/
 void mincgoptguardsmoothness(const mincgstate &state, const ae_int_t level, const xparams _xparams = alglib::xdefault);
 void mincgoptguardsmoothness(const mincgstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 Results of OptGuard integrity check, should be called  after  optimization
@@ -9924,7 +10019,6 @@ NOTE: false negatives (nonsmooth problems are not identified as  nonsmooth
 *************************************************************************/
 void mincgoptguardresults(const mincgstate &state, optguardreport &rep, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #0
 
@@ -9970,8 +10064,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void mincgoptguardnonc1test0results(const mincgstate &state, optguardnonc1test0report &strrep, optguardnonc1test0report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void mincgoptguardnonc1test0results(const mincgstate &state,
+                                    optguardnonc1test0report &strrep,
+                                    optguardnonc1test0report &lngrep,
+                                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Detailed results of the OptGuard integrity check for nonsmoothness test #1
@@ -10025,8 +10121,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 21.11.2018 by Bochkanov Sergey
 *************************************************************************/
-void mincgoptguardnonc1test1results(const mincgstate &state, optguardnonc1test1report &strrep, optguardnonc1test1report &lngrep, const xparams _xparams = alglib::xdefault);
-
+void mincgoptguardnonc1test1results(const mincgstate &state,
+                                    optguardnonc1test1report &strrep,
+                                    optguardnonc1test1report &lngrep,
+                                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Conjugate gradient results
@@ -10058,8 +10156,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 20.04.2009 by Bochkanov Sergey
 *************************************************************************/
-void mincgresults(const mincgstate &state, real_1d_array &x, mincgreport &rep, const xparams _xparams = alglib::xdefault);
-
+void mincgresults(const mincgstate &state,
+                  real_1d_array &x,
+                  mincgreport &rep,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Conjugate gradient results
@@ -10072,8 +10172,10 @@ where array reallocation penalty is too large to be ignored.
   -- ALGLIB --
      Copyright 20.04.2009 by Bochkanov Sergey
 *************************************************************************/
-void mincgresultsbuf(const mincgstate &state, real_1d_array &x, mincgreport &rep, const xparams _xparams = alglib::xdefault);
-
+void mincgresultsbuf(const mincgstate &state,
+                     real_1d_array &x,
+                     mincgreport &rep,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  subroutine  restarts  CG  algorithm from new point. All optimization
@@ -10090,7 +10192,6 @@ INPUT PARAMETERS:
      Copyright 30.07.2010 by Bochkanov Sergey
 *************************************************************************/
 void mincgrestartfrom(const mincgstate &state, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine submits request for termination of running  optimizer.  It
@@ -10181,9 +10282,15 @@ NOTES:
   -- ALGLIB --
      Copyright 30.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void minlmcreatevj(const ae_int_t n, const ae_int_t m, const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
-void minlmcreatevj(const ae_int_t m, const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
-
+void minlmcreatevj(const ae_int_t n,
+                   const ae_int_t m,
+                   const real_1d_array &x,
+                   minlmstate &state,
+                   const xparams _xparams = alglib::xdefault);
+void minlmcreatevj(const ae_int_t m,
+                   const real_1d_array &x,
+                   minlmstate &state,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
                 IMPROVED LEVENBERG-MARQUARDT METHOD FOR
@@ -10246,9 +10353,17 @@ NOTES:
   -- ALGLIB --
      Copyright 30.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void minlmcreatev(const ae_int_t n, const ae_int_t m, const real_1d_array &x, const double diffstep, minlmstate &state, const xparams _xparams = alglib::xdefault);
-void minlmcreatev(const ae_int_t m, const real_1d_array &x, const double diffstep, minlmstate &state, const xparams _xparams = alglib::xdefault);
-
+void minlmcreatev(const ae_int_t n,
+                  const ae_int_t m,
+                  const real_1d_array &x,
+                  const double diffstep,
+                  minlmstate &state,
+                  const xparams _xparams = alglib::xdefault);
+void minlmcreatev(const ae_int_t m,
+                  const real_1d_array &x,
+                  const double diffstep,
+                  minlmstate &state,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
     LEVENBERG-MARQUARDT-LIKE METHOD FOR NON-LINEAR OPTIMIZATION
@@ -10312,9 +10427,11 @@ NOTES:
   -- ALGLIB --
      Copyright 30.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void minlmcreatefgh(const ae_int_t n, const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
+void minlmcreatefgh(const ae_int_t n,
+                    const real_1d_array &x,
+                    minlmstate &state,
+                    const xparams _xparams = alglib::xdefault);
 void minlmcreatefgh(const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets stopping conditions for Levenberg-Marquardt optimization
@@ -10345,8 +10462,10 @@ NOTE: it is not recommended to set large EpsX (say, 0.001). Because LM  is
   -- ALGLIB --
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
-void minlmsetcond(const minlmstate &state, const double epsx, const ae_int_t maxits, const xparams _xparams = alglib::xdefault);
-
+void minlmsetcond(const minlmstate &state,
+                  const double epsx,
+                  const ae_int_t maxits,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function turns on/off reporting.
@@ -10363,7 +10482,6 @@ iterations are reported.
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
 void minlmsetxrep(const minlmstate &state, const bool needxrep, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets maximum step length
@@ -10387,7 +10505,6 @@ with limits on step size.
      Copyright 02.04.2010 by Bochkanov Sergey
 *************************************************************************/
 void minlmsetstpmax(const minlmstate &state, const double stpmax, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This function sets scaling coefficients for LM optimizer.
@@ -10418,7 +10535,6 @@ INPUT PARAMETERS:
 *************************************************************************/
 void minlmsetscale(const minlmstate &state, const real_1d_array &s, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function sets boundary constraints for LM optimizer
 
@@ -10447,8 +10563,10 @@ NOTE 2: this solver has following useful properties:
   -- ALGLIB --
      Copyright 14.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minlmsetbc(const minlmstate &state, const real_1d_array &bndl, const real_1d_array &bndu, const xparams _xparams = alglib::xdefault);
-
+void minlmsetbc(const minlmstate &state,
+                const real_1d_array &bndl,
+                const real_1d_array &bndu,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function sets general linear constraints for LM optimizer
@@ -10495,9 +10613,15 @@ NOTE: general linear constraints  add  significant  overhead  to  solution
   -- ALGLIB --
      Copyright 14.01.2011 by Bochkanov Sergey
 *************************************************************************/
-void minlmsetlc(const minlmstate &state, const real_2d_array &c, const integer_1d_array &ct, const ae_int_t k, const xparams _xparams = alglib::xdefault);
-void minlmsetlc(const minlmstate &state, const real_2d_array &c, const integer_1d_array &ct, const xparams _xparams = alglib::xdefault);
-
+void minlmsetlc(const minlmstate &state,
+                const real_2d_array &c,
+                const integer_1d_array &ct,
+                const ae_int_t k,
+                const xparams _xparams = alglib::xdefault);
+void minlmsetlc(const minlmstate &state,
+                const real_2d_array &c,
+                const integer_1d_array &ct,
+                const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function is used to change acceleration settings
@@ -10545,14 +10669,12 @@ combination will result in exception being thrown.
 *************************************************************************/
 void minlmsetacctype(const minlmstate &state, const ae_int_t acctype, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This function provides reverse communication interface
 Reverse communication interface is not documented or recommended to use.
 See below for functions which provide better documented API
 *************************************************************************/
 bool minlmiteration(const minlmstate &state, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This family of functions is used to launcn iterations of nonlinear optimizer
@@ -10594,37 +10716,40 @@ NOTES:
 
 *************************************************************************/
 void minlmoptimize(minlmstate &state,
-    void (*fvec)(const real_1d_array &x, real_1d_array &fi, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                   void (*fvec)(const real_1d_array &x, real_1d_array &fi, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 void minlmoptimize(minlmstate &state,
-    void (*fvec)(const real_1d_array &x, real_1d_array &fi, void *ptr),
-    void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                   void (*fvec)(const real_1d_array &x, real_1d_array &fi, void *ptr),
+                   void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 void minlmoptimize(minlmstate &state,
-    void (*func)(const real_1d_array &x, double &func, void *ptr),
-    void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
-    void (*hess)(const real_1d_array &x, double &func, real_1d_array &grad, real_2d_array &hess, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                   void (*func)(const real_1d_array &x, double &func, void *ptr),
+                   void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
+                   void (*hess)(const real_1d_array &x,
+                                double &func,
+                                real_1d_array &grad,
+                                real_2d_array &hess,
+                                void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 void minlmoptimize(minlmstate &state,
-    void (*func)(const real_1d_array &x, double &func, void *ptr),
-    void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
+                   void (*func)(const real_1d_array &x, double &func, void *ptr),
+                   void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 void minlmoptimize(minlmstate &state,
-    void (*func)(const real_1d_array &x, double &func, void *ptr),
-    void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
-    void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
-    void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
-    void *ptr = NULL,
-    const xparams _xparams = alglib::xdefault);
-
+                   void (*func)(const real_1d_array &x, double &func, void *ptr),
+                   void (*grad)(const real_1d_array &x, double &func, real_1d_array &grad, void *ptr),
+                   void  (*jac)(const real_1d_array &x, real_1d_array &fi, real_2d_array &jac, void *ptr),
+                   void  (*rep)(const real_1d_array &x, double func, void *ptr) = NULL,
+                   void *ptr = NULL,
+                   const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  function  activates/deactivates verification  of  the  user-supplied
@@ -10683,7 +10808,6 @@ In order to verify gradient algorithm performs following steps:
 *************************************************************************/
 void minlmoptguardgradient(const minlmstate &state, const double teststep, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Results of OptGuard integrity check, should be called  after  optimization
 session is over.
@@ -10721,7 +10845,6 @@ OUTPUT PARAMETERS:
 *************************************************************************/
 void minlmoptguardresults(const minlmstate &state, optguardreport &rep, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 Levenberg-Marquardt algorithm results
 
@@ -10752,8 +10875,10 @@ OUTPUT PARAMETERS:
   -- ALGLIB --
      Copyright 10.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void minlmresults(const minlmstate &state, real_1d_array &x, minlmreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minlmresults(const minlmstate &state,
+                  real_1d_array &x,
+                  minlmreport &rep,
+                  const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 Levenberg-Marquardt algorithm results
@@ -10766,8 +10891,10 @@ where array reallocation penalty is too large to be ignored.
   -- ALGLIB --
      Copyright 10.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void minlmresultsbuf(const minlmstate &state, real_1d_array &x, minlmreport &rep, const xparams _xparams = alglib::xdefault);
-
+void minlmresultsbuf(const minlmstate &state,
+                     real_1d_array &x,
+                     minlmreport &rep,
+                     const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This  subroutine  restarts  LM  algorithm from new point. All optimization
@@ -10785,7 +10912,6 @@ INPUT PARAMETERS:
      Copyright 30.07.2010 by Bochkanov Sergey
 *************************************************************************/
 void minlmrestartfrom(const minlmstate &state, const real_1d_array &x, const xparams _xparams = alglib::xdefault);
-
 
 /*************************************************************************
 This subroutine submits request for termination of running  optimizer.  It
@@ -10813,7 +10939,6 @@ NOTE: multiple calls to this function are possible. First call is counted,
 *************************************************************************/
 void minlmrequesttermination(const minlmstate &state, const xparams _xparams = alglib::xdefault);
 
-
 /*************************************************************************
 This is obsolete function.
 
@@ -10822,9 +10947,15 @@ Since ALGLIB 3.3 it is equivalent to MinLMCreateVJ().
   -- ALGLIB --
      Copyright 30.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void minlmcreatevgj(const ae_int_t n, const ae_int_t m, const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
-void minlmcreatevgj(const ae_int_t m, const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
-
+void minlmcreatevgj(const ae_int_t n,
+                    const ae_int_t m,
+                    const real_1d_array &x,
+                    minlmstate &state,
+                    const xparams _xparams = alglib::xdefault);
+void minlmcreatevgj(const ae_int_t m,
+                    const real_1d_array &x,
+                    minlmstate &state,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This is obsolete function.
@@ -10834,9 +10965,15 @@ Since ALGLIB 3.3 it is equivalent to MinLMCreateFJ().
   -- ALGLIB --
      Copyright 30.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void minlmcreatefgj(const ae_int_t n, const ae_int_t m, const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
-void minlmcreatefgj(const ae_int_t m, const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
-
+void minlmcreatefgj(const ae_int_t n,
+                    const ae_int_t m,
+                    const real_1d_array &x,
+                    minlmstate &state,
+                    const xparams _xparams = alglib::xdefault);
+void minlmcreatefgj(const ae_int_t m,
+                    const real_1d_array &x,
+                    minlmstate &state,
+                    const xparams _xparams = alglib::xdefault);
 
 /*************************************************************************
 This function is considered obsolete since ALGLIB 3.1.0 and is present for
@@ -10846,8 +10983,15 @@ provides similar, but more consistent and feature-rich interface.
   -- ALGLIB --
      Copyright 30.03.2009 by Bochkanov Sergey
 *************************************************************************/
-void minlmcreatefj(const ae_int_t n, const ae_int_t m, const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
-void minlmcreatefj(const ae_int_t m, const real_1d_array &x, minlmstate &state, const xparams _xparams = alglib::xdefault);
+void minlmcreatefj(const ae_int_t n,
+                   const ae_int_t m,
+                   const real_1d_array &x,
+                   minlmstate &state,
+                   const xparams _xparams = alglib::xdefault);
+void minlmcreatefj(const ae_int_t m,
+                   const real_1d_array &x,
+                   minlmstate &state,
+                   const xparams _xparams = alglib::xdefault);
 #endif
 }
 
@@ -10856,1650 +11000,1649 @@ void minlmcreatefj(const ae_int_t m, const real_1d_array &x, minlmstate &state, 
 // THIS SECTION CONTAINS COMPUTATIONAL CORE DECLARATIONS (FUNCTIONS)
 //
 /////////////////////////////////////////////////////////////////////////
-namespace alglib_impl
-{
+namespace alglib_impl {
 #if defined(AE_COMPILE_CQMODELS) || !defined(AE_PARTIAL_BUILD)
-void cqminit(ae_int_t n, convexquadraticmodel* s, ae_state *_state);
-void cqmseta(convexquadraticmodel* s,
-     /* Real    */ ae_matrix* a,
-     ae_bool isupper,
-     double alpha,
-     ae_state *_state);
-void cqmgeta(convexquadraticmodel* s,
-     /* Real    */ ae_matrix* a,
-     ae_state *_state);
-void cqmrewritedensediagonal(convexquadraticmodel* s,
-     /* Real    */ ae_vector* z,
-     ae_state *_state);
-void cqmsetd(convexquadraticmodel* s,
-     /* Real    */ ae_vector* d,
-     double tau,
-     ae_state *_state);
-void cqmdropa(convexquadraticmodel* s, ae_state *_state);
-void cqmsetb(convexquadraticmodel* s,
-     /* Real    */ ae_vector* b,
-     ae_state *_state);
-void cqmsetq(convexquadraticmodel* s,
-     /* Real    */ ae_matrix* q,
-     /* Real    */ ae_vector* r,
-     ae_int_t k,
-     double theta,
-     ae_state *_state);
-void cqmsetactiveset(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     /* Boolean */ ae_vector* activeset,
-     ae_state *_state);
-double cqmeval(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void cqmevalx(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     double* r,
-     double* noise,
-     ae_state *_state);
-void cqmgradunconstrained(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* g,
-     ae_state *_state);
-double cqmxtadx2(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* tmp,
-     ae_state *_state);
-void cqmadx(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* y,
-     ae_state *_state);
-ae_bool cqmconstrainedoptimum(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void cqmscalevector(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void cqmgetdiaga(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-double cqmdebugconstrainedevalt(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-double cqmdebugconstrainedevale(convexquadraticmodel* s,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void _convexquadraticmodel_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _convexquadraticmodel_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _convexquadraticmodel_clear(void* _p);
-void _convexquadraticmodel_destroy(void* _p);
+void cqminit(ae_int_t n, convexquadraticmodel *s, ae_state *_state);
+void cqmseta(convexquadraticmodel *s,
+    /* Real    */ ae_matrix *a,
+             ae_bool isupper,
+             double alpha,
+             ae_state *_state);
+void cqmgeta(convexquadraticmodel *s,
+    /* Real    */ ae_matrix *a,
+             ae_state *_state);
+void cqmrewritedensediagonal(convexquadraticmodel *s,
+    /* Real    */ ae_vector *z,
+                             ae_state *_state);
+void cqmsetd(convexquadraticmodel *s,
+    /* Real    */ ae_vector *d,
+             double tau,
+             ae_state *_state);
+void cqmdropa(convexquadraticmodel *s, ae_state *_state);
+void cqmsetb(convexquadraticmodel *s,
+    /* Real    */ ae_vector *b,
+             ae_state *_state);
+void cqmsetq(convexquadraticmodel *s,
+    /* Real    */ ae_matrix *q,
+    /* Real    */ ae_vector *r,
+             ae_int_t k,
+             double theta,
+             ae_state *_state);
+void cqmsetactiveset(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+    /* Boolean */ ae_vector *activeset,
+                     ae_state *_state);
+double cqmeval(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+               ae_state *_state);
+void cqmevalx(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+              double *r,
+              double *noise,
+              ae_state *_state);
+void cqmgradunconstrained(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *g,
+                          ae_state *_state);
+double cqmxtadx2(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *tmp,
+                 ae_state *_state);
+void cqmadx(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *y,
+            ae_state *_state);
+ae_bool cqmconstrainedoptimum(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+                              ae_state *_state);
+void cqmscalevector(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+                    ae_state *_state);
+void cqmgetdiaga(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+                 ae_state *_state);
+double cqmdebugconstrainedevalt(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+                                ae_state *_state);
+double cqmdebugconstrainedevale(convexquadraticmodel *s,
+    /* Real    */ ae_vector *x,
+                                ae_state *_state);
+void _convexquadraticmodel_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _convexquadraticmodel_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _convexquadraticmodel_clear(void *_p);
+void _convexquadraticmodel_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_OPTGUARDAPI) || !defined(AE_PARTIAL_BUILD)
-void optguardinitinternal(optguardreport* rep,
-     ae_int_t n,
-     ae_int_t k,
-     ae_state *_state);
-void optguardexportreport(optguardreport* srcrep,
-     ae_int_t n,
-     ae_int_t k,
-     ae_bool badgradhasxj,
-     optguardreport* dstrep,
-     ae_state *_state);
-void smoothnessmonitorexportc1test0report(optguardnonc1test0report* srcrep,
-     /* Real    */ ae_vector* s,
-     optguardnonc1test0report* dstrep,
-     ae_state *_state);
-void smoothnessmonitorexportc1test1report(optguardnonc1test1report* srcrep,
-     /* Real    */ ae_vector* s,
-     optguardnonc1test1report* dstrep,
-     ae_state *_state);
-ae_bool optguardallclear(optguardreport* rep, ae_state *_state);
-void _optguardreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _optguardreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _optguardreport_clear(void* _p);
-void _optguardreport_destroy(void* _p);
-void _optguardnonc0report_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _optguardnonc0report_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _optguardnonc0report_clear(void* _p);
-void _optguardnonc0report_destroy(void* _p);
-void _optguardnonc1test0report_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _optguardnonc1test0report_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _optguardnonc1test0report_clear(void* _p);
-void _optguardnonc1test0report_destroy(void* _p);
-void _optguardnonc1test1report_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _optguardnonc1test1report_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _optguardnonc1test1report_clear(void* _p);
-void _optguardnonc1test1report_destroy(void* _p);
+void optguardinitinternal(optguardreport *rep,
+                          ae_int_t n,
+                          ae_int_t k,
+                          ae_state *_state);
+void optguardexportreport(optguardreport *srcrep,
+                          ae_int_t n,
+                          ae_int_t k,
+                          ae_bool badgradhasxj,
+                          optguardreport *dstrep,
+                          ae_state *_state);
+void smoothnessmonitorexportc1test0report(optguardnonc1test0report *srcrep,
+    /* Real    */ ae_vector *s,
+                                          optguardnonc1test0report *dstrep,
+                                          ae_state *_state);
+void smoothnessmonitorexportc1test1report(optguardnonc1test1report *srcrep,
+    /* Real    */ ae_vector *s,
+                                          optguardnonc1test1report *dstrep,
+                                          ae_state *_state);
+ae_bool optguardallclear(optguardreport *rep, ae_state *_state);
+void _optguardreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _optguardreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _optguardreport_clear(void *_p);
+void _optguardreport_destroy(void *_p);
+void _optguardnonc0report_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _optguardnonc0report_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _optguardnonc0report_clear(void *_p);
+void _optguardnonc0report_destroy(void *_p);
+void _optguardnonc1test0report_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _optguardnonc1test0report_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _optguardnonc1test0report_clear(void *_p);
+void _optguardnonc1test0report_destroy(void *_p);
+void _optguardnonc1test1report_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _optguardnonc1test1report_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _optguardnonc1test1report_clear(void *_p);
+void _optguardnonc1test1report_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_OPTSERV) || !defined(AE_PARTIAL_BUILD)
-void checkbcviolation(/* Boolean */ ae_vector* hasbndl,
-     /* Real    */ ae_vector* bndl,
-     /* Boolean */ ae_vector* hasbndu,
-     /* Real    */ ae_vector* bndu,
-     /* Real    */ ae_vector* x,
-     ae_int_t n,
-     /* Real    */ ae_vector* s,
-     ae_bool nonunits,
-     double* bcerr,
-     ae_int_t* bcidx,
-     ae_state *_state);
-void checklcviolation(/* Real    */ ae_matrix* cleic,
-     /* Integer */ ae_vector* lcsrcidx,
-     ae_int_t nec,
-     ae_int_t nic,
-     /* Real    */ ae_vector* x,
-     ae_int_t n,
-     double* lcerr,
-     ae_int_t* lcidx,
-     ae_state *_state);
-void checknlcviolation(/* Real    */ ae_vector* fi,
-     ae_int_t ng,
-     ae_int_t nh,
-     double* nlcerr,
-     ae_int_t* nlcidx,
-     ae_state *_state);
-void unscaleandchecknlcviolation(/* Real    */ ae_vector* fi,
-     /* Real    */ ae_vector* fscales,
-     ae_int_t ng,
-     ae_int_t nh,
-     double* nlcerr,
-     ae_int_t* nlcidx,
-     ae_state *_state);
-void trimprepare(double f, double* threshold, ae_state *_state);
-void trimfunction(double* f,
-     /* Real    */ ae_vector* g,
-     ae_int_t n,
-     double threshold,
-     ae_state *_state);
-ae_bool enforceboundaryconstraints(/* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* bl,
-     /* Boolean */ ae_vector* havebl,
-     /* Real    */ ae_vector* bu,
-     /* Boolean */ ae_vector* havebu,
-     ae_int_t nmain,
-     ae_int_t nslack,
-     ae_state *_state);
-void projectgradientintobc(/* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* g,
-     /* Real    */ ae_vector* bl,
-     /* Boolean */ ae_vector* havebl,
-     /* Real    */ ae_vector* bu,
-     /* Boolean */ ae_vector* havebu,
-     ae_int_t nmain,
-     ae_int_t nslack,
-     ae_state *_state);
-void calculatestepbound(/* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* d,
-     double alpha,
-     /* Real    */ ae_vector* bndl,
-     /* Boolean */ ae_vector* havebndl,
-     /* Real    */ ae_vector* bndu,
-     /* Boolean */ ae_vector* havebndu,
-     ae_int_t nmain,
-     ae_int_t nslack,
-     ae_int_t* variabletofreeze,
-     double* valuetofreeze,
-     double* maxsteplen,
-     ae_state *_state);
-ae_int_t postprocessboundedstep(/* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* xprev,
-     /* Real    */ ae_vector* bndl,
-     /* Boolean */ ae_vector* havebndl,
-     /* Real    */ ae_vector* bndu,
-     /* Boolean */ ae_vector* havebndu,
-     ae_int_t nmain,
-     ae_int_t nslack,
-     ae_int_t variabletofreeze,
-     double valuetofreeze,
-     double steptaken,
-     double maxsteplen,
-     ae_state *_state);
-void filterdirection(/* Real    */ ae_vector* d,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* bndl,
-     /* Boolean */ ae_vector* havebndl,
-     /* Real    */ ae_vector* bndu,
-     /* Boolean */ ae_vector* havebndu,
-     /* Real    */ ae_vector* s,
-     ae_int_t nmain,
-     ae_int_t nslack,
-     double droptol,
-     ae_state *_state);
-ae_int_t numberofchangedconstraints(/* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* xprev,
-     /* Real    */ ae_vector* bndl,
-     /* Boolean */ ae_vector* havebndl,
-     /* Real    */ ae_vector* bndu,
-     /* Boolean */ ae_vector* havebndu,
-     ae_int_t nmain,
-     ae_int_t nslack,
-     ae_state *_state);
-ae_bool findfeasiblepoint(/* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* bndl,
-     /* Boolean */ ae_vector* havebndl,
-     /* Real    */ ae_vector* bndu,
-     /* Boolean */ ae_vector* havebndu,
-     ae_int_t nmain,
-     ae_int_t nslack,
-     /* Real    */ ae_matrix* ce,
-     ae_int_t k,
-     double epsi,
-     ae_int_t* qpits,
-     ae_int_t* gpaits,
-     ae_state *_state);
+void checkbcviolation(/* Boolean */ ae_vector *hasbndl,
+    /* Real    */ ae_vector *bndl,
+    /* Boolean */ ae_vector *hasbndu,
+    /* Real    */ ae_vector *bndu,
+    /* Real    */ ae_vector *x,
+                                    ae_int_t n,
+    /* Real    */ ae_vector *s,
+                                    ae_bool nonunits,
+                                    double *bcerr,
+                                    ae_int_t *bcidx,
+                                    ae_state *_state);
+void checklcviolation(/* Real    */ ae_matrix *cleic,
+    /* Integer */ ae_vector *lcsrcidx,
+                                    ae_int_t nec,
+                                    ae_int_t nic,
+    /* Real    */ ae_vector *x,
+                                    ae_int_t n,
+                                    double *lcerr,
+                                    ae_int_t *lcidx,
+                                    ae_state *_state);
+void checknlcviolation(/* Real    */ ae_vector *fi,
+                                     ae_int_t ng,
+                                     ae_int_t nh,
+                                     double *nlcerr,
+                                     ae_int_t *nlcidx,
+                                     ae_state *_state);
+void unscaleandchecknlcviolation(/* Real    */ ae_vector *fi,
+    /* Real    */ ae_vector *fscales,
+                                               ae_int_t ng,
+                                               ae_int_t nh,
+                                               double *nlcerr,
+                                               ae_int_t *nlcidx,
+                                               ae_state *_state);
+void trimprepare(double f, double *threshold, ae_state *_state);
+void trimfunction(double *f,
+    /* Real    */ ae_vector *g,
+                  ae_int_t n,
+                  double threshold,
+                  ae_state *_state);
+ae_bool enforceboundaryconstraints(/* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *bl,
+    /* Boolean */ ae_vector *havebl,
+    /* Real    */ ae_vector *bu,
+    /* Boolean */ ae_vector *havebu,
+                                                 ae_int_t nmain,
+                                                 ae_int_t nslack,
+                                                 ae_state *_state);
+void projectgradientintobc(/* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *g,
+    /* Real    */ ae_vector *bl,
+    /* Boolean */ ae_vector *havebl,
+    /* Real    */ ae_vector *bu,
+    /* Boolean */ ae_vector *havebu,
+                                         ae_int_t nmain,
+                                         ae_int_t nslack,
+                                         ae_state *_state);
+void calculatestepbound(/* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *d,
+                                      double alpha,
+    /* Real    */ ae_vector *bndl,
+    /* Boolean */ ae_vector *havebndl,
+    /* Real    */ ae_vector *bndu,
+    /* Boolean */ ae_vector *havebndu,
+                                      ae_int_t nmain,
+                                      ae_int_t nslack,
+                                      ae_int_t *variabletofreeze,
+                                      double *valuetofreeze,
+                                      double *maxsteplen,
+                                      ae_state *_state);
+ae_int_t postprocessboundedstep(/* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *xprev,
+    /* Real    */ ae_vector *bndl,
+    /* Boolean */ ae_vector *havebndl,
+    /* Real    */ ae_vector *bndu,
+    /* Boolean */ ae_vector *havebndu,
+                                              ae_int_t nmain,
+                                              ae_int_t nslack,
+                                              ae_int_t variabletofreeze,
+                                              double valuetofreeze,
+                                              double steptaken,
+                                              double maxsteplen,
+                                              ae_state *_state);
+void filterdirection(/* Real    */ ae_vector *d,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *bndl,
+    /* Boolean */ ae_vector *havebndl,
+    /* Real    */ ae_vector *bndu,
+    /* Boolean */ ae_vector *havebndu,
+    /* Real    */ ae_vector *s,
+                                   ae_int_t nmain,
+                                   ae_int_t nslack,
+                                   double droptol,
+                                   ae_state *_state);
+ae_int_t numberofchangedconstraints(/* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *xprev,
+    /* Real    */ ae_vector *bndl,
+    /* Boolean */ ae_vector *havebndl,
+    /* Real    */ ae_vector *bndu,
+    /* Boolean */ ae_vector *havebndu,
+                                                  ae_int_t nmain,
+                                                  ae_int_t nslack,
+                                                  ae_state *_state);
+ae_bool findfeasiblepoint(/* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *bndl,
+    /* Boolean */ ae_vector *havebndl,
+    /* Real    */ ae_vector *bndu,
+    /* Boolean */ ae_vector *havebndu,
+                                        ae_int_t nmain,
+                                        ae_int_t nslack,
+    /* Real    */ ae_matrix *ce,
+                                        ae_int_t k,
+                                        double epsi,
+                                        ae_int_t *qpits,
+                                        ae_int_t *gpaits,
+                                        ae_state *_state);
 ae_bool derivativecheck(double f0,
-     double df0,
-     double f1,
-     double df1,
-     double f,
-     double df,
-     double width,
-     ae_state *_state);
+                        double df0,
+                        double f1,
+                        double df1,
+                        double f,
+                        double df,
+                        double width,
+                        ae_state *_state);
 void estimateparabolicmodel(double absasum,
-     double absasum2,
-     double mx,
-     double mb,
-     double md,
-     double d1,
-     double d2,
-     ae_int_t* d1est,
-     ae_int_t* d2est,
-     ae_state *_state);
-void inexactlbfgspreconditioner(/* Real    */ ae_vector* s,
-     ae_int_t n,
-     /* Real    */ ae_vector* d,
-     /* Real    */ ae_vector* c,
-     /* Real    */ ae_matrix* w,
-     ae_int_t k,
-     precbuflbfgs* buf,
-     ae_state *_state);
-void preparelowrankpreconditioner(/* Real    */ ae_vector* d,
-     /* Real    */ ae_vector* c,
-     /* Real    */ ae_matrix* w,
-     ae_int_t n,
-     ae_int_t k,
-     precbuflowrank* buf,
-     ae_state *_state);
-void applylowrankpreconditioner(/* Real    */ ae_vector* s,
-     precbuflowrank* buf,
-     ae_state *_state);
-void smoothnessmonitorinit(smoothnessmonitor* monitor,
-     ae_int_t n,
-     ae_int_t k,
-     ae_bool checksmoothness,
-     ae_state *_state);
-void smoothnessmonitorstartlinesearch(smoothnessmonitor* monitor,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* fi,
-     /* Real    */ ae_matrix* jac,
-     ae_state *_state);
-void smoothnessmonitorstartlinesearch1u(smoothnessmonitor* monitor,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* invs,
-     /* Real    */ ae_vector* x,
-     double f0,
-     /* Real    */ ae_vector* j0,
-     ae_state *_state);
-void smoothnessmonitorenqueuepoint(smoothnessmonitor* monitor,
-     /* Real    */ ae_vector* d,
-     double stp,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* fi,
-     /* Real    */ ae_matrix* jac,
-     ae_state *_state);
-void smoothnessmonitorenqueuepoint1u(smoothnessmonitor* monitor,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* invs,
-     /* Real    */ ae_vector* d,
-     double stp,
-     /* Real    */ ae_vector* x,
-     double f0,
-     /* Real    */ ae_vector* j0,
-     ae_state *_state);
-void smoothnessmonitorfinalizelinesearch(smoothnessmonitor* monitor,
-     ae_state *_state);
-void smoothnessmonitorstartprobing(smoothnessmonitor* monitor,
-     double stpmax,
-     ae_int_t nvalues,
-     double stepscale,
-     ae_state *_state);
-ae_bool smoothnessmonitorprobe(smoothnessmonitor* monitor,
-     ae_state *_state);
-void smoothnessmonitortraceprobingresults(smoothnessmonitor* monitor,
-     ae_state *_state);
-void smoothnessmonitortracestatus(smoothnessmonitor* monitor,
-     ae_bool callersuggeststrace,
-     ae_state *_state);
-void smoothnessmonitorexportreport(smoothnessmonitor* monitor,
-     optguardreport* rep,
-     ae_state *_state);
-ae_bool smoothnessmonitorcheckgradientatx0(smoothnessmonitor* monitor,
-     /* Real    */ ae_vector* unscaledx0,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_bool hasboxconstraints,
-     double teststep,
-     ae_state *_state);
-void _precbuflbfgs_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _precbuflbfgs_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _precbuflbfgs_clear(void* _p);
-void _precbuflbfgs_destroy(void* _p);
-void _precbuflowrank_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _precbuflowrank_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _precbuflowrank_clear(void* _p);
-void _precbuflowrank_destroy(void* _p);
-void _smoothnessmonitor_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _smoothnessmonitor_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _smoothnessmonitor_clear(void* _p);
-void _smoothnessmonitor_destroy(void* _p);
+                            double absasum2,
+                            double mx,
+                            double mb,
+                            double md,
+                            double d1,
+                            double d2,
+                            ae_int_t *d1est,
+                            ae_int_t *d2est,
+                            ae_state *_state);
+void inexactlbfgspreconditioner(/* Real    */ ae_vector *s,
+                                              ae_int_t n,
+    /* Real    */ ae_vector *d,
+    /* Real    */ ae_vector *c,
+    /* Real    */ ae_matrix *w,
+                                              ae_int_t k,
+                                              precbuflbfgs *buf,
+                                              ae_state *_state);
+void preparelowrankpreconditioner(/* Real    */ ae_vector *d,
+    /* Real    */ ae_vector *c,
+    /* Real    */ ae_matrix *w,
+                                                ae_int_t n,
+                                                ae_int_t k,
+                                                precbuflowrank *buf,
+                                                ae_state *_state);
+void applylowrankpreconditioner(/* Real    */ ae_vector *s,
+                                              precbuflowrank *buf,
+                                              ae_state *_state);
+void smoothnessmonitorinit(smoothnessmonitor *monitor,
+                           ae_int_t n,
+                           ae_int_t k,
+                           ae_bool checksmoothness,
+                           ae_state *_state);
+void smoothnessmonitorstartlinesearch(smoothnessmonitor *monitor,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *fi,
+    /* Real    */ ae_matrix *jac,
+                                      ae_state *_state);
+void smoothnessmonitorstartlinesearch1u(smoothnessmonitor *monitor,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *invs,
+    /* Real    */ ae_vector *x,
+                                        double f0,
+    /* Real    */ ae_vector *j0,
+                                        ae_state *_state);
+void smoothnessmonitorenqueuepoint(smoothnessmonitor *monitor,
+    /* Real    */ ae_vector *d,
+                                   double stp,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *fi,
+    /* Real    */ ae_matrix *jac,
+                                   ae_state *_state);
+void smoothnessmonitorenqueuepoint1u(smoothnessmonitor *monitor,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *invs,
+    /* Real    */ ae_vector *d,
+                                     double stp,
+    /* Real    */ ae_vector *x,
+                                     double f0,
+    /* Real    */ ae_vector *j0,
+                                     ae_state *_state);
+void smoothnessmonitorfinalizelinesearch(smoothnessmonitor *monitor,
+                                         ae_state *_state);
+void smoothnessmonitorstartprobing(smoothnessmonitor *monitor,
+                                   double stpmax,
+                                   ae_int_t nvalues,
+                                   double stepscale,
+                                   ae_state *_state);
+ae_bool smoothnessmonitorprobe(smoothnessmonitor *monitor,
+                               ae_state *_state);
+void smoothnessmonitortraceprobingresults(smoothnessmonitor *monitor,
+                                          ae_state *_state);
+void smoothnessmonitortracestatus(smoothnessmonitor *monitor,
+                                  ae_bool callersuggeststrace,
+                                  ae_state *_state);
+void smoothnessmonitorexportreport(smoothnessmonitor *monitor,
+                                   optguardreport *rep,
+                                   ae_state *_state);
+ae_bool smoothnessmonitorcheckgradientatx0(smoothnessmonitor *monitor,
+    /* Real    */ ae_vector *unscaledx0,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                                           ae_bool hasboxconstraints,
+                                           double teststep,
+                                           ae_state *_state);
+void _precbuflbfgs_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _precbuflbfgs_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _precbuflbfgs_clear(void *_p);
+void _precbuflbfgs_destroy(void *_p);
+void _precbuflowrank_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _precbuflowrank_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _precbuflowrank_clear(void *_p);
+void _precbuflowrank_destroy(void *_p);
+void _smoothnessmonitor_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _smoothnessmonitor_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _smoothnessmonitor_clear(void *_p);
+void _smoothnessmonitor_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_SNNLS) || !defined(AE_PARTIAL_BUILD)
 void snnlsinit(ae_int_t nsmax,
-     ae_int_t ndmax,
-     ae_int_t nrmax,
-     snnlssolver* s,
-     ae_state *_state);
-void snnlssetproblem(snnlssolver* s,
-     /* Real    */ ae_matrix* a,
-     /* Real    */ ae_vector* b,
-     ae_int_t ns,
-     ae_int_t nd,
-     ae_int_t nr,
-     ae_state *_state);
-void snnlsdropnnc(snnlssolver* s, ae_int_t idx, ae_state *_state);
-void snnlssolve(snnlssolver* s,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void _snnlssolver_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _snnlssolver_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _snnlssolver_clear(void* _p);
-void _snnlssolver_destroy(void* _p);
+               ae_int_t ndmax,
+               ae_int_t nrmax,
+               snnlssolver *s,
+               ae_state *_state);
+void snnlssetproblem(snnlssolver *s,
+    /* Real    */ ae_matrix *a,
+    /* Real    */ ae_vector *b,
+                     ae_int_t ns,
+                     ae_int_t nd,
+                     ae_int_t nr,
+                     ae_state *_state);
+void snnlsdropnnc(snnlssolver *s, ae_int_t idx, ae_state *_state);
+void snnlssolve(snnlssolver *s,
+    /* Real    */ ae_vector *x,
+                ae_state *_state);
+void _snnlssolver_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _snnlssolver_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _snnlssolver_clear(void *_p);
+void _snnlssolver_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_SACTIVESETS) || !defined(AE_PARTIAL_BUILD)
-void sasinit(ae_int_t n, sactiveset* s, ae_state *_state);
-void sassetscale(sactiveset* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void sassetprecdiag(sactiveset* state,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void sassetbc(sactiveset* state,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_state *_state);
-void sassetlc(sactiveset* state,
-     /* Real    */ ae_matrix* c,
-     /* Integer */ ae_vector* ct,
-     ae_int_t k,
-     ae_state *_state);
-void sassetlcx(sactiveset* state,
-     /* Real    */ ae_matrix* cleic,
-     ae_int_t nec,
-     ae_int_t nic,
-     ae_state *_state);
-ae_bool sasstartoptimization(sactiveset* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void sasexploredirection(sactiveset* state,
-     /* Real    */ ae_vector* d,
-     double* stpmax,
-     ae_int_t* cidx,
-     double* vval,
-     ae_state *_state);
-ae_int_t sasmoveto(sactiveset* state,
-     /* Real    */ ae_vector* xn,
-     ae_bool needact,
-     ae_int_t cidx,
-     double cval,
-     ae_state *_state);
-void sasimmediateactivation(sactiveset* state,
-     ae_int_t cidx,
-     double cval,
-     ae_state *_state);
-void sasconstraineddescent(sactiveset* state,
-     /* Real    */ ae_vector* g,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void sasconstraineddescentprec(sactiveset* state,
-     /* Real    */ ae_vector* g,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void sasconstraineddirection(sactiveset* state,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void sasconstraineddirectionprec(sactiveset* state,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void sascorrection(sactiveset* state,
-     /* Real    */ ae_vector* x,
-     double* penalty,
-     ae_state *_state);
-double sasactivelcpenalty1(sactiveset* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-double sasscaledconstrainednorm(sactiveset* state,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void sasstopoptimization(sactiveset* state, ae_state *_state);
-void sasreactivateconstraints(sactiveset* state,
-     /* Real    */ ae_vector* gc,
-     ae_state *_state);
-void sasreactivateconstraintsprec(sactiveset* state,
-     /* Real    */ ae_vector* gc,
-     ae_state *_state);
-void sasrebuildbasis(sactiveset* state, ae_state *_state);
-void sasappendtobasis(sactiveset* state,
-     /* Boolean */ ae_vector* newentries,
-     ae_state *_state);
-void _sactiveset_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _sactiveset_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _sactiveset_clear(void* _p);
-void _sactiveset_destroy(void* _p);
+void sasinit(ae_int_t n, sactiveset *s, ae_state *_state);
+void sassetscale(sactiveset *state,
+    /* Real    */ ae_vector *s,
+                 ae_state *_state);
+void sassetprecdiag(sactiveset *state,
+    /* Real    */ ae_vector *d,
+                    ae_state *_state);
+void sassetbc(sactiveset *state,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+              ae_state *_state);
+void sassetlc(sactiveset *state,
+    /* Real    */ ae_matrix *c,
+    /* Integer */ ae_vector *ct,
+              ae_int_t k,
+              ae_state *_state);
+void sassetlcx(sactiveset *state,
+    /* Real    */ ae_matrix *cleic,
+               ae_int_t nec,
+               ae_int_t nic,
+               ae_state *_state);
+ae_bool sasstartoptimization(sactiveset *state,
+    /* Real    */ ae_vector *x,
+                             ae_state *_state);
+void sasexploredirection(sactiveset *state,
+    /* Real    */ ae_vector *d,
+                         double *stpmax,
+                         ae_int_t *cidx,
+                         double *vval,
+                         ae_state *_state);
+ae_int_t sasmoveto(sactiveset *state,
+    /* Real    */ ae_vector *xn,
+                   ae_bool needact,
+                   ae_int_t cidx,
+                   double cval,
+                   ae_state *_state);
+void sasimmediateactivation(sactiveset *state,
+                            ae_int_t cidx,
+                            double cval,
+                            ae_state *_state);
+void sasconstraineddescent(sactiveset *state,
+    /* Real    */ ae_vector *g,
+    /* Real    */ ae_vector *d,
+                           ae_state *_state);
+void sasconstraineddescentprec(sactiveset *state,
+    /* Real    */ ae_vector *g,
+    /* Real    */ ae_vector *d,
+                               ae_state *_state);
+void sasconstraineddirection(sactiveset *state,
+    /* Real    */ ae_vector *d,
+                             ae_state *_state);
+void sasconstraineddirectionprec(sactiveset *state,
+    /* Real    */ ae_vector *d,
+                                 ae_state *_state);
+void sascorrection(sactiveset *state,
+    /* Real    */ ae_vector *x,
+                   double *penalty,
+                   ae_state *_state);
+double sasactivelcpenalty1(sactiveset *state,
+    /* Real    */ ae_vector *x,
+                           ae_state *_state);
+double sasscaledconstrainednorm(sactiveset *state,
+    /* Real    */ ae_vector *d,
+                                ae_state *_state);
+void sasstopoptimization(sactiveset *state, ae_state *_state);
+void sasreactivateconstraints(sactiveset *state,
+    /* Real    */ ae_vector *gc,
+                              ae_state *_state);
+void sasreactivateconstraintsprec(sactiveset *state,
+    /* Real    */ ae_vector *gc,
+                                  ae_state *_state);
+void sasrebuildbasis(sactiveset *state, ae_state *_state);
+void sasappendtobasis(sactiveset *state,
+    /* Boolean */ ae_vector *newentries,
+                      ae_state *_state);
+void _sactiveset_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _sactiveset_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _sactiveset_clear(void *_p);
+void _sactiveset_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_QQPSOLVER) || !defined(AE_PARTIAL_BUILD)
-void qqploaddefaults(ae_int_t n, qqpsettings* s, ae_state *_state);
-void qqpcopysettings(qqpsettings* src, qqpsettings* dst, ae_state *_state);
-void qqppreallocategrowdense(qqpbuffers* sstate,
-     ae_int_t nexpected,
-     ae_int_t ngrowto,
-     ae_state *_state);
-void qqpoptimize(convexquadraticmodel* cqmac,
-     sparsematrix* sparseac,
-     /* Real    */ ae_matrix* denseac,
-     ae_int_t akind,
-     ae_bool isupper,
-     /* Real    */ ae_vector* bc,
-     /* Real    */ ae_vector* bndlc,
-     /* Real    */ ae_vector* bnduc,
-     /* Real    */ ae_vector* sc,
-     /* Real    */ ae_vector* xoriginc,
-     ae_int_t nc,
-     qqpsettings* settings,
-     qqpbuffers* sstate,
-     /* Real    */ ae_vector* xs,
-     ae_int_t* terminationtype,
-     ae_state *_state);
-void _qqpsettings_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _qqpsettings_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _qqpsettings_clear(void* _p);
-void _qqpsettings_destroy(void* _p);
-void _qqpbuffers_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _qqpbuffers_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _qqpbuffers_clear(void* _p);
-void _qqpbuffers_destroy(void* _p);
+void qqploaddefaults(ae_int_t n, qqpsettings *s, ae_state *_state);
+void qqpcopysettings(qqpsettings *src, qqpsettings *dst, ae_state *_state);
+void qqppreallocategrowdense(qqpbuffers *sstate,
+                             ae_int_t nexpected,
+                             ae_int_t ngrowto,
+                             ae_state *_state);
+void qqpoptimize(convexquadraticmodel *cqmac,
+                 sparsematrix *sparseac,
+    /* Real    */ ae_matrix *denseac,
+                 ae_int_t akind,
+                 ae_bool isupper,
+    /* Real    */ ae_vector *bc,
+    /* Real    */ ae_vector *bndlc,
+    /* Real    */ ae_vector *bnduc,
+    /* Real    */ ae_vector *sc,
+    /* Real    */ ae_vector *xoriginc,
+                 ae_int_t nc,
+                 qqpsettings *settings,
+                 qqpbuffers *sstate,
+    /* Real    */ ae_vector *xs,
+                 ae_int_t *terminationtype,
+                 ae_state *_state);
+void _qqpsettings_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _qqpsettings_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _qqpsettings_clear(void *_p);
+void _qqpsettings_destroy(void *_p);
+void _qqpbuffers_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _qqpbuffers_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _qqpbuffers_clear(void *_p);
+void _qqpbuffers_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_LPQPSERV) || !defined(AE_PARTIAL_BUILD)
-void scaleshiftbcinplace(/* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* xorigin,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_int_t n,
-     ae_state *_state);
-void scaleshiftdensebrlcinplace(/* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* xorigin,
-     ae_int_t n,
-     /* Real    */ ae_matrix* densea,
-     /* Real    */ ae_vector* ab,
-     /* Real    */ ae_vector* ar,
-     ae_int_t m,
-     ae_state *_state);
-void scaleshiftmixedbrlcinplace(/* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* xorigin,
-     ae_int_t n,
-     sparsematrix* sparsea,
-     ae_int_t msparse,
-     /* Real    */ ae_matrix* densea,
-     ae_int_t mdense,
-     /* Real    */ ae_vector* ab,
-     /* Real    */ ae_vector* ar,
-     ae_state *_state);
-void scaledenseqpinplace(/* Real    */ ae_matrix* densea,
-     ae_bool isupper,
-     ae_int_t nmain,
-     /* Real    */ ae_vector* denseb,
-     ae_int_t ntotal,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void scalesparseqpinplace(/* Real    */ ae_vector* s,
-     ae_int_t n,
-     sparsematrix* sparsea,
-     /* Real    */ ae_vector* denseb,
-     ae_state *_state);
-void normalizedensebrlcinplace(/* Real    */ ae_matrix* densea,
-     /* Real    */ ae_vector* ab,
-     /* Real    */ ae_vector* ar,
-     ae_int_t n,
-     ae_int_t m,
-     /* Real    */ ae_vector* rownorms,
-     ae_bool neednorms,
-     ae_state *_state);
-void normalizemixedbrlcinplace(sparsematrix* sparsea,
-     ae_int_t msparse,
-     /* Real    */ ae_matrix* densea,
-     ae_int_t mdense,
-     /* Real    */ ae_vector* ab,
-     /* Real    */ ae_vector* ar,
-     ae_int_t n,
-     /* Real    */ ae_vector* rownorms,
-     ae_bool neednorms,
-     ae_state *_state);
-double normalizedenseqpinplace(/* Real    */ ae_matrix* densea,
-     ae_bool isupper,
-     ae_int_t nmain,
-     /* Real    */ ae_vector* denseb,
-     ae_int_t ntotal,
-     ae_state *_state);
-double normalizesparseqpinplace(sparsematrix* sparsea,
-     ae_bool isupper,
-     /* Real    */ ae_vector* denseb,
-     ae_int_t n,
-     ae_state *_state);
-void unscaleunshiftpointbc(/* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* xorigin,
-     /* Real    */ ae_vector* rawbndl,
-     /* Real    */ ae_vector* rawbndu,
-     /* Real    */ ae_vector* sclsftbndl,
-     /* Real    */ ae_vector* sclsftbndu,
-     /* Boolean */ ae_vector* hasbndl,
-     /* Boolean */ ae_vector* hasbndu,
-     /* Real    */ ae_vector* x,
-     ae_int_t n,
-     ae_state *_state);
+void scaleshiftbcinplace(/* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *xorigin,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                                       ae_int_t n,
+                                       ae_state *_state);
+void scaleshiftdensebrlcinplace(/* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *xorigin,
+                                              ae_int_t n,
+    /* Real    */ ae_matrix *densea,
+    /* Real    */ ae_vector *ab,
+    /* Real    */ ae_vector *ar,
+                                              ae_int_t m,
+                                              ae_state *_state);
+void scaleshiftmixedbrlcinplace(/* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *xorigin,
+                                              ae_int_t n,
+                                              sparsematrix *sparsea,
+                                              ae_int_t msparse,
+    /* Real    */ ae_matrix *densea,
+                                              ae_int_t mdense,
+    /* Real    */ ae_vector *ab,
+    /* Real    */ ae_vector *ar,
+                                              ae_state *_state);
+void scaledenseqpinplace(/* Real    */ ae_matrix *densea,
+                                       ae_bool isupper,
+                                       ae_int_t nmain,
+    /* Real    */ ae_vector *denseb,
+                                       ae_int_t ntotal,
+    /* Real    */ ae_vector *s,
+                                       ae_state *_state);
+void scalesparseqpinplace(/* Real    */ ae_vector *s,
+                                        ae_int_t n,
+                                        sparsematrix *sparsea,
+    /* Real    */ ae_vector *denseb,
+                                        ae_state *_state);
+void normalizedensebrlcinplace(/* Real    */ ae_matrix *densea,
+    /* Real    */ ae_vector *ab,
+    /* Real    */ ae_vector *ar,
+                                             ae_int_t n,
+                                             ae_int_t m,
+    /* Real    */ ae_vector *rownorms,
+                                             ae_bool neednorms,
+                                             ae_state *_state);
+void normalizemixedbrlcinplace(sparsematrix *sparsea,
+                               ae_int_t msparse,
+    /* Real    */ ae_matrix *densea,
+                               ae_int_t mdense,
+    /* Real    */ ae_vector *ab,
+    /* Real    */ ae_vector *ar,
+                               ae_int_t n,
+    /* Real    */ ae_vector *rownorms,
+                               ae_bool neednorms,
+                               ae_state *_state);
+double normalizedenseqpinplace(/* Real    */ ae_matrix *densea,
+                                             ae_bool isupper,
+                                             ae_int_t nmain,
+    /* Real    */ ae_vector *denseb,
+                                             ae_int_t ntotal,
+                                             ae_state *_state);
+double normalizesparseqpinplace(sparsematrix *sparsea,
+                                ae_bool isupper,
+    /* Real    */ ae_vector *denseb,
+                                ae_int_t n,
+                                ae_state *_state);
+void unscaleunshiftpointbc(/* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *xorigin,
+    /* Real    */ ae_vector *rawbndl,
+    /* Real    */ ae_vector *rawbndu,
+    /* Real    */ ae_vector *sclsftbndl,
+    /* Real    */ ae_vector *sclsftbndu,
+    /* Boolean */ ae_vector *hasbndl,
+    /* Boolean */ ae_vector *hasbndu,
+    /* Real    */ ae_vector *x,
+                                         ae_int_t n,
+                                         ae_state *_state);
 #endif
 #if defined(AE_COMPILE_VIPMSOLVER) || !defined(AE_PARTIAL_BUILD)
-void vipminitdense(vipmstate* state,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* xorigin,
-     ae_int_t n,
-     ae_state *_state);
-void vipminitdensewithslacks(vipmstate* state,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* xorigin,
-     ae_int_t nmain,
-     ae_int_t n,
-     ae_state *_state);
-void vipminitsparse(vipmstate* state,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* xorigin,
-     ae_int_t n,
-     ae_state *_state);
-void vipmsetquadraticlinear(vipmstate* state,
-     /* Real    */ ae_matrix* denseh,
-     sparsematrix* sparseh,
-     ae_int_t hkind,
-     ae_bool isupper,
-     /* Real    */ ae_vector* c,
-     ae_state *_state);
-void vipmsetconstraints(vipmstate* state,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     sparsematrix* sparsea,
-     ae_int_t msparse,
-     /* Real    */ ae_matrix* densea,
-     ae_int_t mdense,
-     /* Real    */ ae_vector* cl,
-     /* Real    */ ae_vector* cu,
-     ae_state *_state);
-void vipmsetcond(vipmstate* state,
-     double epsp,
-     double epsd,
-     double epsgap,
-     ae_state *_state);
-void vipmoptimize(vipmstate* state,
-     /* Real    */ ae_vector* xs,
-     /* Real    */ ae_vector* lagbc,
-     /* Real    */ ae_vector* laglc,
-     ae_int_t* terminationtype,
-     ae_state *_state);
-void _vipmvars_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _vipmvars_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _vipmvars_clear(void* _p);
-void _vipmvars_destroy(void* _p);
-void _vipmstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _vipmstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _vipmstate_clear(void* _p);
-void _vipmstate_destroy(void* _p);
+void vipminitdense(vipmstate *state,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *xorigin,
+                   ae_int_t n,
+                   ae_state *_state);
+void vipminitdensewithslacks(vipmstate *state,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *xorigin,
+                             ae_int_t nmain,
+                             ae_int_t n,
+                             ae_state *_state);
+void vipminitsparse(vipmstate *state,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *xorigin,
+                    ae_int_t n,
+                    ae_state *_state);
+void vipmsetquadraticlinear(vipmstate *state,
+    /* Real    */ ae_matrix *denseh,
+                            sparsematrix *sparseh,
+                            ae_int_t hkind,
+                            ae_bool isupper,
+    /* Real    */ ae_vector *c,
+                            ae_state *_state);
+void vipmsetconstraints(vipmstate *state,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                        sparsematrix *sparsea,
+                        ae_int_t msparse,
+    /* Real    */ ae_matrix *densea,
+                        ae_int_t mdense,
+    /* Real    */ ae_vector *cl,
+    /* Real    */ ae_vector *cu,
+                        ae_state *_state);
+void vipmsetcond(vipmstate *state,
+                 double epsp,
+                 double epsd,
+                 double epsgap,
+                 ae_state *_state);
+void vipmoptimize(vipmstate *state,
+    /* Real    */ ae_vector *xs,
+    /* Real    */ ae_vector *lagbc,
+    /* Real    */ ae_vector *laglc,
+                  ae_int_t *terminationtype,
+                  ae_state *_state);
+void _vipmvars_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _vipmvars_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _vipmvars_clear(void *_p);
+void _vipmvars_destroy(void *_p);
+void _vipmstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _vipmstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _vipmstate_clear(void *_p);
+void _vipmstate_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_NLCSQP) || !defined(AE_PARTIAL_BUILD)
-void minsqpinitbuf(/* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* x0,
-     ae_int_t n,
-     /* Real    */ ae_matrix* cleic,
-     /* Integer */ ae_vector* lcsrcidx,
-     ae_int_t nec,
-     ae_int_t nic,
-     ae_int_t nlec,
-     ae_int_t nlic,
-     double epsx,
-     ae_int_t maxits,
-     minsqpstate* state,
-     ae_state *_state);
-ae_bool minsqpiteration(minsqpstate* state,
-     smoothnessmonitor* smonitor,
-     ae_bool userterminationneeded,
-     ae_state *_state);
-void _minsqpsubsolver_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minsqpsubsolver_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minsqpsubsolver_clear(void* _p);
-void _minsqpsubsolver_destroy(void* _p);
-void _minsqptmplagrangian_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minsqptmplagrangian_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minsqptmplagrangian_clear(void* _p);
-void _minsqptmplagrangian_destroy(void* _p);
-void _minsqptmpmerit_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minsqptmpmerit_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minsqptmpmerit_clear(void* _p);
-void _minsqptmpmerit_destroy(void* _p);
-void _minsqpmeritphasestate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minsqpmeritphasestate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minsqpmeritphasestate_clear(void* _p);
-void _minsqpmeritphasestate_destroy(void* _p);
-void _minsqpstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minsqpstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minsqpstate_clear(void* _p);
-void _minsqpstate_destroy(void* _p);
+void minsqpinitbuf(/* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *x0,
+                                 ae_int_t n,
+    /* Real    */ ae_matrix *cleic,
+    /* Integer */ ae_vector *lcsrcidx,
+                                 ae_int_t nec,
+                                 ae_int_t nic,
+                                 ae_int_t nlec,
+                                 ae_int_t nlic,
+                                 double epsx,
+                                 ae_int_t maxits,
+                                 minsqpstate *state,
+                                 ae_state *_state);
+ae_bool minsqpiteration(minsqpstate *state,
+                        smoothnessmonitor *smonitor,
+                        ae_bool userterminationneeded,
+                        ae_state *_state);
+void _minsqpsubsolver_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minsqpsubsolver_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minsqpsubsolver_clear(void *_p);
+void _minsqpsubsolver_destroy(void *_p);
+void _minsqptmplagrangian_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minsqptmplagrangian_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minsqptmplagrangian_clear(void *_p);
+void _minsqptmplagrangian_destroy(void *_p);
+void _minsqptmpmerit_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minsqptmpmerit_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minsqptmpmerit_clear(void *_p);
+void _minsqptmpmerit_destroy(void *_p);
+void _minsqpmeritphasestate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minsqpmeritphasestate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minsqpmeritphasestate_clear(void *_p);
+void _minsqpmeritphasestate_destroy(void *_p);
+void _minsqpstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minsqpstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minsqpstate_clear(void *_p);
+void _minsqpstate_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINLBFGS) || !defined(AE_PARTIAL_BUILD)
 void minlbfgscreate(ae_int_t n,
-     ae_int_t m,
-     /* Real    */ ae_vector* x,
-     minlbfgsstate* state,
-     ae_state *_state);
+                    ae_int_t m,
+    /* Real    */ ae_vector *x,
+                    minlbfgsstate *state,
+                    ae_state *_state);
 void minlbfgscreatef(ae_int_t n,
-     ae_int_t m,
-     /* Real    */ ae_vector* x,
-     double diffstep,
-     minlbfgsstate* state,
-     ae_state *_state);
-void minlbfgssetcond(minlbfgsstate* state,
-     double epsg,
-     double epsf,
-     double epsx,
-     ae_int_t maxits,
-     ae_state *_state);
-void minlbfgssetxrep(minlbfgsstate* state,
-     ae_bool needxrep,
-     ae_state *_state);
-void minlbfgssetstpmax(minlbfgsstate* state,
-     double stpmax,
-     ae_state *_state);
-void minlbfgssetscale(minlbfgsstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
+                     ae_int_t m,
+    /* Real    */ ae_vector *x,
+                     double diffstep,
+                     minlbfgsstate *state,
+                     ae_state *_state);
+void minlbfgssetcond(minlbfgsstate *state,
+                     double epsg,
+                     double epsf,
+                     double epsx,
+                     ae_int_t maxits,
+                     ae_state *_state);
+void minlbfgssetxrep(minlbfgsstate *state,
+                     ae_bool needxrep,
+                     ae_state *_state);
+void minlbfgssetstpmax(minlbfgsstate *state,
+                       double stpmax,
+                       ae_state *_state);
+void minlbfgssetscale(minlbfgsstate *state,
+    /* Real    */ ae_vector *s,
+                      ae_state *_state);
 void minlbfgscreatex(ae_int_t n,
-     ae_int_t m,
-     /* Real    */ ae_vector* x,
-     ae_int_t flags,
-     double diffstep,
-     minlbfgsstate* state,
-     ae_state *_state);
-void minlbfgssetprecdefault(minlbfgsstate* state, ae_state *_state);
-void minlbfgssetpreccholesky(minlbfgsstate* state,
-     /* Real    */ ae_matrix* p,
-     ae_bool isupper,
-     ae_state *_state);
-void minlbfgssetprecdiag(minlbfgsstate* state,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void minlbfgssetprecscale(minlbfgsstate* state, ae_state *_state);
-void minlbfgssetprecrankklbfgsfast(minlbfgsstate* state,
-     /* Real    */ ae_vector* d,
-     /* Real    */ ae_vector* c,
-     /* Real    */ ae_matrix* w,
-     ae_int_t cnt,
-     ae_state *_state);
-void minlbfgssetpreclowrankexact(minlbfgsstate* state,
-     /* Real    */ ae_vector* d,
-     /* Real    */ ae_vector* c,
-     /* Real    */ ae_matrix* w,
-     ae_int_t cnt,
-     ae_state *_state);
-ae_bool minlbfgsiteration(minlbfgsstate* state, ae_state *_state);
-void minlbfgsoptguardgradient(minlbfgsstate* state,
-     double teststep,
-     ae_state *_state);
-void minlbfgsoptguardsmoothness(minlbfgsstate* state,
-     ae_int_t level,
-     ae_state *_state);
-void minlbfgsoptguardresults(minlbfgsstate* state,
-     optguardreport* rep,
-     ae_state *_state);
-void minlbfgsoptguardnonc1test0results(minlbfgsstate* state,
-     optguardnonc1test0report* strrep,
-     optguardnonc1test0report* lngrep,
-     ae_state *_state);
-void minlbfgsoptguardnonc1test1results(minlbfgsstate* state,
-     optguardnonc1test1report* strrep,
-     optguardnonc1test1report* lngrep,
-     ae_state *_state);
-void minlbfgsresults(minlbfgsstate* state,
-     /* Real    */ ae_vector* x,
-     minlbfgsreport* rep,
-     ae_state *_state);
-void minlbfgsresultsbuf(minlbfgsstate* state,
-     /* Real    */ ae_vector* x,
-     minlbfgsreport* rep,
-     ae_state *_state);
-void minlbfgsrestartfrom(minlbfgsstate* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void minlbfgsrequesttermination(minlbfgsstate* state, ae_state *_state);
-void _minlbfgsstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minlbfgsstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minlbfgsstate_clear(void* _p);
-void _minlbfgsstate_destroy(void* _p);
-void _minlbfgsreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minlbfgsreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minlbfgsreport_clear(void* _p);
-void _minlbfgsreport_destroy(void* _p);
+                     ae_int_t m,
+    /* Real    */ ae_vector *x,
+                     ae_int_t flags,
+                     double diffstep,
+                     minlbfgsstate *state,
+                     ae_state *_state);
+void minlbfgssetprecdefault(minlbfgsstate *state, ae_state *_state);
+void minlbfgssetpreccholesky(minlbfgsstate *state,
+    /* Real    */ ae_matrix *p,
+                             ae_bool isupper,
+                             ae_state *_state);
+void minlbfgssetprecdiag(minlbfgsstate *state,
+    /* Real    */ ae_vector *d,
+                         ae_state *_state);
+void minlbfgssetprecscale(minlbfgsstate *state, ae_state *_state);
+void minlbfgssetprecrankklbfgsfast(minlbfgsstate *state,
+    /* Real    */ ae_vector *d,
+    /* Real    */ ae_vector *c,
+    /* Real    */ ae_matrix *w,
+                                   ae_int_t cnt,
+                                   ae_state *_state);
+void minlbfgssetpreclowrankexact(minlbfgsstate *state,
+    /* Real    */ ae_vector *d,
+    /* Real    */ ae_vector *c,
+    /* Real    */ ae_matrix *w,
+                                 ae_int_t cnt,
+                                 ae_state *_state);
+ae_bool minlbfgsiteration(minlbfgsstate *state, ae_state *_state);
+void minlbfgsoptguardgradient(minlbfgsstate *state,
+                              double teststep,
+                              ae_state *_state);
+void minlbfgsoptguardsmoothness(minlbfgsstate *state,
+                                ae_int_t level,
+                                ae_state *_state);
+void minlbfgsoptguardresults(minlbfgsstate *state,
+                             optguardreport *rep,
+                             ae_state *_state);
+void minlbfgsoptguardnonc1test0results(minlbfgsstate *state,
+                                       optguardnonc1test0report *strrep,
+                                       optguardnonc1test0report *lngrep,
+                                       ae_state *_state);
+void minlbfgsoptguardnonc1test1results(minlbfgsstate *state,
+                                       optguardnonc1test1report *strrep,
+                                       optguardnonc1test1report *lngrep,
+                                       ae_state *_state);
+void minlbfgsresults(minlbfgsstate *state,
+    /* Real    */ ae_vector *x,
+                     minlbfgsreport *rep,
+                     ae_state *_state);
+void minlbfgsresultsbuf(minlbfgsstate *state,
+    /* Real    */ ae_vector *x,
+                        minlbfgsreport *rep,
+                        ae_state *_state);
+void minlbfgsrestartfrom(minlbfgsstate *state,
+    /* Real    */ ae_vector *x,
+                         ae_state *_state);
+void minlbfgsrequesttermination(minlbfgsstate *state, ae_state *_state);
+void _minlbfgsstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minlbfgsstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minlbfgsstate_clear(void *_p);
+void _minlbfgsstate_destroy(void *_p);
+void _minlbfgsreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minlbfgsreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minlbfgsreport_clear(void *_p);
+void _minlbfgsreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_QPDENSEAULSOLVER) || !defined(AE_PARTIAL_BUILD)
 void qpdenseaulloaddefaults(ae_int_t nmain,
-     qpdenseaulsettings* s,
-     ae_state *_state);
-void qpdenseauloptimize(convexquadraticmodel* a,
-     sparsematrix* sparsea,
-     ae_int_t akind,
-     ae_bool sparseaupper,
-     /* Real    */ ae_vector* b,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* xorigin,
-     ae_int_t nn,
-     /* Real    */ ae_matrix* cleic,
-     ae_int_t dnec,
-     ae_int_t dnic,
-     sparsematrix* scleic,
-     ae_int_t snec,
-     ae_int_t snic,
-     ae_bool renormlc,
-     qpdenseaulsettings* settings,
-     qpdenseaulbuffers* state,
-     /* Real    */ ae_vector* xs,
-     /* Real    */ ae_vector* lagbc,
-     /* Real    */ ae_vector* laglc,
-     ae_int_t* terminationtype,
-     ae_state *_state);
-void _qpdenseaulsettings_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _qpdenseaulsettings_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _qpdenseaulsettings_clear(void* _p);
-void _qpdenseaulsettings_destroy(void* _p);
-void _qpdenseaulbuffers_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _qpdenseaulbuffers_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _qpdenseaulbuffers_clear(void* _p);
-void _qpdenseaulbuffers_destroy(void* _p);
+                            qpdenseaulsettings *s,
+                            ae_state *_state);
+void qpdenseauloptimize(convexquadraticmodel *a,
+                        sparsematrix *sparsea,
+                        ae_int_t akind,
+                        ae_bool sparseaupper,
+    /* Real    */ ae_vector *b,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *xorigin,
+                        ae_int_t nn,
+    /* Real    */ ae_matrix *cleic,
+                        ae_int_t dnec,
+                        ae_int_t dnic,
+                        sparsematrix *scleic,
+                        ae_int_t snec,
+                        ae_int_t snic,
+                        ae_bool renormlc,
+                        qpdenseaulsettings *settings,
+                        qpdenseaulbuffers *state,
+    /* Real    */ ae_vector *xs,
+    /* Real    */ ae_vector *lagbc,
+    /* Real    */ ae_vector *laglc,
+                        ae_int_t *terminationtype,
+                        ae_state *_state);
+void _qpdenseaulsettings_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _qpdenseaulsettings_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _qpdenseaulsettings_clear(void *_p);
+void _qpdenseaulsettings_destroy(void *_p);
+void _qpdenseaulbuffers_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _qpdenseaulbuffers_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _qpdenseaulbuffers_clear(void *_p);
+void _qpdenseaulbuffers_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINBLEIC) || !defined(AE_PARTIAL_BUILD)
 void minbleiccreate(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     minbleicstate* state,
-     ae_state *_state);
+    /* Real    */ ae_vector *x,
+                    minbleicstate *state,
+                    ae_state *_state);
 void minbleiccreatef(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     double diffstep,
-     minbleicstate* state,
-     ae_state *_state);
-void minbleicsetbc(minbleicstate* state,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_state *_state);
-void minbleicsetlc(minbleicstate* state,
-     /* Real    */ ae_matrix* c,
-     /* Integer */ ae_vector* ct,
-     ae_int_t k,
-     ae_state *_state);
-void minbleicsetcond(minbleicstate* state,
-     double epsg,
-     double epsf,
-     double epsx,
-     ae_int_t maxits,
-     ae_state *_state);
-void minbleicsetscale(minbleicstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void minbleicsetprecdefault(minbleicstate* state, ae_state *_state);
-void minbleicsetprecdiag(minbleicstate* state,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void minbleicsetprecscale(minbleicstate* state, ae_state *_state);
-void minbleicsetxrep(minbleicstate* state,
-     ae_bool needxrep,
-     ae_state *_state);
-void minbleicsetdrep(minbleicstate* state,
-     ae_bool needdrep,
-     ae_state *_state);
-void minbleicsetstpmax(minbleicstate* state,
-     double stpmax,
-     ae_state *_state);
-ae_bool minbleiciteration(minbleicstate* state, ae_state *_state);
-void minbleicoptguardgradient(minbleicstate* state,
-     double teststep,
-     ae_state *_state);
-void minbleicoptguardsmoothness(minbleicstate* state,
-     ae_int_t level,
-     ae_state *_state);
-void minbleicoptguardresults(minbleicstate* state,
-     optguardreport* rep,
-     ae_state *_state);
-void minbleicoptguardnonc1test0results(minbleicstate* state,
-     optguardnonc1test0report* strrep,
-     optguardnonc1test0report* lngrep,
-     ae_state *_state);
-void minbleicoptguardnonc1test1results(minbleicstate* state,
-     optguardnonc1test1report* strrep,
-     optguardnonc1test1report* lngrep,
-     ae_state *_state);
-void minbleicresults(minbleicstate* state,
-     /* Real    */ ae_vector* x,
-     minbleicreport* rep,
-     ae_state *_state);
-void minbleicresultsbuf(minbleicstate* state,
-     /* Real    */ ae_vector* x,
-     minbleicreport* rep,
-     ae_state *_state);
-void minbleicrestartfrom(minbleicstate* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void minbleicrequesttermination(minbleicstate* state, ae_state *_state);
-void minbleicemergencytermination(minbleicstate* state, ae_state *_state);
-void _minbleicstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minbleicstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minbleicstate_clear(void* _p);
-void _minbleicstate_destroy(void* _p);
-void _minbleicreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minbleicreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minbleicreport_clear(void* _p);
-void _minbleicreport_destroy(void* _p);
+    /* Real    */ ae_vector *x,
+                     double diffstep,
+                     minbleicstate *state,
+                     ae_state *_state);
+void minbleicsetbc(minbleicstate *state,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                   ae_state *_state);
+void minbleicsetlc(minbleicstate *state,
+    /* Real    */ ae_matrix *c,
+    /* Integer */ ae_vector *ct,
+                   ae_int_t k,
+                   ae_state *_state);
+void minbleicsetcond(minbleicstate *state,
+                     double epsg,
+                     double epsf,
+                     double epsx,
+                     ae_int_t maxits,
+                     ae_state *_state);
+void minbleicsetscale(minbleicstate *state,
+    /* Real    */ ae_vector *s,
+                      ae_state *_state);
+void minbleicsetprecdefault(minbleicstate *state, ae_state *_state);
+void minbleicsetprecdiag(minbleicstate *state,
+    /* Real    */ ae_vector *d,
+                         ae_state *_state);
+void minbleicsetprecscale(minbleicstate *state, ae_state *_state);
+void minbleicsetxrep(minbleicstate *state,
+                     ae_bool needxrep,
+                     ae_state *_state);
+void minbleicsetdrep(minbleicstate *state,
+                     ae_bool needdrep,
+                     ae_state *_state);
+void minbleicsetstpmax(minbleicstate *state,
+                       double stpmax,
+                       ae_state *_state);
+ae_bool minbleiciteration(minbleicstate *state, ae_state *_state);
+void minbleicoptguardgradient(minbleicstate *state,
+                              double teststep,
+                              ae_state *_state);
+void minbleicoptguardsmoothness(minbleicstate *state,
+                                ae_int_t level,
+                                ae_state *_state);
+void minbleicoptguardresults(minbleicstate *state,
+                             optguardreport *rep,
+                             ae_state *_state);
+void minbleicoptguardnonc1test0results(minbleicstate *state,
+                                       optguardnonc1test0report *strrep,
+                                       optguardnonc1test0report *lngrep,
+                                       ae_state *_state);
+void minbleicoptguardnonc1test1results(minbleicstate *state,
+                                       optguardnonc1test1report *strrep,
+                                       optguardnonc1test1report *lngrep,
+                                       ae_state *_state);
+void minbleicresults(minbleicstate *state,
+    /* Real    */ ae_vector *x,
+                     minbleicreport *rep,
+                     ae_state *_state);
+void minbleicresultsbuf(minbleicstate *state,
+    /* Real    */ ae_vector *x,
+                        minbleicreport *rep,
+                        ae_state *_state);
+void minbleicrestartfrom(minbleicstate *state,
+    /* Real    */ ae_vector *x,
+                         ae_state *_state);
+void minbleicrequesttermination(minbleicstate *state, ae_state *_state);
+void minbleicemergencytermination(minbleicstate *state, ae_state *_state);
+void _minbleicstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minbleicstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minbleicstate_clear(void *_p);
+void _minbleicstate_destroy(void *_p);
+void _minbleicreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minbleicreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minbleicreport_clear(void *_p);
+void _minbleicreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_QPBLEICSOLVER) || !defined(AE_PARTIAL_BUILD)
 void qpbleicloaddefaults(ae_int_t nmain,
-     qpbleicsettings* s,
-     ae_state *_state);
-void qpbleiccopysettings(qpbleicsettings* src,
-     qpbleicsettings* dst,
-     ae_state *_state);
-void qpbleicoptimize(convexquadraticmodel* a,
-     sparsematrix* sparsea,
-     ae_int_t akind,
-     ae_bool sparseaupper,
-     double absasum,
-     double absasum2,
-     /* Real    */ ae_vector* b,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* xorigin,
-     ae_int_t n,
-     /* Real    */ ae_matrix* cleic,
-     ae_int_t nec,
-     ae_int_t nic,
-     qpbleicsettings* settings,
-     qpbleicbuffers* sstate,
-     ae_bool* firstcall,
-     /* Real    */ ae_vector* xs,
-     ae_int_t* terminationtype,
-     ae_state *_state);
-void _qpbleicsettings_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _qpbleicsettings_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _qpbleicsettings_clear(void* _p);
-void _qpbleicsettings_destroy(void* _p);
-void _qpbleicbuffers_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _qpbleicbuffers_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _qpbleicbuffers_clear(void* _p);
-void _qpbleicbuffers_destroy(void* _p);
+                         qpbleicsettings *s,
+                         ae_state *_state);
+void qpbleiccopysettings(qpbleicsettings *src,
+                         qpbleicsettings *dst,
+                         ae_state *_state);
+void qpbleicoptimize(convexquadraticmodel *a,
+                     sparsematrix *sparsea,
+                     ae_int_t akind,
+                     ae_bool sparseaupper,
+                     double absasum,
+                     double absasum2,
+    /* Real    */ ae_vector *b,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *xorigin,
+                     ae_int_t n,
+    /* Real    */ ae_matrix *cleic,
+                     ae_int_t nec,
+                     ae_int_t nic,
+                     qpbleicsettings *settings,
+                     qpbleicbuffers *sstate,
+                     ae_bool *firstcall,
+    /* Real    */ ae_vector *xs,
+                     ae_int_t *terminationtype,
+                     ae_state *_state);
+void _qpbleicsettings_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _qpbleicsettings_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _qpbleicsettings_clear(void *_p);
+void _qpbleicsettings_destroy(void *_p);
+void _qpbleicbuffers_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _qpbleicbuffers_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _qpbleicbuffers_clear(void *_p);
+void _qpbleicbuffers_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINQP) || !defined(AE_PARTIAL_BUILD)
-void minqpcreate(ae_int_t n, minqpstate* state, ae_state *_state);
-void minqpsetlinearterm(minqpstate* state,
-     /* Real    */ ae_vector* b,
-     ae_state *_state);
-void minqpsetquadraticterm(minqpstate* state,
-     /* Real    */ ae_matrix* a,
-     ae_bool isupper,
-     ae_state *_state);
-void minqpsetquadratictermsparse(minqpstate* state,
-     sparsematrix* a,
-     ae_bool isupper,
-     ae_state *_state);
-void minqpsetstartingpoint(minqpstate* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void minqpsetorigin(minqpstate* state,
-     /* Real    */ ae_vector* xorigin,
-     ae_state *_state);
-void minqpsetscale(minqpstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void minqpsetscaleautodiag(minqpstate* state, ae_state *_state);
-void minqpsetalgobleic(minqpstate* state,
-     double epsg,
-     double epsf,
-     double epsx,
-     ae_int_t maxits,
-     ae_state *_state);
-void minqpsetalgodenseaul(minqpstate* state,
-     double epsx,
-     double rho,
-     ae_int_t itscnt,
-     ae_state *_state);
-void minqpsetalgodenseipm(minqpstate* state, double eps, ae_state *_state);
-void minqpsetalgosparseipm(minqpstate* state,
-     double eps,
-     ae_state *_state);
-void minqpsetalgoquickqp(minqpstate* state,
-     double epsg,
-     double epsf,
-     double epsx,
-     ae_int_t maxouterits,
-     ae_bool usenewton,
-     ae_state *_state);
-void minqpsetbc(minqpstate* state,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_state *_state);
-void minqpsetbcall(minqpstate* state,
-     double bndl,
-     double bndu,
-     ae_state *_state);
-void minqpsetbci(minqpstate* state,
-     ae_int_t i,
-     double bndl,
-     double bndu,
-     ae_state *_state);
-void minqpsetlc(minqpstate* state,
-     /* Real    */ ae_matrix* c,
-     /* Integer */ ae_vector* ct,
-     ae_int_t k,
-     ae_state *_state);
-void minqpsetlcsparse(minqpstate* state,
-     sparsematrix* c,
-     /* Integer */ ae_vector* ct,
-     ae_int_t k,
-     ae_state *_state);
-void minqpsetlcmixed(minqpstate* state,
-     sparsematrix* sparsec,
-     /* Integer */ ae_vector* sparsect,
-     ae_int_t sparsek,
-     /* Real    */ ae_matrix* densec,
-     /* Integer */ ae_vector* densect,
-     ae_int_t densek,
-     ae_state *_state);
-void minqpsetlcmixedlegacy(minqpstate* state,
-     /* Real    */ ae_matrix* densec,
-     /* Integer */ ae_vector* densect,
-     ae_int_t densek,
-     sparsematrix* sparsec,
-     /* Integer */ ae_vector* sparsect,
-     ae_int_t sparsek,
-     ae_state *_state);
-void minqpsetlc2dense(minqpstate* state,
-     /* Real    */ ae_matrix* a,
-     /* Real    */ ae_vector* al,
-     /* Real    */ ae_vector* au,
-     ae_int_t k,
-     ae_state *_state);
-void minqpsetlc2(minqpstate* state,
-     sparsematrix* a,
-     /* Real    */ ae_vector* al,
-     /* Real    */ ae_vector* au,
-     ae_int_t k,
-     ae_state *_state);
-void minqpsetlc2mixed(minqpstate* state,
-     sparsematrix* sparsea,
-     ae_int_t ksparse,
-     /* Real    */ ae_matrix* densea,
-     ae_int_t kdense,
-     /* Real    */ ae_vector* al,
-     /* Real    */ ae_vector* au,
-     ae_state *_state);
-void minqpaddlc2dense(minqpstate* state,
-     /* Real    */ ae_vector* a,
-     double al,
-     double au,
-     ae_state *_state);
-void minqpaddlc2(minqpstate* state,
-     /* Integer */ ae_vector* idxa,
-     /* Real    */ ae_vector* vala,
-     ae_int_t nnz,
-     double al,
-     double au,
-     ae_state *_state);
-void minqpoptimize(minqpstate* state, ae_state *_state);
-void minqpresults(minqpstate* state,
-     /* Real    */ ae_vector* x,
-     minqpreport* rep,
-     ae_state *_state);
-void minqpresultsbuf(minqpstate* state,
-     /* Real    */ ae_vector* x,
-     minqpreport* rep,
-     ae_state *_state);
-void minqpsetlineartermfast(minqpstate* state,
-     /* Real    */ ae_vector* b,
-     ae_state *_state);
-void minqpsetquadratictermfast(minqpstate* state,
-     /* Real    */ ae_matrix* a,
-     ae_bool isupper,
-     double s,
-     ae_state *_state);
-void minqprewritediagonal(minqpstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void minqpsetstartingpointfast(minqpstate* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void minqpsetoriginfast(minqpstate* state,
-     /* Real    */ ae_vector* xorigin,
-     ae_state *_state);
-void _minqpstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minqpstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minqpstate_clear(void* _p);
-void _minqpstate_destroy(void* _p);
-void _minqpreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minqpreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minqpreport_clear(void* _p);
-void _minqpreport_destroy(void* _p);
+void minqpcreate(ae_int_t n, minqpstate *state, ae_state *_state);
+void minqpsetlinearterm(minqpstate *state,
+    /* Real    */ ae_vector *b,
+                        ae_state *_state);
+void minqpsetquadraticterm(minqpstate *state,
+    /* Real    */ ae_matrix *a,
+                           ae_bool isupper,
+                           ae_state *_state);
+void minqpsetquadratictermsparse(minqpstate *state,
+                                 sparsematrix *a,
+                                 ae_bool isupper,
+                                 ae_state *_state);
+void minqpsetstartingpoint(minqpstate *state,
+    /* Real    */ ae_vector *x,
+                           ae_state *_state);
+void minqpsetorigin(minqpstate *state,
+    /* Real    */ ae_vector *xorigin,
+                    ae_state *_state);
+void minqpsetscale(minqpstate *state,
+    /* Real    */ ae_vector *s,
+                   ae_state *_state);
+void minqpsetscaleautodiag(minqpstate *state, ae_state *_state);
+void minqpsetalgobleic(minqpstate *state,
+                       double epsg,
+                       double epsf,
+                       double epsx,
+                       ae_int_t maxits,
+                       ae_state *_state);
+void minqpsetalgodenseaul(minqpstate *state,
+                          double epsx,
+                          double rho,
+                          ae_int_t itscnt,
+                          ae_state *_state);
+void minqpsetalgodenseipm(minqpstate *state, double eps, ae_state *_state);
+void minqpsetalgosparseipm(minqpstate *state,
+                           double eps,
+                           ae_state *_state);
+void minqpsetalgoquickqp(minqpstate *state,
+                         double epsg,
+                         double epsf,
+                         double epsx,
+                         ae_int_t maxouterits,
+                         ae_bool usenewton,
+                         ae_state *_state);
+void minqpsetbc(minqpstate *state,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                ae_state *_state);
+void minqpsetbcall(minqpstate *state,
+                   double bndl,
+                   double bndu,
+                   ae_state *_state);
+void minqpsetbci(minqpstate *state,
+                 ae_int_t i,
+                 double bndl,
+                 double bndu,
+                 ae_state *_state);
+void minqpsetlc(minqpstate *state,
+    /* Real    */ ae_matrix *c,
+    /* Integer */ ae_vector *ct,
+                ae_int_t k,
+                ae_state *_state);
+void minqpsetlcsparse(minqpstate *state,
+                      sparsematrix *c,
+    /* Integer */ ae_vector *ct,
+                      ae_int_t k,
+                      ae_state *_state);
+void minqpsetlcmixed(minqpstate *state,
+                     sparsematrix *sparsec,
+    /* Integer */ ae_vector *sparsect,
+                     ae_int_t sparsek,
+    /* Real    */ ae_matrix *densec,
+    /* Integer */ ae_vector *densect,
+                     ae_int_t densek,
+                     ae_state *_state);
+void minqpsetlcmixedlegacy(minqpstate *state,
+    /* Real    */ ae_matrix *densec,
+    /* Integer */ ae_vector *densect,
+                           ae_int_t densek,
+                           sparsematrix *sparsec,
+    /* Integer */ ae_vector *sparsect,
+                           ae_int_t sparsek,
+                           ae_state *_state);
+void minqpsetlc2dense(minqpstate *state,
+    /* Real    */ ae_matrix *a,
+    /* Real    */ ae_vector *al,
+    /* Real    */ ae_vector *au,
+                      ae_int_t k,
+                      ae_state *_state);
+void minqpsetlc2(minqpstate *state,
+                 sparsematrix *a,
+    /* Real    */ ae_vector *al,
+    /* Real    */ ae_vector *au,
+                 ae_int_t k,
+                 ae_state *_state);
+void minqpsetlc2mixed(minqpstate *state,
+                      sparsematrix *sparsea,
+                      ae_int_t ksparse,
+    /* Real    */ ae_matrix *densea,
+                      ae_int_t kdense,
+    /* Real    */ ae_vector *al,
+    /* Real    */ ae_vector *au,
+                      ae_state *_state);
+void minqpaddlc2dense(minqpstate *state,
+    /* Real    */ ae_vector *a,
+                      double al,
+                      double au,
+                      ae_state *_state);
+void minqpaddlc2(minqpstate *state,
+    /* Integer */ ae_vector *idxa,
+    /* Real    */ ae_vector *vala,
+                 ae_int_t nnz,
+                 double al,
+                 double au,
+                 ae_state *_state);
+void minqpoptimize(minqpstate *state, ae_state *_state);
+void minqpresults(minqpstate *state,
+    /* Real    */ ae_vector *x,
+                  minqpreport *rep,
+                  ae_state *_state);
+void minqpresultsbuf(minqpstate *state,
+    /* Real    */ ae_vector *x,
+                     minqpreport *rep,
+                     ae_state *_state);
+void minqpsetlineartermfast(minqpstate *state,
+    /* Real    */ ae_vector *b,
+                            ae_state *_state);
+void minqpsetquadratictermfast(minqpstate *state,
+    /* Real    */ ae_matrix *a,
+                               ae_bool isupper,
+                               double s,
+                               ae_state *_state);
+void minqprewritediagonal(minqpstate *state,
+    /* Real    */ ae_vector *s,
+                          ae_state *_state);
+void minqpsetstartingpointfast(minqpstate *state,
+    /* Real    */ ae_vector *x,
+                               ae_state *_state);
+void minqpsetoriginfast(minqpstate *state,
+    /* Real    */ ae_vector *xorigin,
+                        ae_state *_state);
+void _minqpstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minqpstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minqpstate_clear(void *_p);
+void _minqpstate_destroy(void *_p);
+void _minqpreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minqpreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minqpreport_clear(void *_p);
+void _minqpreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_REVISEDDUALSIMPLEX) || !defined(AE_PARTIAL_BUILD)
-void dsssettingsinit(dualsimplexsettings* settings, ae_state *_state);
-void dssinit(ae_int_t n, dualsimplexstate* s, ae_state *_state);
-void dsssetproblem(dualsimplexstate* state,
-     /* Real    */ ae_vector* c,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     /* Real    */ ae_vector* sv,
-     /* Real    */ ae_matrix* densea,
-     sparsematrix* sparsea,
-     ae_int_t akind,
-     /* Real    */ ae_vector* al,
-     /* Real    */ ae_vector* au,
-     ae_int_t k,
-     dualsimplexbasis* proposedbasis,
-     ae_int_t basisinittype,
-     dualsimplexsettings* settings,
-     ae_state *_state);
-void dssexportbasis(dualsimplexstate* state,
-     dualsimplexbasis* basis,
-     ae_state *_state);
-void dssoptimize(dualsimplexstate* state,
-     dualsimplexsettings* settings,
-     ae_state *_state);
-void _dualsimplexsettings_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dualsimplexsettings_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dualsimplexsettings_clear(void* _p);
-void _dualsimplexsettings_destroy(void* _p);
-void _dualsimplexbasis_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dualsimplexbasis_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dualsimplexbasis_clear(void* _p);
-void _dualsimplexbasis_destroy(void* _p);
-void _dualsimplexsubproblem_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dualsimplexsubproblem_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dualsimplexsubproblem_clear(void* _p);
-void _dualsimplexsubproblem_destroy(void* _p);
-void _dualsimplexstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _dualsimplexstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _dualsimplexstate_clear(void* _p);
-void _dualsimplexstate_destroy(void* _p);
+void dsssettingsinit(dualsimplexsettings *settings, ae_state *_state);
+void dssinit(ae_int_t n, dualsimplexstate *s, ae_state *_state);
+void dsssetproblem(dualsimplexstate *state,
+    /* Real    */ ae_vector *c,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+    /* Real    */ ae_vector *sv,
+    /* Real    */ ae_matrix *densea,
+                   sparsematrix *sparsea,
+                   ae_int_t akind,
+    /* Real    */ ae_vector *al,
+    /* Real    */ ae_vector *au,
+                   ae_int_t k,
+                   dualsimplexbasis *proposedbasis,
+                   ae_int_t basisinittype,
+                   dualsimplexsettings *settings,
+                   ae_state *_state);
+void dssexportbasis(dualsimplexstate *state,
+                    dualsimplexbasis *basis,
+                    ae_state *_state);
+void dssoptimize(dualsimplexstate *state,
+                 dualsimplexsettings *settings,
+                 ae_state *_state);
+void _dualsimplexsettings_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dualsimplexsettings_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dualsimplexsettings_clear(void *_p);
+void _dualsimplexsettings_destroy(void *_p);
+void _dualsimplexbasis_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dualsimplexbasis_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dualsimplexbasis_clear(void *_p);
+void _dualsimplexbasis_destroy(void *_p);
+void _dualsimplexsubproblem_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dualsimplexsubproblem_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dualsimplexsubproblem_clear(void *_p);
+void _dualsimplexsubproblem_destroy(void *_p);
+void _dualsimplexstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _dualsimplexstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _dualsimplexstate_clear(void *_p);
+void _dualsimplexstate_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINLP) || !defined(AE_PARTIAL_BUILD)
-void minlpcreate(ae_int_t n, minlpstate* state, ae_state *_state);
-void minlpsetcost(minlpstate* state,
-     /* Real    */ ae_vector* c,
-     ae_state *_state);
-void minlpsetscale(minlpstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void minlpsetbc(minlpstate* state,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_state *_state);
-void minlpsetbcall(minlpstate* state,
-     double bndl,
-     double bndu,
-     ae_state *_state);
-void minlpsetbci(minlpstate* state,
-     ae_int_t i,
-     double bndl,
-     double bndu,
-     ae_state *_state);
-void minlpsetlc(minlpstate* state,
-     /* Real    */ ae_matrix* a,
-     /* Integer */ ae_vector* ct,
-     ae_int_t k,
-     ae_state *_state);
-void minlpsetlc2dense(minlpstate* state,
-     /* Real    */ ae_matrix* a,
-     /* Real    */ ae_vector* al,
-     /* Real    */ ae_vector* au,
-     ae_int_t k,
-     ae_state *_state);
-void minlpsetlc2(minlpstate* state,
-     sparsematrix* a,
-     /* Real    */ ae_vector* al,
-     /* Real    */ ae_vector* au,
-     ae_int_t k,
-     ae_state *_state);
-void minlpaddlc2dense(minlpstate* state,
-     /* Real    */ ae_vector* a,
-     double al,
-     double au,
-     ae_state *_state);
-void minlpaddlc2(minlpstate* state,
-     /* Integer */ ae_vector* idxa,
-     /* Real    */ ae_vector* vala,
-     ae_int_t nnz,
-     double al,
-     double au,
-     ae_state *_state);
-void minlpoptimize(minlpstate* state, ae_state *_state);
-void minlpresults(minlpstate* state,
-     /* Real    */ ae_vector* x,
-     minlpreport* rep,
-     ae_state *_state);
-void minlpresultsbuf(minlpstate* state,
-     /* Real    */ ae_vector* x,
-     minlpreport* rep,
-     ae_state *_state);
-void _minlpstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minlpstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minlpstate_clear(void* _p);
-void _minlpstate_destroy(void* _p);
-void _minlpreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minlpreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minlpreport_clear(void* _p);
-void _minlpreport_destroy(void* _p);
+void minlpcreate(ae_int_t n, minlpstate *state, ae_state *_state);
+void minlpsetcost(minlpstate *state,
+    /* Real    */ ae_vector *c,
+                  ae_state *_state);
+void minlpsetscale(minlpstate *state,
+    /* Real    */ ae_vector *s,
+                   ae_state *_state);
+void minlpsetbc(minlpstate *state,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                ae_state *_state);
+void minlpsetbcall(minlpstate *state,
+                   double bndl,
+                   double bndu,
+                   ae_state *_state);
+void minlpsetbci(minlpstate *state,
+                 ae_int_t i,
+                 double bndl,
+                 double bndu,
+                 ae_state *_state);
+void minlpsetlc(minlpstate *state,
+    /* Real    */ ae_matrix *a,
+    /* Integer */ ae_vector *ct,
+                ae_int_t k,
+                ae_state *_state);
+void minlpsetlc2dense(minlpstate *state,
+    /* Real    */ ae_matrix *a,
+    /* Real    */ ae_vector *al,
+    /* Real    */ ae_vector *au,
+                      ae_int_t k,
+                      ae_state *_state);
+void minlpsetlc2(minlpstate *state,
+                 sparsematrix *a,
+    /* Real    */ ae_vector *al,
+    /* Real    */ ae_vector *au,
+                 ae_int_t k,
+                 ae_state *_state);
+void minlpaddlc2dense(minlpstate *state,
+    /* Real    */ ae_vector *a,
+                      double al,
+                      double au,
+                      ae_state *_state);
+void minlpaddlc2(minlpstate *state,
+    /* Integer */ ae_vector *idxa,
+    /* Real    */ ae_vector *vala,
+                 ae_int_t nnz,
+                 double al,
+                 double au,
+                 ae_state *_state);
+void minlpoptimize(minlpstate *state, ae_state *_state);
+void minlpresults(minlpstate *state,
+    /* Real    */ ae_vector *x,
+                  minlpreport *rep,
+                  ae_state *_state);
+void minlpresultsbuf(minlpstate *state,
+    /* Real    */ ae_vector *x,
+                     minlpreport *rep,
+                     ae_state *_state);
+void _minlpstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minlpstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minlpstate_clear(void *_p);
+void _minlpstate_destroy(void *_p);
+void _minlpreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minlpreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minlpreport_clear(void *_p);
+void _minlpreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_NLCSLP) || !defined(AE_PARTIAL_BUILD)
-void minslpinitbuf(/* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     /* Real    */ ae_vector* s,
-     /* Real    */ ae_vector* x0,
-     ae_int_t n,
-     /* Real    */ ae_matrix* cleic,
-     /* Integer */ ae_vector* lcsrcidx,
-     ae_int_t nec,
-     ae_int_t nic,
-     ae_int_t nlec,
-     ae_int_t nlic,
-     double epsx,
-     ae_int_t maxits,
-     minslpstate* state,
-     ae_state *_state);
-ae_bool minslpiteration(minslpstate* state,
-     smoothnessmonitor* smonitor,
-     ae_bool userterminationneeded,
-     ae_state *_state);
-void _minslpsubsolver_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minslpsubsolver_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minslpsubsolver_clear(void* _p);
-void _minslpsubsolver_destroy(void* _p);
-void _minslptmplagrangian_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minslptmplagrangian_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minslptmplagrangian_clear(void* _p);
-void _minslptmplagrangian_destroy(void* _p);
-void _minslptmpmerit_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minslptmpmerit_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minslptmpmerit_clear(void* _p);
-void _minslptmpmerit_destroy(void* _p);
-void _minslpphase13state_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minslpphase13state_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minslpphase13state_clear(void* _p);
-void _minslpphase13state_destroy(void* _p);
-void _minslpphase2state_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minslpphase2state_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minslpphase2state_clear(void* _p);
-void _minslpphase2state_destroy(void* _p);
-void _minslpstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minslpstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minslpstate_clear(void* _p);
-void _minslpstate_destroy(void* _p);
+void minslpinitbuf(/* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+    /* Real    */ ae_vector *s,
+    /* Real    */ ae_vector *x0,
+                                 ae_int_t n,
+    /* Real    */ ae_matrix *cleic,
+    /* Integer */ ae_vector *lcsrcidx,
+                                 ae_int_t nec,
+                                 ae_int_t nic,
+                                 ae_int_t nlec,
+                                 ae_int_t nlic,
+                                 double epsx,
+                                 ae_int_t maxits,
+                                 minslpstate *state,
+                                 ae_state *_state);
+ae_bool minslpiteration(minslpstate *state,
+                        smoothnessmonitor *smonitor,
+                        ae_bool userterminationneeded,
+                        ae_state *_state);
+void _minslpsubsolver_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minslpsubsolver_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minslpsubsolver_clear(void *_p);
+void _minslpsubsolver_destroy(void *_p);
+void _minslptmplagrangian_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minslptmplagrangian_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minslptmplagrangian_clear(void *_p);
+void _minslptmplagrangian_destroy(void *_p);
+void _minslptmpmerit_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minslptmpmerit_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minslptmpmerit_clear(void *_p);
+void _minslptmpmerit_destroy(void *_p);
+void _minslpphase13state_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minslpphase13state_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minslpphase13state_clear(void *_p);
+void _minslpphase13state_destroy(void *_p);
+void _minslpphase2state_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minslpphase2state_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minslpphase2state_clear(void *_p);
+void _minslpphase2state_destroy(void *_p);
+void _minslpstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minslpstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minslpstate_clear(void *_p);
+void _minslpstate_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINNLC) || !defined(AE_PARTIAL_BUILD)
 void minnlccreate(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     minnlcstate* state,
-     ae_state *_state);
+    /* Real    */ ae_vector *x,
+                  minnlcstate *state,
+                  ae_state *_state);
 void minnlccreatef(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     double diffstep,
-     minnlcstate* state,
-     ae_state *_state);
-void minnlcsetbc(minnlcstate* state,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_state *_state);
-void minnlcsetlc(minnlcstate* state,
-     /* Real    */ ae_matrix* c,
-     /* Integer */ ae_vector* ct,
-     ae_int_t k,
-     ae_state *_state);
-void minnlcsetnlc(minnlcstate* state,
-     ae_int_t nlec,
-     ae_int_t nlic,
-     ae_state *_state);
-void minnlcsetcond(minnlcstate* state,
-     double epsx,
-     ae_int_t maxits,
-     ae_state *_state);
-void minnlcsetscale(minnlcstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void minnlcsetprecinexact(minnlcstate* state, ae_state *_state);
-void minnlcsetprecexactlowrank(minnlcstate* state,
-     ae_int_t updatefreq,
-     ae_state *_state);
-void minnlcsetprecexactrobust(minnlcstate* state,
-     ae_int_t updatefreq,
-     ae_state *_state);
-void minnlcsetprecnone(minnlcstate* state, ae_state *_state);
-void minnlcsetstpmax(minnlcstate* state, double stpmax, ae_state *_state);
-void minnlcsetalgoaul(minnlcstate* state,
-     double rho,
-     ae_int_t itscnt,
-     ae_state *_state);
-void minnlcsetalgoslp(minnlcstate* state, ae_state *_state);
-void minnlcsetalgosqp(minnlcstate* state, ae_state *_state);
-void minnlcsetxrep(minnlcstate* state, ae_bool needxrep, ae_state *_state);
-ae_bool minnlciteration(minnlcstate* state, ae_state *_state);
-void minnlcoptguardgradient(minnlcstate* state,
-     double teststep,
-     ae_state *_state);
-void minnlcoptguardsmoothness(minnlcstate* state,
-     ae_int_t level,
-     ae_state *_state);
-void minnlcoptguardresults(minnlcstate* state,
-     optguardreport* rep,
-     ae_state *_state);
-void minnlcoptguardnonc1test0results(minnlcstate* state,
-     optguardnonc1test0report* strrep,
-     optguardnonc1test0report* lngrep,
-     ae_state *_state);
-void minnlcoptguardnonc1test1results(minnlcstate* state,
-     optguardnonc1test1report* strrep,
-     optguardnonc1test1report* lngrep,
-     ae_state *_state);
-void minnlcresults(minnlcstate* state,
-     /* Real    */ ae_vector* x,
-     minnlcreport* rep,
-     ae_state *_state);
-void minnlcresultsbuf(minnlcstate* state,
-     /* Real    */ ae_vector* x,
-     minnlcreport* rep,
-     ae_state *_state);
-void minnlcrequesttermination(minnlcstate* state, ae_state *_state);
-void minnlcrestartfrom(minnlcstate* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
+    /* Real    */ ae_vector *x,
+                   double diffstep,
+                   minnlcstate *state,
+                   ae_state *_state);
+void minnlcsetbc(minnlcstate *state,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                 ae_state *_state);
+void minnlcsetlc(minnlcstate *state,
+    /* Real    */ ae_matrix *c,
+    /* Integer */ ae_vector *ct,
+                 ae_int_t k,
+                 ae_state *_state);
+void minnlcsetnlc(minnlcstate *state,
+                  ae_int_t nlec,
+                  ae_int_t nlic,
+                  ae_state *_state);
+void minnlcsetcond(minnlcstate *state,
+                   double epsx,
+                   ae_int_t maxits,
+                   ae_state *_state);
+void minnlcsetscale(minnlcstate *state,
+    /* Real    */ ae_vector *s,
+                    ae_state *_state);
+void minnlcsetprecinexact(minnlcstate *state, ae_state *_state);
+void minnlcsetprecexactlowrank(minnlcstate *state,
+                               ae_int_t updatefreq,
+                               ae_state *_state);
+void minnlcsetprecexactrobust(minnlcstate *state,
+                              ae_int_t updatefreq,
+                              ae_state *_state);
+void minnlcsetprecnone(minnlcstate *state, ae_state *_state);
+void minnlcsetstpmax(minnlcstate *state, double stpmax, ae_state *_state);
+void minnlcsetalgoaul(minnlcstate *state,
+                      double rho,
+                      ae_int_t itscnt,
+                      ae_state *_state);
+void minnlcsetalgoslp(minnlcstate *state, ae_state *_state);
+void minnlcsetalgosqp(minnlcstate *state, ae_state *_state);
+void minnlcsetxrep(minnlcstate *state, ae_bool needxrep, ae_state *_state);
+ae_bool minnlciteration(minnlcstate *state, ae_state *_state);
+void minnlcoptguardgradient(minnlcstate *state,
+                            double teststep,
+                            ae_state *_state);
+void minnlcoptguardsmoothness(minnlcstate *state,
+                              ae_int_t level,
+                              ae_state *_state);
+void minnlcoptguardresults(minnlcstate *state,
+                           optguardreport *rep,
+                           ae_state *_state);
+void minnlcoptguardnonc1test0results(minnlcstate *state,
+                                     optguardnonc1test0report *strrep,
+                                     optguardnonc1test0report *lngrep,
+                                     ae_state *_state);
+void minnlcoptguardnonc1test1results(minnlcstate *state,
+                                     optguardnonc1test1report *strrep,
+                                     optguardnonc1test1report *lngrep,
+                                     ae_state *_state);
+void minnlcresults(minnlcstate *state,
+    /* Real    */ ae_vector *x,
+                   minnlcreport *rep,
+                   ae_state *_state);
+void minnlcresultsbuf(minnlcstate *state,
+    /* Real    */ ae_vector *x,
+                      minnlcreport *rep,
+                      ae_state *_state);
+void minnlcrequesttermination(minnlcstate *state, ae_state *_state);
+void minnlcrestartfrom(minnlcstate *state,
+    /* Real    */ ae_vector *x,
+                       ae_state *_state);
 void minnlcequalitypenaltyfunction(double alpha,
-     double* f,
-     double* df,
-     double* d2f,
-     ae_state *_state);
+                                   double *f,
+                                   double *df,
+                                   double *d2f,
+                                   ae_state *_state);
 void minnlcinequalitypenaltyfunction(double alpha,
-     double stabilizingpoint,
-     double* f,
-     double* df,
-     double* d2f,
-     ae_state *_state);
+                                     double stabilizingpoint,
+                                     double *f,
+                                     double *df,
+                                     double *d2f,
+                                     ae_state *_state);
 void minnlcinequalityshiftfunction(double alpha,
-     double* f,
-     double* df,
-     double* d2f,
-     ae_state *_state);
-void _minnlcstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minnlcstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minnlcstate_clear(void* _p);
-void _minnlcstate_destroy(void* _p);
-void _minnlcreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minnlcreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minnlcreport_clear(void* _p);
-void _minnlcreport_destroy(void* _p);
+                                   double *f,
+                                   double *df,
+                                   double *d2f,
+                                   ae_state *_state);
+void _minnlcstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minnlcstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minnlcstate_clear(void *_p);
+void _minnlcstate_destroy(void *_p);
+void _minnlcreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minnlcreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minnlcreport_clear(void *_p);
+void _minnlcreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINBC) || !defined(AE_PARTIAL_BUILD)
 void minbccreate(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     minbcstate* state,
-     ae_state *_state);
+    /* Real    */ ae_vector *x,
+                 minbcstate *state,
+                 ae_state *_state);
 void minbccreatef(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     double diffstep,
-     minbcstate* state,
-     ae_state *_state);
-void minbcsetbc(minbcstate* state,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_state *_state);
-void minbcsetcond(minbcstate* state,
-     double epsg,
-     double epsf,
-     double epsx,
-     ae_int_t maxits,
-     ae_state *_state);
-void minbcsetscale(minbcstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void minbcsetprecdefault(minbcstate* state, ae_state *_state);
-void minbcsetprecdiag(minbcstate* state,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void minbcsetprecscale(minbcstate* state, ae_state *_state);
-void minbcsetxrep(minbcstate* state, ae_bool needxrep, ae_state *_state);
-void minbcsetstpmax(minbcstate* state, double stpmax, ae_state *_state);
-ae_bool minbciteration(minbcstate* state, ae_state *_state);
-void minbcoptguardgradient(minbcstate* state,
-     double teststep,
-     ae_state *_state);
-void minbcoptguardsmoothness(minbcstate* state,
-     ae_int_t level,
-     ae_state *_state);
-void minbcoptguardresults(minbcstate* state,
-     optguardreport* rep,
-     ae_state *_state);
-void minbcoptguardnonc1test0results(minbcstate* state,
-     optguardnonc1test0report* strrep,
-     optguardnonc1test0report* lngrep,
-     ae_state *_state);
-void minbcoptguardnonc1test1results(minbcstate* state,
-     optguardnonc1test1report* strrep,
-     optguardnonc1test1report* lngrep,
-     ae_state *_state);
-void minbcresults(minbcstate* state,
-     /* Real    */ ae_vector* x,
-     minbcreport* rep,
-     ae_state *_state);
-void minbcresultsbuf(minbcstate* state,
-     /* Real    */ ae_vector* x,
-     minbcreport* rep,
-     ae_state *_state);
-void minbcrestartfrom(minbcstate* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void minbcrequesttermination(minbcstate* state, ae_state *_state);
-void _minbcstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minbcstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minbcstate_clear(void* _p);
-void _minbcstate_destroy(void* _p);
-void _minbcreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minbcreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minbcreport_clear(void* _p);
-void _minbcreport_destroy(void* _p);
+    /* Real    */ ae_vector *x,
+                  double diffstep,
+                  minbcstate *state,
+                  ae_state *_state);
+void minbcsetbc(minbcstate *state,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                ae_state *_state);
+void minbcsetcond(minbcstate *state,
+                  double epsg,
+                  double epsf,
+                  double epsx,
+                  ae_int_t maxits,
+                  ae_state *_state);
+void minbcsetscale(minbcstate *state,
+    /* Real    */ ae_vector *s,
+                   ae_state *_state);
+void minbcsetprecdefault(minbcstate *state, ae_state *_state);
+void minbcsetprecdiag(minbcstate *state,
+    /* Real    */ ae_vector *d,
+                      ae_state *_state);
+void minbcsetprecscale(minbcstate *state, ae_state *_state);
+void minbcsetxrep(minbcstate *state, ae_bool needxrep, ae_state *_state);
+void minbcsetstpmax(minbcstate *state, double stpmax, ae_state *_state);
+ae_bool minbciteration(minbcstate *state, ae_state *_state);
+void minbcoptguardgradient(minbcstate *state,
+                           double teststep,
+                           ae_state *_state);
+void minbcoptguardsmoothness(minbcstate *state,
+                             ae_int_t level,
+                             ae_state *_state);
+void minbcoptguardresults(minbcstate *state,
+                          optguardreport *rep,
+                          ae_state *_state);
+void minbcoptguardnonc1test0results(minbcstate *state,
+                                    optguardnonc1test0report *strrep,
+                                    optguardnonc1test0report *lngrep,
+                                    ae_state *_state);
+void minbcoptguardnonc1test1results(minbcstate *state,
+                                    optguardnonc1test1report *strrep,
+                                    optguardnonc1test1report *lngrep,
+                                    ae_state *_state);
+void minbcresults(minbcstate *state,
+    /* Real    */ ae_vector *x,
+                  minbcreport *rep,
+                  ae_state *_state);
+void minbcresultsbuf(minbcstate *state,
+    /* Real    */ ae_vector *x,
+                     minbcreport *rep,
+                     ae_state *_state);
+void minbcrestartfrom(minbcstate *state,
+    /* Real    */ ae_vector *x,
+                      ae_state *_state);
+void minbcrequesttermination(minbcstate *state, ae_state *_state);
+void _minbcstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minbcstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minbcstate_clear(void *_p);
+void _minbcstate_destroy(void *_p);
+void _minbcreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minbcreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minbcreport_clear(void *_p);
+void _minbcreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINNS) || !defined(AE_PARTIAL_BUILD)
 void minnscreate(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     minnsstate* state,
-     ae_state *_state);
+    /* Real    */ ae_vector *x,
+                 minnsstate *state,
+                 ae_state *_state);
 void minnscreatef(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     double diffstep,
-     minnsstate* state,
-     ae_state *_state);
-void minnssetbc(minnsstate* state,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_state *_state);
-void minnssetlc(minnsstate* state,
-     /* Real    */ ae_matrix* c,
-     /* Integer */ ae_vector* ct,
-     ae_int_t k,
-     ae_state *_state);
-void minnssetnlc(minnsstate* state,
-     ae_int_t nlec,
-     ae_int_t nlic,
-     ae_state *_state);
-void minnssetcond(minnsstate* state,
-     double epsx,
-     ae_int_t maxits,
-     ae_state *_state);
-void minnssetscale(minnsstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void minnssetalgoags(minnsstate* state,
-     double radius,
-     double penalty,
-     ae_state *_state);
-void minnssetxrep(minnsstate* state, ae_bool needxrep, ae_state *_state);
-void minnsrequesttermination(minnsstate* state, ae_state *_state);
-ae_bool minnsiteration(minnsstate* state, ae_state *_state);
-void minnsresults(minnsstate* state,
-     /* Real    */ ae_vector* x,
-     minnsreport* rep,
-     ae_state *_state);
-void minnsresultsbuf(minnsstate* state,
-     /* Real    */ ae_vector* x,
-     minnsreport* rep,
-     ae_state *_state);
-void minnsrestartfrom(minnsstate* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void _minnsqp_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minnsqp_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minnsqp_clear(void* _p);
-void _minnsqp_destroy(void* _p);
-void _minnsstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minnsstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minnsstate_clear(void* _p);
-void _minnsstate_destroy(void* _p);
-void _minnsreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minnsreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minnsreport_clear(void* _p);
-void _minnsreport_destroy(void* _p);
+    /* Real    */ ae_vector *x,
+                  double diffstep,
+                  minnsstate *state,
+                  ae_state *_state);
+void minnssetbc(minnsstate *state,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                ae_state *_state);
+void minnssetlc(minnsstate *state,
+    /* Real    */ ae_matrix *c,
+    /* Integer */ ae_vector *ct,
+                ae_int_t k,
+                ae_state *_state);
+void minnssetnlc(minnsstate *state,
+                 ae_int_t nlec,
+                 ae_int_t nlic,
+                 ae_state *_state);
+void minnssetcond(minnsstate *state,
+                  double epsx,
+                  ae_int_t maxits,
+                  ae_state *_state);
+void minnssetscale(minnsstate *state,
+    /* Real    */ ae_vector *s,
+                   ae_state *_state);
+void minnssetalgoags(minnsstate *state,
+                     double radius,
+                     double penalty,
+                     ae_state *_state);
+void minnssetxrep(minnsstate *state, ae_bool needxrep, ae_state *_state);
+void minnsrequesttermination(minnsstate *state, ae_state *_state);
+ae_bool minnsiteration(minnsstate *state, ae_state *_state);
+void minnsresults(minnsstate *state,
+    /* Real    */ ae_vector *x,
+                  minnsreport *rep,
+                  ae_state *_state);
+void minnsresultsbuf(minnsstate *state,
+    /* Real    */ ae_vector *x,
+                     minnsreport *rep,
+                     ae_state *_state);
+void minnsrestartfrom(minnsstate *state,
+    /* Real    */ ae_vector *x,
+                      ae_state *_state);
+void _minnsqp_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minnsqp_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minnsqp_clear(void *_p);
+void _minnsqp_destroy(void *_p);
+void _minnsstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minnsstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minnsstate_clear(void *_p);
+void _minnsstate_destroy(void *_p);
+void _minnsreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minnsreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minnsreport_clear(void *_p);
+void _minnsreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINCOMP) || !defined(AE_PARTIAL_BUILD)
-void minlbfgssetdefaultpreconditioner(minlbfgsstate* state,
-     ae_state *_state);
-void minlbfgssetcholeskypreconditioner(minlbfgsstate* state,
-     /* Real    */ ae_matrix* p,
-     ae_bool isupper,
-     ae_state *_state);
-void minbleicsetbarrierwidth(minbleicstate* state,
-     double mu,
-     ae_state *_state);
-void minbleicsetbarrierdecay(minbleicstate* state,
-     double mudecay,
-     ae_state *_state);
+void minlbfgssetdefaultpreconditioner(minlbfgsstate *state,
+                                      ae_state *_state);
+void minlbfgssetcholeskypreconditioner(minlbfgsstate *state,
+    /* Real    */ ae_matrix *p,
+                                       ae_bool isupper,
+                                       ae_state *_state);
+void minbleicsetbarrierwidth(minbleicstate *state,
+                             double mu,
+                             ae_state *_state);
+void minbleicsetbarrierdecay(minbleicstate *state,
+                             double mudecay,
+                             ae_state *_state);
 void minasacreate(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     minasastate* state,
-     ae_state *_state);
-void minasasetcond(minasastate* state,
-     double epsg,
-     double epsf,
-     double epsx,
-     ae_int_t maxits,
-     ae_state *_state);
-void minasasetxrep(minasastate* state, ae_bool needxrep, ae_state *_state);
-void minasasetalgorithm(minasastate* state,
-     ae_int_t algotype,
-     ae_state *_state);
-void minasasetstpmax(minasastate* state, double stpmax, ae_state *_state);
-ae_bool minasaiteration(minasastate* state, ae_state *_state);
-void minasaresults(minasastate* state,
-     /* Real    */ ae_vector* x,
-     minasareport* rep,
-     ae_state *_state);
-void minasaresultsbuf(minasastate* state,
-     /* Real    */ ae_vector* x,
-     minasareport* rep,
-     ae_state *_state);
-void minasarestartfrom(minasastate* state,
-     /* Real    */ ae_vector* x,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_state *_state);
-void _minasastate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minasastate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minasastate_clear(void* _p);
-void _minasastate_destroy(void* _p);
-void _minasareport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minasareport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minasareport_clear(void* _p);
-void _minasareport_destroy(void* _p);
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                  minasastate *state,
+                  ae_state *_state);
+void minasasetcond(minasastate *state,
+                   double epsg,
+                   double epsf,
+                   double epsx,
+                   ae_int_t maxits,
+                   ae_state *_state);
+void minasasetxrep(minasastate *state, ae_bool needxrep, ae_state *_state);
+void minasasetalgorithm(minasastate *state,
+                        ae_int_t algotype,
+                        ae_state *_state);
+void minasasetstpmax(minasastate *state, double stpmax, ae_state *_state);
+ae_bool minasaiteration(minasastate *state, ae_state *_state);
+void minasaresults(minasastate *state,
+    /* Real    */ ae_vector *x,
+                   minasareport *rep,
+                   ae_state *_state);
+void minasaresultsbuf(minasastate *state,
+    /* Real    */ ae_vector *x,
+                      minasareport *rep,
+                      ae_state *_state);
+void minasarestartfrom(minasastate *state,
+    /* Real    */ ae_vector *x,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                       ae_state *_state);
+void _minasastate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minasastate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minasastate_clear(void *_p);
+void _minasastate_destroy(void *_p);
+void _minasareport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minasareport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minasareport_clear(void *_p);
+void _minasareport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINCG) || !defined(AE_PARTIAL_BUILD)
 void mincgcreate(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     mincgstate* state,
-     ae_state *_state);
+    /* Real    */ ae_vector *x,
+                 mincgstate *state,
+                 ae_state *_state);
 void mincgcreatef(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     double diffstep,
-     mincgstate* state,
-     ae_state *_state);
-void mincgsetcond(mincgstate* state,
-     double epsg,
-     double epsf,
-     double epsx,
-     ae_int_t maxits,
-     ae_state *_state);
-void mincgsetscale(mincgstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void mincgsetxrep(mincgstate* state, ae_bool needxrep, ae_state *_state);
-void mincgsetdrep(mincgstate* state, ae_bool needdrep, ae_state *_state);
-void mincgsetcgtype(mincgstate* state, ae_int_t cgtype, ae_state *_state);
-void mincgsetstpmax(mincgstate* state, double stpmax, ae_state *_state);
-void mincgsuggeststep(mincgstate* state, double stp, ae_state *_state);
-double mincglastgoodstep(mincgstate* state, ae_state *_state);
-void mincgsetprecdefault(mincgstate* state, ae_state *_state);
-void mincgsetprecdiag(mincgstate* state,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void mincgsetprecscale(mincgstate* state, ae_state *_state);
-ae_bool mincgiteration(mincgstate* state, ae_state *_state);
-void mincgoptguardgradient(mincgstate* state,
-     double teststep,
-     ae_state *_state);
-void mincgoptguardsmoothness(mincgstate* state,
-     ae_int_t level,
-     ae_state *_state);
-void mincgoptguardresults(mincgstate* state,
-     optguardreport* rep,
-     ae_state *_state);
-void mincgoptguardnonc1test0results(mincgstate* state,
-     optguardnonc1test0report* strrep,
-     optguardnonc1test0report* lngrep,
-     ae_state *_state);
-void mincgoptguardnonc1test1results(mincgstate* state,
-     optguardnonc1test1report* strrep,
-     optguardnonc1test1report* lngrep,
-     ae_state *_state);
-void mincgresults(mincgstate* state,
-     /* Real    */ ae_vector* x,
-     mincgreport* rep,
-     ae_state *_state);
-void mincgresultsbuf(mincgstate* state,
-     /* Real    */ ae_vector* x,
-     mincgreport* rep,
-     ae_state *_state);
-void mincgrestartfrom(mincgstate* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void mincgrequesttermination(mincgstate* state, ae_state *_state);
-void mincgsetprecdiagfast(mincgstate* state,
-     /* Real    */ ae_vector* d,
-     ae_state *_state);
-void mincgsetpreclowrankfast(mincgstate* state,
-     /* Real    */ ae_vector* d1,
-     /* Real    */ ae_vector* c,
-     /* Real    */ ae_matrix* v,
-     ae_int_t vcnt,
-     ae_state *_state);
-void mincgsetprecvarpart(mincgstate* state,
-     /* Real    */ ae_vector* d2,
-     ae_state *_state);
-void _mincgstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mincgstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mincgstate_clear(void* _p);
-void _mincgstate_destroy(void* _p);
-void _mincgreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _mincgreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _mincgreport_clear(void* _p);
-void _mincgreport_destroy(void* _p);
+    /* Real    */ ae_vector *x,
+                  double diffstep,
+                  mincgstate *state,
+                  ae_state *_state);
+void mincgsetcond(mincgstate *state,
+                  double epsg,
+                  double epsf,
+                  double epsx,
+                  ae_int_t maxits,
+                  ae_state *_state);
+void mincgsetscale(mincgstate *state,
+    /* Real    */ ae_vector *s,
+                   ae_state *_state);
+void mincgsetxrep(mincgstate *state, ae_bool needxrep, ae_state *_state);
+void mincgsetdrep(mincgstate *state, ae_bool needdrep, ae_state *_state);
+void mincgsetcgtype(mincgstate *state, ae_int_t cgtype, ae_state *_state);
+void mincgsetstpmax(mincgstate *state, double stpmax, ae_state *_state);
+void mincgsuggeststep(mincgstate *state, double stp, ae_state *_state);
+double mincglastgoodstep(mincgstate *state, ae_state *_state);
+void mincgsetprecdefault(mincgstate *state, ae_state *_state);
+void mincgsetprecdiag(mincgstate *state,
+    /* Real    */ ae_vector *d,
+                      ae_state *_state);
+void mincgsetprecscale(mincgstate *state, ae_state *_state);
+ae_bool mincgiteration(mincgstate *state, ae_state *_state);
+void mincgoptguardgradient(mincgstate *state,
+                           double teststep,
+                           ae_state *_state);
+void mincgoptguardsmoothness(mincgstate *state,
+                             ae_int_t level,
+                             ae_state *_state);
+void mincgoptguardresults(mincgstate *state,
+                          optguardreport *rep,
+                          ae_state *_state);
+void mincgoptguardnonc1test0results(mincgstate *state,
+                                    optguardnonc1test0report *strrep,
+                                    optguardnonc1test0report *lngrep,
+                                    ae_state *_state);
+void mincgoptguardnonc1test1results(mincgstate *state,
+                                    optguardnonc1test1report *strrep,
+                                    optguardnonc1test1report *lngrep,
+                                    ae_state *_state);
+void mincgresults(mincgstate *state,
+    /* Real    */ ae_vector *x,
+                  mincgreport *rep,
+                  ae_state *_state);
+void mincgresultsbuf(mincgstate *state,
+    /* Real    */ ae_vector *x,
+                     mincgreport *rep,
+                     ae_state *_state);
+void mincgrestartfrom(mincgstate *state,
+    /* Real    */ ae_vector *x,
+                      ae_state *_state);
+void mincgrequesttermination(mincgstate *state, ae_state *_state);
+void mincgsetprecdiagfast(mincgstate *state,
+    /* Real    */ ae_vector *d,
+                          ae_state *_state);
+void mincgsetpreclowrankfast(mincgstate *state,
+    /* Real    */ ae_vector *d1,
+    /* Real    */ ae_vector *c,
+    /* Real    */ ae_matrix *v,
+                             ae_int_t vcnt,
+                             ae_state *_state);
+void mincgsetprecvarpart(mincgstate *state,
+    /* Real    */ ae_vector *d2,
+                         ae_state *_state);
+void _mincgstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mincgstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mincgstate_clear(void *_p);
+void _mincgstate_destroy(void *_p);
+void _mincgreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _mincgreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _mincgreport_clear(void *_p);
+void _mincgreport_destroy(void *_p);
 #endif
 #if defined(AE_COMPILE_MINLM) || !defined(AE_PARTIAL_BUILD)
 void minlmcreatevj(ae_int_t n,
-     ae_int_t m,
-     /* Real    */ ae_vector* x,
-     minlmstate* state,
-     ae_state *_state);
+                   ae_int_t m,
+    /* Real    */ ae_vector *x,
+                   minlmstate *state,
+                   ae_state *_state);
 void minlmcreatev(ae_int_t n,
-     ae_int_t m,
-     /* Real    */ ae_vector* x,
-     double diffstep,
-     minlmstate* state,
-     ae_state *_state);
+                  ae_int_t m,
+    /* Real    */ ae_vector *x,
+                  double diffstep,
+                  minlmstate *state,
+                  ae_state *_state);
 void minlmcreatefgh(ae_int_t n,
-     /* Real    */ ae_vector* x,
-     minlmstate* state,
-     ae_state *_state);
-void minlmsetcond(minlmstate* state,
-     double epsx,
-     ae_int_t maxits,
-     ae_state *_state);
-void minlmsetxrep(minlmstate* state, ae_bool needxrep, ae_state *_state);
-void minlmsetstpmax(minlmstate* state, double stpmax, ae_state *_state);
-void minlmsetscale(minlmstate* state,
-     /* Real    */ ae_vector* s,
-     ae_state *_state);
-void minlmsetbc(minlmstate* state,
-     /* Real    */ ae_vector* bndl,
-     /* Real    */ ae_vector* bndu,
-     ae_state *_state);
-void minlmsetlc(minlmstate* state,
-     /* Real    */ ae_matrix* c,
-     /* Integer */ ae_vector* ct,
-     ae_int_t k,
-     ae_state *_state);
-void minlmsetacctype(minlmstate* state,
-     ae_int_t acctype,
-     ae_state *_state);
-ae_bool minlmiteration(minlmstate* state, ae_state *_state);
-void minlmoptguardgradient(minlmstate* state,
-     double teststep,
-     ae_state *_state);
-void minlmoptguardresults(minlmstate* state,
-     optguardreport* rep,
-     ae_state *_state);
-void minlmresults(minlmstate* state,
-     /* Real    */ ae_vector* x,
-     minlmreport* rep,
-     ae_state *_state);
-void minlmresultsbuf(minlmstate* state,
-     /* Real    */ ae_vector* x,
-     minlmreport* rep,
-     ae_state *_state);
-void minlmrestartfrom(minlmstate* state,
-     /* Real    */ ae_vector* x,
-     ae_state *_state);
-void minlmrequesttermination(minlmstate* state, ae_state *_state);
+    /* Real    */ ae_vector *x,
+                    minlmstate *state,
+                    ae_state *_state);
+void minlmsetcond(minlmstate *state,
+                  double epsx,
+                  ae_int_t maxits,
+                  ae_state *_state);
+void minlmsetxrep(minlmstate *state, ae_bool needxrep, ae_state *_state);
+void minlmsetstpmax(minlmstate *state, double stpmax, ae_state *_state);
+void minlmsetscale(minlmstate *state,
+    /* Real    */ ae_vector *s,
+                   ae_state *_state);
+void minlmsetbc(minlmstate *state,
+    /* Real    */ ae_vector *bndl,
+    /* Real    */ ae_vector *bndu,
+                ae_state *_state);
+void minlmsetlc(minlmstate *state,
+    /* Real    */ ae_matrix *c,
+    /* Integer */ ae_vector *ct,
+                ae_int_t k,
+                ae_state *_state);
+void minlmsetacctype(minlmstate *state,
+                     ae_int_t acctype,
+                     ae_state *_state);
+ae_bool minlmiteration(minlmstate *state, ae_state *_state);
+void minlmoptguardgradient(minlmstate *state,
+                           double teststep,
+                           ae_state *_state);
+void minlmoptguardresults(minlmstate *state,
+                          optguardreport *rep,
+                          ae_state *_state);
+void minlmresults(minlmstate *state,
+    /* Real    */ ae_vector *x,
+                  minlmreport *rep,
+                  ae_state *_state);
+void minlmresultsbuf(minlmstate *state,
+    /* Real    */ ae_vector *x,
+                     minlmreport *rep,
+                     ae_state *_state);
+void minlmrestartfrom(minlmstate *state,
+    /* Real    */ ae_vector *x,
+                      ae_state *_state);
+void minlmrequesttermination(minlmstate *state, ae_state *_state);
 void minlmcreatevgj(ae_int_t n,
-     ae_int_t m,
-     /* Real    */ ae_vector* x,
-     minlmstate* state,
-     ae_state *_state);
+                    ae_int_t m,
+    /* Real    */ ae_vector *x,
+                    minlmstate *state,
+                    ae_state *_state);
 void minlmcreatefgj(ae_int_t n,
-     ae_int_t m,
-     /* Real    */ ae_vector* x,
-     minlmstate* state,
-     ae_state *_state);
+                    ae_int_t m,
+    /* Real    */ ae_vector *x,
+                    minlmstate *state,
+                    ae_state *_state);
 void minlmcreatefj(ae_int_t n,
-     ae_int_t m,
-     /* Real    */ ae_vector* x,
-     minlmstate* state,
-     ae_state *_state);
-void _minlmstepfinder_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minlmstepfinder_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minlmstepfinder_clear(void* _p);
-void _minlmstepfinder_destroy(void* _p);
-void _minlmstate_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minlmstate_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minlmstate_clear(void* _p);
-void _minlmstate_destroy(void* _p);
-void _minlmreport_init(void* _p, ae_state *_state, ae_bool make_automatic);
-void _minlmreport_init_copy(void* _dst, void* _src, ae_state *_state, ae_bool make_automatic);
-void _minlmreport_clear(void* _p);
-void _minlmreport_destroy(void* _p);
+                   ae_int_t m,
+    /* Real    */ ae_vector *x,
+                   minlmstate *state,
+                   ae_state *_state);
+void _minlmstepfinder_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minlmstepfinder_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minlmstepfinder_clear(void *_p);
+void _minlmstepfinder_destroy(void *_p);
+void _minlmstate_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minlmstate_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minlmstate_clear(void *_p);
+void _minlmstate_destroy(void *_p);
+void _minlmreport_init(void *_p, ae_state *_state, ae_bool make_automatic);
+void _minlmreport_init_copy(void *_dst, void *_src, ae_state *_state, ae_bool make_automatic);
+void _minlmreport_clear(void *_p);
+void _minlmreport_destroy(void *_p);
 #endif
 
 }

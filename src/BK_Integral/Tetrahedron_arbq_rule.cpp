@@ -1,4 +1,3 @@
-//#include "Tetrahedron_arbq_rule.h"
 #include "BK_Integral/BKIntegral.h"
 
 void comp_next(int n, int k, int a[], bool *more, int *h, int *t)

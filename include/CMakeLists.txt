@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 3.17)
 set(BKHao_HEADERS
         # BK_Algorithm
         BK_Algorithm/BOC/BOC.h
-        BK_Algorithm/GraphCuts/graph.h
-        BK_Algorithm/GraphCuts/maxflow.h
-        BK_Algorithm/GraphCuts/block.h
+        #        BK_Algorithm/GraphCuts/graph.h
+        #        BK_Algorithm/GraphCuts/maxflow.h
+        #        BK_Algorithm/GraphCuts/block.h
         # BK_BaseShape
         BK_BaseShape/BKKDTree.h
         BK_BaseShape/BKLine.h

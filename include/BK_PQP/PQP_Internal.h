@@ -43,21 +43,19 @@
 //#include "..\..\PolygonalMesh.h"
 //#define MODEL_MESH
 
-class PQP_Model
-{
+class PQP_Model {
 
-public:
+ public:
 
   int build_state;
 
-
 #ifdef MODEL_MESH
-	//----------------------------
-	//	new model information for less memory
-	PolygonalMesh *m_inMesh;
-	//----------------------------
+  //----------------------------
+  //	new model information for less memory
+  PolygonalMesh *m_inMesh;
+  //----------------------------
 #else
-	Tri *tris;  
+  Tri *tris;
 #endif
   int num_tris;
   int num_tris_alloced;
@@ -67,33 +65,31 @@ public:
   int num_bvs_alloced;
 
   Tri *last_tri;       // closest tri on this model in last distance test
-  
+
   BV *child(int n) { return &b[n]; }
 
-	PQP_Model();
+  PQP_Model();
 //	PQP_Model(PolygonalMesh *mesh);
-	~PQP_Model();
+  ~PQP_Model();
 
   int BeginModel(int num_tris = 8); // preallocate for num_tris triangles;
-                                    // the parameter is optional, since
-                                    // arrays are reallocated as needed
-  int AddTri(const PQP_REAL *p1, const PQP_REAL *p2, const PQP_REAL *p3, 
+  // the parameter is optional, since
+  // arrays are reallocated as needed
+  int AddTri(const PQP_REAL *p1, const PQP_REAL *p2, const PQP_REAL *p3,
              int id);
   int EndModel();
   int MemUsage(int msg);  // returns model mem usage.  
-                          // prints message to stderr if msg == TRUE
+  // prints message to stderr if msg == TRUE
 
 
 };
 
-struct CollisionPair
-{
+struct CollisionPair {
   int id1;
   int id2;
 };
 
-struct PQP_CollideResult  
-{
+struct PQP_CollideResult {
   // stats
 
   int num_bv_tests;
@@ -109,8 +105,8 @@ struct PQP_CollideResult
   int num_pairs;
   CollisionPair *pairs;
 
-  void SizeTo(int n);    
-  void Add(int i1, int i2); 
+  void SizeTo(int n);
+  void Add(int i1, int i2);
 
   PQP_CollideResult();
   ~PQP_CollideResult();
@@ -124,7 +120,7 @@ struct PQP_CollideResult
   // free the list of contact pairs; ordinarily this list is reused
   // for each query, and only deleted in the destructor.
 
-  void FreePairsList(); 
+  void FreePairsList();
 
   // query results
 
@@ -134,12 +130,12 @@ struct PQP_CollideResult
   int Id2(int k) { return pairs[k].id2; }
 };
 
-#if PQP_BV_TYPE & RSS_TYPE // distance/tolerance are only available with RSS
+#if PQP_BV_TYPE
+& RSS_TYPE // distance/tolerance are only available with RSS
 
-struct PQP_DistanceResult 
-{
-  int pos_flag;	// the closest point in which field of the closest triangle
-  Tri *last_tri;	// the last test triangle
+struct PQP_DistanceResult {
+  int pos_flag;    // the closest point in which field of the closest triangle
+  Tri *last_tri;    // the last test triangle
 
   // stats
   int num_bv_tests;
@@ -151,14 +147,14 @@ struct PQP_DistanceResult
   PQP_REAL R[3][3];
   PQP_REAL T[3];
 
-  PQP_REAL rel_err; 
-  PQP_REAL abs_err; 
+  PQP_REAL rel_err;
+  PQP_REAL abs_err;
 
   PQP_REAL distance;
-  PQP_REAL p1[3]; 
+  PQP_REAL p1[3];
   PQP_REAL p2[3];
   int qsize;
-  
+
   // statistics
 
   int NumBVTests() { return num_bv_tests; }
@@ -175,10 +171,9 @@ struct PQP_DistanceResult
   const PQP_REAL *P2() { return p2; }
 };
 
-struct PQP_ToleranceResult 
-{
-  int num_tri;	// the closest point in which field of the closest triangle
-  Tri *last_tri;	// the last test triangle
+struct PQP_ToleranceResult {
+  int num_tri;    // the closest point in which field of the closest triangle
+  Tri *last_tri;    // the last test triangle
   // stats
 
   int num_bv_tests;
@@ -190,12 +185,12 @@ struct PQP_ToleranceResult
   PQP_REAL R[3][3];
   PQP_REAL T[3];
 
-  int    closer_than_tolerance;   
-  PQP_REAL tolerance;      
+  int closer_than_tolerance;
+  PQP_REAL tolerance;
 
   PQP_REAL distance;
-  PQP_REAL p1[3]; 
-  PQP_REAL p2[3]; 
+  PQP_REAL p1[3];
+  PQP_REAL p2[3];
   int qsize;
 
   // statistics

@@ -1,8 +1,6 @@
 #include "BK_Tessellation2D/BKSide2D.h"
 #include "BK_Tessellation2D/BKTessellation2D.h"
 
-//#include "BKTessellation3D.h"
-//#include "BKSide2D.h"
 //std
 #include <queue>
 

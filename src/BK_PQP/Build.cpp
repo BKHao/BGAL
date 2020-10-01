@@ -43,8 +43,6 @@
 #include <string.h>
 #include "BK_PQP/PQP.h"
 #include "BK_PQP/MatVec.h"
-//#include "PQP.h"
-//#include "MatVec.h"
 
 // If this is set, build routines will use covariance matrix 
 // and mean finding code from RAPID 2.
@@ -233,8 +231,7 @@ compute_moments(moment *M, Tri *tris, int num_tris)
 
 #else
 
-PQP_REAL max(PQP_REAL a, PQP_REAL b, PQP_REAL c, PQP_REAL d)
-{
+PQP_REAL max(PQP_REAL a, PQP_REAL b, PQP_REAL c, PQP_REAL d) {
   PQP_REAL t = a;
   if (b > t) t = b;
   if (c > t) t = c;
@@ -242,8 +239,7 @@ PQP_REAL max(PQP_REAL a, PQP_REAL b, PQP_REAL c, PQP_REAL d)
   return t;
 }
 
-PQP_REAL min(PQP_REAL a, PQP_REAL b, PQP_REAL c, PQP_REAL d)
-{
+PQP_REAL min(PQP_REAL a, PQP_REAL b, PQP_REAL c, PQP_REAL d) {
   PQP_REAL t = a;
   if (b < t) t = b;
   if (c < t) t = c;
@@ -266,15 +262,15 @@ get_centroid_triverts(PQP_REAL c[3], PolygonalMesh *mesh, Tri* tris, int num_tri
   // get center of mass
   for(i=0; i<num_tris; i++)
   {
-	  int triId = tris[i].id;
-	  float p1[3], p2[3], p3[3];
-	  p1[0] = pts[faces[triId][0]][0];	p1[1] = pts[faces[triId][0]][1];	p1[2] = pts[faces[triId][0]][2];
-	  p2[0] = pts[faces[triId][1]][0];	p2[1] = pts[faces[triId][1]][1];	p2[2] = pts[faces[triId][1]][2];
-	  p3[0] = pts[faces[triId][2]][0];	p3[1] = pts[faces[triId][2]][1];	p3[2] = pts[faces[triId][2]][2];
+      int triId = tris[i].id;
+      float p1[3], p2[3], p3[3];
+      p1[0] = pts[faces[triId][0]][0];	p1[1] = pts[faces[triId][0]][1];	p1[2] = pts[faces[triId][0]][2];
+      p2[0] = pts[faces[triId][1]][0];	p2[1] = pts[faces[triId][1]][1];	p2[2] = pts[faces[triId][1]][2];
+      p3[0] = pts[faces[triId][2]][0];	p3[1] = pts[faces[triId][2]][1];	p3[2] = pts[faces[triId][2]][2];
 
     c[0] += p1[0] + p2[0] + p3[0];
     c[1] += p1[1] + p2[1] + p3[1];
-    c[2] += p1[2] + p2[2] + p3[2];      
+    c[2] += p1[2] + p2[2] + p3[2];
   }
 
   PQP_REAL n = (PQP_REAL)(3 * num_tris);
@@ -301,11 +297,11 @@ get_covariance_triverts(PQP_REAL M[3][3], PolygonalMesh *mesh, Tri *tris,int num
   // get center of mass
   for(i=0; i<num_tris; i++)
   {
-	  PQP_REAL p1[3], p2[3], p3[3];
-	  int triId = tris[i].id;
-	  p1[0] = pts[faces[triId][0]][0];	p1[1] = pts[faces[triId][0]][1];	p1[2] = pts[faces[triId][0]][2];
-	  p2[0] = pts[faces[triId][1]][0];	p2[1] = pts[faces[triId][1]][1];	p2[2] = pts[faces[triId][1]][2];
-	  p3[0] = pts[faces[triId][2]][0];	p3[1] = pts[faces[triId][2]][1];	p3[2] = pts[faces[triId][2]][2];
+      PQP_REAL p1[3], p2[3], p3[3];
+      int triId = tris[i].id;
+      p1[0] = pts[faces[triId][0]][0];	p1[1] = pts[faces[triId][0]][1];	p1[2] = pts[faces[triId][0]][2];
+      p2[0] = pts[faces[triId][1]][0];	p2[1] = pts[faces[triId][1]][1];	p2[2] = pts[faces[triId][1]][2];
+      p3[0] = pts[faces[triId][2]][0];	p3[1] = pts[faces[triId][2]][1];	p3[2] = pts[faces[triId][2]][2];
 
 
     S1[0] += p1[0] + p2[0] + p3[0];
@@ -351,25 +347,23 @@ get_covariance_triverts(PQP_REAL M[3][3], PolygonalMesh *mesh, Tri *tris,int num
 #else
 
 void
-get_centroid_triverts(PQP_REAL c[3], Tri *tris, int num_tris)
-{
+get_centroid_triverts(PQP_REAL c[3], Tri *tris, int num_tris) {
   int i;
 
   c[0] = c[1] = c[2] = 0.0;
 
   // get center of mass
-  for(i=0; i<num_tris; i++)
-  {
+  for (i = 0; i < num_tris; i++) {
     PQP_REAL *p1 = tris[i].p1;
     PQP_REAL *p2 = tris[i].p2;
     PQP_REAL *p3 = tris[i].p3;
 
     c[0] += p1[0] + p2[0] + p3[0];
     c[1] += p1[1] + p2[1] + p3[1];
-    c[2] += p1[2] + p2[2] + p3[2];      
+    c[2] += p1[2] + p2[2] + p3[2];
   }
 
-  PQP_REAL n = (PQP_REAL)(3 * num_tris);
+  PQP_REAL n = (PQP_REAL) (3 * num_tris);
 
   c[0] /= n;
   c[1] /= n;
@@ -377,8 +371,7 @@ get_centroid_triverts(PQP_REAL c[3], Tri *tris, int num_tris)
 }
 
 void
-get_covariance_triverts(PQP_REAL M[3][3], Tri *tris, int num_tris)
-{
+get_covariance_triverts(PQP_REAL M[3][3], Tri *tris, int num_tris) {
   int i;
   PQP_REAL S1[3];
   PQP_REAL S2[3][3];
@@ -389,8 +382,7 @@ get_covariance_triverts(PQP_REAL M[3][3], Tri *tris, int num_tris)
   S2[0][2] = S2[1][2] = S2[2][2] = 0.0;
 
   // get center of mass
-  for(i=0; i<num_tris; i++)
-  {
+  for (i = 0; i < num_tris; i++) {
     PQP_REAL *p1 = tris[i].p1;
     PQP_REAL *p2 = tris[i].p2;
     PQP_REAL *p3 = tris[i].p3;
@@ -399,36 +391,36 @@ get_covariance_triverts(PQP_REAL M[3][3], Tri *tris, int num_tris)
     S1[1] += p1[1] + p2[1] + p3[1];
     S1[2] += p1[2] + p2[2] + p3[2];
 
-    S2[0][0] += (p1[0] * p1[0] +  
-                 p2[0] * p2[0] +  
-                 p3[0] * p3[0]);
-    S2[1][1] += (p1[1] * p1[1] +  
-                 p2[1] * p2[1] +  
-                 p3[1] * p3[1]);
-    S2[2][2] += (p1[2] * p1[2] +  
-                 p2[2] * p2[2] +  
-                 p3[2] * p3[2]);
-    S2[0][1] += (p1[0] * p1[1] +  
-                 p2[0] * p2[1] +  
-                 p3[0] * p3[1]);
-    S2[0][2] += (p1[0] * p1[2] +  
-                 p2[0] * p2[2] +  
-                 p3[0] * p3[2]);
-    S2[1][2] += (p1[1] * p1[2] +  
-                 p2[1] * p2[2] +  
-                 p3[1] * p3[2]);
+    S2[0][0] += (p1[0] * p1[0] +
+        p2[0] * p2[0] +
+        p3[0] * p3[0]);
+    S2[1][1] += (p1[1] * p1[1] +
+        p2[1] * p2[1] +
+        p3[1] * p3[1]);
+    S2[2][2] += (p1[2] * p1[2] +
+        p2[2] * p2[2] +
+        p3[2] * p3[2]);
+    S2[0][1] += (p1[0] * p1[1] +
+        p2[0] * p2[1] +
+        p3[0] * p3[1]);
+    S2[0][2] += (p1[0] * p1[2] +
+        p2[0] * p2[2] +
+        p3[0] * p3[2]);
+    S2[1][2] += (p1[1] * p1[2] +
+        p2[1] * p2[2] +
+        p3[1] * p3[2]);
   }
 
-  PQP_REAL n = (PQP_REAL)(3 * num_tris);
+  PQP_REAL n = (PQP_REAL) (3 * num_tris);
 
   // now get covariances
 
-  M[0][0] = S2[0][0] - S1[0]*S1[0] / n;
-  M[1][1] = S2[1][1] - S1[1]*S1[1] / n;
-  M[2][2] = S2[2][2] - S1[2]*S1[2] / n;
-  M[0][1] = S2[0][1] - S1[0]*S1[1] / n;
-  M[1][2] = S2[1][2] - S1[1]*S1[2] / n;
-  M[0][2] = S2[0][2] - S1[0]*S1[2] / n;
+  M[0][0] = S2[0][0] - S1[0] * S1[0] / n;
+  M[1][1] = S2[1][1] - S1[1] * S1[1] / n;
+  M[2][2] = S2[2][2] - S1[2] * S1[2] / n;
+  M[0][1] = S2[0][1] - S1[0] * S1[1] / n;
+  M[1][2] = S2[1][2] - S1[1] * S1[2] / n;
+  M[0][2] = S2[0][2] - S1[0] * S1[2] / n;
   M[1][0] = M[0][1];
   M[2][0] = M[0][2];
   M[2][1] = M[1][2];
@@ -436,7 +428,6 @@ get_covariance_triverts(PQP_REAL M[3][3], Tri *tris, int num_tris)
 #endif
 
 #endif
-
 
 #ifdef USING_MESH_MODEL
 //-------------------------------------------------------------------
@@ -464,29 +455,29 @@ split_tris(PolygonalMesh *mesh, Tri *tris, int num_tris, PQP_REAL a[3], PQP_REAL
     //  [1] [1] [1] [1] [2] [2] [2] [x] [x] ... [x]
     //                   c1          i
     //
-	  PQP_REAL p1[3], p2[3], p3[3];
-	  int triId = tris[i].id;
-	  p1[0] = pts[faces[triId][0]][0];	p1[1] = pts[faces[triId][0]][1];	p1[2] = pts[faces[triId][0]][2];
-	  p2[0] = pts[faces[triId][1]][0];	p2[1] = pts[faces[triId][1]][1];	p2[2] = pts[faces[triId][1]][2];
-	  p3[0] = pts[faces[triId][2]][0];	p3[1] = pts[faces[triId][2]][1];	p3[2] = pts[faces[triId][2]][2];
-		
+      PQP_REAL p1[3], p2[3], p3[3];
+      int triId = tris[i].id;
+      p1[0] = pts[faces[triId][0]][0];	p1[1] = pts[faces[triId][0]][1];	p1[2] = pts[faces[triId][0]][2];
+      p2[0] = pts[faces[triId][1]][0];	p2[1] = pts[faces[triId][1]][1];	p2[2] = pts[faces[triId][1]][2];
+      p3[0] = pts[faces[triId][2]][0];	p3[1] = pts[faces[triId][2]][1];	p3[2] = pts[faces[triId][2]][2];
+
 
     VcV(p, p1);
     VpV(p, p, p2);
-    VpV(p, p, p3);      
+    VpV(p, p, p3);
     x = VdotV(p, a);
     x /= 3.0;
     if (x <= c)
     {
-	    // group 1
-	    temp = tris[i];
-	    tris[i] = tris[c1];
-	    tris[c1] = temp;
-	    c1++;
+        // group 1
+        temp = tris[i];
+        tris[i] = tris[c1];
+        tris[c1] = temp;
+        c1++;
     }
     else
     {
-	    // group 2 -- do nothing
+        // group 2 -- do nothing
     }
   }
 
@@ -513,7 +504,7 @@ build_recurse(PQP_Model *m, int bn, int first_tri, int num_tris)
 
 #if RAPID2_FIT
   moment *tri_moment = new moment[num_tris];
-  compute_moments(tri_moment, &(m->tris[first_tri]), num_tris);  
+  compute_moments(tri_moment, &(m->tris[first_tri]), num_tris);
   accum acc;
   clear_accum(acc);
   for(int i = 0; i < num_tris; i++) accum_moment(acc, tri_moment[i]);
@@ -569,7 +560,7 @@ build_recurse(PQP_Model *m, int bn, int first_tri, int num_tris)
 
     // now split
 
-	
+
     int num_first_half = split_tris(m->m_inMesh, &m->tris[first_tri], num_tris, 
                                     axis, coord);
 
@@ -589,17 +580,15 @@ build_recurse(PQP_Model *m, int bn, int first_tri, int num_tris)
 // where their centroids fall on the axis (under axial projection).
 // Returns the number of tris in the first half
 
-int 
-split_tris(Tri *tris, int num_tris, PQP_REAL a[3], PQP_REAL c)
-{
+int
+split_tris(Tri *tris, int num_tris, PQP_REAL a[3], PQP_REAL c) {
   int i;
   int c1 = 0;
   PQP_REAL p[3];
   PQP_REAL x;
   Tri temp;
 
-  for(i = 0; i < num_tris; i++)
-  {
+  for (i = 0; i < num_tris; i++) {
     // loop invariant: up to (but not including) index c1 in group 1,
     // then up to (but not including) index i in group 2
     //
@@ -608,26 +597,23 @@ split_tris(Tri *tris, int num_tris, PQP_REAL a[3], PQP_REAL c)
     //
     VcV(p, tris[i].p1);
     VpV(p, p, tris[i].p2);
-    VpV(p, p, tris[i].p3);      
+    VpV(p, p, tris[i].p3);
     x = VdotV(p, a);
     x /= 3.0;
-    if (x <= c)
-    {
-	    // group 1
-	    temp = tris[i];
-	    tris[i] = tris[c1];
-	    tris[c1] = temp;
-	    c1++;
-    }
-    else
-    {
-	    // group 2 -- do nothing
+    if (x <= c) {
+      // group 1
+      temp = tris[i];
+      tris[i] = tris[c1];
+      tris[c1] = temp;
+      c1++;
+    } else {
+      // group 2 -- do nothing
     }
   }
 
   // split arbitrarily if one group empty
 
-  if ((c1 == 0) || (c1 == num_tris)) c1 = num_tris/2;
+  if ((c1 == 0) || (c1 == num_tris)) c1 = num_tris / 2;
 
   return c1;
 }
@@ -638,8 +624,7 @@ split_tris(Tri *tris, int num_tris, PQP_REAL a[3], PQP_REAL c)
 // sets, and recursively builds two children of m->child(bn)
 
 int
-build_recurse(PQP_Model *m, int bn, int first_tri, int num_tris)
-{
+build_recurse(PQP_Model *m, int bn, int first_tri, int num_tris) {
   BV *b = m->child(bn);
 
   // compute a rotation matrix
@@ -655,7 +640,7 @@ build_recurse(PQP_Model *m, int bn, int first_tri, int num_tris)
   delete [] tri_moment;
   covariance_from_accum(C,acc);
 #else
-  get_covariance_triverts(C,&m->tris[first_tri],num_tris);
+  get_covariance_triverts(C, &m->tris[first_tri], num_tris);
 #endif
 
   Meigen(E, s, C);
@@ -663,62 +648,68 @@ build_recurse(PQP_Model *m, int bn, int first_tri, int num_tris)
   // place axes of E in order of increasing s
 
   int min, mid, max;
-  if (s[0] > s[1]) { max = 0; min = 1; }
-  else { min = 0; max = 1; }
-  if (s[2] < s[min]) { mid = min; min = 2; }
-  else if (s[2] > s[max]) { mid = max; max = 2; }
-  else { mid = 2; }
-  McolcMcol(R,0,E,max);
-  McolcMcol(R,1,E,mid);
-  R[0][2] = E[1][max]*E[2][mid] - E[1][mid]*E[2][max];
-  R[1][2] = E[0][mid]*E[2][max] - E[0][max]*E[2][mid];
-  R[2][2] = E[0][max]*E[1][mid] - E[0][mid]*E[1][max];
+  if (s[0] > s[1]) {
+    max = 0;
+    min = 1;
+  } else {
+    min = 0;
+    max = 1;
+  }
+  if (s[2] < s[min]) {
+    mid = min;
+    min = 2;
+  } else if (s[2] > s[max]) {
+    mid = max;
+    max = 2;
+  } else { mid = 2; }
+  McolcMcol(R, 0, E, max);
+  McolcMcol(R, 1, E, mid);
+  R[0][2] = E[1][max] * E[2][mid] - E[1][mid] * E[2][max];
+  R[1][2] = E[0][mid] * E[2][max] - E[0][max] * E[2][mid];
+  R[2][2] = E[0][max] * E[1][mid] - E[0][mid] * E[1][max];
 
   // fit the BV
 
   b->FitToTris(R, &m->tris[first_tri], num_tris);
 
-  if (num_tris == 1)
-  {
+  if (num_tris == 1) {
     // BV is a leaf BV - first_child will index a triangle
 
     b->first_child = -(first_tri + 1);
-  }
-  else if (num_tris > 1)
-  {
+  } else if (num_tris > 1) {
     // BV not a leaf - first_child will index a BV
 
     b->first_child = m->num_bvs;
-    m->num_bvs+=2;
+    m->num_bvs += 2;
 
     // choose splitting axis and splitting coord
 
-    McolcV(axis,R,0);
+    McolcV(axis, R, 0);
 
 #if RAPID2_FIT
     mean_from_accum(mean,acc);
 #else
-    get_centroid_triverts(mean,&m->tris[first_tri],num_tris);
-	//---------------------------------------------------------
+    get_centroid_triverts(mean, &m->tris[first_tri], num_tris);
+    //---------------------------------------------------------
 //    get_centroid_triverts(mean,m->m_inMesh, &m->tris[first_tri],num_tris);
-	//---------------------------------------------------------
+    //---------------------------------------------------------
 #endif
     coord = VdotV(axis, mean);
 
     // now split
 
-	
-    int num_first_half = split_tris(&m->tris[first_tri], num_tris, 
+
+    int num_first_half = split_tris(&m->tris[first_tri], num_tris,
                                     axis, coord);
-	////----------------------------------------------------------
- //   int num_first_half = split_tris(&m->tris[first_tri], num_tris, 
- //                                   axis, coord);
-	////----------------------------------------------------------
+    ////----------------------------------------------------------
+    //   int num_first_half = split_tris(&m->tris[first_tri], num_tris,
+    //                                   axis, coord);
+    ////----------------------------------------------------------
     // recursively build the children
 
-    build_recurse(m, m->child(bn)->first_child, first_tri, num_first_half); 
+    build_recurse(m, m->child(bn)->first_child, first_tri, num_first_half);
     build_recurse(m, m->child(bn)->first_child + 1,
-                  first_tri + num_first_half, num_tris - num_first_half); 
+                  first_tri + num_first_half, num_tris - num_first_half);
   }
   return PQP_OK;
 }
@@ -727,61 +718,109 @@ build_recurse(PQP_Model *m, int bn, int first_tri, int num_tris)
 // this descends the hierarchy, converting world-relative 
 // transforms to parent-relative transforms
 
-void 
+void
 make_parent_relative(PQP_Model *m, int bn,
                      const PQP_REAL parentR[3][3]
-#if PQP_BV_TYPE & RSS_TYPE
-                     ,const PQP_REAL parentTr[3]
+#if PQP_BV_TYPE
+&
+RSS_TYPE
+,
+const PQP_REAL parentTr[3]
 #endif
-#if PQP_BV_TYPE & OBB_TYPE
-                     ,const PQP_REAL parentTo[3]
+#if PQP_BV_TYPE
+& OBB_TYPE
+,
+const PQP_REAL parentTo[3]
 #endif
-                    )
-{
-  PQP_REAL Rpc[3][3], Tpc[3];
+) {
+PQP_REAL Rpc[3][3], Tpc[3];
 
-  if (!m->child(bn)->Leaf())
-  {
-    // make children parent-relative
+if (!m->
+child(bn)
+->
+Leaf()
+) {
+// make children parent-relative
 
-    make_parent_relative(m,m->child(bn)->first_child, 
-                         m->child(bn)->R
-#if PQP_BV_TYPE & RSS_TYPE
-                         ,m->child(bn)->Tr
+make_parent_relative(m, m
+->
+child(bn)
+->first_child,
+m->
+child(bn)
+->R
+#if PQP_BV_TYPE
+& RSS_TYPE
+, m->
+child(bn)
+->Tr
 #endif
-#if PQP_BV_TYPE & OBB_TYPE
-                         ,m->child(bn)->To
+#if PQP_BV_TYPE
+& OBB_TYPE
+, m->
+child(bn)
+->To
 #endif
-                         );
-    make_parent_relative(m,m->child(bn)->first_child+1, 
-                         m->child(bn)->R
-#if PQP_BV_TYPE & RSS_TYPE
-                         ,m->child(bn)->Tr
+);
+make_parent_relative(m, m
+->
+child(bn)
+->first_child + 1,
+m->
+child(bn)
+->R
+#if PQP_BV_TYPE
+& RSS_TYPE
+, m->
+child(bn)
+->Tr
 #endif
-#if PQP_BV_TYPE & OBB_TYPE
-                         ,m->child(bn)->To
+#if PQP_BV_TYPE
+& OBB_TYPE
+, m->
+child(bn)
+->To
 #endif
-                         );
-  }
+);
+}
 
-  // make self parent relative
+// make self parent relative
 
-  MTxM(Rpc,parentR,m->child(bn)->R);
-  McM(m->child(bn)->R,Rpc);
-#if PQP_BV_TYPE & RSS_TYPE
-  VmV(Tpc,m->child(bn)->Tr,parentTr);
-  MTxV(m->child(bn)->Tr,parentR,Tpc);
+MTxM(Rpc, parentR, m
+->
+child(bn)
+->R);
+McM(m
+->
+child(bn)
+->R, Rpc);
+#if PQP_BV_TYPE
+& RSS_TYPE
+VmV(Tpc, m
+->
+child(bn)
+->Tr, parentTr);
+MTxV(m
+->
+child(bn)
+->Tr, parentR, Tpc);
 #endif
-#if PQP_BV_TYPE & OBB_TYPE
-  VmV(Tpc,m->child(bn)->To,parentTo);
-  MTxV(m->child(bn)->To,parentR,Tpc);
+#if PQP_BV_TYPE
+& OBB_TYPE
+VmV(Tpc, m
+->
+child(bn)
+->To, parentTo);
+MTxV(m
+->
+child(bn)
+->To, parentR, Tpc);
 #endif
 
 }
 
 int
-build_model(PQP_Model *m)
-{
+build_model(PQP_Model *m) {
   // set num_bvs to 1, the first index for a child bv
 
   m->num_bvs = 1;
@@ -792,18 +831,18 @@ build_model(PQP_Model *m)
 
   // change BV orientations from world-relative to parent-relative
 
-  PQP_REAL R[3][3],T[3];
+  PQP_REAL R[3][3], T[3];
   Midentity(R);
   Videntity(T);
 
-  make_parent_relative(m,0,R
-#if PQP_BV_TYPE & RSS_TYPE
-                      ,T
+  make_parent_relative(m, 0, R
+#if PQP_BV_TYPE
+                           & RSS_TYPE, T
 #endif
-#if PQP_BV_TYPE & OBB_TYPE
-                      ,T
+#if PQP_BV_TYPE
+                           & OBB_TYPE, T
 #endif
-                      );
+  );
 
   return PQP_OK;
 }
