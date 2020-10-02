@@ -45,7 +45,7 @@ namespace BKHao
 		_Model(const std::string& in_file_name);
 		void set_name_(const std::string& in_name)
 		{
-			_file_name = in_name;
+			_name = in_name;
 		}
 		inline int number_vertices_() const
 		{
@@ -111,13 +111,9 @@ namespace BKHao
 		{
 			return _bounding_box;
 		}
-		inline std::string model_name_() const
+		inline std::string name_() const
 		{
-			int nDot = (int)_file_name.rfind('.');
-			int nSprit1 = (int)_file_name.rfind('\\');
-			int nSprit2 = (int)_file_name.rfind('/');
-			int nSprit = nSprit1 > nSprit2 ? nSprit1 : nSprit2;
-			return _file_name.substr(nSprit + 1, nDot - nSprit - 1);
+			return _name;
 		}
 		void initialization_PQP_();
 		std::tuple<_Point3, double, int> nearest_point_(const _Point3& in_point);
@@ -136,7 +132,7 @@ namespace BKHao
 		std::vector<_Point3> _normals_vertex;
 		std::vector<_Point3> _normals_face;
 		std::set<int> _faces_useless;
-		std::string _file_name;
+		std::string _name;
 		std::pair<_Point3, _Point3> _bounding_box;
 	private:
 		PQP_Model _pqp_model;

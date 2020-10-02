@@ -47,12 +47,15 @@ bool _Model::_MFace::operator<(const _MFace &other) const {
     }
   }
 }
-_Model::_Model() : _file_name("") {
+_Model::_Model() : _name("") {
 
 }
-_Model::_Model(const std::string &in_file_name) : _file_name(in_file_name) {
-  read_file_(_file_name);
-  compute_normal_boundingbox_();
+_Model::_Model(const std::string &in_file_name) {
+    int folder_loc = in_file_name.rfind("\\") > in_file_name.rfind("/") ? in_file_name.rfind("\\") : in_file_name.rfind("/");
+    int dot_loc = in_file_name.rfind('.');
+    _name = in_file_name.substr(folder_loc + 1, dot_loc - folder_loc - 1);
+    read_file_(in_file_name);
+    compute_normal_boundingbox_();
 }
 _Face_Iterator _Model::face_begin() const {
   return _Face_Iterator(this, 0);
@@ -70,8 +73,10 @@ _FV_Iterator _Model::fv_begin(const int &fid) const {
 }
 void _Model::save_obj_file_(const std::string &in_file_name) const {
   std::ofstream out(in_file_name);
+  int folder_loc = in_file_name.rfind("\\") > in_file_name.rfind("/") ? in_file_name.rfind("\\") : in_file_name.rfind("/");
+  int dot_loc = in_file_name.rfind('.');
   out << "g "
-      << in_file_name.substr(in_file_name.rfind("\\") + 1, in_file_name.rfind('.') - in_file_name.rfind("\\") - 1)
+      << in_file_name.substr(folder_loc +1, dot_loc - folder_loc - 1)
       << std::endl;
   for (int i = 0; i < _vertices.size(); ++i) {
     out << "v " << std::setiosflags(std::ios::fixed) << std::setprecision(20) << _vertices[i].x() << " "
@@ -87,11 +92,9 @@ void _Model::save_obj_file_(const std::string &in_file_name) const {
 }
 void _Model::save_scalar_field_obj_file_(const std::string &in_file_name, const std::vector<double> &vals) const {
   std::ofstream out(in_file_name);
-  int nDot = (int) in_file_name.rfind('.');
-  int nSprit1 = (int) in_file_name.rfind('\\');
-  int nSprit2 = (int) in_file_name.rfind('/');
-  int nSprit = nSprit1 > nSprit2 ? nSprit1 : nSprit2;
-  out << "g " << in_file_name.substr(nSprit + 1, nDot - nSprit - 1) << std::endl;
+  int folder_loc = in_file_name.rfind("\\") > in_file_name.rfind("/") ? in_file_name.rfind("\\") : in_file_name.rfind("/");
+  int dot_loc = in_file_name.rfind('.');
+  out << "g " << in_file_name.substr(folder_loc + 1, dot_loc - folder_loc - 1) << std::endl;
   out << "# max value: " << *std::max_element(vals.begin(), vals.end()) << std::endl;
   out << "mtllib BKLineColorBar.mtl" << std::endl;
   out << "usemtl BKLineColorBar" << std::endl;
@@ -114,11 +117,9 @@ void _Model::save_scalar_field_obj_file_(const std::string &in_file_name, const 
 void _Model::save_pamametrization_obj_file_(const std::string &in_file_name,
                                             const std::vector<std::pair<double, double>> &uvs) const {
   std::ofstream out(in_file_name);
-  int nDot = (int) in_file_name.rfind('.');
-  int nSprit1 = (int) in_file_name.rfind('\\');
-  int nSprit2 = (int) in_file_name.rfind('/');
-  int nSprit = nSprit1 > nSprit2 ? nSprit1 : nSprit2;
-  out << "g " << in_file_name.substr(nSprit + 1, nDot - nSprit - 1) << std::endl;
+  int folder_loc = in_file_name.rfind("\\") > in_file_name.rfind("/") ? in_file_name.rfind("\\") : in_file_name.rfind("/");
+  int dot_loc = in_file_name.rfind('.');
+  out << "g " << in_file_name.substr(folder_loc + 1, dot_loc - folder_loc - 1) << std::endl;
   out << "mtllib chessboard.mtl" << std::endl;
   out << "usemtl chessboard" << std::endl;
   for (int i = 0; i < number_vertices_(); ++i) {
@@ -217,11 +218,11 @@ bool _Model::is_in_(const _Point3 &in_point) {
   return false;
 }
 void _Model::read_file_(const std::string &in_file_name) {
-  int nDot = (int) in_file_name.rfind('.');
-  if (nDot == -1) {
+  int dot_loc = (int) in_file_name.rfind('.');
+  if (dot_loc == -1) {
     throw "File name doesn't contain a dot! " + in_file_name;
   }
-  std::string extension = in_file_name.substr(nDot + 1);
+  std::string extension = in_file_name.substr(dot_loc + 1);
   if (extension == "obj") {
     read_obj_file_(in_file_name);
   } else if (extension == "off") {

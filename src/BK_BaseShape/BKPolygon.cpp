@@ -178,7 +178,7 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 		{
 			bool p1_on = false;
 			bool p2_on = false;
-			//�ж�p1,p2�Ƿ��ڱ߽���
+
 			if (_BOC::sign_((_points[i] - p1).dot_(_points[(i + 1) % _points.size()] - p1)
 				+ ((_points[i] - p1).length_()) * ((_points[(i + 1) % _points.size()] - p1).length_())) == _BOC::_Sign::ZerO)
 			{
@@ -190,7 +190,6 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 				p2_on = true;
 			}
 
-			//����غ�
 			if (p1_on && p2_on)
 			{
 				intersections.push_back(std::make_pair(i, p1));
@@ -228,8 +227,6 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 				continue;
 			}
 
-
-			//���غϵ��е��ڱ߽���
 			if (p1_on)
 			{
 				if (intersections.size() == 1)
@@ -265,7 +262,6 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 				continue;
 			}
 
-			//�߽�����߶���
 			if (_BOC::sign_((p1 - _points[i]).dot_(p2 - _points[i])
 				+ ((p1 - _points[i]).length_()) * ((p2 - _points[i]).length_())) == _BOC::_Sign::ZerO)
 			{
