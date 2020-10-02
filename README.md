@@ -25,3 +25,20 @@ After installed, using FindBKHao in your project please.
 
 ### MSVC on Windows
 
+```
+git clone https://github.com/BKHao/BKHao_CODE_2
+```
+Open cmake-gui
+
+Where is the source code: BKHao
+
+Where to build the binaries: BKHao/build
+
+Configure->Generate->Open Project
+
+ALL_BUILD->INSTALL
+
+
+
+
+
