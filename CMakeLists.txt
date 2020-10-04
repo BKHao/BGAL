@@ -12,8 +12,7 @@ set(VERSION 1.0)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/lib)
 #set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
-# Generator to static?
-option(BUILD_STATIC_LIB "build BGAL.a static lib" ON)
+
 option(CMAKE_INSTALL_PREFIX "BGAL install PATH" /usr/local)
 # include header from project_source_dir
 include_directories(${PROJECT_SOURCE_DIR}/include)
@@ -55,13 +54,12 @@ endif()
 # sub_directory
 add_subdirectory(include)
 add_subdirectory(src)
+#target_link_libraries(${PROJECT_NAME}  Algorithm BaseShape Draw Geodesic Integral Model Optimization Registration PQP Registration Tessellation2D Tessellation3D ${Boost_LIBRARIES})
+add_subdirectory(MAIN)
 
-target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 
-target_include_directories(${PROJECT_NAME} PUBLIC
-	$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-	$<INSTALL_INTERFACE:include>)
-install(TARGETS ${PROJECT_NAME}
+
+install(TARGETS Algorithm BaseShape Draw Geodesic Integral Model Optimization Registration PQP Reconstruction Tessellation2D Tessellation3D
 	EXPORT ${PROJECT_NAME}Targets
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib
