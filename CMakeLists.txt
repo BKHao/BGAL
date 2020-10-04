@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(BKHao_CODE_2)
+project(BGAL)
 
 
 # Default Build_type RELEASE
@@ -9,12 +9,12 @@ set(CMAKE_CXX_STANDARD 17)
 # Set Version
 set(VERSION 1.0)
 # Set lib output directory
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/../lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/../lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/lib)
 #set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 # Generator to static?
-option(BUILD_STATIC_LIB "build BKHao.a static lib" OFF)
-option(CMAKE_INSTALL_PREFIX "BKHao install PATH" /usr/local)
+option(BUILD_STATIC_LIB "build BGAL.a static lib" ON)
+option(CMAKE_INSTALL_PREFIX "BGAL install PATH" /usr/local)
 # include header from project_source_dir
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
@@ -40,8 +40,39 @@ else ()
     message("ERROR: this program requires CGAL and will not be compiled.")
 endif ()
 
+if(WIN32 AND NOT MINGW)
+  if(NOT DEFINED CMAKE_DEBUG_POSTFIX)
+    set(CMAKE_DEBUG_POSTFIX "d")
+  endif()
+  if(NOT DEFINED CMAKE_RELWITHDEBINFO_POSTFIX)
+    set(CMAKE_RELWITHDEBINFO_POSTFIX "rd")
+  endif()
+  if(NOT DEFINED CMAKE_MINSIZEREL_POSTFIX)
+    set(CMAKE_MINSIZEREL_POSTFIX "s")
+  endif()
+endif()
+
 # sub_directory
 add_subdirectory(include)
 add_subdirectory(src)
 
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+	$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+	$<INSTALL_INTERFACE:include>)
+install(TARGETS ${PROJECT_NAME}
+	EXPORT ${PROJECT_NAME}Targets
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+	RUNTIME DESTINATION bin
+	PUBLIC_HEADER DESTINATION include
+	)	
+install(DIRECTORY ./include/ DESTINATION include
+        FILES_MATCHING PATTERN "*.h")
+configure_file(${PROJECT_NAME}-config.cmake.in ${PROJECT_NAME}-config.cmake @ONLY)
+install(EXPORT ${PROJECT_NAME}Targets
+	FILE ${PROJECT_NAME}-config.cmake
+	NAMESPACE ${PROJECT_NAME}::
+	DESTINATION lib/cmake/${PROJECT_NAME}
+	)
