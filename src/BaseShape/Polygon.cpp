@@ -2,12 +2,14 @@
 //#include "../../include/BK_BaseShape/BKPolygon.h"
 #include "BGAL/BaseShape/Polygon.h"
 
-namespace BGAL {
-_Polygon::_Polygon(const std::vector<_Point2> &in_points) {
-  _points = in_points;
-  if (_points.size() < 3)
-    throw std::runtime_error("The number of points is too small!");
-  double __maxx, __minx, __maxy, __miny;
+namespace BGAL
+{
+	_Polygon::_Polygon(const std::vector<_Point2> &in_points)
+	{
+		_points = in_points;
+		if (_points.size() < 3)
+			throw std::runtime_error("The number of points is too small!");
+		double __maxx, __minx, __maxy, __miny;
 		__maxx = __minx = _points[0][0];
 		__maxy = __miny = _points[0][1];
 		for (int i = 0; i < _points.size(); ++i)
@@ -28,13 +30,13 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 		_points.clear();
 		_open_in = true;
 	}
-	void _Polygon::insert_(const _Point2& in_p)
+	void _Polygon::insert_(const _Point2 &in_p)
 	{
 		if (!_open_in)
 			throw std::runtime_error("Cann't insert now!");
 		_points.push_back(in_p);
 	}
-	void _Polygon::insert_(const double& in_x, const double& in_y)
+	void _Polygon::insert_(const double &in_x, const double &in_y)
 	{
 		if (!_open_in)
 			throw std::runtime_error("Cann't insert now!");
@@ -63,39 +65,37 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 		_bounding_box = std::make_pair(_Point2(__minx, __miny), _Point2(__maxx, __maxy));
 	}
 
-
-	const _Point2& _Polygon::operator[](const int& in_inx) const
+	const _Point2 &_Polygon::operator[](const int &in_inx) const
 	{
-		if (in_inx<0 || in_inx>_points.size() - 1)
+		if (in_inx < 0 || in_inx > _points.size() - 1)
 			throw std::runtime_error("Beyond the index!");
 		return _points[in_inx];
 	}
-	_Point2& _Polygon::operator[](const int& in_inx)
+	_Point2 &_Polygon::operator[](const int &in_inx)
 	{
-		if (in_inx<0 || in_inx>_points.size() - 1)
+		if (in_inx < 0 || in_inx > _points.size() - 1)
 			throw std::runtime_error("Beyond the index!");
 		return _points[in_inx];
 	}
-	bool _Polygon::is_in_(const _Point2& in_p) const
+	bool _Polygon::is_in_(const _Point2 &in_p) const
 	{
 		bool __res = false;
 		for (int i = 0; i < _points.size(); ++i)
 		{
-			const _Point2& __p1 = _points[i];
-			const _Point2& __p2 = _points[(i + _points.size() - 1) % _points.size()];
+			const _Point2 &__p1 = _points[i];
+			const _Point2 &__p2 = _points[(i + _points.size() - 1) % _points.size()];
 			if (_BOC::sign_((__p1 - in_p).cross_(__p2 - in_p).length_()) == _BOC::_Sign::ZerO && (_BOC::sign_((__p1 - in_p).dot_((__p2 - in_p))) == _BOC::_Sign::NegativE || _BOC::sign_((__p1 - in_p).dot_((__p2 - in_p))) == _BOC::_Sign::ZerO))
 			{
 				return false;
 			}
-			if (((_BOC::sign_(__p1.y() - in_p.y()) == _BOC::_Sign::PositivE) != (_BOC::sign_(__p2.y() - in_p.y()) == _BOC::_Sign::PositivE))
-				&& _BOC::sign_(in_p.x() - (in_p.y() - __p1.y()) * (__p1.x() - __p2.x()) / (__p1.y() - __p2.y()) - __p1.x()) == _BOC::_Sign::NegativE)
+			if (((_BOC::sign_(__p1.y() - in_p.y()) == _BOC::_Sign::PositivE) != (_BOC::sign_(__p2.y() - in_p.y()) == _BOC::_Sign::PositivE)) && _BOC::sign_(in_p.x() - (in_p.y() - __p1.y()) * (__p1.x() - __p2.x()) / (__p1.y() - __p2.y()) - __p1.x()) == _BOC::_Sign::NegativE)
 			{
 				__res = !__res;
 			}
 		}
 		return __res;
 	}
-	_Point2 _Polygon::nearest_point_(const _Point2& in_p)
+	_Point2 _Polygon::nearest_point_(const _Point2 &in_p)
 	{
 		double min_dis = (in_p - _points[0]).length_();
 		_Point2 min_p = _points[0];
@@ -113,7 +113,7 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 			}
 			double len = (_points[(i + 1) % num_()] - _points[i]).dot_(in_p - _points[i]);
 			_Point2 lp;
-			if (len <0 || len>(_points[(i + 1) % num_()] - _points[i]).sqlength_())
+			if (len < 0 || len > (_points[(i + 1) % num_()] - _points[i]).sqlength_())
 			{
 				double len1 = (in_p - _points[i]).length_();
 				double len2 = (in_p - _points[(i + 1) % num_()]).length_();
@@ -133,7 +133,7 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 		}
 		return min_p;
 	}
-	double _Polygon::distance_to_boundary_(const _Point2& in_p)
+	double _Polygon::distance_to_boundary_(const _Point2 &in_p)
 	{
 		double min_dis = (in_p - _points[0]).length_();
 		for (int i = 0; i < num_(); ++i)
@@ -148,7 +148,7 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 				continue;
 			}
 			double len = (_points[(i + 1) % num_()] - _points[i]).dot_(in_p - _points[i]);
-			if (len <0 || len>(_points[(i + 1) % num_()] - _points[i]).sqlength_())
+			if (len < 0 || len > (_points[(i + 1) % num_()] - _points[i]).sqlength_())
 			{
 				double len1 = (in_p - _points[i]).length_();
 				double len2 = (in_p - _points[(i + 1) % num_()]).length_();
@@ -166,7 +166,7 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 		}
 		return (is_in_(in_p) ? -min_dis : min_dis);
 	}
-	int _Polygon::intersection_with_linesegment_(const _Point2& p1, const _Point2& p2, std::vector<std::pair<int, _Point2>>& intersections) const
+	int _Polygon::intersection_with_linesegment_(const _Point2 &p1, const _Point2 &p2, std::vector<std::pair<int, _Point2>> &intersections) const
 	{
 		bool add_p1 = false;
 		bool add_p2 = false;
@@ -179,13 +179,11 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 			bool p1_on = false;
 			bool p2_on = false;
 
-			if (_BOC::sign_((_points[i] - p1).dot_(_points[(i + 1) % _points.size()] - p1)
-				+ ((_points[i] - p1).length_()) * ((_points[(i + 1) % _points.size()] - p1).length_())) == _BOC::_Sign::ZerO)
+			if (_BOC::sign_((_points[i] - p1).dot_(_points[(i + 1) % _points.size()] - p1) + ((_points[i] - p1).length_()) * ((_points[(i + 1) % _points.size()] - p1).length_())) == _BOC::_Sign::ZerO)
 			{
 				p1_on = true;
 			}
-			if (_BOC::sign_(((_points[i] - p2).dot_(_points[(i + 1) % _points.size()] - p2)
-				+ ((_points[i] - p2).length_()) * ((_points[(i + 1) % _points.size()] - p2).length_()))) == _BOC::_Sign::ZerO)
+			if (_BOC::sign_(((_points[i] - p2).dot_(_points[(i + 1) % _points.size()] - p2) + ((_points[i] - p2).length_()) * ((_points[(i + 1) % _points.size()] - p2).length_()))) == _BOC::_Sign::ZerO)
 			{
 				p2_on = true;
 			}
@@ -262,15 +260,13 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 				continue;
 			}
 
-			if (_BOC::sign_((p1 - _points[i]).dot_(p2 - _points[i])
-				+ ((p1 - _points[i]).length_()) * ((p2 - _points[i]).length_())) == _BOC::_Sign::ZerO)
+			if (_BOC::sign_((p1 - _points[i]).dot_(p2 - _points[i]) + ((p1 - _points[i]).length_()) * ((p2 - _points[i]).length_())) == _BOC::_Sign::ZerO)
 			{
 				intersections.push_back(std::make_pair(i, _points[i]));
 				is_on_vertex.push_back(true);
 				continue;
 			}
-			if (_BOC::sign_((p1 - _points[(i + 1) % _points.size()]).dot_(p2 - _points[(i + 1) % _points.size()])
-				+ ((p1 - _points[(i + 1) % _points.size()]).length_()) * ((p2 - _points[(i + 1) % _points.size()]).length_())) == _BOC::_Sign::ZerO)
+			if (_BOC::sign_((p1 - _points[(i + 1) % _points.size()]).dot_(p2 - _points[(i + 1) % _points.size()]) + ((p1 - _points[(i + 1) % _points.size()]).length_()) * ((p2 - _points[(i + 1) % _points.size()]).length_())) == _BOC::_Sign::ZerO)
 			{
 				continue;
 			}
@@ -305,8 +301,7 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 		}
 		if (intersections.size() == 2)
 		{
-			if ((intersections[0].second - p1).length_()
-		> (intersections[1].second - p1).length_())
+			if ((intersections[0].second - p1).length_() > (intersections[1].second - p1).length_())
 			{
 				std::pair<int, _Point2> tempp = intersections[0];
 				bool tempb = is_on_vertex[0];
@@ -357,4 +352,4 @@ _Polygon::_Polygon(const std::vector<_Point2> &in_points) {
 		}
 		return C;
 	}
-}
+} // namespace BGAL

@@ -27,7 +27,8 @@ http://www.fsf.org/licensing/licenses
 // THIS SECTION CONTAINS COMPUTATIONAL CORE DECLARATIONS (DATATYPES)
 //
 /////////////////////////////////////////////////////////////////////////
-namespace alglib_impl {
+namespace alglib_impl
+{
 #if defined(AE_COMPILE_FFT) || !defined(AE_PARTIAL_BUILD)
 #endif
 #if defined(AE_COMPILE_FHT) || !defined(AE_PARTIAL_BUILD)
@@ -37,14 +38,15 @@ namespace alglib_impl {
 #if defined(AE_COMPILE_CORR) || !defined(AE_PARTIAL_BUILD)
 #endif
 
-}
+} // namespace alglib_impl
 
 /////////////////////////////////////////////////////////////////////////
 //
 // THIS SECTION CONTAINS C++ INTERFACE
 //
 /////////////////////////////////////////////////////////////////////////
-namespace alglib {
+namespace alglib
+{
 
 #if defined(AE_COMPILE_FFT) || !defined(AE_PARTIAL_BUILD)
 
@@ -63,7 +65,7 @@ namespace alglib {
 #endif
 
 #if defined(AE_COMPILE_FFT) || !defined(AE_PARTIAL_BUILD)
-/*************************************************************************
+    /*************************************************************************
 1-dimensional complex FFT.
 
 Array size N may be arbitrary number (composite or prime).  Composite  N's
@@ -92,10 +94,10 @@ OUTPUT PARAMETERS
   -- ALGLIB --
      Copyright 29.05.2009 by Bochkanov Sergey
 *************************************************************************/
-void fftc1d(complex_1d_array &a, const ae_int_t n, const xparams _xparams = alglib::xdefault);
-void fftc1d(complex_1d_array &a, const xparams _xparams = alglib::xdefault);
+    void fftc1d(complex_1d_array &a, const ae_int_t n, const xparams _xparams = alglib::xdefault);
+    void fftc1d(complex_1d_array &a, const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional complex inverse FFT.
 
 Array size N may be arbitrary number (composite or prime).  Algorithm  has
@@ -115,10 +117,10 @@ OUTPUT PARAMETERS
   -- ALGLIB --
      Copyright 29.05.2009 by Bochkanov Sergey
 *************************************************************************/
-void fftc1dinv(complex_1d_array &a, const ae_int_t n, const xparams _xparams = alglib::xdefault);
-void fftc1dinv(complex_1d_array &a, const xparams _xparams = alglib::xdefault);
+    void fftc1dinv(complex_1d_array &a, const ae_int_t n, const xparams _xparams = alglib::xdefault);
+    void fftc1dinv(complex_1d_array &a, const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional real FFT.
 
 Algorithm has O(N*logN) complexity for any N (composite or prime).
@@ -141,10 +143,10 @@ other FFT-related subroutines.
   -- ALGLIB --
      Copyright 01.06.2009 by Bochkanov Sergey
 *************************************************************************/
-void fftr1d(const real_1d_array &a, const ae_int_t n, complex_1d_array &f, const xparams _xparams = alglib::xdefault);
-void fftr1d(const real_1d_array &a, complex_1d_array &f, const xparams _xparams = alglib::xdefault);
+    void fftr1d(const real_1d_array &a, const ae_int_t n, complex_1d_array &f, const xparams _xparams = alglib::xdefault);
+    void fftr1d(const real_1d_array &a, complex_1d_array &f, const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional real inverse FFT.
 
 Algorithm has O(N*logN) complexity for any N (composite or prime).
@@ -179,15 +181,15 @@ not used) because array size is used to automatically determine FFT length
   -- ALGLIB --
      Copyright 01.06.2009 by Bochkanov Sergey
 *************************************************************************/
-void fftr1dinv(const complex_1d_array &f,
-               const ae_int_t n,
-               real_1d_array &a,
-               const xparams _xparams = alglib::xdefault);
-void fftr1dinv(const complex_1d_array &f, real_1d_array &a, const xparams _xparams = alglib::xdefault);
+    void fftr1dinv(const complex_1d_array &f,
+                   const ae_int_t n,
+                   real_1d_array &a,
+                   const xparams _xparams = alglib::xdefault);
+    void fftr1dinv(const complex_1d_array &f, real_1d_array &a, const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_FHT) || !defined(AE_PARTIAL_BUILD)
-/*************************************************************************
+    /*************************************************************************
 1-dimensional Fast Hartley Transform.
 
 Algorithm has O(N*logN) complexity for any N (composite or prime).
@@ -204,9 +206,9 @@ OUTPUT PARAMETERS
   -- ALGLIB --
      Copyright 04.06.2009 by Bochkanov Sergey
 *************************************************************************/
-void fhtr1d(real_1d_array &a, const ae_int_t n, const xparams _xparams = alglib::xdefault);
+    void fhtr1d(real_1d_array &a, const ae_int_t n, const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional inverse FHT.
 
 Algorithm has O(N*logN) complexity for any N (composite or prime).
@@ -222,11 +224,11 @@ OUTPUT PARAMETERS
   -- ALGLIB --
      Copyright 29.05.2009 by Bochkanov Sergey
 *************************************************************************/
-void fhtr1dinv(real_1d_array &a, const ae_int_t n, const xparams _xparams = alglib::xdefault);
+    void fhtr1dinv(real_1d_array &a, const ae_int_t n, const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_CONV) || !defined(AE_PARTIAL_BUILD)
-/*************************************************************************
+    /*************************************************************************
 1-dimensional complex convolution.
 
 For given A/B returns conv(A,B) (non-circular). Subroutine can automatically
@@ -255,14 +257,14 @@ subroutine - just shift its result correspondingly.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void convc1d(const complex_1d_array &a,
-             const ae_int_t m,
-             const complex_1d_array &b,
-             const ae_int_t n,
-             complex_1d_array &r,
-             const xparams _xparams = alglib::xdefault);
+    void convc1d(const complex_1d_array &a,
+                 const ae_int_t m,
+                 const complex_1d_array &b,
+                 const ae_int_t n,
+                 complex_1d_array &r,
+                 const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional complex non-circular deconvolution (inverse of ConvC1D()).
 
 Algorithm has M*log(M)) complexity for any M (composite or prime).
@@ -288,14 +290,14 @@ subroutine - just shift its result correspondingly.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void convc1dinv(const complex_1d_array &a,
-                const ae_int_t m,
-                const complex_1d_array &b,
-                const ae_int_t n,
-                complex_1d_array &r,
-                const xparams _xparams = alglib::xdefault);
+    void convc1dinv(const complex_1d_array &a,
+                    const ae_int_t m,
+                    const complex_1d_array &b,
+                    const ae_int_t n,
+                    complex_1d_array &r,
+                    const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional circular complex convolution.
 
 For given S/R returns conv(S,R) (circular). Algorithm has linearithmic
@@ -323,14 +325,14 @@ correspondingly.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void convc1dcircular(const complex_1d_array &s,
-                     const ae_int_t m,
-                     const complex_1d_array &r,
-                     const ae_int_t n,
-                     complex_1d_array &c,
-                     const xparams _xparams = alglib::xdefault);
+    void convc1dcircular(const complex_1d_array &s,
+                         const ae_int_t m,
+                         const complex_1d_array &r,
+                         const ae_int_t n,
+                         complex_1d_array &c,
+                         const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional circular complex deconvolution (inverse of ConvC1DCircular()).
 
 Algorithm has M*log(M)) complexity for any M (composite or prime).
@@ -356,14 +358,14 @@ correspondingly.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void convc1dcircularinv(const complex_1d_array &a,
-                        const ae_int_t m,
-                        const complex_1d_array &b,
-                        const ae_int_t n,
-                        complex_1d_array &r,
-                        const xparams _xparams = alglib::xdefault);
+    void convc1dcircularinv(const complex_1d_array &a,
+                            const ae_int_t m,
+                            const complex_1d_array &b,
+                            const ae_int_t n,
+                            complex_1d_array &r,
+                            const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional real convolution.
 
 Analogous to ConvC1D(), see ConvC1D() comments for more details.
@@ -385,14 +387,14 @@ subroutine - just shift its result correspondingly.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void convr1d(const real_1d_array &a,
-             const ae_int_t m,
-             const real_1d_array &b,
-             const ae_int_t n,
-             real_1d_array &r,
-             const xparams _xparams = alglib::xdefault);
+    void convr1d(const real_1d_array &a,
+                 const ae_int_t m,
+                 const real_1d_array &b,
+                 const ae_int_t n,
+                 real_1d_array &r,
+                 const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional real deconvolution (inverse of ConvC1D()).
 
 Algorithm has M*log(M)) complexity for any M (composite or prime).
@@ -418,14 +420,14 @@ subroutine - just shift its result correspondingly.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void convr1dinv(const real_1d_array &a,
-                const ae_int_t m,
-                const real_1d_array &b,
-                const ae_int_t n,
-                real_1d_array &r,
-                const xparams _xparams = alglib::xdefault);
+    void convr1dinv(const real_1d_array &a,
+                    const ae_int_t m,
+                    const real_1d_array &b,
+                    const ae_int_t n,
+                    real_1d_array &r,
+                    const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional circular real convolution.
 
 Analogous to ConvC1DCircular(), see ConvC1DCircular() comments for more details.
@@ -447,14 +449,14 @@ correspondingly.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void convr1dcircular(const real_1d_array &s,
-                     const ae_int_t m,
-                     const real_1d_array &r,
-                     const ae_int_t n,
-                     real_1d_array &c,
-                     const xparams _xparams = alglib::xdefault);
+    void convr1dcircular(const real_1d_array &s,
+                         const ae_int_t m,
+                         const real_1d_array &r,
+                         const ae_int_t n,
+                         real_1d_array &c,
+                         const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional complex deconvolution (inverse of ConvC1D()).
 
 Algorithm has M*log(M)) complexity for any M (composite or prime).
@@ -480,16 +482,16 @@ correspondingly.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void convr1dcircularinv(const real_1d_array &a,
-                        const ae_int_t m,
-                        const real_1d_array &b,
-                        const ae_int_t n,
-                        real_1d_array &r,
-                        const xparams _xparams = alglib::xdefault);
+    void convr1dcircularinv(const real_1d_array &a,
+                            const ae_int_t m,
+                            const real_1d_array &b,
+                            const ae_int_t n,
+                            real_1d_array &r,
+                            const xparams _xparams = alglib::xdefault);
 #endif
 
 #if defined(AE_COMPILE_CORR) || !defined(AE_PARTIAL_BUILD)
-/*************************************************************************
+    /*************************************************************************
 1-dimensional complex cross-correlation.
 
 For given Pattern/Signal returns corr(Pattern,Signal) (non-circular).
@@ -525,14 +527,14 @@ on [-K..M-1],  you can still use this subroutine, just shift result by K.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void corrc1d(const complex_1d_array &signal,
-             const ae_int_t n,
-             const complex_1d_array &pattern,
-             const ae_int_t m,
-             complex_1d_array &r,
-             const xparams _xparams = alglib::xdefault);
+    void corrc1d(const complex_1d_array &signal,
+                 const ae_int_t n,
+                 const complex_1d_array &pattern,
+                 const ae_int_t m,
+                 complex_1d_array &r,
+                 const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional circular complex cross-correlation.
 
 For given Pattern/Signal returns corr(Pattern,Signal) (circular).
@@ -559,14 +561,14 @@ OUTPUT PARAMETERS
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void corrc1dcircular(const complex_1d_array &signal,
-                     const ae_int_t m,
-                     const complex_1d_array &pattern,
-                     const ae_int_t n,
-                     complex_1d_array &c,
-                     const xparams _xparams = alglib::xdefault);
+    void corrc1dcircular(const complex_1d_array &signal,
+                         const ae_int_t m,
+                         const complex_1d_array &pattern,
+                         const ae_int_t n,
+                         complex_1d_array &c,
+                         const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional real cross-correlation.
 
 For given Pattern/Signal returns corr(Pattern,Signal) (non-circular).
@@ -602,14 +604,14 @@ on [-K..M-1],  you can still use this subroutine, just shift result by K.
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void corrr1d(const real_1d_array &signal,
-             const ae_int_t n,
-             const real_1d_array &pattern,
-             const ae_int_t m,
-             real_1d_array &r,
-             const xparams _xparams = alglib::xdefault);
+    void corrr1d(const real_1d_array &signal,
+                 const ae_int_t n,
+                 const real_1d_array &pattern,
+                 const ae_int_t m,
+                 real_1d_array &r,
+                 const xparams _xparams = alglib::xdefault);
 
-/*************************************************************************
+    /*************************************************************************
 1-dimensional circular real cross-correlation.
 
 For given Pattern/Signal returns corr(Pattern,Signal) (circular).
@@ -636,142 +638,142 @@ OUTPUT PARAMETERS
   -- ALGLIB --
      Copyright 21.07.2009 by Bochkanov Sergey
 *************************************************************************/
-void corrr1dcircular(const real_1d_array &signal,
-                     const ae_int_t m,
-                     const real_1d_array &pattern,
-                     const ae_int_t n,
-                     real_1d_array &c,
-                     const xparams _xparams = alglib::xdefault);
+    void corrr1dcircular(const real_1d_array &signal,
+                         const ae_int_t m,
+                         const real_1d_array &pattern,
+                         const ae_int_t n,
+                         real_1d_array &c,
+                         const xparams _xparams = alglib::xdefault);
 #endif
-}
+} // namespace alglib
 
 /////////////////////////////////////////////////////////////////////////
 //
 // THIS SECTION CONTAINS COMPUTATIONAL CORE DECLARATIONS (FUNCTIONS)
 //
 /////////////////////////////////////////////////////////////////////////
-namespace alglib_impl {
+namespace alglib_impl
+{
 #if defined(AE_COMPILE_FFT) || !defined(AE_PARTIAL_BUILD)
-void fftc1d(/* Complex */ ae_vector *a, ae_int_t n, ae_state *_state);
-void fftc1dinv(/* Complex */ ae_vector *a, ae_int_t n, ae_state *_state);
-void fftr1d(/* Real    */ ae_vector *a,
-                          ae_int_t n,
-    /* Complex */ ae_vector *f,
-                          ae_state *_state);
-void fftr1dinv(/* Complex */ ae_vector *f,
-                             ae_int_t n,
-    /* Real    */ ae_vector *a,
-                             ae_state *_state);
-void fftr1dinternaleven(/* Real    */ ae_vector *a,
-                                      ae_int_t n,
-    /* Real    */ ae_vector *buf,
-                                      fasttransformplan *plan,
-                                      ae_state *_state);
-void fftr1dinvinternaleven(/* Real    */ ae_vector *a,
-                                         ae_int_t n,
-    /* Real    */ ae_vector *buf,
-                                         fasttransformplan *plan,
-                                         ae_state *_state);
+    void fftc1d(/* Complex */ ae_vector *a, ae_int_t n, ae_state *_state);
+    void fftc1dinv(/* Complex */ ae_vector *a, ae_int_t n, ae_state *_state);
+    void fftr1d(/* Real    */ ae_vector *a,
+                ae_int_t n,
+                /* Complex */ ae_vector *f,
+                ae_state *_state);
+    void fftr1dinv(/* Complex */ ae_vector *f,
+                   ae_int_t n,
+                   /* Real    */ ae_vector *a,
+                   ae_state *_state);
+    void fftr1dinternaleven(/* Real    */ ae_vector *a,
+                            ae_int_t n,
+                            /* Real    */ ae_vector *buf,
+                            fasttransformplan *plan,
+                            ae_state *_state);
+    void fftr1dinvinternaleven(/* Real    */ ae_vector *a,
+                               ae_int_t n,
+                               /* Real    */ ae_vector *buf,
+                               fasttransformplan *plan,
+                               ae_state *_state);
 #endif
 #if defined(AE_COMPILE_FHT) || !defined(AE_PARTIAL_BUILD)
-void fhtr1d(/* Real    */ ae_vector *a, ae_int_t n, ae_state *_state);
-void fhtr1dinv(/* Real    */ ae_vector *a, ae_int_t n, ae_state *_state);
+    void fhtr1d(/* Real    */ ae_vector *a, ae_int_t n, ae_state *_state);
+    void fhtr1dinv(/* Real    */ ae_vector *a, ae_int_t n, ae_state *_state);
 #endif
 #if defined(AE_COMPILE_CONV) || !defined(AE_PARTIAL_BUILD)
-void convc1d(/* Complex */ ae_vector *a,
-                           ae_int_t m,
-    /* Complex */ ae_vector *b,
-                           ae_int_t n,
-    /* Complex */ ae_vector *r,
-                           ae_state *_state);
-void convc1dinv(/* Complex */ ae_vector *a,
-                              ae_int_t m,
-    /* Complex */ ae_vector *b,
-                              ae_int_t n,
-    /* Complex */ ae_vector *r,
-                              ae_state *_state);
-void convc1dcircular(/* Complex */ ae_vector *s,
-                                   ae_int_t m,
-    /* Complex */ ae_vector *r,
-                                   ae_int_t n,
-    /* Complex */ ae_vector *c,
-                                   ae_state *_state);
-void convc1dcircularinv(/* Complex */ ae_vector *a,
-                                      ae_int_t m,
-    /* Complex */ ae_vector *b,
-                                      ae_int_t n,
-    /* Complex */ ae_vector *r,
-                                      ae_state *_state);
-void convr1d(/* Real    */ ae_vector *a,
-                           ae_int_t m,
-    /* Real    */ ae_vector *b,
-                           ae_int_t n,
-    /* Real    */ ae_vector *r,
-                           ae_state *_state);
-void convr1dinv(/* Real    */ ae_vector *a,
-                              ae_int_t m,
-    /* Real    */ ae_vector *b,
-                              ae_int_t n,
-    /* Real    */ ae_vector *r,
-                              ae_state *_state);
-void convr1dcircular(/* Real    */ ae_vector *s,
-                                   ae_int_t m,
-    /* Real    */ ae_vector *r,
-                                   ae_int_t n,
-    /* Real    */ ae_vector *c,
-                                   ae_state *_state);
-void convr1dcircularinv(/* Real    */ ae_vector *a,
-                                      ae_int_t m,
-    /* Real    */ ae_vector *b,
-                                      ae_int_t n,
-    /* Real    */ ae_vector *r,
-                                      ae_state *_state);
-void convc1dx(/* Complex */ ae_vector *a,
+    void convc1d(/* Complex */ ae_vector *a,
+                 ae_int_t m,
+                 /* Complex */ ae_vector *b,
+                 ae_int_t n,
+                 /* Complex */ ae_vector *r,
+                 ae_state *_state);
+    void convc1dinv(/* Complex */ ae_vector *a,
+                    ae_int_t m,
+                    /* Complex */ ae_vector *b,
+                    ae_int_t n,
+                    /* Complex */ ae_vector *r,
+                    ae_state *_state);
+    void convc1dcircular(/* Complex */ ae_vector *s,
+                         ae_int_t m,
+                         /* Complex */ ae_vector *r,
+                         ae_int_t n,
+                         /* Complex */ ae_vector *c,
+                         ae_state *_state);
+    void convc1dcircularinv(/* Complex */ ae_vector *a,
                             ae_int_t m,
-    /* Complex */ ae_vector *b,
+                            /* Complex */ ae_vector *b,
                             ae_int_t n,
-                            ae_bool circular,
-                            ae_int_t alg,
-                            ae_int_t q,
-    /* Complex */ ae_vector *r,
+                            /* Complex */ ae_vector *r,
                             ae_state *_state);
-void convr1dx(/* Real    */ ae_vector *a,
+    void convr1d(/* Real    */ ae_vector *a,
+                 ae_int_t m,
+                 /* Real    */ ae_vector *b,
+                 ae_int_t n,
+                 /* Real    */ ae_vector *r,
+                 ae_state *_state);
+    void convr1dinv(/* Real    */ ae_vector *a,
+                    ae_int_t m,
+                    /* Real    */ ae_vector *b,
+                    ae_int_t n,
+                    /* Real    */ ae_vector *r,
+                    ae_state *_state);
+    void convr1dcircular(/* Real    */ ae_vector *s,
+                         ae_int_t m,
+                         /* Real    */ ae_vector *r,
+                         ae_int_t n,
+                         /* Real    */ ae_vector *c,
+                         ae_state *_state);
+    void convr1dcircularinv(/* Real    */ ae_vector *a,
                             ae_int_t m,
-    /* Real    */ ae_vector *b,
+                            /* Real    */ ae_vector *b,
                             ae_int_t n,
-                            ae_bool circular,
-                            ae_int_t alg,
-                            ae_int_t q,
-    /* Real    */ ae_vector *r,
+                            /* Real    */ ae_vector *r,
                             ae_state *_state);
+    void convc1dx(/* Complex */ ae_vector *a,
+                  ae_int_t m,
+                  /* Complex */ ae_vector *b,
+                  ae_int_t n,
+                  ae_bool circular,
+                  ae_int_t alg,
+                  ae_int_t q,
+                  /* Complex */ ae_vector *r,
+                  ae_state *_state);
+    void convr1dx(/* Real    */ ae_vector *a,
+                  ae_int_t m,
+                  /* Real    */ ae_vector *b,
+                  ae_int_t n,
+                  ae_bool circular,
+                  ae_int_t alg,
+                  ae_int_t q,
+                  /* Real    */ ae_vector *r,
+                  ae_state *_state);
 #endif
 #if defined(AE_COMPILE_CORR) || !defined(AE_PARTIAL_BUILD)
-void corrc1d(/* Complex */ ae_vector *signal,
-                           ae_int_t n,
-    /* Complex */ ae_vector *pattern,
-                           ae_int_t m,
-    /* Complex */ ae_vector *r,
-                           ae_state *_state);
-void corrc1dcircular(/* Complex */ ae_vector *signal,
-                                   ae_int_t m,
-    /* Complex */ ae_vector *pattern,
-                                   ae_int_t n,
-    /* Complex */ ae_vector *c,
-                                   ae_state *_state);
-void corrr1d(/* Real    */ ae_vector *signal,
-                           ae_int_t n,
-    /* Real    */ ae_vector *pattern,
-                           ae_int_t m,
-    /* Real    */ ae_vector *r,
-                           ae_state *_state);
-void corrr1dcircular(/* Real    */ ae_vector *signal,
-                                   ae_int_t m,
-    /* Real    */ ae_vector *pattern,
-                                   ae_int_t n,
-    /* Real    */ ae_vector *c,
-                                   ae_state *_state);
+    void corrc1d(/* Complex */ ae_vector *signal,
+                 ae_int_t n,
+                 /* Complex */ ae_vector *pattern,
+                 ae_int_t m,
+                 /* Complex */ ae_vector *r,
+                 ae_state *_state);
+    void corrc1dcircular(/* Complex */ ae_vector *signal,
+                         ae_int_t m,
+                         /* Complex */ ae_vector *pattern,
+                         ae_int_t n,
+                         /* Complex */ ae_vector *c,
+                         ae_state *_state);
+    void corrr1d(/* Real    */ ae_vector *signal,
+                 ae_int_t n,
+                 /* Real    */ ae_vector *pattern,
+                 ae_int_t m,
+                 /* Real    */ ae_vector *r,
+                 ae_state *_state);
+    void corrr1dcircular(/* Real    */ ae_vector *signal,
+                         ae_int_t m,
+                         /* Real    */ ae_vector *pattern,
+                         ae_int_t n,
+                         /* Real    */ ae_vector *c,
+                         ae_state *_state);
 #endif
 
-}
+} // namespace alglib_impl
 #endif
-

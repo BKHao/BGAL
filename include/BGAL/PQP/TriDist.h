@@ -45,15 +45,15 @@
 
 // TriDist()
 //
-// computes the closest points on two triangles, and returns the 
+// computes the closest points on two triangles, and returns the
 // distance between them.
-// 
+//
 // s and t are the triangles, stored tri[point][dimension].
 //
-// If the triangles are disjoint, p and q give the closest points of 
-// s and t respectively. However, if the triangles overlap, p and q 
-// are basically a random pair of points from the triangles, not 
-// coincident points on the intersection of the triangles, as might 
+// If the triangles are disjoint, p and q give the closest points of
+// s and t respectively. However, if the triangles overlap, p and q
+// are basically a random pair of points from the triangles, not
+// coincident points on the intersection of the triangles, as might
 // be expected.
 
 PQP_REAL

@@ -46,7 +46,8 @@
 #ifndef USING_MESH_MODEL
 #define USING_POLYGONSOUP
 #endif
-struct Tri {
+struct Tri
+{
 #ifdef USING_POLYGONSOUP
   PQP_REAL p1[3];
   PQP_REAL p2[3];

@@ -37,7 +37,7 @@ namespace BGAL
 			int _pos_flag;
 			int _triangle_id;
 			double _distance;
-			_Point3 _nearest_point;			
+			_Point3 _nearest_point;
 			_PQP_Query_Resutl();
 			_PQP_Query_Resutl(const int& in_pos_flag, const int& in_triangle_id, const double& in_distance, const _Point3& in_nearset_point);
 		};

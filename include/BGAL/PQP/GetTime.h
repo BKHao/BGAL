@@ -31,13 +31,14 @@
 #ifndef PQP_GETTIME_H
 #define PQP_GETTIME_H
 
-#define WIN32    true
+#define WIN32 true
 
 #ifdef WIN32
 
 #include <time.h>
-inline double GetTime() {
-  return (double) (clock());
+inline double GetTime()
+{
+  return (double)(clock());
 }
 
 #else

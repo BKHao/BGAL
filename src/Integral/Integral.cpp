@@ -1,5 +1,6 @@
 #include "BGAL/Integral/Integral.h"
 
-namespace BGAL {
+namespace BGAL
+{
 
 }

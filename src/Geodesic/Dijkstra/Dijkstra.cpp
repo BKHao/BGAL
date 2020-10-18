@@ -1,24 +1,26 @@
 #include "BGAL/Geodesic/Dijkstra/Dijkstra.h"
 #include <queue>
-namespace BGAL {
-namespace Geodesic {
-void _Dijkstra::initialize_() {
-  _Abstract_Method::initialize_();
-}
-void _Dijkstra::implement_()
+namespace BGAL
+{
+	namespace Geodesic
+	{
+		void _Dijkstra::initialize_()
 		{
-			struct _Event :std::tuple<double, int, int, int, int>
+			_Abstract_Method::initialize_();
+		}
+		void _Dijkstra::implement_()
+		{
+			struct _Event : std::tuple<double, int, int, int, int>
 			{
 				_Event(double dis, int self, int parent, int root, int level)
 					: std::tuple<double, int, int, int, int>(dis, self, parent, root, level)
 				{
-
 				}
-				bool operator<(const _Event& right) const
+				bool operator<(const _Event &right) const
 				{
 					return std::get<0>(*this) < std::get<0>(right);
 				}
-				bool operator>(const _Event& right) const
+				bool operator>(const _Event &right) const
 				{
 					return std::get<0>(*this) > std::get<0>(right);
 				}
@@ -78,11 +80,11 @@ void _Dijkstra::implement_()
 				_distances[i] = std::get<3>(_result[i]);
 			}
 		}
-		_Dijkstra::_Dijkstra(const _ManifoldModel& in_model, const std::map<int, double>& in_sources)
-			:_Abstract_Method(in_model, in_sources)
+		_Dijkstra::_Dijkstra(const _ManifoldModel &in_model, const std::map<int, double> &in_sources)
+			: _Abstract_Method(in_model, in_sources)
 		{
 			_method = 1;
 		}
 
-	}
-}
+	} // namespace Geodesic
+} // namespace BGAL
