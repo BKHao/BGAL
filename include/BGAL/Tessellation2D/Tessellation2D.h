@@ -19,7 +19,7 @@ namespace BGAL
     const std::vector<std::vector<std::pair<int, int>>> &get_cells_() const;
     const _Point2 &vertex_(const int &id) const;
     int num_hidden_() const;
-
+    int num_vertex_() const;
   private:
     void calculate_();
     _BOC::_Sign symbolic_point_site_(const int &site1,

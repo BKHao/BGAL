@@ -92,7 +92,11 @@ namespace BGAL
     }
     return count;
   }
-
+  
+  int _Tessellation2D::num_vertex_() const
+  {
+      return _tessellation_vertices.size();
+  }
   _BOC::_Sign _Tessellation2D::symbolic_point_site_(const int &site1,
                                                     const int &site2,
                                                     const std::pair<int, int> &symp,
