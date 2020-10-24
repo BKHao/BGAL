@@ -126,6 +126,28 @@ namespace BGAL {
 			}
 			return _degree_of_vertices[vid];
 		}
+		inline bool is_boundary_vertex_(const int& vid) const
+		{
+			if (vid < 0 || vid >= number_vertices_())
+			{
+				throw std::runtime_error("Beyond the index!");
+			}
+			if (_edges[_edges[_neight_edge_of_vertices[vid]]._id_reverse_edge]._id_face == -1)
+				return true;
+			else
+				return false;
+		}
+		inline bool is_boundary_edge_(const int& eid) const
+		{
+			if (eid < 0 || eid >= number_edges_())
+			{
+				throw std::runtime_error("Beyond the index!");
+			}
+			if (_edges[eid]._id_face == -1)
+				return true;
+			else
+				return false;
+		}
 	protected:
 		void creat_edges_from_vertices_faces_();
 		void arrange_neighs_of_vertex_face_();

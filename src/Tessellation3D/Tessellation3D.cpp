@@ -329,10 +329,10 @@ namespace BGAL
           _BOC::_Sign pre_state = side_(current_site, *p, old_cliped[0]);
           _BOC::_Sign cur_state = side_(current_site, *p, old_cliped[1]);
           //std::cout << "old cliped[0]:  ";
-          for (auto tit = old_cliped[0]._sym.begin(); tit != old_cliped[0]._sym.end(); ++tit)
-          {
-            //std::cout << *tit << " ";
-          }
+          //for (auto tit = old_cliped[0]._sym.begin(); tit != old_cliped[0]._sym.end(); ++tit)
+          //{
+          //  //std::cout << *tit << " ";
+          //}
           //std::cout << std::endl << "old cliped[1]:  ";
           //for (auto tit = old_cliped[1]._sym.begin(); tit != old_cliped[1]._sym.end(); ++tit)
           //{
