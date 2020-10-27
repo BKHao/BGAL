@@ -132,7 +132,7 @@ namespace BGAL {
 			{
 				throw std::runtime_error("Beyond the index!");
 			}
-			if (_edges[_edges[_neight_edge_of_vertices[vid]]._id_reverse_edge]._id_face == -1)
+			if (_neight_edge_of_vertices[vid] != -1 && _edges[_edges[_neight_edge_of_vertices[vid]]._id_reverse_edge]._id_face == -1)
 				return true;
 			else
 				return false;
