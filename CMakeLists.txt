@@ -54,12 +54,12 @@ endif()
 # sub_directory
 add_subdirectory(include)
 add_subdirectory(src)
-#target_link_libraries(${PROJECT_NAME}  Algorithm BaseShape Draw Geodesic Integral Model Optimization Registration PQP Registration Tessellation2D Tessellation3D ${Boost_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME}  Algorithm BaseShape Draw Geodesic Integral Model Optimization PointCloudProcessing PQP Reconstruction Tessellation2D Tessellation3D ${Boost_LIBRARIES})
 add_subdirectory(MAIN)
 
 
 
-install(TARGETS Algorithm BaseShape Draw Geodesic Integral Model Optimization Registration PQP Reconstruction Tessellation2D Tessellation3D
+install(TARGETS Algorithm BaseShape Draw Geodesic Integral Model Optimization PointCloudProcessing PQP Reconstruction Tessellation2D Tessellation3D
 	EXPORT ${PROJECT_NAME}Targets
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib
