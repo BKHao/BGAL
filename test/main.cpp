@@ -21,6 +21,38 @@
 #include <BGAL/Reconstruction/MarchingTetrahedra/MarchingTetrahedra.h>
 #include <BGAL/Geodesic/Dijkstra/Dijkstra.h>
 
+//Test BOC sign
+void BOCSignTest()
+{
+	BGAL::_BOC::_Sign res = BGAL::_BOC::sign_(1e-6);
+	if (res == BGAL::_BOC::_Sign::ZerO)
+	{
+		std::cout << "0" << std::endl;
+	}
+	else if (res == BGAL::_BOC::_Sign::PositivE)
+	{
+		std::cout << "1" << std::endl;
+	}
+	else if (res == BGAL::_BOC::_Sign::NegativE)
+	{
+		std::cout << "-1" << std::endl;
+	}
+	BGAL::_BOC::set_precision_(1e-5);
+	res = BGAL::_BOC::sign_(1e-6);
+	if (res == BGAL::_BOC::_Sign::ZerO)
+	{
+		std::cout << "0" << std::endl;
+	}
+	else if (res == BGAL::_BOC::_Sign::PositivE)
+	{
+		std::cout << "1" << std::endl;
+	}
+	else if (res == BGAL::_BOC::_Sign::NegativE)
+	{
+		std::cout << "-1" << std::endl;
+	}
+}
+
 //Test LinearSystem
 void LinearSystemTest()
 {
@@ -548,6 +580,9 @@ void GeodesicDijkstraTest()
 /*************************************
 
 Expect:
+====================BOCSignTest
+1
+0
 ====================LinearSystemTest
 2
 2
@@ -692,6 +727,8 @@ int alltest()
 {
 	//std::cout << "====================GraphCutsTest" << std::endl;
 	//GraphCutsTest();
+	std::cout << "====================BOCSignTest" << std::endl;
+	BOCSignTest();	
 	std::cout << "====================LinearSystemTest" << std::endl;
 	LinearSystemTest();
 	std::cout << "====================ALGLIBTest" << std::endl;
@@ -729,6 +766,5 @@ int alltest()
 int main()
 {
 	alltest();
-	//ICPTest();
 	return 0;
 }
