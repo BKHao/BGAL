@@ -1,4 +1,4 @@
-# BGAL - Basic Graphics Algorithms Library
+# BGAL - Basic Graphics Algorithms Library (Thanks STAR!!!!!!)
 
 A C++ library containing some simple graphics algorithms.
 
