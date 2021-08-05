@@ -2,7 +2,7 @@
 
 A C++ library containing some simple graphics algorithms.
 
-## Building BKHao
+## Building BKHao (zhaonet_2021@163.com)
 
 ### Dependence
 
