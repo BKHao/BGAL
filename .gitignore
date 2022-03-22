@@ -1,3 +1,5 @@
 build/
 install/
 lib/
+build*/
+install*/

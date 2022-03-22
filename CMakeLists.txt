@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-set(CMAKE_TOOLCHAIN_FILE D:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake)
+set(CMAKE_TOOLCHAIN_FILE C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake)
 project(BGAL)
 
 
@@ -60,7 +60,7 @@ add_subdirectory(MAIN)
 
 
 
-install(TARGETS Algorithm BaseShape Draw Geodesic Integral Model Optimization PointCloudProcessing PQP Reconstruction Tessellation2D Tessellation3D
+install(TARGETS Algorithm BaseShape Draw Geodesic Integral Model Optimization PointCloudProcessing PQP Reconstruction Tessellation2D Tessellation3D CVTLike
 	EXPORT ${PROJECT_NAME}Targets
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib

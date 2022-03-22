@@ -983,6 +983,15 @@ namespace BGAL
       }
     }
   }
+  _Restricted_Tessellation3D::_Restricted_Tessellation3D(const _ManifoldModel& in_model)
+      :_model(in_model)
+  {
+      _num_sites = 0;
+      _sites.clear();
+      _weights.clear();
+      _vertices.clear();
+      _cells.clear();
+  }
   _Restricted_Tessellation3D::_Restricted_Tessellation3D(const _ManifoldModel &in_model,
                                                          const std::vector<_Point3> &in_sites,
                                                          const std::vector<double> &in_weights)

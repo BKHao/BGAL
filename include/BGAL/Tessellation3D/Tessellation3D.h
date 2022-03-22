@@ -133,6 +133,7 @@ namespace BGAL
     void calculate_();
 
   public:
+    _Restricted_Tessellation3D(const _ManifoldModel& in_model);
     _Restricted_Tessellation3D(const _ManifoldModel &in_model,
                                const std::vector<_Point3> &in_sites,
                                const std::vector<double> &in_weights);

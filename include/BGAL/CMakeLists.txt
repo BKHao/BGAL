@@ -61,4 +61,6 @@ set(BGAL_HEADERS
         # Tessellation3D
         Tessellation3D/Side3D.h
         Tessellation3D/Tessellation3D.h
+        # CVTLike
+        CVTLike/CPD.h
         )
