@@ -1017,4 +1017,11 @@ namespace BGAL
     _weights.resize(_num_sites, 0);
     calculate_();
   }
+  void _Restricted_Tessellation3D::calculate_(const std::vector<_Point3>& in_sites, const std::vector<double>& in_weights)
+  {
+      _sites = in_sites;
+      _num_sites = _sites.size();
+      _weights = in_weights;
+      calculate_();
+  }
 } // namespace BGAL

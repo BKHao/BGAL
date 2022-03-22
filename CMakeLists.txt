@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
+set(CMAKE_TOOLCHAIN_FILE D:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake)
 project(BGAL)
 
 

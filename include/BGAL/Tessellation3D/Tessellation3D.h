@@ -138,7 +138,17 @@ namespace BGAL
                                const std::vector<double> &in_weights);
     _Restricted_Tessellation3D(const _ManifoldModel &in_model, const std::vector<_Point3> &in_sites);
     void calculate_(const std::vector<_Point3> &in_sites);
-    int number_hidden_point_() const;
+    void calculate_(const std::vector<_Point3>& in_sites, const std::vector<double>& in_weights);
+    int number_hidden_point_() const
+    {
+        int n = 0;
+        for (int i = 0; i < _is_hidden.size(); ++i)
+        {
+            if (_is_hidden[i])
+                n++;
+        }
+        return n;
+    }
     int number_vertices_() const
     {
       return _vertices.size();

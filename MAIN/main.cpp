@@ -723,6 +723,246 @@ successful!
 *******************************************/
 
 
+
+void CPDTest()
+{
+	BGAL::_ManifoldModel model("..\\..\\data\\sphere.obj");
+	model.initialization_PQP_();
+	float sum_mass = 0;
+	for (auto fit = model.face_begin(); fit != model.face_end(); ++fit)
+	{
+		auto tri = model.face_(fit.id());
+		sum_mass += tri.area_();
+	}
+	int num = 20;
+	std::vector<BGAL::_Point3> sites;
+	for (int i = 0; i < num; ++i)
+	{
+		double phi = BGAL::_BOC::PI() * 2.0 * BGAL::_BOC::rand_();
+		double theta = BGAL::_BOC::PI() * BGAL::_BOC::rand_();
+		sites.push_back(BGAL::_Point3(sin(theta) * cos(phi), sin(theta) * sin(phi), cos(theta)));
+	}
+	std::vector<double> weights(num, 0);
+	std::vector<double> capacity(num, sum_mass / num);
+
+	BGAL::_Restricted_Tessellation3D RPD(model, sites, weights);
+	
+
+	std::function<double(BGAL::_Point3 p)> rho
+		= [](BGAL::_Point3 p)
+	{
+		return 1;
+	};
+	std::function<bool(Eigen::SparseMatrix<double>& h)> cal_h
+		= [&](Eigen::SparseMatrix<double>& h)
+	{
+		const std::vector<std::vector<std::tuple<int, int, int>>>& cells = RPD.get_cells_();
+		const std::vector<std::map<int, std::vector<std::pair<int, int>>>>& edges = RPD.get_edges_();
+		vector<Eigen::Triplet<double>> trilist;
+		for (int i = 0; i < num; ++i)
+		{
+			double hii = 0;
+			for (auto& kv : edges[i])
+			{
+				std::set<int> temp_p;
+				for (auto& te : kv.second)
+				{
+					if (temp_p.find(te.first) == temp_p.end())
+					{
+						temp_p.insert(te.first);
+					}
+					else
+					{
+						temp_p.erase(te.first);
+					}
+					if (temp_p.find(te.second) == temp_p.end())
+					{
+						temp_p.insert(te.second);
+					}
+					else
+					{
+						temp_p.erase(te.second);
+					}
+				}
+				if (temp_p.size() != 2)
+				{
+					std::runtime_error("Error");
+				}
+				std::vector<int> ps;
+				for (auto& tp : temp_p)
+				{
+					ps.push_back(tp);
+				}
+				const BGAL::_Point3& sp = RPD.vertex_(ps[0]);
+				const BGAL::_Point3& tp = RPD.vertex_(ps[1]);
+				double hij = -rho((sp + tp) * 0.5) * ((sp - tp).length_()) * 0.5 / ((sites[i] - sites[kv.first]).length_());
+				trilist.push_back(Eigen::Triplet<double>(i, kv.first, hij));
+				hii -= hij;
+			}
+			trilist.push_back(Eigen::Triplet<double>(i, i, hii));
+		}
+		h.resize(num, num);
+		h.setFromTriplets(trilist.begin(), trilist.end());
+		return true;
+	};
+	std::function<bool(const Eigen::VectorXd& x, double& e, Eigen::VectorXd& g)> omt_fg
+		= [&](const Eigen::VectorXd& x, double& e, Eigen::VectorXd& g)
+	{
+		e = 0;
+		g.setZero();
+		for (int i = 0; i < num; ++i)
+		{
+			weights[i] = x(i);
+		}
+		RPD.calculate_(sites, weights);
+		if (RPD.number_hidden_point_() > 0)
+		{
+			return false;
+		}
+		const std::vector<std::vector<std::tuple<int, int, int>>>& cells = RPD.get_cells_();
+		for (int i = 0; i < num; ++i)
+		{
+			for (int j = 0; j < cells[i].size(); ++j)
+			{
+				Eigen::VectorXd inte = BGAL::_Integral::integral_triangle3D(
+					[&](BGAL::_Point3 p)
+					{
+						Eigen::VectorXd r(2);
+						r(0) = rho(p);
+						r(1) = rho(p) * ((sites[i] - p).sqlength_());
+						return r;
+					}, RPD.vertex_(std::get<0>(cells[i][j])), RPD.vertex_(std::get<1>(cells[i][j])), RPD.vertex_(std::get<2>(cells[i][j]))
+						);
+				e -= inte(1) - weights[i] * inte(0);
+				g(i) += inte(0);
+			}
+			g(i) -= capacity[i];
+			e -= weights[i] * capacity[i];
+		}
+		return true;
+	};
+
+	std::function<void()> update_w
+		= [&]()
+	{
+		weights.clear();
+		weights.resize(num, 0);
+		Eigen::VectorXd iterW(num);
+		iterW.setZero();
+		Eigen::VectorXd oldW = iterW;
+		int count = 0;
+		while (1)
+		{
+			double e;
+			Eigen::VectorXd g(num);
+			omt_fg(iterW, e, g);
+			//std::cout << "omt" <<count<<": e " << e << "  g " << g.norm() << std::endl;
+			//std::cout << "w: ";
+			//for (auto& w : weights)
+			//	std::cout << w << " ";
+			//std::cout << std::endl;
+			if (g.norm() < 1e-4)
+				break;
+			Eigen::SparseMatrix<double> hess(num, num);
+			cal_h(hess);
+			//std::cout << "hess:\n" << hess << std::endl;
+			Eigen::VectorXd d = -BGAL::_LinearSystem::solve_ldlt(hess, g, 1e-6);
+			//std::cout << "d:\n" << d << std::endl;
+			double lambda = 1;
+			double newe = e;
+			while ((!omt_fg(iterW + lambda * d, newe, g)) || newe > e)
+			{
+				lambda *= 0.5;
+			}
+			iterW = iterW + lambda * d;
+			count++;
+			if (count > 50)
+				break;
+		}
+		for (int i = 0; i < num; ++i)
+		{
+			weights[i] = iterW(i);
+		}
+	};
+
+	std::function<double(const Eigen::VectorXd& X, Eigen::VectorXd& g)> fg
+		= [&](const Eigen::VectorXd& X, Eigen::VectorXd& g)
+	{
+		for (int i = 0; i < num; ++i)
+		{
+			BGAL::_Point3 p(X(i * 3), X(i * 3 + 1), X(i * 3 + 2));
+			auto np = model.nearest_point_(p);
+			sites[i] = std::get<0>(np);
+		}
+		update_w();
+		RPD.calculate_(sites, weights);
+		const std::vector<std::vector<std::tuple<int, int, int>>>& cells = RPD.get_cells_();
+		double energy = 0;
+		g.setZero();
+		for (int i = 0; i < num; ++i)
+		{
+			for (int j = 0; j < cells[i].size(); ++j)
+			{
+				Eigen::VectorXd inte = BGAL::_Integral::integral_triangle3D(
+					[&](BGAL::_Point3 p)
+					{
+						Eigen::VectorXd r(5);
+						r(0) = rho(p);
+						r(1) = rho(p) * ((sites[i] - p).sqlength_());
+						r(2) = 2 * rho(p) * (sites[i].x() - p.x());
+						r(3) = 2 * rho(p) * (sites[i].y() - p.y());
+						r(4) = 2 * rho(p) * (sites[i].z() - p.z());
+						return r;
+					}, RPD.vertex_(std::get<0>(cells[i][j])), RPD.vertex_(std::get<1>(cells[i][j])), RPD.vertex_(std::get<2>(cells[i][j]))
+						);
+				energy += inte(1) - weights[i] * inte(0);
+				g(i * 3) += inte(2);
+				g(i * 3 + 1) += inte(3);
+				g(i * 3 + 2) += inte(4);
+			}
+			energy += weights[i] * capacity[i];
+		}
+		return energy;
+	};
+
+	BGAL::_LBFGS::_Parameter para;
+	para.is_show = true;
+	para.epsilon = 1e-5;
+	BGAL::_LBFGS lbfgs(para);
+	Eigen::VectorXd iterX(num * 3);
+	for (int i = 0; i < num; ++i)
+	{
+		iterX(i * 3) = sites[i].x();
+		iterX(i * 3 + 1) = sites[i].y();
+		iterX(i * 3 + 2) = sites[i].z();
+	}
+	lbfgs.minimize(fg, iterX);
+	for (int i = 0; i < num; ++i)
+	{
+		sites[i] = BGAL::_Point3(iterX(i * 3), iterX(i * 3 + 1), iterX(i * 3 + 2));
+	}
+	RPD.calculate_(sites, weights);
+	const std::vector<std::vector<std::tuple<int, int, int>>>& cells = RPD.get_cells_();
+	std::ofstream out("..\\..\\data\\Tessellation3DTest.obj");
+	out << "g 3D_Object\nmtllib BKLineColorBar.mtl\nusemtl BKLineColorBar" << std::endl;
+	for (int i = 0; i < RPD.number_vertices_(); ++i)
+	{
+		out << "v " << RPD.vertex_(i) << std::endl;
+	}
+	for (int i = 0; i < cells.size(); ++i)
+	{
+		double color = (double)BGAL::_BOC::rand_();
+		out << "vt " << color << " 0" << std::endl;
+		for (int j = 0; j < cells[i].size(); ++j)
+		{
+			out << "f " << std::get<0>(cells[i][j]) + 1 << "/" << i + 1
+				<< " " << std::get<1>(cells[i][j]) + 1 << "/" << i + 1
+				<< " " << std::get<2>(cells[i][j]) + 1 << "/" << i + 1 << std::endl;
+		}
+	}
+	out.close();
+}
+
 int alltest()
 {
 	//std::cout << "====================GraphCutsTest" << std::endl;
@@ -765,6 +1005,7 @@ int alltest()
 
 int main()
 {
-	alltest();
+	//alltest();
+	CPDTest();
 	return 0;
 }
