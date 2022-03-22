@@ -10,6 +10,8 @@ A C++ library containing some simple graphics algorithms.
 - Eigen3
 - Boost
 
+It is recommended to use vcpkg to add dependencies.
+
 ### Makefile builds (Linux, other Unixes, and Mac)
 
 ```
