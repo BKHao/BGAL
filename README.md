@@ -10,6 +10,7 @@ A C++ library containing some simple graphics algorithms.
 - Eigen3
 - Boost
 
+
 ### Makefile builds (Linux, other Unixes, and Mac)
 
 ```
@@ -36,7 +37,7 @@ Where is the source code: BGAL
 Where to build the binaries: BGAL/build
 ```
 
-note: check the location of dependencies and install
+note: check the location of dependencies and install. It is recommended to use vcpkg to add dependencies.
 
 Configure->Generate->Open Project
 
