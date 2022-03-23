@@ -1,5 +1,4 @@
 #include "BGAL/Optimization/LinearSystem/LinearSystem.h"
-
 namespace BGAL
 {
   Eigen::VectorXd _LinearSystem::solve_ldlt(const Eigen::SparseMatrix<double> &CoeffMat, const Eigen::VectorXd &right)

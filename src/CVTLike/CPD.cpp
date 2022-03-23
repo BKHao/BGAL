@@ -10,16 +10,23 @@ namespace BGAL
 {
 	_CPD3D::_CPD3D(const _ManifoldModel& model) : _model(model), _RPD(model), _para()
 	{
-		_rho = [](BGAL::_Point3 p)
+		_rho = [](BGAL::_Point3& p)
 		{
 			return 1;
 		};
 		_para.is_show = true;
 		_para.epsilon = 5e-5;
+		_max_count = 50;
+		_omt_eps = 1e-4;
+		_pinvtoler = 1e-6;
+		_hessian_eps = 1e-10;
 	}
-	_CPD3D::_CPD3D(const _ManifoldModel& model, std::function<double(_Point3 p)>& rho, _LBFGS::_Parameter para) : _model(model), _RPD(model), _rho(rho), _para(para)
+	_CPD3D::_CPD3D(const _ManifoldModel& model, std::function<double(_Point3& p)>& rho, _LBFGS::_Parameter para) : _model(model), _RPD(model), _rho(rho), _para(para)
 	{
-		
+		_max_count = 50;
+		_omt_eps = 1e-4;
+		_pinvtoler = 1e-6;
+		_hessian_eps = 1e-10;
 	}
 	void _CPD3D::calculate_(const std::vector<double>& capacity)
 	{
@@ -53,9 +60,11 @@ namespace BGAL
 				for (auto& kv : edges[i])
 				{
 					// 这一段临时写的，需要仔细打磨
+					double len = 0;
 					std::set<int> temp_p;
 					for (auto& te : kv.second)
 					{
+						len += (_RPD.vertex_(te.first) - _RPD.vertex_(te.second)).length_();
 						if (temp_p.find(te.first) == temp_p.end())
 						{
 							temp_p.insert(te.first);
@@ -73,22 +82,28 @@ namespace BGAL
 							temp_p.erase(te.second);
 						}
 					}
-					if (temp_p.size() != 2)
-					{
-						std::runtime_error("Error");
-					}
 					std::vector<int> ps;
 					for (auto& tp : temp_p)
 					{
 						ps.push_back(tp);
 					}
-					const BGAL::_Point3& sp = _RPD.vertex_(ps[0]);
-					const BGAL::_Point3& tp = _RPD.vertex_(ps[1]);
-					double hij = -_rho((sp + tp) * 0.5) * ((sp - tp).length_()) * 0.5 / ((_sites[i] - _sites[kv.first]).length_());
+					BGAL::_Point3 mid_p;
+					// 对于退化情况，主要是薄板问题，特殊处理下，主要是代码能跑通，逻辑其实不对
+					if (ps.size() < 2)
+					{
+						mid_p = (_sites[i] + _sites[kv.first]) * 0.5;
+					}
+					else
+					{
+						const BGAL::_Point3& sp = _RPD.vertex_(ps[0]);
+						const BGAL::_Point3& tp = _RPD.vertex_(ps[1]);
+						mid_p = (_RPD.vertex_(ps[0]) + _RPD.vertex_(ps[1])) * 0.5;
+					}					
+					double hij = -_rho(mid_p) * (len) * 0.5 / ((_sites[i] - _sites[kv.first]).length_());
 					trilist.push_back(Eigen::Triplet<double>(i, kv.first, hij));
 					hii -= hij;
 				}
-				trilist.push_back(Eigen::Triplet<double>(i, i, hii));
+				trilist.push_back(Eigen::Triplet<double>(i, i, hii + _hessian_eps));
 			}
 			h.resize(num, num);
 			h.setFromTriplets(trilist.begin(), trilist.end());
@@ -138,32 +153,33 @@ namespace BGAL
 			_weights.resize(num, 0);
 			Eigen::VectorXd iterW(num);
 			iterW.setZero();
-			Eigen::VectorXd oldW = iterW;
-			int count = 0;
-			while (1)
+			for (int i = 0; i < num; ++i)
 			{
-				double e;
-				Eigen::VectorXd g(num);
-				omt_fg(iterW, e, g);
-				if (g.norm() < 1e-4)
+				iterW(i) = _weights[i];
+			}
+			int count = 0;
+			double e;
+			Eigen::VectorXd g(num);
+			omt_fg(iterW, e, g);
+			while (1)
+			{				
+				
+				if (g.norm() < _omt_eps)
 					break;
 				Eigen::SparseMatrix<double> hess(num, num);
 				cal_h(hess);
-				Eigen::VectorXd d = -BGAL::_LinearSystem::solve_ldlt(hess, g, 1e-6);
+				Eigen::VectorXd d = -BGAL::_LinearSystem::solve_ldlt(hess, g, _pinvtoler);
 				double lambda = 1;
 				double newe = e;
 				while ((!omt_fg(iterW + lambda * d, newe, g)) || newe > e)
 				{
 					lambda *= 0.5;
 				}
+				e = newe;
 				iterW = iterW + lambda * d;
 				count++;
-				if (count > 50)
+				if (count > _max_count)
 					break;
-			}
-			for (int i = 0; i < num; ++i)
-			{
-				_weights[i] = iterW(i);
 			}
 		};
 
@@ -173,6 +189,7 @@ namespace BGAL
 			for (int i = 0; i < num; ++i)
 			{
 				BGAL::_Point3 p(X(i * 3), X(i * 3 + 1), X(i * 3 + 2));
+				// 这里是不是需要将点投影到mesh表面有待考虑
 				_sites[i] = p;
 			}
 			update_w();

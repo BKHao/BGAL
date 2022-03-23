@@ -580,21 +580,22 @@ void GeodesicDijkstraTest()
 void CPDTest()
 {
 	BGAL::_ManifoldModel model("data\\sphere.obj");
-	std::function<double(BGAL::_Point3 p)> rho = [](BGAL::_Point3 p)
+	std::function<double(BGAL::_Point3& p)> rho = [](BGAL::_Point3& p)
 	{
 		return 1;
 	};
 	BGAL::_LBFGS::_Parameter para;
 	para.is_show = true;
-	para.epsilon = 1e-4;
+	para.epsilon = 5e-4;
 	BGAL::_CPD3D cpd(model, rho, para);
+	cpd._omt_eps = 5e-4;
 	double sum_mass = 0;
 	for (auto fit = model.face_begin(); fit != model.face_end(); ++fit)
 	{
 		auto tri = model.face_(fit.id());
 		sum_mass += tri.area_();
 	}
-	int num = 50;
+	int num = 200;
 	std::vector<double> capacity(num, sum_mass / num);
 	cpd.calculate_(capacity);
 	const std::vector<BGAL::_Point3>& sites = cpd.get_sites();
