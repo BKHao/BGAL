@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 
 set(BGAL_CVTLike_SRC        
 		CPD.cpp
+		CVT.cpp
 		)
 # Get static lib
 add_library(CVTLike STATIC ${BGAL_CVTLike_SRC})

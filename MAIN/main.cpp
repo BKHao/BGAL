@@ -20,7 +20,8 @@
 #include <BGAL/PointCloudProcessing/Registration/ICP/ICP.h>
 #include <BGAL/Reconstruction/MarchingTetrahedra/MarchingTetrahedra.h>
 #include <BGAL/Geodesic/Dijkstra/Dijkstra.h>
-#include "BGAL/CVTLike/CPD.h"
+#include <BGAL/CVTLike/CPD.h>
+#include <BGAL/CVTLike/CVT.h>
 //Test BOC sign
 void BOCSignTest()
 {
@@ -613,11 +614,48 @@ void CPDTest()
 		}
 		std::cout << cal_mass << "\t" << capacity[i] << "\t" << cal_mass - capacity[i] << std::endl;
 	}
-	std::ofstream out("..\\..\\data\\Tessellation3DTest.obj");
+	std::ofstream out("..\\..\\data\\CPD3DTest.obj");
 	out << "g 3D_Object\nmtllib BKLineColorBar.mtl\nusemtl BKLineColorBar" << std::endl;
 	for (int i = 0; i < RPD.number_vertices_(); ++i)
 	{
 		out << "v " << RPD.vertex_(i) << std::endl;
+	}
+	for (int i = 0; i < cells.size(); ++i)
+	{
+		double color = (double)BGAL::_BOC::rand_();
+		out << "vt " << color << " 0" << std::endl;
+		for (int j = 0; j < cells[i].size(); ++j)
+		{
+			out << "f " << std::get<0>(cells[i][j]) + 1 << "/" << i + 1
+				<< " " << std::get<1>(cells[i][j]) + 1 << "/" << i + 1
+				<< " " << std::get<2>(cells[i][j]) + 1 << "/" << i + 1 << std::endl;
+		}
+	}
+	out.close();
+}
+
+
+void CVT3DTest()
+{
+	BGAL::_ManifoldModel model("..\\..\\data\\bunny.obj");
+	std::function<double(BGAL::_Point3& p)> rho = [](BGAL::_Point3& p)
+	{
+		return 1;
+	};
+	BGAL::_LBFGS::_Parameter para;
+	para.is_show = true;
+	para.epsilon = 1e-4;
+	BGAL::_CVT3D cvt(model, rho, para);
+	int num = 300;
+	cvt.calculate_(num);
+	const std::vector<BGAL::_Point3>& sites = cvt.get_sites();
+	const BGAL::_Restricted_Tessellation3D& RVD = cvt.get_RVD();
+	const std::vector<std::vector<std::tuple<int, int, int>>>& cells = RVD.get_cells_();
+	std::ofstream out("..\\..\\data\\CVT3DTest.obj");
+	out << "g 3D_Object\nmtllib BKLineColorBar.mtl\nusemtl BKLineColorBar" << std::endl;
+	for (int i = 0; i < RVD.number_vertices_(); ++i)
+	{
+		out << "v " << RVD.vertex_(i) << std::endl;
 	}
 	for (int i = 0; i < cells.size(); ++i)
 	{
@@ -871,6 +909,8 @@ int alltest()
 	GeodesicDijkstraTest();
 	std::cout << "====================CPDTest" << std::endl;
 	CPDTest();
+	std::cout << "====================CVT3DTest" << std::endl;
+	CVT3DTest();
 	std::cout << "successful!" << std::endl;
 	return 0;
 }
@@ -878,6 +918,5 @@ int alltest()
 int main()
 {
 	alltest();
-	//CPDTest();
 	return 0;
 }
