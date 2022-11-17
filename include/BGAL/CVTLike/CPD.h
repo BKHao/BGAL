@@ -15,7 +15,7 @@ namespace BGAL
 	public:
 		_CPD3D(const _ManifoldModel& model);
 		_CPD3D(const _ManifoldModel& model, std::function<double(_Point3& p)>& rho, _LBFGS::_Parameter para);
-		void calculate_(const std::vector<double>& capacity);
+		void calculate_(const std::vector<double>& capacity, std::vector<_Point3> sites);
 		const std::vector<_Point3>& get_sites() const
 		{
 			return _sites;

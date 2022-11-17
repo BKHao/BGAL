@@ -28,11 +28,18 @@ namespace BGAL
 		_pinvtoler = 1e-6;
 		_hessian_eps = 1e-10;
 	}
-	void _CPD3D::calculate_(const std::vector<double>& capacity)
+	void _CPD3D::calculate_(const std::vector<double>& capacity, std::vector<_Point3> sites)
 	{
+
+		_max_count = 50;
+		_omt_eps = 1e-4;
+		_pinvtoler = 1e-4;
+		_hessian_eps = 1e-5;
+		_para.max_linearsearch = 20;
+
 		_capacity = capacity;
 		int num = _capacity.size();
-		_sites.resize(num);
+		/*_sites.resize(num);
 		for (int i = 0; i < num; ++i)
 		{
 			int fid = rand() % _model.number_faces_();
@@ -45,7 +52,8 @@ namespace BGAL
 			l1 /= sum;
 			l2 /= sum;
 			_sites[i] = _model.face_(fid).point(0) * l0 + _model.face_(fid).point(1) * l1 + _model.face_(fid).point(2) * l2;
-		}
+		}*/
+		_sites = sites;
 		_weights.resize(num, 0);
 		_RPD.calculate_(_sites, _weights);
 		std::function<bool(Eigen::SparseMatrix<double>& h)> cal_h
@@ -222,6 +230,7 @@ namespace BGAL
 			}
 			return energy;
 		};
+
 		BGAL::_LBFGS lbfgs(_para);
 		Eigen::VectorXd iterX(num * 3);
 		for (int i = 0; i < num; ++i)

@@ -160,6 +160,11 @@ namespace BGAL
         throw std::runtime_error("Beyond the index!");
       return _vertices[id];
     }
+    
+    const  std::vector<_Point3>& get_sites_() const
+    {
+        return _sites;
+    }
     const std::vector<std::vector<std::tuple<int, int, int>>> &get_cells_() const
     {
       return _cells;
