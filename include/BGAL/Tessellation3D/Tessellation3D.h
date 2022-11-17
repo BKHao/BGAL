@@ -99,13 +99,14 @@ namespace BGAL
       std::set<int> insec_(const _Symbolic_Point &in_sym) const
       {
         std::set<int> res;
-        for (auto it = _sym.begin(); it != _sym.end(); ++it)
-        {
-          if (in_sym._sym.find(*it) != in_sym._sym.end())
-          {
-            res.insert(*it);
-          }
-        }
+        std::set_intersection(_sym.begin(), _sym.end(), in_sym._sym.begin(), in_sym._sym.end(), std::inserter(res, res.begin()));
+        //for (auto it = _sym.begin(); it != _sym.end(); ++it)
+        //{
+        //  if (in_sym._sym.find(*it) != in_sym._sym.end())
+        //  {
+        //    res.insert(*it);
+        //  }
+        //}
         return res;
       }
       int num_sites_() const
